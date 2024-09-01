@@ -15,23 +15,19 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AppUser
-import org.openapitools.client.models.Client
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param appUser 
- * @param client 
- * @param id 
- * @param new 
+ *
+ * @param appUser
+ * @param client
+ * @param id
+ * @param new
  */
 
 
-data class AppUserClientMapping (
+data class AppUserClientMapping(
 
     @Json(name = "appUser")
     val appUser: AppUser? = null,
@@ -45,8 +41,5 @@ data class AppUserClientMapping (
     @Json(name = "new")
     val new: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

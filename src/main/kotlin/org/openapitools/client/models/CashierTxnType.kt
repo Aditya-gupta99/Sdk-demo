@@ -17,17 +17,16 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param id 
- * @param `value` 
+ *
+ * @param id
+ * @param `value`
  */
 
 
-data class CashierTxnType (
+data class CashierTxnType(
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
@@ -35,8 +34,5 @@ data class CashierTxnType (
     @Json(name = "value")
     val `value`: kotlin.String? = null
 
-) {
-
-
-}
+)
 

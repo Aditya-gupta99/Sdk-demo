@@ -15,38 +15,31 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AccountingTagRuleData
-import org.openapitools.client.models.CodeValueData
-import org.openapitools.client.models.GLAccountData
-import org.openapitools.client.models.GLAccountDataForLookup
-import org.openapitools.client.models.OfficeData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param allowMultipleCreditEntries 
- * @param allowMultipleDebitEntries 
- * @param allowedAccounts 
- * @param allowedCreditTagOptions 
- * @param allowedDebitTagOptions 
- * @param allowedOffices 
- * @param creditAccounts 
- * @param creditTags 
- * @param debitAccounts 
- * @param debitTags 
- * @param description 
- * @param id 
- * @param name 
- * @param officeId 
- * @param officeName 
- * @param systemDefined 
+ *
+ * @param allowMultipleCreditEntries
+ * @param allowMultipleDebitEntries
+ * @param allowedAccounts
+ * @param allowedCreditTagOptions
+ * @param allowedDebitTagOptions
+ * @param allowedOffices
+ * @param creditAccounts
+ * @param creditTags
+ * @param debitAccounts
+ * @param debitTags
+ * @param description
+ * @param id
+ * @param name
+ * @param officeId
+ * @param officeName
+ * @param systemDefined
  */
 
 
-data class AccountingRuleData (
+data class AccountingRuleData(
 
     @Json(name = "allowMultipleCreditEntries")
     val allowMultipleCreditEntries: kotlin.Boolean? = null,
@@ -96,8 +89,5 @@ data class AccountingRuleData (
     @Json(name = "systemDefined")
     val systemDefined: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

@@ -15,21 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PaymentAllocationOrder
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param futureInstallmentAllocationRule 
- * @param paymentAllocationOrder 
- * @param transactionType 
+ *
+ * @param futureInstallmentAllocationRule
+ * @param paymentAllocationOrder
+ * @param transactionType
  */
 
 
-data class AdvancedPaymentData (
+data class AdvancedPaymentData(
 
     @Json(name = "futureInstallmentAllocationRule")
     val futureInstallmentAllocationRule: kotlin.String? = null,
@@ -40,8 +37,5 @@ data class AdvancedPaymentData (
     @Json(name = "transactionType")
     val transactionType: kotlin.String? = null
 
-) {
-
-
-}
+)
 

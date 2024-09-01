@@ -17,23 +17,22 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param amortizationType 
- * @param graceOnArrearsAgeing 
- * @param graceOnPrincipalAndInterestPayment 
- * @param inArrearsTolerance 
- * @param interestCalculationPeriodType 
- * @param interestType 
- * @param repaymentEvery 
- * @param transactionProcessingStrategyCode 
+ *
+ * @param amortizationType
+ * @param graceOnArrearsAgeing
+ * @param graceOnPrincipalAndInterestPayment
+ * @param inArrearsTolerance
+ * @param interestCalculationPeriodType
+ * @param interestType
+ * @param repaymentEvery
+ * @param transactionProcessingStrategyCode
  */
 
 
-data class AllowAttributeOverrides (
+data class AllowAttributeOverrides(
 
     @Json(name = "amortizationType")
     val amortizationType: kotlin.Boolean? = null,
@@ -59,8 +58,5 @@ data class AllowAttributeOverrides (
     @Json(name = "transactionProcessingStrategyCode")
     val transactionProcessingStrategyCode: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

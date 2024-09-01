@@ -15,24 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Header
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param body 
- * @param headers 
- * @param method 
- * @param reference 
- * @param relativeUrl 
- * @param requestId 
+ *
+ * @param body
+ * @param headers
+ * @param method
+ * @param reference
+ * @param relativeUrl
+ * @param requestId
  */
 
 
-data class BatchRequest (
+data class BatchRequest(
 
     @Json(name = "body")
     val body: kotlin.String? = null,
@@ -52,8 +49,5 @@ data class BatchRequest (
     @Json(name = "requestId")
     val requestId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

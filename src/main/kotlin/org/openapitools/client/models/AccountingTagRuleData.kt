@@ -15,22 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CodeValueData
-import org.openapitools.client.models.EnumOptionData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param id 
- * @param tag 
- * @param transactionType 
+ *
+ * @param id
+ * @param tag
+ * @param transactionType
  */
 
 
-data class AccountingTagRuleData (
+data class AccountingTagRuleData(
 
     @Json(name = "id")
     val id: kotlin.Long? = null,
@@ -41,8 +37,5 @@ data class AccountingTagRuleData (
     @Json(name = "transactionType")
     val transactionType: EnumOptionData? = null
 
-) {
-
-
-}
+)
 

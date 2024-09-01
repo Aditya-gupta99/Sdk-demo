@@ -15,61 +15,61 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.OffsetDateTime
 
 /**
- * 
  *
- * @param calendarInstanceId 
- * @param calendarTypeOptions 
- * @param centerId 
- * @param createdByUserId 
- * @param createdByUsername 
- * @param createdDate 
- * @param dateFormat 
- * @param description 
- * @param duration 
- * @param endDate 
- * @param entityId 
- * @param entityType 
- * @param entityTypeOptions 
- * @param firstReminder 
- * @param frequency 
- * @param frequencyNthDayTypeOptions 
- * @param frequencyOptions 
- * @param humanReadable 
- * @param id 
- * @param interval 
- * @param lastUpdatedByUserId 
- * @param lastUpdatedByUsername 
- * @param lastUpdatedDate 
- * @param locale 
- * @param location 
- * @param meetingTime 
- * @param nextTenRecurringDates 
- * @param recentEligibleMeetingDate 
- * @param recurrence 
- * @param recurringDates 
- * @param remindBy 
- * @param remindByOptions 
- * @param repeating 
- * @param repeatsOnDay 
- * @param repeatsOnDayOfMonth 
- * @param repeatsOnDayOptions 
- * @param repeatsOnNthDayOfMonth 
- * @param rowIndex 
- * @param secondReminder 
- * @param startDate 
- * @param title 
- * @param type 
- * @param typeId 
+ *
+ * @param calendarInstanceId
+ * @param calendarTypeOptions
+ * @param centerId
+ * @param createdByUserId
+ * @param createdByUsername
+ * @param createdDate
+ * @param dateFormat
+ * @param description
+ * @param duration
+ * @param endDate
+ * @param entityId
+ * @param entityType
+ * @param entityTypeOptions
+ * @param firstReminder
+ * @param frequency
+ * @param frequencyNthDayTypeOptions
+ * @param frequencyOptions
+ * @param humanReadable
+ * @param id
+ * @param interval
+ * @param lastUpdatedByUserId
+ * @param lastUpdatedByUsername
+ * @param lastUpdatedDate
+ * @param locale
+ * @param location
+ * @param meetingTime
+ * @param nextTenRecurringDates
+ * @param recentEligibleMeetingDate
+ * @param recurrence
+ * @param recurringDates
+ * @param remindBy
+ * @param remindByOptions
+ * @param repeating
+ * @param repeatsOnDay
+ * @param repeatsOnDayOfMonth
+ * @param repeatsOnDayOptions
+ * @param repeatsOnNthDayOfMonth
+ * @param rowIndex
+ * @param secondReminder
+ * @param startDate
+ * @param title
+ * @param type
+ * @param typeId
  */
 
 
-data class CalendarData (
+data class CalendarData(
 
     @Json(name = "calendarInstanceId")
     val calendarInstanceId: kotlin.Long? = null,
@@ -87,7 +87,7 @@ data class CalendarData (
     val createdByUsername: kotlin.String? = null,
 
     @Json(name = "createdDate")
-    val createdDate: java.time.OffsetDateTime? = null,
+    val createdDate: OffsetDateTime? = null,
 
     @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
@@ -99,7 +99,7 @@ data class CalendarData (
     val duration: kotlin.Int? = null,
 
     @Json(name = "endDate")
-    val endDate: java.time.LocalDate? = null,
+    val endDate: LocalDate? = null,
 
     @Json(name = "entityId")
     val entityId: kotlin.Long? = null,
@@ -138,7 +138,7 @@ data class CalendarData (
     val lastUpdatedByUsername: kotlin.String? = null,
 
     @Json(name = "lastUpdatedDate")
-    val lastUpdatedDate: java.time.OffsetDateTime? = null,
+    val lastUpdatedDate: OffsetDateTime? = null,
 
     @Json(name = "locale")
     val locale: kotlin.String? = null,
@@ -147,19 +147,19 @@ data class CalendarData (
     val location: kotlin.String? = null,
 
     @Json(name = "meetingTime")
-    val meetingTime: java.time.LocalTime? = null,
+    val meetingTime: LocalTime? = null,
 
     @Json(name = "nextTenRecurringDates")
-    val nextTenRecurringDates: kotlin.collections.List<java.time.LocalDate>? = null,
+    val nextTenRecurringDates: kotlin.collections.List<LocalDate>? = null,
 
     @Json(name = "recentEligibleMeetingDate")
-    val recentEligibleMeetingDate: java.time.LocalDate? = null,
+    val recentEligibleMeetingDate: LocalDate? = null,
 
     @Json(name = "recurrence")
     val recurrence: kotlin.String? = null,
 
     @Json(name = "recurringDates")
-    val recurringDates: kotlin.collections.List<java.time.LocalDate>? = null,
+    val recurringDates: kotlin.collections.List<LocalDate>? = null,
 
     @Json(name = "remindBy")
     val remindBy: EnumOptionData? = null,
@@ -189,7 +189,7 @@ data class CalendarData (
     val secondReminder: kotlin.Int? = null,
 
     @Json(name = "startDate")
-    val startDate: java.time.LocalDate? = null,
+    val startDate: LocalDate? = null,
 
     @Json(name = "title")
     val title: kotlin.String? = null,
@@ -200,8 +200,5 @@ data class CalendarData (
     @Json(name = "typeId")
     val typeId: kotlin.String? = null
 
-) {
-
-
-}
+)
 

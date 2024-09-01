@@ -15,49 +15,46 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CurrencyData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param accountBalance 
- * @param availableBalance 
- * @param currency 
- * @param interestNotPosted 
- * @param interestPostedTillDate 
- * @param lastInterestCalculationDate 
- * @param prevInterestPostedTillDate 
- * @param runningBalanceOnInterestPostingTillDate 
- * @param runningBalanceOnPivotDate 
- * @param totalAnnualFees 
- * @param totalDeposits 
- * @param totalFeeCharge 
- * @param totalInterestEarned 
- * @param totalInterestPosted 
- * @param totalOverdraftInterestDerived 
- * @param totalPenaltyCharge 
- * @param totalWithdrawalFees 
- * @param totalWithdrawals 
- * @param totalWithholdTax 
+ *
+ * @param accountBalance
+ * @param availableBalance
+ * @param currency
+ * @param interestNotPosted
+ * @param interestPostedTillDate
+ * @param lastInterestCalculationDate
+ * @param prevInterestPostedTillDate
+ * @param runningBalanceOnInterestPostingTillDate
+ * @param runningBalanceOnPivotDate
+ * @param totalAnnualFees
+ * @param totalDeposits
+ * @param totalFeeCharge
+ * @param totalInterestEarned
+ * @param totalInterestPosted
+ * @param totalOverdraftInterestDerived
+ * @param totalPenaltyCharge
+ * @param totalWithdrawalFees
+ * @param totalWithdrawals
+ * @param totalWithholdTax
  */
 
 
-data class SavingsAccountSummaryData (
+data class SavingsAccountSummaryData(
 
     @Json(name = "accountBalance")
-    val accountBalance: java.math.BigDecimal? = null,
+    val accountBalance: Double? = null,
 
     @Json(name = "availableBalance")
-    val availableBalance: java.math.BigDecimal? = null,
+    val availableBalance: Double? = null,
 
     @Json(name = "currency")
     val currency: CurrencyData? = null,
 
     @Json(name = "interestNotPosted")
-    val interestNotPosted: java.math.BigDecimal? = null,
+    val interestNotPosted: Double? = null,
 
     @Json(name = "interestPostedTillDate")
     val interestPostedTillDate: java.time.LocalDate? = null,
@@ -69,43 +66,39 @@ data class SavingsAccountSummaryData (
     val prevInterestPostedTillDate: java.time.LocalDate? = null,
 
     @Json(name = "runningBalanceOnInterestPostingTillDate")
-    val runningBalanceOnInterestPostingTillDate: java.math.BigDecimal? = null,
+    val runningBalanceOnInterestPostingTillDate: Double? = null,
 
     @Json(name = "runningBalanceOnPivotDate")
-    val runningBalanceOnPivotDate: java.math.BigDecimal? = null,
+    val runningBalanceOnPivotDate: Double? = null,
 
     @Json(name = "totalAnnualFees")
-    val totalAnnualFees: java.math.BigDecimal? = null,
+    val totalAnnualFees: Double? = null,
 
     @Json(name = "totalDeposits")
-    val totalDeposits: java.math.BigDecimal? = null,
+    val totalDeposits: Double? = null,
 
     @Json(name = "totalFeeCharge")
-    val totalFeeCharge: java.math.BigDecimal? = null,
+    val totalFeeCharge: Double? = null,
 
     @Json(name = "totalInterestEarned")
-    val totalInterestEarned: java.math.BigDecimal? = null,
+    val totalInterestEarned: Double? = null,
 
     @Json(name = "totalInterestPosted")
-    val totalInterestPosted: java.math.BigDecimal? = null,
+    val totalInterestPosted: Double? = null,
 
     @Json(name = "totalOverdraftInterestDerived")
-    val totalOverdraftInterestDerived: java.math.BigDecimal? = null,
+    val totalOverdraftInterestDerived: Double? = null,
 
     @Json(name = "totalPenaltyCharge")
-    val totalPenaltyCharge: java.math.BigDecimal? = null,
+    val totalPenaltyCharge: Double? = null,
 
     @Json(name = "totalWithdrawalFees")
-    val totalWithdrawalFees: java.math.BigDecimal? = null,
+    val totalWithdrawalFees: Double? = null,
 
     @Json(name = "totalWithdrawals")
-    val totalWithdrawals: java.math.BigDecimal? = null,
+    val totalWithdrawals: Double? = null,
 
     @Json(name = "totalWithholdTax")
-    val totalWithholdTax: java.math.BigDecimal? = null
+    val totalWithholdTax: Double? = null
 
-) {
-
-
-}
-
+)

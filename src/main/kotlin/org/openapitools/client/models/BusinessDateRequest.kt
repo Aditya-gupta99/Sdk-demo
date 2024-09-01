@@ -17,19 +17,18 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
  * BusinessDateRequest
  *
- * @param date 
- * @param dateFormat 
- * @param locale 
- * @param type 
+ * @param date
+ * @param dateFormat
+ * @param locale
+ * @param type
  */
 
 
-data class BusinessDateRequest (
+data class BusinessDateRequest(
 
     @Json(name = "date")
     val date: kotlin.String? = null,
@@ -43,8 +42,5 @@ data class BusinessDateRequest (
     @Json(name = "type")
     val type: kotlin.String? = null
 
-) {
-
-
-}
+)
 

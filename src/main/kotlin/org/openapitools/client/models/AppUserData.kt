@@ -15,21 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ClientData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param clients 
- * @param rowIndex 
- * @param selfServiceUser 
+ *
+ * @param clients
+ * @param rowIndex
+ * @param selfServiceUser
  */
 
 
-data class AppUserData (
+data class AppUserData(
 
     @Json(name = "clients")
     val clients: kotlin.collections.Set<ClientData>? = null,
@@ -40,8 +37,5 @@ data class AppUserData (
     @Json(name = "selfServiceUser")
     val selfServiceUser: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

@@ -29,22 +29,4 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class java.time.LocalTime (
-
-    @Json(name = "hour")
-    val hour: kotlin.Int? = null,
-
-    @Json(name = "minute")
-    val minute: kotlin.Int? = null,
-
-    @Json(name = "nano")
-    val nano: kotlin.Int? = null,
-
-    @Json(name = "second")
-    val second: kotlin.Int? = null
-
-) {
-
-
-}
 

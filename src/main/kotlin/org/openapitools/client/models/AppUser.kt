@@ -15,48 +15,42 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AppUserClientMapping
-import org.openapitools.client.models.GrantedAuthority
-import org.openapitools.client.models.Office
-import org.openapitools.client.models.Role
-import org.openapitools.client.models.Staff
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param accountNonExpired 
- * @param accountNonLocked 
- * @param appUserClientMappings 
- * @param authorities 
- * @param bypassUser 
- * @param credentialsNonExpired 
- * @param deleted 
- * @param displayName 
- * @param email 
- * @param enabled 
- * @param firstname 
- * @param id 
- * @param lastTimePasswordUpdated 
- * @param lastname 
- * @param new 
- * @param notEnabled 
- * @param office 
- * @param password 
- * @param passwordNeverExpires 
- * @param roles 
- * @param selfServiceUser 
- * @param staff 
- * @param staffDisplayName 
- * @param staffId 
- * @param systemUser 
- * @param username 
+ *
+ * @param accountNonExpired
+ * @param accountNonLocked
+ * @param appUserClientMappings
+ * @param authorities
+ * @param bypassUser
+ * @param credentialsNonExpired
+ * @param deleted
+ * @param displayName
+ * @param email
+ * @param enabled
+ * @param firstname
+ * @param id
+ * @param lastTimePasswordUpdated
+ * @param lastname
+ * @param new
+ * @param notEnabled
+ * @param office
+ * @param password
+ * @param passwordNeverExpires
+ * @param roles
+ * @param selfServiceUser
+ * @param staff
+ * @param staffDisplayName
+ * @param staffId
+ * @param systemUser
+ * @param username
  */
 
 
-data class AppUser (
+data class AppUser(
 
     @Json(name = "accountNonExpired")
     val accountNonExpired: kotlin.Boolean? = null,
@@ -95,7 +89,7 @@ data class AppUser (
     val id: kotlin.Long? = null,
 
     @Json(name = "lastTimePasswordUpdated")
-    val lastTimePasswordUpdated: java.time.LocalDate? = null,
+    val lastTimePasswordUpdated: LocalDate? = null,
 
     @Json(name = "lastname")
     val lastname: kotlin.String? = null,
@@ -136,8 +130,5 @@ data class AppUser (
     @Json(name = "username")
     val username: kotlin.String? = null
 
-) {
-
-
-}
+)
 

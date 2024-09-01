@@ -31,7 +31,7 @@ data class MultivaluedMapStringParameterizedHeader (
     @Json(name = "empty")
     val empty: kotlin.Boolean? = null
 
-) : kotlin.collections.HashMap<String, kotlin.collections.List>() {
+) : kotlin.collections.HashMap<String, kotlin.collections.List<Any>>() {
 
 
 }

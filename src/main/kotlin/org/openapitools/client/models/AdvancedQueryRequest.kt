@@ -15,21 +15,17 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AdvancedQueryData
-import org.openapitools.client.models.TableQueryData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param baseQuery 
- * @param datatableQueries 
+ *
+ * @param baseQuery
+ * @param datatableQueries
  */
 
 
-data class AdvancedQueryRequest (
+data class AdvancedQueryRequest(
 
     @Json(name = "baseQuery")
     val baseQuery: AdvancedQueryData? = null,
@@ -37,8 +33,5 @@ data class AdvancedQueryRequest (
     @Json(name = "datatableQueries")
     val datatableQueries: kotlin.collections.List<TableQueryData>? = null
 
-) {
-
-
-}
+)
 

@@ -15,38 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CashierData
-import org.openapitools.client.models.CashierTxnType
-import org.openapitools.client.models.CurrencyData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.OffsetDateTime
 
 /**
- * 
  *
- * @param cashierData 
- * @param cashierId 
- * @param cashierName 
- * @param createdDate 
- * @param currencyOptions 
- * @param endDate 
- * @param entityId 
- * @param entityType 
- * @param id 
- * @param officeId 
- * @param officeName 
- * @param startDate 
- * @param tellerId 
- * @param tellerName 
- * @param txnAmount 
- * @param txnDate 
- * @param txnNote 
- * @param txnType 
+ *
+ * @param cashierData
+ * @param cashierId
+ * @param cashierName
+ * @param createdDate
+ * @param currencyOptions
+ * @param endDate
+ * @param entityId
+ * @param entityType
+ * @param id
+ * @param officeId
+ * @param officeName
+ * @param startDate
+ * @param tellerId
+ * @param tellerName
+ * @param txnAmount
+ * @param txnDate
+ * @param txnNote
+ * @param txnType
  */
 
 
-data class CashierTransactionData (
+data class CashierTransactionData(
 
     @Json(name = "cashierData")
     val cashierData: CashierData? = null,
@@ -58,13 +56,13 @@ data class CashierTransactionData (
     val cashierName: kotlin.String? = null,
 
     @Json(name = "createdDate")
-    val createdDate: java.time.OffsetDateTime? = null,
+    val createdDate: OffsetDateTime? = null,
 
     @Json(name = "currencyOptions")
     val currencyOptions: kotlin.collections.List<CurrencyData>? = null,
 
     @Json(name = "endDate")
-    val endDate: java.time.LocalDate? = null,
+    val endDate: LocalDate? = null,
 
     @Json(name = "entityId")
     val entityId: kotlin.Long? = null,
@@ -82,7 +80,7 @@ data class CashierTransactionData (
     val officeName: kotlin.String? = null,
 
     @Json(name = "startDate")
-    val startDate: java.time.LocalDate? = null,
+    val startDate: LocalDate? = null,
 
     @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
@@ -91,10 +89,10 @@ data class CashierTransactionData (
     val tellerName: kotlin.String? = null,
 
     @Json(name = "txnAmount")
-    val txnAmount: java.math.BigDecimal? = null,
+    val txnAmount: BigDecimal? = null,
 
     @Json(name = "txnDate")
-    val txnDate: java.time.LocalDate? = null,
+    val txnDate: LocalDate? = null,
 
     @Json(name = "txnNote")
     val txnNote: kotlin.String? = null,
@@ -102,8 +100,5 @@ data class CashierTransactionData (
     @Json(name = "txnType")
     val txnType: CashierTxnType? = null
 
-) {
-
-
-}
+)
 

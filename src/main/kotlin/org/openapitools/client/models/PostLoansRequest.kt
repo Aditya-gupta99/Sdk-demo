@@ -15,48 +15,46 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostLoansDisbursementData
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
  * PostLoansRequest
  *
- * @param amortizationType 
- * @param clientId 
- * @param dateFormat 
- * @param daysInYearType 
+ * @param amortizationType
+ * @param clientId
+ * @param dateFormat
+ * @param daysInYearType
  * @param disbursementData List of PostLoansDisbursementData
- * @param expectedDisbursementDate 
- * @param externalId 
- * @param fixedPrincipalPercentagePerInstallment 
- * @param graceOnArrearsAgeing 
- * @param graceOnInterestCharged 
- * @param graceOnInterestPayment 
- * @param graceOnPrincipalPayment 
- * @param interestCalculationPeriodType 
- * @param interestRatePerPeriod 
- * @param interestType 
- * @param loanScheduleProcessingType 
- * @param loanScheduleType 
- * @param loanTermFrequency 
- * @param loanTermFrequencyType 
- * @param loanType 
- * @param locale 
+ * @param expectedDisbursementDate
+ * @param externalId
+ * @param fixedPrincipalPercentagePerInstallment
+ * @param graceOnArrearsAgeing
+ * @param graceOnInterestCharged
+ * @param graceOnInterestPayment
+ * @param graceOnPrincipalPayment
+ * @param interestCalculationPeriodType
+ * @param interestRatePerPeriod
+ * @param interestType
+ * @param loanScheduleProcessingType
+ * @param loanScheduleType
+ * @param loanTermFrequency
+ * @param loanTermFrequencyType
+ * @param loanType
+ * @param locale
  * @param maxOutstandingLoanBalance Maximum allowed outstanding balance
- * @param numberOfRepayments 
- * @param principal 
- * @param productId 
- * @param repaymentEvery 
- * @param repaymentFrequencyType 
- * @param repaymentsStartingFromDate 
- * @param submittedOnDate 
- * @param transactionProcessingStrategyCode 
+ * @param numberOfRepayments
+ * @param principal
+ * @param productId
+ * @param repaymentEvery
+ * @param repaymentFrequencyType
+ * @param repaymentsStartingFromDate
+ * @param submittedOnDate
+ * @param transactionProcessingStrategyCode
  */
 
 
-data class PostLoansRequest (
+data class PostLoansRequest(
 
     @Json(name = "amortizationType")
     val amortizationType: kotlin.Int? = null,
@@ -81,7 +79,7 @@ data class PostLoansRequest (
     val externalId: kotlin.String? = null,
 
     @Json(name = "fixedPrincipalPercentagePerInstallment")
-    val fixedPrincipalPercentagePerInstallment: java.math.BigDecimal? = null,
+    val fixedPrincipalPercentagePerInstallment: Double? = null,
 
     @Json(name = "graceOnArrearsAgeing")
     val graceOnArrearsAgeing: kotlin.Int? = null,
@@ -99,7 +97,7 @@ data class PostLoansRequest (
     val interestCalculationPeriodType: kotlin.Int? = null,
 
     @Json(name = "interestRatePerPeriod")
-    val interestRatePerPeriod: java.math.BigDecimal? = null,
+    val interestRatePerPeriod: Double? = null,
 
     @Json(name = "interestType")
     val interestType: kotlin.Int? = null,
@@ -124,13 +122,13 @@ data class PostLoansRequest (
 
     /* Maximum allowed outstanding balance */
     @Json(name = "maxOutstandingLoanBalance")
-    val maxOutstandingLoanBalance: java.math.BigDecimal? = null,
+    val maxOutstandingLoanBalance: Double? = null,
 
     @Json(name = "numberOfRepayments")
     val numberOfRepayments: kotlin.Int? = null,
 
     @Json(name = "principal")
-    val principal: java.math.BigDecimal? = null,
+    val principal: Double? = null,
 
     @Json(name = "productId")
     val productId: kotlin.Long? = null,
@@ -153,13 +151,14 @@ data class PostLoansRequest (
 ) {
 
     /**
-     * 
+     *
      *
      * Values: `null`
      */
     @JsonClass(generateAdapter = false)
-    enum class DaysInYearType(val value: kotlin.Int) {
-        @Json(name = "null") `null`(null);
+    enum class DaysInYearType(val value: Int?) {
+        @Json(name = "null")
+        `null`(null);
     }
 
 }

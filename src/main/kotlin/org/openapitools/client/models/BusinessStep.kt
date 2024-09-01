@@ -17,17 +17,16 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
  * BusinessStep
  *
- * @param order 
- * @param stepName 
+ * @param order
+ * @param stepName
  */
 
 
-data class BusinessStep (
+data class BusinessStep(
 
     @Json(name = "order")
     val order: kotlin.Long? = null,
@@ -35,8 +34,5 @@ data class BusinessStep (
     @Json(name = "stepName")
     val stepName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

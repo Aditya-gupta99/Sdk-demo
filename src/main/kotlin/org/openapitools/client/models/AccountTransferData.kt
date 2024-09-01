@@ -15,44 +15,38 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ClientData
-import org.openapitools.client.models.CurrencyData
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.OfficeData
-import org.openapitools.client.models.PortfolioAccountData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param currency 
- * @param fromAccount 
- * @param fromAccountOptions 
- * @param fromAccountType 
- * @param fromAccountTypeOptions 
- * @param fromClient 
- * @param fromClientOptions 
- * @param fromOffice 
- * @param fromOfficeOptions 
- * @param id 
- * @param reversed 
- * @param toAccount 
- * @param toAccountOptions 
- * @param toAccountType 
- * @param toAccountTypeOptions 
- * @param toClient 
- * @param toClientOptions 
- * @param toOffice 
- * @param toOfficeOptions 
- * @param transferAmount 
- * @param transferDate 
- * @param transferDescription 
+ *
+ * @param currency
+ * @param fromAccount
+ * @param fromAccountOptions
+ * @param fromAccountType
+ * @param fromAccountTypeOptions
+ * @param fromClient
+ * @param fromClientOptions
+ * @param fromOffice
+ * @param fromOfficeOptions
+ * @param id
+ * @param reversed
+ * @param toAccount
+ * @param toAccountOptions
+ * @param toAccountType
+ * @param toAccountTypeOptions
+ * @param toClient
+ * @param toClientOptions
+ * @param toOffice
+ * @param toOfficeOptions
+ * @param transferAmount
+ * @param transferDate
+ * @param transferDescription
  */
 
 
-data class AccountTransferData (
+data class AccountTransferData(
 
     @Json(name = "currency")
     val currency: CurrencyData? = null,
@@ -115,13 +109,10 @@ data class AccountTransferData (
     val transferAmount: java.math.BigDecimal? = null,
 
     @Json(name = "transferDate")
-    val transferDate: java.time.LocalDate? = null,
+    val transferDate: LocalDate? = null,
 
     @Json(name = "transferDescription")
     val transferDescription: kotlin.String? = null
 
-) {
-
-
-}
+)
 

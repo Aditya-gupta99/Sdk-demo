@@ -15,30 +15,23 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.BodyPartHeaders
-import org.openapitools.client.models.BodyPartParameterizedHeaders
-import org.openapitools.client.models.ContentDisposition
-import org.openapitools.client.models.MediaType
-import org.openapitools.client.models.MultiPart
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param contentDisposition 
- * @param entity 
- * @param headers 
- * @param mediaType 
- * @param messageBodyWorkers 
- * @param parameterizedHeaders 
- * @param parent 
- * @param providers 
+ *
+ * @param contentDisposition
+ * @param entity
+ * @param headers
+ * @param mediaType
+ * @param messageBodyWorkers
+ * @param parameterizedHeaders
+ * @param parent
+ * @param providers
  */
 
 
-data class BodyPart (
+data class BodyPart(
 
     @Json(name = "contentDisposition")
     val contentDisposition: ContentDisposition? = null,
@@ -64,8 +57,5 @@ data class BodyPart (
     @Json(name = "providers")
     val providers: kotlin.Any? = null
 
-) {
-
-
-}
+)
 

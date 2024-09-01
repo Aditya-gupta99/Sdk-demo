@@ -17,22 +17,18 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
- * 
  *
- * @param empty 
+ *
+ * @param empty
  */
 
 
-data class MultivaluedMapStringString (
+data class MultivaluedMapStringString(
 
     @Json(name = "empty")
     val empty: kotlin.Boolean? = null
 
-) : kotlin.collections.HashMap<String, kotlin.collections.List>() {
-
-
-}
+) : kotlin.collections.HashMap<String, kotlin.collections.List<Any>>()
 

@@ -15,86 +15,73 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Charge
-import org.openapitools.client.models.DelinquencyBucket
-import org.openapitools.client.models.ExternalId
-import org.openapitools.client.models.LoanProductConfigurableAttributes
-import org.openapitools.client.models.LoanProductFloatingRates
-import org.openapitools.client.models.LoanProductGuaranteeDetails
-import org.openapitools.client.models.LoanProductInterestRecalculationDetails
-import org.openapitools.client.models.LoanProductPaymentAllocationRule
-import org.openapitools.client.models.LoanProductRelatedDetail
-import org.openapitools.client.models.LoanProductTrancheDetails
-import org.openapitools.client.models.MonetaryCurrency
-import org.openapitools.client.models.Money
-import org.openapitools.client.models.Rate
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param accountingDisabled 
- * @param accountingType 
- * @param accrualBasedAccountingEnabled 
- * @param allowApprovedDisbursedAmountsOverApplied 
- * @param arrearsBasedOnOriginalSchedule 
- * @param cashBasedAccountingEnabled 
- * @param closeDate 
- * @param currency 
- * @param delinquencyBucket 
- * @param disallowExpectedDisbursements 
- * @param dueDaysForRepaymentEvent 
- * @param enableInstallmentLevelDelinquency 
- * @param equalAmortization 
- * @param externalId 
- * @param fixedPrincipalPercentagePerInstallment 
- * @param floatingRates 
- * @param holdGuaranteeFundsEnabled 
- * @param id 
- * @param includeInBorrowerCycle 
- * @param installmentAmountInMultiplesOf 
- * @param interestPeriodFrequencyType 
- * @param interestRecalculationEnabled 
- * @param linkedToFloatingInterestRate 
- * @param loanProductCharges 
- * @param loanProductConfigurableAttributes 
- * @param loanProductGuaranteeDetails 
- * @param loanProductRelatedDetail 
- * @param loanProductTrancheDetails 
- * @param maxNominalInterestRatePerPeriod 
- * @param maxNumberOfRepayments 
- * @param maxPrincipalAmount 
- * @param minNominalInterestRatePerPeriod 
- * @param minNumberOfRepayments 
- * @param minPrincipalAmount 
- * @param minimumDaysBetweenDisbursalAndFirstRepayment 
- * @param multiDisburseLoan 
- * @param new 
- * @param nominalInterestRatePerPeriod 
- * @param numberOfRepayments 
- * @param overAppliedCalculationType 
- * @param overAppliedNumber 
- * @param overDueDaysForRepaymentEvent 
- * @param paymentAllocationRules 
- * @param periodicAccrualAccountingEnabled 
- * @param principalAmount 
- * @param principalThresholdForLastInstallment 
- * @param productInterestRecalculationDetails 
- * @param rates 
- * @param repaymentStartDateType 
- * @param repaymentStrategy 
- * @param shortName 
- * @param startDate 
- * @param syncExpectedWithDisbursementDate 
- * @param transactionProcessingStrategyCode 
- * @param transactionProcessingStrategyName 
- * @param upfrontAccrualAccountingEnabled 
+ *
+ * @param accountingDisabled
+ * @param accountingType
+ * @param accrualBasedAccountingEnabled
+ * @param allowApprovedDisbursedAmountsOverApplied
+ * @param arrearsBasedOnOriginalSchedule
+ * @param cashBasedAccountingEnabled
+ * @param closeDate
+ * @param currency
+ * @param delinquencyBucket
+ * @param disallowExpectedDisbursements
+ * @param dueDaysForRepaymentEvent
+ * @param enableInstallmentLevelDelinquency
+ * @param equalAmortization
+ * @param externalId
+ * @param fixedPrincipalPercentagePerInstallment
+ * @param floatingRates
+ * @param holdGuaranteeFundsEnabled
+ * @param id
+ * @param includeInBorrowerCycle
+ * @param installmentAmountInMultiplesOf
+ * @param interestPeriodFrequencyType
+ * @param interestRecalculationEnabled
+ * @param linkedToFloatingInterestRate
+ * @param loanProductCharges
+ * @param loanProductConfigurableAttributes
+ * @param loanProductGuaranteeDetails
+ * @param loanProductRelatedDetail
+ * @param loanProductTrancheDetails
+ * @param maxNominalInterestRatePerPeriod
+ * @param maxNumberOfRepayments
+ * @param maxPrincipalAmount
+ * @param minNominalInterestRatePerPeriod
+ * @param minNumberOfRepayments
+ * @param minPrincipalAmount
+ * @param minimumDaysBetweenDisbursalAndFirstRepayment
+ * @param multiDisburseLoan
+ * @param new
+ * @param nominalInterestRatePerPeriod
+ * @param numberOfRepayments
+ * @param overAppliedCalculationType
+ * @param overAppliedNumber
+ * @param overDueDaysForRepaymentEvent
+ * @param paymentAllocationRules
+ * @param periodicAccrualAccountingEnabled
+ * @param principalAmount
+ * @param principalThresholdForLastInstallment
+ * @param productInterestRecalculationDetails
+ * @param rates
+ * @param repaymentStartDateType
+ * @param repaymentStrategy
+ * @param shortName
+ * @param startDate
+ * @param syncExpectedWithDisbursementDate
+ * @param transactionProcessingStrategyCode
+ * @param transactionProcessingStrategyName
+ * @param upfrontAccrualAccountingEnabled
  */
 
 
-data class LoanProduct (
+data class LoanProduct(
 
     @Json(name = "accountingDisabled")
     val accountingDisabled: kotlin.Boolean? = null,
@@ -115,7 +102,7 @@ data class LoanProduct (
     val cashBasedAccountingEnabled: kotlin.Boolean? = null,
 
     @Json(name = "closeDate")
-    val closeDate: java.time.LocalDate? = null,
+    val closeDate: LocalDate? = null,
 
     @Json(name = "currency")
     val currency: MonetaryCurrency? = null,
@@ -250,7 +237,7 @@ data class LoanProduct (
     val shortName: kotlin.String? = null,
 
     @Json(name = "startDate")
-    val startDate: java.time.LocalDate? = null,
+    val startDate: LocalDate? = null,
 
     @Json(name = "syncExpectedWithDisbursementDate")
     val syncExpectedWithDisbursementDate: kotlin.Boolean? = null,
@@ -267,29 +254,46 @@ data class LoanProduct (
 ) {
 
     /**
-     * 
+     *
      *
      * Values: DAYS,WEEKS,MONTHS,YEARS,WHOLE_TERM,INVALID
      */
     @JsonClass(generateAdapter = false)
     enum class InterestPeriodFrequencyType(val value: kotlin.String) {
-        @Json(name = "DAYS") DAYS("DAYS"),
-        @Json(name = "WEEKS") WEEKS("WEEKS"),
-        @Json(name = "MONTHS") MONTHS("MONTHS"),
-        @Json(name = "YEARS") YEARS("YEARS"),
-        @Json(name = "WHOLE_TERM") WHOLE_TERM("WHOLE_TERM"),
-        @Json(name = "INVALID") INVALID("INVALID");
+        @Json(name = "DAYS")
+        DAYS("DAYS"),
+
+        @Json(name = "WEEKS")
+        WEEKS("WEEKS"),
+
+        @Json(name = "MONTHS")
+        MONTHS("MONTHS"),
+
+        @Json(name = "YEARS")
+        YEARS("YEARS"),
+
+        @Json(name = "WHOLE_TERM")
+        WHOLE_TERM("WHOLE_TERM"),
+
+        @Json(name = "INVALID")
+        INVALID("INVALID");
     }
+
     /**
-     * 
+     *
      *
      * Values: INVALID,DISBURSEMENT_DATE,SUBMITTED_ON_DATE
      */
     @JsonClass(generateAdapter = false)
     enum class RepaymentStartDateType(val value: kotlin.String) {
-        @Json(name = "INVALID") INVALID("INVALID"),
-        @Json(name = "DISBURSEMENT_DATE") DISBURSEMENT_DATE("DISBURSEMENT_DATE"),
-        @Json(name = "SUBMITTED_ON_DATE") SUBMITTED_ON_DATE("SUBMITTED_ON_DATE");
+        @Json(name = "INVALID")
+        INVALID("INVALID"),
+
+        @Json(name = "DISBURSEMENT_DATE")
+        DISBURSEMENT_DATE("DISBURSEMENT_DATE"),
+
+        @Json(name = "SUBMITTED_ON_DATE")
+        SUBMITTED_ON_DATE("SUBMITTED_ON_DATE");
     }
 
 }
