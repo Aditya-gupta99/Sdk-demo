@@ -3,6 +3,7 @@ package org.openapitools.client.infrastructure
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.logging.HttpLoggingInterceptor.Level
 import org.openapitools.client.apis.AccountNumberFormatApi
 import org.openapitools.client.apis.AccountTransfersApi
 import org.openapitools.client.apis.AccountingClosureApi
@@ -128,11 +129,13 @@ class FineractClient private constructor(
 ) {
     val glClosures: AccountingClosureApi = retrofit.create(AccountingClosureApi::class.java)
     val accountingRules: AccountingRulesApi = retrofit.create(AccountingRulesApi::class.java)
-    val accountNumberFormats: AccountNumberFormatApi = retrofit.create(AccountNumberFormatApi::class.java)
+    val accountNumberFormats: AccountNumberFormatApi =
+        retrofit.create(AccountNumberFormatApi::class.java)
     val accountTransfers: AccountTransfersApi = retrofit.create(AccountTransfersApi::class.java)
     val adhocQuery: AdhocQueryApiApi = retrofit.create(AdhocQueryApiApi::class.java)
     val audits: AuditsApi = retrofit.create(AuditsApi::class.java)
-    val authentication: AuthenticationHTTPBasicApi = retrofit.create(AuthenticationHTTPBasicApi::class.java)
+    val authentication: AuthenticationHTTPBasicApi =
+        retrofit.create(AuthenticationHTTPBasicApi::class.java)
     val batches: BatchAPIApi = retrofit.create(BatchAPIApi::class.java)
     val caches: CacheApi = retrofit.create(CacheApi::class.java)
     val cashiersJournal: CashierJournalsApi = retrofit.create(CashierJournalsApi::class.java)
@@ -153,29 +156,38 @@ class FineractClient private constructor(
     val legacy: DefaultApi = retrofit.create(DefaultApi::class.java) // TODO FINERACT-1222
     val documents: DocumentsApi = retrofit.create(DocumentsApi::class.java)
     val entityDatatableChecks: EntityDataTableApi = retrofit.create(EntityDataTableApi::class.java)
-    val entityFieldConfigurations: EntityFieldConfigurationApi = retrofit.create(EntityFieldConfigurationApi::class.java)
+    val entityFieldConfigurations: EntityFieldConfigurationApi =
+        retrofit.create(EntityFieldConfigurationApi::class.java)
     val externalServices: ExternalServicesApi = retrofit.create(ExternalServicesApi::class.java)
-    val userDetails: FetchAuthenticatedUserDetailsApi = retrofit.create(FetchAuthenticatedUserDetailsApi::class.java)
-    val fixedDepositAccounts: FixedDepositAccountApi = retrofit.create(FixedDepositAccountApi::class.java)
-    val fixedDepositProducts: FixedDepositProductApi = retrofit.create(FixedDepositProductApi::class.java)
+    val userDetails: FetchAuthenticatedUserDetailsApi =
+        retrofit.create(FetchAuthenticatedUserDetailsApi::class.java)
+    val fixedDepositAccounts: FixedDepositAccountApi =
+        retrofit.create(FixedDepositAccountApi::class.java)
+    val fixedDepositProducts: FixedDepositProductApi =
+        retrofit.create(FixedDepositProductApi::class.java)
     val floatingRates: FloatingRatesApi = retrofit.create(FloatingRatesApi::class.java)
     val glAccounts: GeneralLedgerAccountApi = retrofit.create(GeneralLedgerAccountApi::class.java)
-    val globalConfigurations: GlobalConfigurationApi = retrofit.create(GlobalConfigurationApi::class.java)
+    val globalConfigurations: GlobalConfigurationApi =
+        retrofit.create(GlobalConfigurationApi::class.java)
     val groups: GroupsApi = retrofit.create(GroupsApi::class.java)
     val holidays: HolidaysApi = retrofit.create(HolidaysApi::class.java)
     val hooks: HooksApi = retrofit.create(HooksApi::class.java)
     val interestRateCharts: InterestRateChartApi = retrofit.create(InterestRateChartApi::class.java)
-    val interestRateChartLabs: InterestRateSlabAKAInterestBandsApi = retrofit.create(InterestRateSlabAKAInterestBandsApi::class.java)
+    val interestRateChartLabs: InterestRateSlabAKAInterestBandsApi =
+        retrofit.create(InterestRateSlabAKAInterestBandsApi::class.java)
     val journalEntries: JournalEntriesApi = retrofit.create(JournalEntriesApi::class.java)
-    val reportMailings: ListReportMailingJobHistoryApi = retrofit.create(ListReportMailingJobHistoryApi::class.java)
+    val reportMailings: ListReportMailingJobHistoryApi =
+        retrofit.create(ListReportMailingJobHistoryApi::class.java)
     val loanCharges: LoanChargesApi = retrofit.create(LoanChargesApi::class.java)
     val loanCollaterals: LoanCollateralApi = retrofit.create(LoanCollateralApi::class.java)
     val loanProducts: LoanProductsApi = retrofit.create(LoanProductsApi::class.java)
     val loanSchedules: LoanReschedulingApi = retrofit.create(LoanReschedulingApi::class.java)
     val loans: LoansApi = retrofit.create(LoansApi::class.java)
     val loanTransactions: LoanTransactionsApi = retrofit.create(LoanTransactionsApi::class.java)
-    val makerCheckers: MakerCheckerOr4EyeFunctionalityApi = retrofit.create(MakerCheckerOr4EyeFunctionalityApi::class.java)
-    val financialActivyAccountMappings: MappingFinancialActivitiesToAccountsApi = retrofit.create(MappingFinancialActivitiesToAccountsApi::class.java)
+    val makerCheckers: MakerCheckerOr4EyeFunctionalityApi =
+        retrofit.create(MakerCheckerOr4EyeFunctionalityApi::class.java)
+    val financialActivyAccountMappings: MappingFinancialActivitiesToAccountsApi =
+        retrofit.create(MappingFinancialActivitiesToAccountsApi::class.java)
     val jobs: SCHEDULERJOBApi = retrofit.create(SCHEDULERJOBApi::class.java)
     val mixMappings: MixMappingApi = retrofit.create(MixMappingApi::class.java)
     val mixReports: MixReportApi = retrofit.create(MixReportApi::class.java)
@@ -183,17 +195,25 @@ class FineractClient private constructor(
     val notes: NotesApi = retrofit.create(NotesApi::class.java)
     val notifications: NotificationApi = retrofit.create(NotificationApi::class.java)
     val offices: OfficesApi = retrofit.create(OfficesApi::class.java)
-    val passwordPreferences: PasswordPreferencesApi = retrofit.create(PasswordPreferencesApi::class.java)
+    val passwordPreferences: PasswordPreferencesApi =
+        retrofit.create(PasswordPreferencesApi::class.java)
     val paymentTypes: PaymentTypeApi = retrofit.create(PaymentTypeApi::class.java)
-    val periodicAccrualAccounting: PeriodicAccrualAccountingApi = retrofit.create(PeriodicAccrualAccountingApi::class.java)
+    val periodicAccrualAccounting: PeriodicAccrualAccountingApi =
+        retrofit.create(PeriodicAccrualAccountingApi::class.java)
     val permissions: PermissionsApi = retrofit.create(PermissionsApi::class.java)
     val selfPockets: PocketApi = retrofit.create(PocketApi::class.java)
-    val provisioningCategories: ProvisioningCategoryApi = retrofit.create(ProvisioningCategoryApi::class.java)
-    val provisioningCriterias: ProvisioningCriteriaApi = retrofit.create(ProvisioningCriteriaApi::class.java)
-    val provisioningEntries: ProvisioningEntriesApi = retrofit.create(ProvisioningEntriesApi::class.java)
-    val recurringDepositAccounts: RecurringDepositAccountApi = retrofit.create(RecurringDepositAccountApi::class.java)
-    val recurringDepositAccountTransactions: RecurringDepositAccountTransactionsApi = retrofit.create(RecurringDepositAccountTransactionsApi::class.java)
-    val recurringDepositProducts: RecurringDepositProductApi = retrofit.create(RecurringDepositProductApi::class.java)
+    val provisioningCategories: ProvisioningCategoryApi =
+        retrofit.create(ProvisioningCategoryApi::class.java)
+    val provisioningCriterias: ProvisioningCriteriaApi =
+        retrofit.create(ProvisioningCriteriaApi::class.java)
+    val provisioningEntries: ProvisioningEntriesApi =
+        retrofit.create(ProvisioningEntriesApi::class.java)
+    val recurringDepositAccounts: RecurringDepositAccountApi =
+        retrofit.create(RecurringDepositAccountApi::class.java)
+    val recurringDepositAccountTransactions: RecurringDepositAccountTransactionsApi =
+        retrofit.create(RecurringDepositAccountTransactionsApi::class.java)
+    val recurringDepositProducts: RecurringDepositProductApi =
+        retrofit.create(RecurringDepositProductApi::class.java)
     val reportMailingJobs: ReportMailingJobsApi = retrofit.create(ReportMailingJobsApi::class.java)
     val reports: ReportsApi = retrofit.create(ReportsApi::class.java)
     val roles: RolesApi = retrofit.create(RolesApi::class.java)
@@ -201,35 +221,44 @@ class FineractClient private constructor(
     val savingsAccounts: SavingsAccountApi = retrofit.create(SavingsAccountApi::class.java)
     val savingsAccountCharges: SavingsChargesApi = retrofit.create(SavingsChargesApi::class.java)
     val savingsProducts: SavingsProductApi = retrofit.create(SavingsProductApi::class.java)
-    val savingsTransactions: SavingsAccountTransactionsApi = retrofit.create(SavingsAccountTransactionsApi::class.java)
+    val savingsTransactions: SavingsAccountTransactionsApi =
+        retrofit.create(SavingsAccountTransactionsApi::class.java)
     val jobsScheduler: SchedulerApi = retrofit.create(SchedulerApi::class.java)
     val surveyScorecards: ScoreCardApi = retrofit.create(ScoreCardApi::class.java)
     val search: SearchAPIApi = retrofit.create(SearchAPIApi::class.java)
-    val selfAccountTransfers: SelfAccountTransferApi = retrofit.create(SelfAccountTransferApi::class.java)
-    val selfAuthentication: SelfAuthenticationApi = retrofit.create(SelfAuthenticationApi::class.java)
+    val selfAccountTransfers: SelfAccountTransferApi =
+        retrofit.create(SelfAccountTransferApi::class.java)
+    val selfAuthentication: SelfAuthenticationApi =
+        retrofit.create(SelfAuthenticationApi::class.java)
     val selfClients: SelfClientApi = retrofit.create(SelfClientApi::class.java)
     val selfShareProducts: SelfDividendApi = retrofit.create(SelfDividendApi::class.java)
     val selfLoanProducts: SelfLoanProductsApi = retrofit.create(SelfLoanProductsApi::class.java)
     val selfLoans: SelfLoansApi = retrofit.create(SelfLoansApi::class.java)
     val selfReportsRun: SelfRunReportApi = retrofit.create(SelfRunReportApi::class.java)
-    val selfSavingsAccounts: SelfSavingsAccountApi = retrofit.create(SelfSavingsAccountApi::class.java)
+    val selfSavingsAccounts: SelfSavingsAccountApi =
+        retrofit.create(SelfSavingsAccountApi::class.java)
     val selfSurveyScorecards: SelfScoreCardApi = retrofit.create(SelfScoreCardApi::class.java)
-    val selfRegistration: SelfServiceRegistrationApi = retrofit.create(SelfServiceRegistrationApi::class.java)
+    val selfRegistration: SelfServiceRegistrationApi =
+        retrofit.create(SelfServiceRegistrationApi::class.java)
     val selfShareAccounts: SelfShareAccountsApi = retrofit.create(SelfShareAccountsApi::class.java)
     val selfSurveys: SelfSpmApi = retrofit.create(SelfSpmApi::class.java)
-    val selfThirdPartyBeneficiaries: SelfThirdPartyTransferApi = retrofit.create(SelfThirdPartyTransferApi::class.java)
+    val selfThirdPartyBeneficiaries: SelfThirdPartyTransferApi =
+        retrofit.create(SelfThirdPartyTransferApi::class.java)
     val selfUser: SelfUserApi = retrofit.create(SelfUserApi::class.java)
     val selfUserDetails: SelfUserDetailsApi = retrofit.create(SelfUserDetailsApi::class.java)
     val shareAccounts: ShareAccountApi = retrofit.create(ShareAccountApi::class.java)
     val surveyLookupTables: SPMAPILookUpTableApi = retrofit.create(SPMAPILookUpTableApi::class.java)
     val surveys: SpmSurveysApi = retrofit.create(SpmSurveysApi::class.java)
     val staff: StaffApi = retrofit.create(StaffApi::class.java)
-    val standingInstructions: StandingInstructionsApi = retrofit.create(StandingInstructionsApi::class.java)
-    val standingInstructionsHistory: StandingInstructionsHistoryApi = retrofit.create(StandingInstructionsHistoryApi::class.java)
+    val standingInstructions: StandingInstructionsApi =
+        retrofit.create(StandingInstructionsApi::class.java)
+    val standingInstructionsHistory: StandingInstructionsHistoryApi =
+        retrofit.create(StandingInstructionsHistoryApi::class.java)
     val taxComponents: TaxComponentsApi = retrofit.create(TaxComponentsApi::class.java)
     val taxGroups: TaxGroupApi = retrofit.create(TaxGroupApi::class.java)
     val tellers: TellerCashManagementApi = retrofit.create(TellerCashManagementApi::class.java)
-    val templates: UserGeneratedDocumentsApi = retrofit.create(UserGeneratedDocumentsApi::class.java)
+    val templates: UserGeneratedDocumentsApi =
+        retrofit.create(UserGeneratedDocumentsApi::class.java)
     val users: UsersApi = retrofit.create(UsersApi::class.java)
     val workingDays: WorkingDaysApi = retrofit.create(WorkingDaysApi::class.java)
 
@@ -241,159 +270,159 @@ class FineractClient private constructor(
         return retrofit.baseUrl()
     }
 
-//    /**
-//     * Create an implementation of the API endpoints defined by the `service` interface, using
-//     * [Retrofit.create]. This method is typically not required to be invoked for standard API usage, but
-//     * can be a handy back door for non-trivial advanced customizations of the API client if you have extended Fineract
-//     * with your own REST APIs.
-//     */
-//    fun <S> createService(serviceClass: Class<S>?): S {
-//        return retrofit.create(serviceClass)
-//    }
-//
-//    class Builder internal constructor() {
-//        private val json: JSON = JSON()
-//
-//        /**
-//         * Obtain the internal OkHttp Builder. This method is typically not required to be invoked for simple API
-//         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
-//         *
-//         * @return the [ApiClient] which [.build] will use.
-//         */
-//        val okBuilder: Builder = Builder()
-//
-//        /**
-//         * Obtain the internal Retrofit Builder. This method is typically not required to be invoked for simple API
-//         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
-//         *
-//         * @return the [ApiClient] which [.build] will use.
-//         */
-//        val retrofitBuilder: Retrofit.Builder =
-//            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
-//                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.getGson()))
-//
-//        private var baseURL: String? = null
-//        private var tenant: String? = null
-//        private var username: String? = null
-//        private var password: String? = null
-//
-//        fun baseURL(baseURL: String?): Builder {
-//            this.baseURL = baseURL
-//            return this
-//        }
-//
-//        fun tenant(tenant: String?): Builder {
-//            this.tenant = tenant
-//            return this
-//        }
-//
-//        fun basicAuth(username: String?, password: String?): Builder {
-//            this.username = username
-//            this.password = password
-//            return this
-//        }
-//
-//        fun logging(level: Level?): Builder {
-//            val logging = HttpLoggingInterceptor()
-//            logging.setLevel(level)
-//            okBuilder.addInterceptor(logging)
-//            return this
-//        }
-//
-//        /**
-//         * Skip Fineract API host SSL certificate verification. DO NOT USE THIS when invoking a production server's API!
-//         * This is intended for https://localhost:8443/ testing of development servers with self-signed certificates,
-//         * only. If you do not understand what this is, do not use it. You WILL cause a security issue in your
-//         * application due to the possibility of a "man in the middle" attack when this is enabled.
-//         */
-//        @Suppress("unused")
-//        fun insecure(insecure: Boolean): Builder {
-//            // Nota bene: Similar code to this is also in Fineract Provider's
-//            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
-//            if (insecure) {
-//                val insecureHostnameVerifier =
-//                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
-//                okBuilder.hostnameVerifier(insecureHostnameVerifier)
-//
-//                try {
-//                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
-//                        @Throws(CertificateException::class)
-//                        override fun checkClientTrusted(
-//                            chain: Array<X509Certificate>,
-//                            authType: String
-//                        ) {
-//                        }
-//
-//                        @Throws(CertificateException::class)
-//                        override fun checkServerTrusted(
-//                            chain: Array<X509Certificate>,
-//                            authType: String
-//                        ) {
-//                        }
-//
-//                        override fun getAcceptedIssuers(): Array<X509Certificate> {
-//                            return arrayOf()
-//                        }
-//                    }
-//
-//                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
-//                    val sslContext = SSLContext.getInstance("SSL")
-//                    sslContext.init(
-//                        null,
-//                        arrayOf<TrustManager>(insecureX509TrustManager),
-//                        SecureRandom()
-//                    )
-//                    val insecureSslSocketFactory = sslContext.socketFactory
-//
-//                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
-//                } catch (e: NoSuchAlgorithmException) {
-//                    throw IllegalStateException("insecure() SSL configuration failed", e)
-//                } catch (e: KeyManagementException) {
-//                    throw IllegalStateException("insecure() SSL configuration failed", e)
-//                }
-//            }
-//            return this
-//        }
-//
-//        fun build(): FineractClient {
-//            // URL
-//            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
-//
-//            // Tenant
-//            val tenantAuth: ApiKeyAuth = ApiKeyAuth("header", "fineract-platform-tenantid")
-//            tenantAuth.setApiKey(has("tenant", tenant))
-//            okBuilder.addInterceptor(tenantAuth)
-//
-//            // BASIC Auth
-//            val basicAuth: HttpBasicAuth = HttpBasicAuth()
-//            basicAuth.setCredentials(has("username", username), has("password", password))
-//            okBuilder.addInterceptor(basicAuth)
-//
-//            val okHttpClient: OkHttpClient = okBuilder.build()
-//            retrofitBuilder.client(okHttpClient)
-//
-//            return FineractClient(okHttpClient, retrofitBuilder.build())
-//        }
-//
-//        @Throws(IllegalStateException::class)
-//        private fun <T> has(propertyName: String, value: T?): T {
-//            checkNotNull(value) { "Must call $propertyName(...) to create valid Builder" }
-//            return value
-//        }
-//    }
-//
-//    companion object {
-//        /**
-//         * Constant to be used in requests where Fineract's API requires a dateFormat to be given. This matches the format
-//         * in which LocalDate instances are serialized. (BTW: In a Java client API, it seems weird to have strong LocalDate
-//         * (not String) instances, and then have to specify its format, see
-//         * https://issues.apache.org/jira/browse/FINERACT-1233.)
-//         */
-//        // Matching org.apache.fineract.client.util.JSON.LocalDateTypeAdapter.formatter
-//        const val DATE_FORMAT: String = "yyyy-MM-dd"
-//
-//        fun builder(): Builder {
-//            return Builder()
-//        }
-//    }
+    /**
+     * Create an implementation of the API endpoints defined by the `service` interface, using
+     * [Retrofit.create]. This method is typically not required to be invoked for standard API usage, but
+     * can be a handy back door for non-trivial advanced customizations of the API client if you have extended Fineract
+     * with your own REST APIs.
+     */
+    fun <S> createService(serviceClass: Class<S>?): S {
+        return retrofit.create(serviceClass)
+    }
+
+    class Builder internal constructor() {
+        private val json: JSON = JSON()
+
+        /**
+         * Obtain the internal OkHttp Builder. This method is typically not required to be invoked for simple API
+         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
+         *
+         * @return the [ApiClient] which [.build] will use.
+         */
+        val okBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+
+        /**
+         * Obtain the internal Retrofit Builder. This method is typically not required to be invoked for simple API
+         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
+         *
+         * @return the [ApiClient] which [.build] will use.
+         */
+        val retrofitBuilder: Retrofit.Builder =
+            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.gson))
+
+        private var baseURL: String? = null
+        private var tenant: String? = null
+        private var username: String? = null
+        private var password: String? = null
+
+        fun baseURL(baseURL: String?): Builder {
+            this.baseURL = baseURL
+            return this
+        }
+
+        fun tenant(tenant: String?): Builder {
+            this.tenant = tenant
+            return this
+        }
+
+        fun basicAuth(username: String?, password: String?): Builder {
+            this.username = username
+            this.password = password
+            return this
+        }
+
+        fun logging(level: Level?): Builder {
+            val logging = HttpLoggingInterceptor()
+            level?.let { logging.setLevel(it) }
+            okBuilder.addInterceptor(logging)
+            return this
+        }
+
+        /**
+         * Skip Fineract API host SSL certificate verification. DO NOT USE THIS when invoking a production server's API!
+         * This is intended for https://localhost:8443/ testing of development servers with self-signed certificates,
+         * only. If you do not understand what this is, do not use it. You WILL cause a security issue in your
+         * application due to the possibility of a "man in the middle" attack when this is enabled.
+         */
+        @Suppress("unused")
+        fun insecure(insecure: Boolean): Builder {
+            // Nota bene: Similar code to this is also in Fineract Provider's
+            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
+            if (insecure) {
+                val insecureHostnameVerifier =
+                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
+                okBuilder.hostnameVerifier(insecureHostnameVerifier)
+
+                try {
+                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
+                        @Throws(CertificateException::class)
+                        override fun checkClientTrusted(
+                            chain: Array<X509Certificate>,
+                            authType: String
+                        ) {
+                        }
+
+                        @Throws(CertificateException::class)
+                        override fun checkServerTrusted(
+                            chain: Array<X509Certificate>,
+                            authType: String
+                        ) {
+                        }
+
+                        override fun getAcceptedIssuers(): Array<X509Certificate> {
+                            return arrayOf()
+                        }
+                    }
+
+                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
+                    val sslContext = SSLContext.getInstance("SSL")
+                    sslContext.init(
+                        null,
+                        arrayOf<TrustManager>(insecureX509TrustManager),
+                        SecureRandom()
+                    )
+                    val insecureSslSocketFactory = sslContext.socketFactory
+
+                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
+                } catch (e: NoSuchAlgorithmException) {
+                    throw IllegalStateException("insecure() SSL configuration failed", e)
+                } catch (e: KeyManagementException) {
+                    throw IllegalStateException("insecure() SSL configuration failed", e)
+                }
+            }
+            return this
+        }
+
+        fun build(): FineractClient {
+            // URL
+            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
+
+            // Tenant
+            val tenantAuth: ApiKeyAuth =
+                ApiKeyAuth("header", "fineract-platform-tenantid", tenant.toString())
+            okBuilder.addInterceptor(tenantAuth)
+
+            // BASIC Auth
+            val basicAuth: HttpBasicAuth = HttpBasicAuth()
+            basicAuth.setCredentials(has("username", username), has("password", password))
+            okBuilder.addInterceptor(basicAuth)
+
+            val okHttpClient: OkHttpClient = okBuilder.build()
+            retrofitBuilder.client(okHttpClient)
+
+            return FineractClient(okHttpClient, retrofitBuilder.build())
+        }
+
+        @Throws(IllegalStateException::class)
+        private fun <T> has(propertyName: String, value: T?): T {
+            checkNotNull(value) { "Must call $propertyName(...) to create valid Builder" }
+            return value
+        }
+    }
+
+    companion object {
+        /**
+         * Constant to be used in requests where Fineract's API requires a dateFormat to be given. This matches the format
+         * in which LocalDate instances are serialized. (BTW: In a Java client API, it seems weird to have strong LocalDate
+         * (not String) instances, and then have to specify its format, see
+         * https://issues.apache.org/jira/browse/FINERACT-1233.)
+         */
+        // Matching org.apache.fineract.client.util.JSON.LocalDateTypeAdapter.formatter
+        const val DATE_FORMAT: String = "yyyy-MM-dd"
+
+        fun builder(): Builder {
+            return Builder()
+        }
+    }
 }
