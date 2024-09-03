@@ -88,7 +88,7 @@ if (hasProperty('target') && target == 'android') {
         kotlinOptions {
             jvmTarget = "17"
         }
-        
+
     }
 
     afterEvaluate {
@@ -118,10 +118,18 @@ if (hasProperty('target') && target == 'android') {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
     task execute(type: JavaExec) {
         main = System.getProperty('mainClass')
         classpath = sourceSets.main.runtimeClasspath
     }
+}
+
+kotlinOptions {
+    jvmTarget = '17'
 }
 
 //afterEvaluate {
