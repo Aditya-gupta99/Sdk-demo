@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 import org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesResponse
 import org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
@@ -16,6 +10,13 @@ import org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdCharges
 import org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 import org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest
 import org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SavingsChargesApi {
     /**
@@ -25,11 +26,14 @@ interface SavingsChargesApi {
      *  - 200: OK
      *
      * @param savingsAccountId savingsAccountId
-     * @param postSavingsAccountsSavingsAccountIdChargesRequest 
+     * @param postSavingsAccountsSavingsAccountIdChargesRequest
      * @return [PostSavingsAccountsSavingsAccountIdChargesResponse]
      */
     @POST("v1/savingsaccounts/{savingsAccountId}/charges")
-    suspend fun addSavingsAccountCharge(@Path("savingsAccountId") savingsAccountId: kotlin.Long, @Body postSavingsAccountsSavingsAccountIdChargesRequest: PostSavingsAccountsSavingsAccountIdChargesRequest): Response<PostSavingsAccountsSavingsAccountIdChargesResponse>
+    suspend fun addSavingsAccountCharge(
+        @Path("savingsAccountId") savingsAccountId: Long,
+        @Body postSavingsAccountsSavingsAccountIdChargesRequest: PostSavingsAccountsSavingsAccountIdChargesRequest
+    ): PostSavingsAccountsSavingsAccountIdChargesResponse
 
     /**
      * Delete a Savings account Charge
@@ -42,7 +46,10 @@ interface SavingsChargesApi {
      * @return [DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse]
      */
     @DELETE("v1/savingsaccounts/{savingsAccountId}/charges/{savingsAccountChargeId}")
-    suspend fun deleteSavingsAccountCharge(@Path("savingsAccountId") savingsAccountId: kotlin.Long, @Path("savingsAccountChargeId") savingsAccountChargeId: kotlin.Long): Response<DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>
+    suspend fun deleteSavingsAccountCharge(
+        @Path("savingsAccountId") savingsAccountId: Long,
+        @Path("savingsAccountChargeId") savingsAccountChargeId: Long
+    ): DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 
     /**
      * Pay a Savings account Charge | Waive off a Savings account Charge | Inactivate a Savings account Charge
@@ -52,12 +59,17 @@ interface SavingsChargesApi {
      *
      * @param savingsAccountId savingsAccountId
      * @param savingsAccountChargeId savingsAccountChargeId
-     * @param postSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest 
+     * @param postSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest
      * @param command command (optional)
      * @return [PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse]
      */
     @POST("v1/savingsaccounts/{savingsAccountId}/charges/{savingsAccountChargeId}")
-    suspend fun payOrWaiveSavingsAccountCharge(@Path("savingsAccountId") savingsAccountId: kotlin.Long, @Path("savingsAccountChargeId") savingsAccountChargeId: kotlin.Long, @Body postSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest: PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest, @Query("command") command: kotlin.String? = null): Response<PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>
+    suspend fun payOrWaiveSavingsAccountCharge(
+        @Path("savingsAccountId") savingsAccountId: Long,
+        @Path("savingsAccountChargeId") savingsAccountChargeId: Long,
+        @Body postSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest: PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest,
+        @Query("command") command: String? = null
+    ): PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 
     /**
      * List Savings Charges
@@ -67,10 +79,13 @@ interface SavingsChargesApi {
      *
      * @param savingsAccountId savingsAccountId
      * @param chargeStatus chargeStatus (optional, default to "all")
-     * @return [kotlin.collections.List<GetSavingsAccountsSavingsAccountIdChargesResponse>]
+     * @return [kotlin.collections.List<GetSavingsAccountsSavingsAccountIdChargesResponse]
      */
     @GET("v1/savingsaccounts/{savingsAccountId}/charges")
-    suspend fun retrieveAllSavingsAccountCharges(@Path("savingsAccountId") savingsAccountId: kotlin.Long, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<kotlin.collections.List<GetSavingsAccountsSavingsAccountIdChargesResponse>>
+    suspend fun retrieveAllSavingsAccountCharges(
+        @Path("savingsAccountId") savingsAccountId: Long,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): List<GetSavingsAccountsSavingsAccountIdChargesResponse>
 
     /**
      * Retrieve a Savings account Charge
@@ -83,7 +98,10 @@ interface SavingsChargesApi {
      * @return [GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse]
      */
     @GET("v1/savingsaccounts/{savingsAccountId}/charges/{savingsAccountChargeId}")
-    suspend fun retrieveSavingsAccountCharge(@Path("savingsAccountId") savingsAccountId: kotlin.Long, @Path("savingsAccountChargeId") savingsAccountChargeId: kotlin.Long): Response<GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>
+    suspend fun retrieveSavingsAccountCharge(
+        @Path("savingsAccountId") savingsAccountId: Long,
+        @Path("savingsAccountChargeId") savingsAccountChargeId: Long
+    ): GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 
     /**
      * Retrieve Savings Charges Template
@@ -95,7 +113,7 @@ interface SavingsChargesApi {
      * @return [GetSavingsAccountsSavingsAccountIdChargesTemplateResponse]
      */
     @GET("v1/savingsaccounts/{savingsAccountId}/charges/template")
-    suspend fun retrieveTemplate18(@Path("savingsAccountId") savingsAccountId: kotlin.Long): Response<GetSavingsAccountsSavingsAccountIdChargesTemplateResponse>
+    suspend fun retrieveTemplate18(@Path("savingsAccountId") savingsAccountId: Long): GetSavingsAccountsSavingsAccountIdChargesTemplateResponse
 
     /**
      * Update a Savings account Charge
@@ -105,10 +123,14 @@ interface SavingsChargesApi {
      *
      * @param savingsAccountId savingsAccountId
      * @param savingsAccountChargeId savingsAccountChargeId
-     * @param putSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest 
+     * @param putSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest
      * @return [PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse]
      */
     @PUT("v1/savingsaccounts/{savingsAccountId}/charges/{savingsAccountChargeId}")
-    suspend fun updateSavingsAccountCharge(@Path("savingsAccountId") savingsAccountId: kotlin.Long, @Path("savingsAccountChargeId") savingsAccountChargeId: kotlin.Long, @Body putSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest: PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest): Response<PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>
+    suspend fun updateSavingsAccountCharge(
+        @Path("savingsAccountId") savingsAccountId: Long,
+        @Path("savingsAccountChargeId") savingsAccountChargeId: Long,
+        @Body putSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest: PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest
+    ): PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 
 }

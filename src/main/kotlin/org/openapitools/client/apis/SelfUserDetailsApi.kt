@@ -1,12 +1,7 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetSelfUserDetailsResponse
+import retrofit2.http.GET
 
 interface SelfUserDetailsApi {
     /**
@@ -18,6 +13,6 @@ interface SelfUserDetailsApi {
      * @return [GetSelfUserDetailsResponse]
      */
     @GET("v1/self/userdetails")
-    suspend fun fetchAuthenticatedUserData1(): Response<GetSelfUserDetailsResponse>
+    suspend fun fetchAuthenticatedUserData1(): GetSelfUserDetailsResponse
 
 }

@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetAccountTransfersPageItems
 import org.openapitools.client.models.GetAccountTransfersResponse
 import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferResponse
@@ -14,6 +8,11 @@ import org.openapitools.client.models.PostAccountTransfersRefundByTransferReques
 import org.openapitools.client.models.PostAccountTransfersRefundByTransferResponse
 import org.openapitools.client.models.PostAccountTransfersRequest
 import org.openapitools.client.models.PostAccountTransfersResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AccountTransfersApi {
     /**
@@ -22,11 +21,11 @@ interface AccountTransfersApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postAccountTransfersRequest 
+     * @param postAccountTransfersRequest
      * @return [PostAccountTransfersResponse]
      */
     @POST("v1/accounttransfers")
-    suspend fun create4(@Body postAccountTransfersRequest: PostAccountTransfersRequest): Response<PostAccountTransfersResponse>
+    suspend fun create4(@Body postAccountTransfersRequest: PostAccountTransfersRequest): PostAccountTransfersResponse
 
     /**
      * List account transfers
@@ -43,7 +42,14 @@ interface AccountTransfersApi {
      * @return [GetAccountTransfersResponse]
      */
     @GET("v1/accounttransfers")
-    suspend fun retrieveAll18(@Query("externalId") externalId: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("accountDetailId") accountDetailId: kotlin.Long? = null): Response<GetAccountTransfersResponse>
+    suspend fun retrieveAll18(
+        @Query("externalId") externalId: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("accountDetailId") accountDetailId: Long? = null
+    ): GetAccountTransfersResponse
 
     /**
      * Retrieve account transfer
@@ -55,7 +61,7 @@ interface AccountTransfersApi {
      * @return [GetAccountTransfersPageItems]
      */
     @GET("v1/accounttransfers/{transferId}")
-    suspend fun retrieveOne9(@Path("transferId") transferId: kotlin.Long): Response<GetAccountTransfersPageItems>
+    suspend fun retrieveOne9(@Path("transferId") transferId: Long): GetAccountTransfersPageItems
 
     /**
      * Retrieve Account Transfer Template
@@ -74,7 +80,16 @@ interface AccountTransfersApi {
      * @return [GetAccountTransfersTemplateResponse]
      */
     @GET("v1/accounttransfers/template")
-    suspend fun template5(@Query("fromOfficeId") fromOfficeId: kotlin.Long? = null, @Query("fromClientId") fromClientId: kotlin.Long? = null, @Query("fromAccountId") fromAccountId: kotlin.Long? = null, @Query("fromAccountType") fromAccountType: kotlin.Int? = null, @Query("toOfficeId") toOfficeId: kotlin.Long? = null, @Query("toClientId") toClientId: kotlin.Long? = null, @Query("toAccountId") toAccountId: kotlin.Long? = null, @Query("toAccountType") toAccountType: kotlin.Int? = null): Response<GetAccountTransfersTemplateResponse>
+    suspend fun template5(
+        @Query("fromOfficeId") fromOfficeId: Long? = null,
+        @Query("fromClientId") fromClientId: Long? = null,
+        @Query("fromAccountId") fromAccountId: Long? = null,
+        @Query("fromAccountType") fromAccountType: Int? = null,
+        @Query("toOfficeId") toOfficeId: Long? = null,
+        @Query("toClientId") toClientId: Long? = null,
+        @Query("toAccountId") toAccountId: Long? = null,
+        @Query("toAccountType") toAccountType: Int? = null
+    ): GetAccountTransfersTemplateResponse
 
     /**
      * Retrieve Refund of an Active Loan by Transfer Template
@@ -93,7 +108,16 @@ interface AccountTransfersApi {
      * @return [GetAccountTransfersTemplateRefundByTransferResponse]
      */
     @GET("v1/accounttransfers/templateRefundByTransfer")
-    suspend fun templateRefundByTransfer(@Query("fromOfficeId") fromOfficeId: kotlin.Long? = null, @Query("fromClientId") fromClientId: kotlin.Long? = null, @Query("fromAccountId") fromAccountId: kotlin.Long? = null, @Query("fromAccountType") fromAccountType: kotlin.Int? = null, @Query("toOfficeId") toOfficeId: kotlin.Long? = null, @Query("toClientId") toClientId: kotlin.Long? = null, @Query("toAccountId") toAccountId: kotlin.Long? = null, @Query("toAccountType") toAccountType: kotlin.Int? = null): Response<GetAccountTransfersTemplateRefundByTransferResponse>
+    suspend fun templateRefundByTransfer(
+        @Query("fromOfficeId") fromOfficeId: Long? = null,
+        @Query("fromClientId") fromClientId: Long? = null,
+        @Query("fromAccountId") fromAccountId: Long? = null,
+        @Query("fromAccountType") fromAccountType: Int? = null,
+        @Query("toOfficeId") toOfficeId: Long? = null,
+        @Query("toClientId") toClientId: Long? = null,
+        @Query("toAccountId") toAccountId: Long? = null,
+        @Query("toAccountType") toAccountType: Int? = null
+    ): GetAccountTransfersTemplateRefundByTransferResponse
 
     /**
      * Refund of an Active Loan by Transfer
@@ -101,10 +125,10 @@ interface AccountTransfersApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postAccountTransfersRefundByTransferRequest 
+     * @param postAccountTransfersRefundByTransferRequest
      * @return [PostAccountTransfersRefundByTransferResponse]
      */
     @POST("v1/accounttransfers/refundByTransfer")
-    suspend fun templateRefundByTransferPost(@Body postAccountTransfersRefundByTransferRequest: PostAccountTransfersRefundByTransferRequest): Response<PostAccountTransfersRefundByTransferResponse>
+    suspend fun templateRefundByTransferPost(@Body postAccountTransfersRefundByTransferRequest: PostAccountTransfersRefundByTransferRequest): PostAccountTransfersRefundByTransferResponse
 
 }

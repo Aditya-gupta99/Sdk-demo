@@ -1,16 +1,15 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetFundsResponse
 import org.openapitools.client.models.PostFundsRequest
 import org.openapitools.client.models.PostFundsResponse
 import org.openapitools.client.models.PutFundsFundIdRequest
 import org.openapitools.client.models.PutFundsFundIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface FundsApi {
     /**
@@ -19,11 +18,11 @@ interface FundsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postFundsRequest 
+     * @param postFundsRequest
      * @return [PostFundsResponse]
      */
     @POST("v1/funds")
-    suspend fun createFund(@Body postFundsRequest: PostFundsRequest): Response<PostFundsResponse>
+    suspend fun createFund(@Body postFundsRequest: PostFundsRequest): PostFundsResponse
 
     /**
      * Retrieve a Fund
@@ -35,7 +34,7 @@ interface FundsApi {
      * @return [GetFundsResponse]
      */
     @GET("v1/funds/{fundId}")
-    suspend fun retrieveFund(@Path("fundId") fundId: kotlin.Long): Response<GetFundsResponse>
+    suspend fun retrieveFund(@Path("fundId") fundId: Long): GetFundsResponse
 
     /**
      * Retrieve Funds
@@ -43,10 +42,10 @@ interface FundsApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetFundsResponse>]
+     * @return [kotlin.collections.List<GetFundsResponse]
      */
     @GET("v1/funds")
-    suspend fun retrieveFunds(): Response<kotlin.collections.List<GetFundsResponse>>
+    suspend fun retrieveFunds(): List<GetFundsResponse>
 
     /**
      * Update a Fund
@@ -55,10 +54,13 @@ interface FundsApi {
      *  - 200: OK
      *
      * @param fundId fundId
-     * @param putFundsFundIdRequest 
+     * @param putFundsFundIdRequest
      * @return [PutFundsFundIdResponse]
      */
     @PUT("v1/funds/{fundId}")
-    suspend fun updateFund(@Path("fundId") fundId: kotlin.Long, @Body putFundsFundIdRequest: PutFundsFundIdRequest): Response<PutFundsFundIdResponse>
+    suspend fun updateFund(
+        @Path("fundId") fundId: Long,
+        @Body putFundsFundIdRequest: PutFundsFundIdRequest
+    ): PutFundsFundIdResponse
 
 }

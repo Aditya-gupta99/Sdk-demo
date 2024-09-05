@@ -1,13 +1,10 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetMakerCheckerResponse
 import org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AuditsApi {
     /**
@@ -39,7 +36,28 @@ interface AuditsApi {
      * @return [kotlin.collections.List<GetMakerCheckerResponse>]
      */
     @GET("v1/audits")
-    suspend fun retrieveAuditEntries(@Query("actionName") actionName: kotlin.String? = null, @Query("entityName") entityName: kotlin.String? = null, @Query("resourceId") resourceId: kotlin.Long? = null, @Query("makerId") makerId: kotlin.Long? = null, @Query("makerDateTimeFrom") makerDateTimeFrom: kotlin.String? = null, @Query("makerDateTimeTo") makerDateTimeTo: kotlin.String? = null, @Query("checkerId") checkerId: kotlin.Long? = null, @Query("checkerDateTimeFrom") checkerDateTimeFrom: kotlin.String? = null, @Query("checkerDateTimeTo") checkerDateTimeTo: kotlin.String? = null, @Query("processingResult") processingResult: kotlin.Int? = null, @Query("officeId") officeId: kotlin.Int? = null, @Query("groupId") groupId: kotlin.Int? = null, @Query("clientId") clientId: kotlin.Int? = null, @Query("loanid") loanid: kotlin.Int? = null, @Query("savingsAccountId") savingsAccountId: kotlin.Int? = null, @Query("paged") paged: kotlin.Boolean? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.collections.List<GetMakerCheckerResponse>>
+    suspend fun retrieveAuditEntries(
+        @Query("actionName") actionName: String? = null,
+        @Query("entityName") entityName: String? = null,
+        @Query("resourceId") resourceId: Long? = null,
+        @Query("makerId") makerId: Long? = null,
+        @Query("makerDateTimeFrom") makerDateTimeFrom: String? = null,
+        @Query("makerDateTimeTo") makerDateTimeTo: String? = null,
+        @Query("checkerId") checkerId: Long? = null,
+        @Query("checkerDateTimeFrom") checkerDateTimeFrom: String? = null,
+        @Query("checkerDateTimeTo") checkerDateTimeTo: String? = null,
+        @Query("processingResult") processingResult: Int? = null,
+        @Query("officeId") officeId: Int? = null,
+        @Query("groupId") groupId: Int? = null,
+        @Query("clientId") clientId: Int? = null,
+        @Query("loanid") loanid: Int? = null,
+        @Query("savingsAccountId") savingsAccountId: Int? = null,
+        @Query("paged") paged: Boolean? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): List<GetMakerCheckerResponse>
 
     /**
      * Retrieve an Audit Entry
@@ -51,7 +69,7 @@ interface AuditsApi {
      * @return [GetMakerCheckerResponse]
      */
     @GET("v1/audits/{auditId}")
-    suspend fun retrieveAuditEntry(@Path("auditId") auditId: kotlin.Long): Response<GetMakerCheckerResponse>
+    suspend fun retrieveAuditEntry(@Path("auditId") auditId: Long): GetMakerCheckerResponse
 
     /**
      * Audit Search Template
@@ -62,6 +80,6 @@ interface AuditsApi {
      * @return [GetMakerCheckersSearchTemplateResponse]
      */
     @GET("v1/audits/searchtemplate")
-    suspend fun retrieveAuditSearchTemplate(): Response<GetMakerCheckersSearchTemplateResponse>
+    suspend fun retrieveAuditSearchTemplate(): GetMakerCheckersSearchTemplateResponse
 
 }

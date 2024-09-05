@@ -1,19 +1,20 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.GetOfficesResponse
 import org.openapitools.client.models.GetOfficesTemplateResponse
 import org.openapitools.client.models.PostOfficesRequest
 import org.openapitools.client.models.PostOfficesResponse
 import org.openapitools.client.models.PutOfficesOfficeIdRequest
 import org.openapitools.client.models.PutOfficesOfficeIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface OfficesApi {
     /**
@@ -22,15 +23,15 @@ interface OfficesApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postOfficesRequest 
+     * @param postOfficesRequest
      * @return [PostOfficesResponse]
      */
     @POST("v1/offices")
-    suspend fun createOffice(@Body postOfficesRequest: PostOfficesRequest): Response<PostOfficesResponse>
+    suspend fun createOffice(@Body postOfficesRequest: PostOfficesRequest): PostOfficesResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -38,11 +39,11 @@ interface OfficesApi {
      * @return [Unit]
      */
     @GET("v1/offices/downloadtemplate")
-    suspend fun getOfficeTemplate(@Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getOfficeTemplate(@Query("dateFormat") dateFormat: String? = null)
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -53,7 +54,11 @@ interface OfficesApi {
      */
     @Multipart
     @POST("v1/offices/uploadtemplate")
-    suspend fun postOfficeTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postOfficeTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * Retrieve an Office
@@ -65,7 +70,7 @@ interface OfficesApi {
      * @return [GetOfficesResponse]
      */
     @GET("v1/offices/{officeId}")
-    suspend fun retrieveOffice(@Path("officeId") officeId: kotlin.Long): Response<GetOfficesResponse>
+    suspend fun retrieveOffice(@Path("officeId") officeId: Long): GetOfficesResponse
 
     /**
      * Retrieve an Office using external id
@@ -77,7 +82,7 @@ interface OfficesApi {
      * @return [GetOfficesResponse]
      */
     @GET("v1/offices/external-id/{externalId}")
-    suspend fun retrieveOfficeByExternalId(@Path("externalId") externalId: kotlin.String): Response<GetOfficesResponse>
+    suspend fun retrieveOfficeByExternalId(@Path("externalId") externalId: String): GetOfficesResponse
 
     /**
      * Retrieve Office Details Template
@@ -88,7 +93,7 @@ interface OfficesApi {
      * @return [GetOfficesTemplateResponse]
      */
     @GET("v1/offices/template")
-    suspend fun retrieveOfficeTemplate1(): Response<GetOfficesTemplateResponse>
+    suspend fun retrieveOfficeTemplate1(): GetOfficesTemplateResponse
 
     /**
      * List Offices
@@ -99,35 +104,45 @@ interface OfficesApi {
      * @param includeAllOffices includeAllOffices (optional, default to false)
      * @param orderBy orderBy (optional)
      * @param sortOrder sortOrder (optional)
-     * @return [kotlin.collections.List<GetOfficesResponse>]
+     * @return [kotlin.collections.List<GetOfficesResponse]
      */
     @GET("v1/offices")
-    suspend fun retrieveOffices(@Query("includeAllOffices") includeAllOffices: kotlin.Boolean? = false, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.collections.List<GetOfficesResponse>>
+    suspend fun retrieveOffices(
+        @Query("includeAllOffices") includeAllOffices: Boolean? = false,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): List<GetOfficesResponse>
 
     /**
      * Update Office
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param officeId officeId
-     * @param putOfficesOfficeIdRequest 
+     * @param putOfficesOfficeIdRequest
      * @return [PutOfficesOfficeIdResponse]
      */
     @PUT("v1/offices/{officeId}")
-    suspend fun updateOffice(@Path("officeId") officeId: kotlin.Long, @Body putOfficesOfficeIdRequest: PutOfficesOfficeIdRequest): Response<PutOfficesOfficeIdResponse>
+    suspend fun updateOffice(
+        @Path("officeId") officeId: Long,
+        @Body putOfficesOfficeIdRequest: PutOfficesOfficeIdRequest
+    ): PutOfficesOfficeIdResponse
 
     /**
      * Update Office
-     * 
+     *
      * Responses:
      *  - 0: default response
      *
      * @param externalId externalId
-     * @param putOfficesOfficeIdRequest 
+     * @param putOfficesOfficeIdRequest
      * @return [PutOfficesOfficeIdResponse]
      */
     @PUT("v1/offices/external-id/{externalId}")
-    suspend fun updateOfficeWithExternalId(@Path("externalId") externalId: kotlin.String, @Body putOfficesOfficeIdRequest: PutOfficesOfficeIdRequest): Response<PutOfficesOfficeIdResponse>
+    suspend fun updateOfficeWithExternalId(
+        @Path("externalId") externalId: String,
+        @Body putOfficesOfficeIdRequest: PutOfficesOfficeIdRequest
+    ): PutOfficesOfficeIdResponse
 
 }

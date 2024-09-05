@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteResourceTypeResourceIdNotesNoteIdResponse
 import org.openapitools.client.models.GetResourceTypeResourceIdNotesNoteIdResponse
 import org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostResourceTypeResourceIdNotesRequest
 import org.openapitools.client.models.PostResourceTypeResourceIdNotesResponse
 import org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdRequest
 import org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface NotesApi {
     /**
@@ -23,11 +23,15 @@ interface NotesApi {
      *
      * @param resourceType resourceType
      * @param resourceId resourceId
-     * @param postResourceTypeResourceIdNotesRequest 
+     * @param postResourceTypeResourceIdNotesRequest
      * @return [PostResourceTypeResourceIdNotesResponse]
      */
     @POST("v1/{resourceType}/{resourceId}/notes")
-    suspend fun addNewNote(@Path("resourceType") resourceType: kotlin.String, @Path("resourceId") resourceId: kotlin.Long, @Body postResourceTypeResourceIdNotesRequest: PostResourceTypeResourceIdNotesRequest): Response<PostResourceTypeResourceIdNotesResponse>
+    suspend fun addNewNote(
+        @Path("resourceType") resourceType: String,
+        @Path("resourceId") resourceId: Long,
+        @Body postResourceTypeResourceIdNotesRequest: PostResourceTypeResourceIdNotesRequest
+    ): PostResourceTypeResourceIdNotesResponse
 
     /**
      * Delete a Resource Note
@@ -41,7 +45,11 @@ interface NotesApi {
      * @return [DeleteResourceTypeResourceIdNotesNoteIdResponse]
      */
     @DELETE("v1/{resourceType}/{resourceId}/notes/{noteId}")
-    suspend fun deleteNote(@Path("resourceType") resourceType: kotlin.String, @Path("resourceId") resourceId: kotlin.Long, @Path("noteId") noteId: kotlin.Long): Response<DeleteResourceTypeResourceIdNotesNoteIdResponse>
+    suspend fun deleteNote(
+        @Path("resourceType") resourceType: String,
+        @Path("resourceId") resourceId: Long,
+        @Path("noteId") noteId: Long
+    ): DeleteResourceTypeResourceIdNotesNoteIdResponse
 
     /**
      * Retrieve a Resource Note
@@ -55,7 +63,11 @@ interface NotesApi {
      * @return [GetResourceTypeResourceIdNotesNoteIdResponse]
      */
     @GET("v1/{resourceType}/{resourceId}/notes/{noteId}")
-    suspend fun retrieveNote(@Path("resourceType") resourceType: kotlin.String, @Path("resourceId") resourceId: kotlin.Long, @Path("noteId") noteId: kotlin.Long): Response<GetResourceTypeResourceIdNotesNoteIdResponse>
+    suspend fun retrieveNote(
+        @Path("resourceType") resourceType: String,
+        @Path("resourceId") resourceId: Long,
+        @Path("noteId") noteId: Long
+    ): GetResourceTypeResourceIdNotesNoteIdResponse
 
     /**
      * Retrieve a Resource&#39;s description
@@ -65,10 +77,13 @@ interface NotesApi {
      *
      * @param resourceType resourceType
      * @param resourceId resourceId
-     * @return [kotlin.collections.List<GetResourceTypeResourceIdNotesResponse>]
+     * @return [kotlin.collections.List<GetResourceTypeResourceIdNotesResponse]
      */
     @GET("v1/{resourceType}/{resourceId}/notes")
-    suspend fun retrieveNotesByResource(@Path("resourceType") resourceType: kotlin.String, @Path("resourceId") resourceId: kotlin.Long): Response<kotlin.collections.List<GetResourceTypeResourceIdNotesResponse>>
+    suspend fun retrieveNotesByResource(
+        @Path("resourceType") resourceType: String,
+        @Path("resourceId") resourceId: Long
+    ): List<GetResourceTypeResourceIdNotesResponse>
 
     /**
      * Update a Resource Note
@@ -79,10 +94,15 @@ interface NotesApi {
      * @param resourceType resourceType
      * @param resourceId resourceId
      * @param noteId noteId
-     * @param putResourceTypeResourceIdNotesNoteIdRequest 
+     * @param putResourceTypeResourceIdNotesNoteIdRequest
      * @return [PutResourceTypeResourceIdNotesNoteIdResponse]
      */
     @PUT("v1/{resourceType}/{resourceId}/notes/{noteId}")
-    suspend fun updateNote(@Path("resourceType") resourceType: kotlin.String, @Path("resourceId") resourceId: kotlin.Long, @Path("noteId") noteId: kotlin.Long, @Body putResourceTypeResourceIdNotesNoteIdRequest: PutResourceTypeResourceIdNotesNoteIdRequest): Response<PutResourceTypeResourceIdNotesNoteIdResponse>
+    suspend fun updateNote(
+        @Path("resourceType") resourceType: String,
+        @Path("resourceId") resourceId: Long,
+        @Path("noteId") noteId: Long,
+        @Body putResourceTypeResourceIdNotesNoteIdRequest: PutResourceTypeResourceIdNotesNoteIdRequest
+    ): PutResourceTypeResourceIdNotesNoteIdResponse
 
 }

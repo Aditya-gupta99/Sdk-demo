@@ -1,14 +1,12 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetBusinessJobConfigResponse
 import org.openapitools.client.models.GetBusinessStepConfigResponse
 import org.openapitools.client.models.UpdateBusinessStepConfigRequest
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface BusinessStepConfigurationApi {
     /**
@@ -21,7 +19,7 @@ interface BusinessStepConfigurationApi {
      * @return [GetBusinessStepConfigResponse]
      */
     @GET("v1/jobs/{jobName}/available-steps")
-    suspend fun retrieveAllAvailableBusinessStep(@Path("jobName") jobName: kotlin.String): Response<GetBusinessStepConfigResponse>
+    suspend fun retrieveAllAvailableBusinessStep(@Path("jobName") jobName: String): GetBusinessStepConfigResponse
 
     /**
      * List Business Jobs
@@ -32,7 +30,7 @@ interface BusinessStepConfigurationApi {
      * @return [GetBusinessJobConfigResponse]
      */
     @GET("v1/jobs/names")
-    suspend fun retrieveAllConfiguredBusinessJobs(): Response<GetBusinessJobConfigResponse>
+    suspend fun retrieveAllConfiguredBusinessJobs(): GetBusinessJobConfigResponse
 
     /**
      * List Business Step Configurations for a Job
@@ -44,7 +42,7 @@ interface BusinessStepConfigurationApi {
      * @return [GetBusinessStepConfigResponse]
      */
     @GET("v1/jobs/{jobName}/steps")
-    suspend fun retrieveAllConfiguredBusinessStep(@Path("jobName") jobName: kotlin.String): Response<GetBusinessStepConfigResponse>
+    suspend fun retrieveAllConfiguredBusinessStep(@Path("jobName") jobName: String): GetBusinessStepConfigResponse
 
     /**
      * List Business Step Configurations for a Job
@@ -57,6 +55,9 @@ interface BusinessStepConfigurationApi {
      * @return [Unit]
      */
     @PUT("v1/jobs/{jobName}/steps")
-    suspend fun updateJobBusinessStepConfig(@Path("jobName") jobName: kotlin.String, @Body updateBusinessStepConfigRequest: UpdateBusinessStepConfigRequest? = null): Response<Unit>
+    suspend fun updateJobBusinessStepConfig(
+        @Path("jobName") jobName: String,
+        @Body updateBusinessStepConfigRequest: UpdateBusinessStepConfigRequest? = null
+    )
 
 }

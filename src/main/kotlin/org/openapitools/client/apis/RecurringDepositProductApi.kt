@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteRecurringDepositProductsProductIdResponse
 import org.openapitools.client.models.GetRecurringDepositProductsProductIdResponse
 import org.openapitools.client.models.GetRecurringDepositProductsResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostRecurringDepositProductsRequest
 import org.openapitools.client.models.PostRecurringDepositProductsResponse
 import org.openapitools.client.models.PutRecurringDepositProductsRequest
 import org.openapitools.client.models.PutRecurringDepositProductsResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface RecurringDepositProductApi {
     /**
@@ -21,11 +21,11 @@ interface RecurringDepositProductApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postRecurringDepositProductsRequest 
+     * @param postRecurringDepositProductsRequest
      * @return [PostRecurringDepositProductsResponse]
      */
     @POST("v1/recurringdepositproducts")
-    suspend fun create12(@Body postRecurringDepositProductsRequest: PostRecurringDepositProductsRequest): Response<PostRecurringDepositProductsResponse>
+    suspend fun create12(@Body postRecurringDepositProductsRequest: PostRecurringDepositProductsRequest): PostRecurringDepositProductsResponse
 
     /**
      * Delete a Recurring Deposit Product
@@ -37,7 +37,7 @@ interface RecurringDepositProductApi {
      * @return [DeleteRecurringDepositProductsProductIdResponse]
      */
     @DELETE("v1/recurringdepositproducts/{productId}")
-    suspend fun delete18(@Path("productId") productId: kotlin.Long): Response<DeleteRecurringDepositProductsProductIdResponse>
+    suspend fun delete18(@Path("productId") productId: Long): DeleteRecurringDepositProductsProductIdResponse
 
     /**
      * List Recuring Deposit Products
@@ -45,10 +45,10 @@ interface RecurringDepositProductApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetRecurringDepositProductsResponse>]
+     * @return [kotlin.collections.List<GetRecurringDepositProductsResponse]
      */
     @GET("v1/recurringdepositproducts")
-    suspend fun retrieveAll32(): Response<kotlin.collections.List<GetRecurringDepositProductsResponse>>
+    suspend fun retrieveAll32(): List<GetRecurringDepositProductsResponse>
 
     /**
      * Retrieve a Recurring Deposit Product
@@ -60,18 +60,18 @@ interface RecurringDepositProductApi {
      * @return [GetRecurringDepositProductsProductIdResponse]
      */
     @GET("v1/recurringdepositproducts/{productId}")
-    suspend fun retrieveOne23(@Path("productId") productId: kotlin.Long): Response<GetRecurringDepositProductsProductIdResponse>
+    suspend fun retrieveOne23(@Path("productId") productId: Long): GetRecurringDepositProductsProductIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/recurringdepositproducts/template")
-    suspend fun retrieveTemplate17(): Response<kotlin.String>
+    suspend fun retrieveTemplate17(): String
 
     /**
      * Update a Recurring Deposit Product
@@ -80,10 +80,13 @@ interface RecurringDepositProductApi {
      *  - 200: OK
      *
      * @param productId productId
-     * @param putRecurringDepositProductsRequest 
+     * @param putRecurringDepositProductsRequest
      * @return [PutRecurringDepositProductsResponse]
      */
     @PUT("v1/recurringdepositproducts/{productId}")
-    suspend fun update19(@Path("productId") productId: kotlin.Long, @Body putRecurringDepositProductsRequest: PutRecurringDepositProductsRequest): Response<PutRecurringDepositProductsResponse>
+    suspend fun update19(
+        @Path("productId") productId: Long,
+        @Body putRecurringDepositProductsRequest: PutRecurringDepositProductsRequest
+    ): PutRecurringDepositProductsResponse
 
 }

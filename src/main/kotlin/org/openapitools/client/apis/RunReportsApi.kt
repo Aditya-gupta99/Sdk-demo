@@ -1,27 +1,27 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.ReportExportType
 import org.openapitools.client.models.RunReportsResponse
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RunReportsApi {
     /**
      * Return all available export types for the specific report
      * Returns the list of all available export types.
      * Responses:
-     *  - 200: 
+     *  - 200:
      *
      * @param reportName reportName
      * @param isSelfServiceUserReport isSelfServiceUserReport (optional, default to false)
-     * @return [kotlin.collections.List<ReportExportType>]
+     * @return [kotlin.collections.List<ReportExportType]
      */
     @GET("v1/runreports/availableExports/{reportName}")
-    suspend fun retrieveAllAvailableExports(@Path("reportName") reportName: kotlin.String, @Query("isSelfServiceUserReport") isSelfServiceUserReport: kotlin.Boolean? = false): Response<kotlin.collections.List<ReportExportType>>
+    suspend fun retrieveAllAvailableExports(
+        @Path("reportName") reportName: String,
+        @Query("isSelfServiceUserReport") isSelfServiceUserReport: Boolean? = false
+    ): List<ReportExportType>
 
     /**
      * Running a Report
@@ -34,6 +34,9 @@ interface RunReportsApi {
      * @return [RunReportsResponse]
      */
     @GET("v1/runreports/{reportName}")
-    suspend fun runReport(@Path("reportName") reportName: kotlin.String, @Query("isSelfServiceUserReport") isSelfServiceUserReport: kotlin.Boolean? = false): Response<RunReportsResponse>
+    suspend fun runReport(
+        @Path("reportName") reportName: String,
+        @Query("isSelfServiceUserReport") isSelfServiceUserReport: Boolean? = false
+    ): RunReportsResponse
 
 }

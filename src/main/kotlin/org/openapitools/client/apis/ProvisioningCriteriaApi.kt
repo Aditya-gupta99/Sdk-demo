@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteProvisioningCriteriaResponse
 import org.openapitools.client.models.GetProvisioningCriteriaCriteriaIdResponse
 import org.openapitools.client.models.GetProvisioningCriteriaResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostProvisioningCriteriaRequest
 import org.openapitools.client.models.PostProvisioningCriteriaResponse
 import org.openapitools.client.models.PutProvisioningCriteriaRequest
 import org.openapitools.client.models.PutProvisioningCriteriaResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface ProvisioningCriteriaApi {
     /**
@@ -21,11 +21,11 @@ interface ProvisioningCriteriaApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postProvisioningCriteriaRequest 
+     * @param postProvisioningCriteriaRequest
      * @return [PostProvisioningCriteriaResponse]
      */
     @POST("v1/provisioningcriteria")
-    suspend fun createProvisioningCriteria(@Body postProvisioningCriteriaRequest: PostProvisioningCriteriaRequest): Response<PostProvisioningCriteriaResponse>
+    suspend fun createProvisioningCriteria(@Body postProvisioningCriteriaRequest: PostProvisioningCriteriaRequest): PostProvisioningCriteriaResponse
 
     /**
      * Deletes Provisioning Criteria
@@ -37,7 +37,7 @@ interface ProvisioningCriteriaApi {
      * @return [DeleteProvisioningCriteriaResponse]
      */
     @DELETE("v1/provisioningcriteria/{criteriaId}")
-    suspend fun deleteProvisioningCriteria(@Path("criteriaId") criteriaId: kotlin.Long): Response<DeleteProvisioningCriteriaResponse>
+    suspend fun deleteProvisioningCriteria(@Path("criteriaId") criteriaId: Long): DeleteProvisioningCriteriaResponse
 
     /**
      * Retrieves all created Provisioning Criterias
@@ -45,10 +45,10 @@ interface ProvisioningCriteriaApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetProvisioningCriteriaResponse>]
+     * @return [kotlin.collections.List<GetProvisioningCriteriaResponse]
      */
     @GET("v1/provisioningcriteria")
-    suspend fun retrieveAllProvisioningCriterias(): Response<kotlin.collections.List<GetProvisioningCriteriaResponse>>
+    suspend fun retrieveAllProvisioningCriterias(): List<GetProvisioningCriteriaResponse>
 
     /**
      * Retrieves a Provisioning Criteria
@@ -60,18 +60,18 @@ interface ProvisioningCriteriaApi {
      * @return [GetProvisioningCriteriaCriteriaIdResponse]
      */
     @GET("v1/provisioningcriteria/{criteriaId}")
-    suspend fun retrieveProvisioningCriteria(@Path("criteriaId") criteriaId: kotlin.Long): Response<GetProvisioningCriteriaCriteriaIdResponse>
+    suspend fun retrieveProvisioningCriteria(@Path("criteriaId") criteriaId: Long): GetProvisioningCriteriaCriteriaIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/provisioningcriteria/template")
-    suspend fun retrieveTemplate3(): Response<kotlin.String>
+    suspend fun retrieveTemplate3(): String
 
     /**
      * Updates a new Provisioning Criteria
@@ -80,10 +80,13 @@ interface ProvisioningCriteriaApi {
      *  - 200: OK
      *
      * @param criteriaId criteriaId
-     * @param putProvisioningCriteriaRequest 
+     * @param putProvisioningCriteriaRequest
      * @return [PutProvisioningCriteriaResponse]
      */
     @PUT("v1/provisioningcriteria/{criteriaId}")
-    suspend fun updateProvisioningCriteria(@Path("criteriaId") criteriaId: kotlin.Long, @Body putProvisioningCriteriaRequest: PutProvisioningCriteriaRequest): Response<PutProvisioningCriteriaResponse>
+    suspend fun updateProvisioningCriteria(
+        @Path("criteriaId") criteriaId: Long,
+        @Body putProvisioningCriteriaRequest: PutProvisioningCriteriaRequest
+    ): PutProvisioningCriteriaResponse
 
 }

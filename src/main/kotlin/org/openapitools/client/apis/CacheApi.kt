@@ -1,14 +1,11 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetCachesResponse
 import org.openapitools.client.models.PutCachesRequest
 import org.openapitools.client.models.PutCachesResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
 
 interface CacheApi {
     /**
@@ -20,7 +17,7 @@ interface CacheApi {
      * @return [kotlin.collections.List<GetCachesResponse>]
      */
     @GET("v1/caches")
-    suspend fun retrieveAll4(): Response<kotlin.collections.List<GetCachesResponse>>
+    suspend fun retrieveAll4(): List<GetCachesResponse>
 
     /**
      * Switch Cache
@@ -28,10 +25,10 @@ interface CacheApi {
      * Responses:
      *  - 200: OK
      *
-     * @param putCachesRequest 
+     * @param putCachesRequest
      * @return [PutCachesResponse]
      */
     @PUT("v1/caches")
-    suspend fun switchCache(@Body putCachesRequest: PutCachesRequest): Response<PutCachesResponse>
+    suspend fun switchCache(@Body putCachesRequest: PutCachesRequest): PutCachesResponse
 
 }

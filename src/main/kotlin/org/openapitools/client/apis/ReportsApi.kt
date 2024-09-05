@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteReportsResponse
 import org.openapitools.client.models.GetReportsResponse
 import org.openapitools.client.models.GetReportsTemplateResponse
@@ -13,19 +7,25 @@ import org.openapitools.client.models.PostReportsResponse
 import org.openapitools.client.models.PostRepostRequest
 import org.openapitools.client.models.PutReportRequest
 import org.openapitools.client.models.PutReportResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface ReportsApi {
     /**
      * Create a Report
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param postRepostRequest 
+     * @param postRepostRequest
      * @return [PostReportsResponse]
      */
     @POST("v1/reports")
-    suspend fun createReport(@Body postRepostRequest: PostRepostRequest): Response<PostReportsResponse>
+    suspend fun createReport(@Body postRepostRequest: PostRepostRequest): PostReportsResponse
 
     /**
      * Delete a Report
@@ -37,7 +37,7 @@ interface ReportsApi {
      * @return [DeleteReportsResponse]
      */
     @DELETE("v1/reports/{id}")
-    suspend fun deleteReport(@Path("id") id: kotlin.Long): Response<DeleteReportsResponse>
+    suspend fun deleteReport(@Path("id") id: Long): DeleteReportsResponse
 
     /**
      * Retrieve Report Template
@@ -48,10 +48,10 @@ interface ReportsApi {
      * @return [GetReportsTemplateResponse]
      */
     @GET("v1/reports/template")
-    suspend fun retrieveOfficeTemplate(): Response<GetReportsTemplateResponse>
+    suspend fun retrieveOfficeTemplate(): GetReportsTemplateResponse
 
     /**
-     * Retrieve a Report 
+     * Retrieve a Report
      * Example Requests:  reports/1   reports/1?template&#x3D;true
      * Responses:
      *  - 200: OK
@@ -60,7 +60,7 @@ interface ReportsApi {
      * @return [GetReportsResponse]
      */
     @GET("v1/reports/{id}")
-    suspend fun retrieveReport(@Path("id") id: kotlin.Long): Response<GetReportsResponse>
+    suspend fun retrieveReport(@Path("id") id: Long): GetReportsResponse
 
     /**
      * List Reports
@@ -68,10 +68,10 @@ interface ReportsApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetReportsResponse>]
+     * @return [kotlin.collections.List<GetReportsResponse]
      */
     @GET("v1/reports")
-    suspend fun retrieveReportList(): Response<kotlin.collections.List<GetReportsResponse>>
+    suspend fun retrieveReportList(): List<GetReportsResponse>
 
     /**
      * Update a Report
@@ -80,10 +80,13 @@ interface ReportsApi {
      *  - 200: OK
      *
      * @param id id
-     * @param putReportRequest 
+     * @param putReportRequest
      * @return [PutReportResponse]
      */
     @PUT("v1/reports/{id}")
-    suspend fun updateReport(@Path("id") id: kotlin.Long, @Body putReportRequest: PutReportRequest): Response<PutReportResponse>
+    suspend fun updateReport(
+        @Path("id") id: Long,
+        @Body putReportRequest: PutReportRequest
+    ): PutReportResponse
 
 }

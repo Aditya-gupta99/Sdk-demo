@@ -1,19 +1,19 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.GetJournalEntriesTransactionIdResponse
 import org.openapitools.client.models.JournalEntryCommand
 import org.openapitools.client.models.JournalEntryTransactionItem
 import org.openapitools.client.models.PostJournalEntriesResponse
 import org.openapitools.client.models.PostJournalEntriesTransactionIdRequest
 import org.openapitools.client.models.PostJournalEntriesTransactionIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface JournalEntriesApi {
     /**
@@ -27,7 +27,10 @@ interface JournalEntriesApi {
      * @return [PostJournalEntriesResponse]
      */
     @POST("v1/journalentries")
-    suspend fun createGLJournalEntry(@Query("command") command: kotlin.String? = null, @Body journalEntryCommand: JournalEntryCommand? = null): Response<PostJournalEntriesResponse>
+    suspend fun createGLJournalEntry(
+        @Query("command") command: String? = null,
+        @Body journalEntryCommand: JournalEntryCommand? = null
+    ): PostJournalEntriesResponse
 
     /**
      * Update Running balances for Journal Entries
@@ -41,11 +44,15 @@ interface JournalEntriesApi {
      * @return [PostJournalEntriesTransactionIdResponse]
      */
     @POST("v1/journalentries/{transactionId}")
-    suspend fun createReversalJournalEntry(@Path("transactionId") transactionId: kotlin.String, @Query("command") command: kotlin.String? = null, @Body postJournalEntriesTransactionIdRequest: PostJournalEntriesTransactionIdRequest? = null): Response<PostJournalEntriesTransactionIdResponse>
+    suspend fun createReversalJournalEntry(
+        @Path("transactionId") transactionId: String,
+        @Query("command") command: String? = null,
+        @Body postJournalEntriesTransactionIdRequest: PostJournalEntriesTransactionIdRequest? = null
+    ): PostJournalEntriesTransactionIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -54,11 +61,14 @@ interface JournalEntriesApi {
      * @return [Unit]
      */
     @GET("v1/journalentries/downloadtemplate")
-    suspend fun getJournalEntriesTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getJournalEntriesTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -69,7 +79,11 @@ interface JournalEntriesApi {
      */
     @Multipart
     @POST("v1/journalentries/uploadtemplate")
-    suspend fun postJournalEntriesTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postJournalEntriesTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List Journal Entries
@@ -99,11 +113,31 @@ interface JournalEntriesApi {
      * @return [GetJournalEntriesTransactionIdResponse]
      */
     @GET("v1/journalentries")
-    suspend fun retrieveAll1(@Query("officeId") officeId: kotlin.Long? = null, @Query("glAccountId") glAccountId: kotlin.Long? = null, @Query("manualEntriesOnly") manualEntriesOnly: kotlin.Boolean? = null, @Query("fromDate") fromDate: kotlin.Any? = null, @Query("toDate") toDate: kotlin.Any? = null, @Query("submittedOnDateFrom") submittedOnDateFrom: kotlin.Any? = null, @Query("submittedOnDateTo") submittedOnDateTo: kotlin.Any? = null, @Query("transactionId") transactionId: kotlin.String? = null, @Query("entityType") entityType: kotlin.Int? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("locale") locale: kotlin.String? = null, @Query("dateFormat") dateFormat: kotlin.String? = null, @Query("loanId") loanId: kotlin.Long? = null, @Query("savingsId") savingsId: kotlin.Long? = null, @Query("runningBalance") runningBalance: kotlin.Boolean? = null, @Query("transactionDetails") transactionDetails: kotlin.Boolean? = null): Response<GetJournalEntriesTransactionIdResponse>
+    suspend fun retrieveAll1(
+        @Query("officeId") officeId: Long? = null,
+        @Query("glAccountId") glAccountId: Long? = null,
+        @Query("manualEntriesOnly") manualEntriesOnly: Boolean? = null,
+        @Query("fromDate") fromDate: Any? = null,
+        @Query("toDate") toDate: Any? = null,
+        @Query("submittedOnDateFrom") submittedOnDateFrom: Any? = null,
+        @Query("submittedOnDateTo") submittedOnDateTo: Any? = null,
+        @Query("transactionId") transactionId: String? = null,
+        @Query("entityType") entityType: Int? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("locale") locale: String? = null,
+        @Query("dateFormat") dateFormat: String? = null,
+        @Query("loanId") loanId: Long? = null,
+        @Query("savingsId") savingsId: Long? = null,
+        @Query("runningBalance") runningBalance: Boolean? = null,
+        @Query("transactionDetails") transactionDetails: Boolean? = null
+    ): GetJournalEntriesTransactionIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -113,7 +147,11 @@ interface JournalEntriesApi {
      * @return [kotlin.String]
      */
     @GET("v1/journalentries/provisioning")
-    suspend fun retrieveJournalEntries(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("entryId") entryId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun retrieveJournalEntries(
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("entryId") entryId: Long? = null
+    ): String
 
     /**
      * Retrieve a single Entry
@@ -127,11 +165,15 @@ interface JournalEntriesApi {
      * @return [JournalEntryTransactionItem]
      */
     @GET("v1/journalentries/{journalEntryId}")
-    suspend fun retrieveJournalEntryById(@Path("journalEntryId") journalEntryId: kotlin.Long, @Query("runningBalance") runningBalance: kotlin.Boolean? = null, @Query("transactionDetails") transactionDetails: kotlin.Boolean? = null): Response<JournalEntryTransactionItem>
+    suspend fun retrieveJournalEntryById(
+        @Path("journalEntryId") journalEntryId: Long,
+        @Query("runningBalance") runningBalance: Boolean? = null,
+        @Query("transactionDetails") transactionDetails: Boolean? = null
+    ): JournalEntryTransactionItem
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -140,6 +182,9 @@ interface JournalEntriesApi {
      * @return [kotlin.String]
      */
     @GET("v1/journalentries/openingbalance")
-    suspend fun retrieveOpeningBalance(@Query("officeId") officeId: kotlin.Long? = null, @Query("currencyCode") currencyCode: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveOpeningBalance(
+        @Query("officeId") officeId: Long? = null,
+        @Query("currencyCode") currencyCode: String? = null
+    ): String
 
 }

@@ -1,16 +1,14 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface SelfSavingsProductsApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -18,19 +16,22 @@ interface SelfSavingsProductsApi {
      * @return [kotlin.String]
      */
     @GET("v1/self/savingsproducts")
-    suspend fun retrieveAll38(@Query("clientId") clientId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun retrieveAll38(@Query("clientId") clientId: Long? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param productId 
+     * @param productId
      * @param clientId  (optional)
      * @return [kotlin.String]
      */
     @GET("v1/self/savingsproducts/{productId}")
-    suspend fun retrieveOne29(@Path("productId") productId: kotlin.Long, @Query("clientId") clientId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun retrieveOne29(
+        @Path("productId") productId: Long,
+        @Query("clientId") clientId: Long? = null
+    ): String
 
 }

@@ -1,51 +1,60 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 
 interface LoanDisbursementDetailsApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
+     * @param loanId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/loans/{loanId}/disbursements/editDisbursements")
-    suspend fun addAndDeleteDisbursementDetail(@Path("loanId") loanId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun addAndDeleteDisbursementDetail(
+        @Path("loanId") loanId: Long,
+        @Body body: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
-     * @param disbursementId 
+     * @param loanId
+     * @param disbursementId
      * @return [kotlin.String]
      */
     @GET("v1/loans/{loanId}/disbursements/{disbursementId}")
-    suspend fun retriveDetail(@Path("loanId") loanId: kotlin.Long, @Path("disbursementId") disbursementId: kotlin.Long): Response<kotlin.String>
+    suspend fun retriveDetail(
+        @Path("loanId") loanId: Long,
+        @Path("disbursementId") disbursementId: Long
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
-     * @param disbursementId 
+     * @param loanId
+     * @param disbursementId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/loans/{loanId}/disbursements/{disbursementId}")
-    suspend fun updateDisbursementDate(@Path("loanId") loanId: kotlin.Long, @Path("disbursementId") disbursementId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun updateDisbursementDate(
+        @Path("loanId") loanId: Long,
+        @Path("disbursementId") disbursementId: Long,
+        @Body body: String? = null
+    ): String
 
 }

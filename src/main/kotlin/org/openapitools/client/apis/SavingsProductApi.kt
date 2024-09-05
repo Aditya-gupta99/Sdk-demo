@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteSavingsProductsProductIdResponse
 import org.openapitools.client.models.GetSavingsProductsProductIdResponse
 import org.openapitools.client.models.GetSavingsProductsResponse
@@ -14,6 +8,12 @@ import org.openapitools.client.models.PostSavingsProductsRequest
 import org.openapitools.client.models.PostSavingsProductsResponse
 import org.openapitools.client.models.PutSavingsProductsProductIdRequest
 import org.openapitools.client.models.PutSavingsProductsProductIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface SavingsProductApi {
     /**
@@ -22,11 +22,11 @@ interface SavingsProductApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postSavingsProductsRequest 
+     * @param postSavingsProductsRequest
      * @return [PostSavingsProductsResponse]
      */
     @POST("v1/savingsproducts")
-    suspend fun create13(@Body postSavingsProductsRequest: PostSavingsProductsRequest): Response<PostSavingsProductsResponse>
+    suspend fun create13(@Body postSavingsProductsRequest: PostSavingsProductsRequest): PostSavingsProductsResponse
 
     /**
      * Delete a Savings Product
@@ -38,7 +38,7 @@ interface SavingsProductApi {
      * @return [DeleteSavingsProductsProductIdResponse]
      */
     @DELETE("v1/savingsproducts/{productId}")
-    suspend fun delete21(@Path("productId") productId: kotlin.Long): Response<DeleteSavingsProductsProductIdResponse>
+    suspend fun delete21(@Path("productId") productId: Long): DeleteSavingsProductsProductIdResponse
 
     /**
      * List Savings Products
@@ -46,10 +46,10 @@ interface SavingsProductApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetSavingsProductsResponse>]
+     * @return [kotlin.collections.List<GetSavingsProductsResponse]
      */
     @GET("v1/savingsproducts")
-    suspend fun retrieveAll34(): Response<kotlin.collections.List<GetSavingsProductsResponse>>
+    suspend fun retrieveAll34(): List<GetSavingsProductsResponse>
 
     /**
      * Retrieve a Savings Product
@@ -61,7 +61,7 @@ interface SavingsProductApi {
      * @return [GetSavingsProductsProductIdResponse]
      */
     @GET("v1/savingsproducts/{productId}")
-    suspend fun retrieveOne27(@Path("productId") productId: kotlin.Long): Response<GetSavingsProductsProductIdResponse>
+    suspend fun retrieveOne27(@Path("productId") productId: Long): GetSavingsProductsProductIdResponse
 
     /**
      * Retrieve Savings Product Template
@@ -72,7 +72,7 @@ interface SavingsProductApi {
      * @return [GetSavingsProductsTemplateResponse]
      */
     @GET("v1/savingsproducts/template")
-    suspend fun retrieveTemplate20(): Response<GetSavingsProductsTemplateResponse>
+    suspend fun retrieveTemplate20(): GetSavingsProductsTemplateResponse
 
     /**
      * Update a Savings Product
@@ -81,10 +81,13 @@ interface SavingsProductApi {
      *  - 200: OK
      *
      * @param productId productId
-     * @param putSavingsProductsProductIdRequest 
+     * @param putSavingsProductsProductIdRequest
      * @return [PutSavingsProductsProductIdResponse]
      */
     @PUT("v1/savingsproducts/{productId}")
-    suspend fun update22(@Path("productId") productId: kotlin.Long, @Body putSavingsProductsProductIdRequest: PutSavingsProductsProductIdRequest): Response<PutSavingsProductsProductIdResponse>
+    suspend fun update22(
+        @Path("productId") productId: Long,
+        @Body putSavingsProductsProductIdRequest: PutSavingsProductsProductIdRequest
+    ): PutSavingsProductsProductIdResponse
 
 }

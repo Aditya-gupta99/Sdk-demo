@@ -1,26 +1,29 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.SurveyData
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SpmSurveysApi {
     /**
      * Deactivate Survey
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param id 
+     * @param id
      * @param command  (optional)
      * @return [Unit]
      */
     @POST("v1/surveys/{id}")
-    suspend fun activateOrDeactivateSurvey(@Path("id") id: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<Unit>
+    suspend fun activateOrDeactivateSurvey(
+        @Path("id") id: Long,
+        @Query("command") command: String? = null
+    ): Unit
 
     /**
      * Create a Survey
@@ -32,36 +35,39 @@ interface SpmSurveysApi {
      * @return [Unit]
      */
     @POST("v1/surveys")
-    suspend fun createSurvey(@Body surveyData: SurveyData? = null): Response<Unit>
+    suspend fun createSurvey(@Body surveyData: SurveyData? = null): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param id 
+     * @param id
      * @param surveyData  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/surveys/{id}")
-    suspend fun editSurvey(@Path("id") id: kotlin.Long, @Body surveyData: SurveyData? = null): Response<kotlin.String>
+    suspend fun editSurvey(
+        @Path("id") id: Long,
+        @Body surveyData: SurveyData? = null
+    ): String
 
     /**
      * List all Surveys
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param isActive  (optional)
-     * @return [kotlin.collections.List<SurveyData>]
+     * @return [kotlin.collections.List<SurveyData]
      */
     @GET("v1/surveys")
-    suspend fun fetchAllSurveys1(@Query("isActive") isActive: kotlin.Boolean? = null): Response<kotlin.collections.List<SurveyData>>
+    suspend fun fetchAllSurveys1(@Query("isActive") isActive: Boolean? = null): List<SurveyData>
 
     /**
      * Retrieve a Survey
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -69,6 +75,6 @@ interface SpmSurveysApi {
      * @return [SurveyData]
      */
     @GET("v1/surveys/{id}")
-    suspend fun findSurvey(@Path("id") id: kotlin.Long): Response<SurveyData>
+    suspend fun findSurvey(@Path("id") id: Long): SurveyData
 
 }

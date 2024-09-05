@@ -1,17 +1,17 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetProductsTypeProductIdResponse
 import org.openapitools.client.models.GetProductsTypeResponse
 import org.openapitools.client.models.PostProductsTypeRequest
 import org.openapitools.client.models.PostProductsTypeResponse
 import org.openapitools.client.models.PutProductsTypeProductIdRequest
 import org.openapitools.client.models.PutProductsTypeProductIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ProductsApi {
     /**
@@ -21,15 +21,18 @@ interface ProductsApi {
      *  - 200: OK
      *
      * @param type type
-     * @param postProductsTypeRequest 
+     * @param postProductsTypeRequest
      * @return [PostProductsTypeResponse]
      */
     @POST("v1/products/{type}")
-    suspend fun createProduct(@Path("type") type: kotlin.String, @Body postProductsTypeRequest: PostProductsTypeRequest): Response<PostProductsTypeResponse>
+    suspend fun createProduct(
+        @Path("type") type: String,
+        @Body postProductsTypeRequest: PostProductsTypeRequest
+    ): PostProductsTypeResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -39,7 +42,11 @@ interface ProductsApi {
      * @return [kotlin.String]
      */
     @POST("v1/products/{type}/{productId}")
-    suspend fun handleCommands3(@Path("type") type: kotlin.String, @Path("productId") productId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<kotlin.String>
+    suspend fun handleCommands3(
+        @Path("type") type: String,
+        @Path("productId") productId: Long,
+        @Query("command") command: String? = null
+    ): String
 
     /**
      * List Share Products
@@ -53,7 +60,11 @@ interface ProductsApi {
      * @return [GetProductsTypeResponse]
      */
     @GET("v1/products/{type}")
-    suspend fun retrieveAllProducts(@Path("type") type: kotlin.String, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<GetProductsTypeResponse>
+    suspend fun retrieveAllProducts(
+        @Path("type") type: String,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): GetProductsTypeResponse
 
     /**
      * Retrieve a Share Product
@@ -66,11 +77,14 @@ interface ProductsApi {
      * @return [GetProductsTypeProductIdResponse]
      */
     @GET("v1/products/{type}/{productId}")
-    suspend fun retrieveProduct(@Path("productId") productId: kotlin.Long, @Path("type") type: kotlin.String): Response<GetProductsTypeProductIdResponse>
+    suspend fun retrieveProduct(
+        @Path("productId") productId: Long,
+        @Path("type") type: String
+    ): GetProductsTypeProductIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -78,7 +92,7 @@ interface ProductsApi {
      * @return [kotlin.String]
      */
     @GET("v1/products/{type}/template")
-    suspend fun retrieveTemplate13(@Path("type") type: kotlin.String): Response<kotlin.String>
+    suspend fun retrieveTemplate13(@Path("type") type: String): String
 
     /**
      * Update a Share Product
@@ -88,10 +102,14 @@ interface ProductsApi {
      *
      * @param type type
      * @param productId productId
-     * @param putProductsTypeProductIdRequest 
+     * @param putProductsTypeProductIdRequest
      * @return [PutProductsTypeProductIdResponse]
      */
     @PUT("v1/products/{type}/{productId}")
-    suspend fun updateProduct(@Path("type") type: kotlin.String, @Path("productId") productId: kotlin.Long, @Body putProductsTypeProductIdRequest: PutProductsTypeProductIdRequest): Response<PutProductsTypeProductIdResponse>
+    suspend fun updateProduct(
+        @Path("type") type: String,
+        @Path("productId") productId: Long,
+        @Body putProductsTypeProductIdRequest: PutProductsTypeProductIdRequest
+    ): PutProductsTypeProductIdResponse
 
 }

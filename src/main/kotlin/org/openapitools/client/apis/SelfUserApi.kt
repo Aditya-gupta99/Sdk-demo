@@ -1,13 +1,9 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.PutSelfUserRequest
 import org.openapitools.client.models.PutSelfUserResponse
+import retrofit2.http.Body
+import retrofit2.http.PUT
 
 interface SelfUserApi {
     /**
@@ -16,10 +12,10 @@ interface SelfUserApi {
      * Responses:
      *  - 200: OK
      *
-     * @param putSelfUserRequest 
+     * @param putSelfUserRequest
      * @return [PutSelfUserResponse]
      */
     @PUT("v1/self/user")
-    suspend fun update24(@Body putSelfUserRequest: PutSelfUserRequest): Response<PutSelfUserResponse>
+    suspend fun update24(@Body putSelfUserRequest: PutSelfUserRequest): PutSelfUserResponse
 
 }

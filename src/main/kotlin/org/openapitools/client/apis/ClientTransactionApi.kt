@@ -1,14 +1,12 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetClientsClientIdTransactionsResponse
 import org.openapitools.client.models.GetClientsClientIdTransactionsTransactionIdResponse
 import org.openapitools.client.models.PostClientsClientIdTransactionsTransactionIdResponse
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ClientTransactionApi {
     /**
@@ -23,7 +21,11 @@ interface ClientTransactionApi {
      * @return [GetClientsClientIdTransactionsResponse]
      */
     @GET("v1/clients/{clientId}/transactions")
-    suspend fun retrieveAllClientTransactions(@Path("clientId") clientId: kotlin.Long, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<GetClientsClientIdTransactionsResponse>
+    suspend fun retrieveAllClientTransactions(
+        @Path("clientId") clientId: Long,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): GetClientsClientIdTransactionsResponse
 
     /**
      * List Client Transactions
@@ -37,7 +39,11 @@ interface ClientTransactionApi {
      * @return [GetClientsClientIdTransactionsResponse]
      */
     @GET("v1/clients/external-id/{clientExternalId}/transactions")
-    suspend fun retrieveAllClientTransactions1(@Path("clientExternalId") clientExternalId: kotlin.String, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<GetClientsClientIdTransactionsResponse>
+    suspend fun retrieveAllClientTransactions1(
+        @Path("clientExternalId") clientExternalId: String,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): GetClientsClientIdTransactionsResponse
 
     /**
      * Retrieve a Client Transaction
@@ -50,7 +56,10 @@ interface ClientTransactionApi {
      * @return [GetClientsClientIdTransactionsTransactionIdResponse]
      */
     @GET("v1/clients/{clientId}/transactions/{transactionId}")
-    suspend fun retrieveClientTransaction(@Path("clientId") clientId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long): Response<GetClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun retrieveClientTransaction(
+        @Path("clientId") clientId: Long,
+        @Path("transactionId") transactionId: Long
+    ): GetClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Retrieve a Client Transaction
@@ -63,7 +72,10 @@ interface ClientTransactionApi {
      * @return [GetClientsClientIdTransactionsTransactionIdResponse]
      */
     @GET("v1/clients/{clientId}/transactions/external-id/{transactionExternalId}")
-    suspend fun retrieveClientTransaction1(@Path("clientId") clientId: kotlin.Long, @Path("transactionExternalId") transactionExternalId: kotlin.String): Response<GetClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun retrieveClientTransaction1(
+        @Path("clientId") clientId: Long,
+        @Path("transactionExternalId") transactionExternalId: String
+    ): GetClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Retrieve a Client Transaction
@@ -76,7 +88,10 @@ interface ClientTransactionApi {
      * @return [GetClientsClientIdTransactionsTransactionIdResponse]
      */
     @GET("v1/clients/external-id/{clientExternalId}/transactions/{transactionId}")
-    suspend fun retrieveClientTransaction2(@Path("clientExternalId") clientExternalId: kotlin.String, @Path("transactionId") transactionId: kotlin.Long): Response<GetClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun retrieveClientTransaction2(
+        @Path("clientExternalId") clientExternalId: String,
+        @Path("transactionId") transactionId: Long
+    ): GetClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Retrieve a Client Transaction
@@ -89,7 +104,10 @@ interface ClientTransactionApi {
      * @return [GetClientsClientIdTransactionsTransactionIdResponse]
      */
     @GET("v1/clients/external-id/{clientExternalId}/transactions/external-id/{transactionExternalId}")
-    suspend fun retrieveClientTransaction3(@Path("clientExternalId") clientExternalId: kotlin.String, @Path("transactionExternalId") transactionExternalId: kotlin.String): Response<GetClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun retrieveClientTransaction3(
+        @Path("clientExternalId") clientExternalId: String,
+        @Path("transactionExternalId") transactionExternalId: String
+    ): GetClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Undo a Client Transaction
@@ -103,7 +121,11 @@ interface ClientTransactionApi {
      * @return [PostClientsClientIdTransactionsTransactionIdResponse]
      */
     @POST("v1/clients/{clientId}/transactions/{transactionId}")
-    suspend fun undoClientTransaction(@Path("clientId") clientId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun undoClientTransaction(
+        @Path("clientId") clientId: Long,
+        @Path("transactionId") transactionId: Long,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Undo a Client Transaction
@@ -117,7 +139,11 @@ interface ClientTransactionApi {
      * @return [PostClientsClientIdTransactionsTransactionIdResponse]
      */
     @POST("v1/clients/{clientId}/transactions/external-id/{transactionExternalId}")
-    suspend fun undoClientTransaction1(@Path("clientId") clientId: kotlin.Long, @Path("transactionExternalId") transactionExternalId: kotlin.String, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun undoClientTransaction1(
+        @Path("clientId") clientId: Long,
+        @Path("transactionExternalId") transactionExternalId: String,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Undo a Client Transaction
@@ -131,7 +157,11 @@ interface ClientTransactionApi {
      * @return [PostClientsClientIdTransactionsTransactionIdResponse]
      */
     @POST("v1/clients/external-id/{clientExternalId}/transactions/{transactionId}")
-    suspend fun undoClientTransaction2(@Path("clientExternalId") clientExternalId: kotlin.String, @Path("transactionId") transactionId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun undoClientTransaction2(
+        @Path("clientExternalId") clientExternalId: String,
+        @Path("transactionId") transactionId: Long,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Undo a Client Transaction
@@ -145,6 +175,10 @@ interface ClientTransactionApi {
      * @return [PostClientsClientIdTransactionsTransactionIdResponse]
      */
     @POST("v1/clients/external-id/{clientExternalId}/transactions/external-id/{transactionExternalId}")
-    suspend fun undoClientTransaction3(@Path("clientExternalId") clientExternalId: kotlin.String, @Path("transactionExternalId") transactionExternalId: kotlin.String, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun undoClientTransaction3(
+        @Path("clientExternalId") clientExternalId: String,
+        @Path("transactionExternalId") transactionExternalId: String,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdTransactionsTransactionIdResponse
 
 }

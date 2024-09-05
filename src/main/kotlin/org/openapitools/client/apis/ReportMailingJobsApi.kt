@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteReportMailingJobsResponse
 import org.openapitools.client.models.GetReportMailingJobsResponse
 import org.openapitools.client.models.GetReportMailingJobsTemplate
@@ -13,6 +7,13 @@ import org.openapitools.client.models.PostReportMailingJobsRequest
 import org.openapitools.client.models.PostReportMailingJobsResponse
 import org.openapitools.client.models.PutReportMailingJobsRequest
 import org.openapitools.client.models.PutReportMailingJobsResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ReportMailingJobsApi {
     /**
@@ -21,24 +22,27 @@ interface ReportMailingJobsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postReportMailingJobsRequest 
+     * @param postReportMailingJobsRequest
      * @return [PostReportMailingJobsResponse]
      */
     @POST("v1/reportmailingjobs")
-    suspend fun createReportMailingJob(@Body postReportMailingJobsRequest: PostReportMailingJobsRequest): Response<PostReportMailingJobsResponse>
+    suspend fun createReportMailingJob(@Body postReportMailingJobsRequest: PostReportMailingJobsRequest): PostReportMailingJobsResponse
 
     /**
      * Delete a Report Mailing Job
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param entityId entityId
-     * @param body 
+     * @param body
      * @return [DeleteReportMailingJobsResponse]
      */
     @DELETE("v1/reportmailingjobs/{entityId}")
-    suspend fun deleteReportMailingJob(@Path("entityId") entityId: kotlin.Long, @Body body: kotlin.Any): Response<DeleteReportMailingJobsResponse>
+    suspend fun deleteReportMailingJob(
+        @Path("entityId") entityId: Long,
+        @Body body: Any
+    ): DeleteReportMailingJobsResponse
 
     /**
      * List Report Mailing Jobs
@@ -50,10 +54,15 @@ interface ReportMailingJobsApi {
      * @param limit limit (optional)
      * @param orderBy orderBy (optional)
      * @param sortOrder sortOrder (optional)
-     * @return [kotlin.collections.List<GetReportMailingJobsResponse>]
+     * @return [kotlin.collections.List<GetReportMailingJobsResponse]
      */
     @GET("v1/reportmailingjobs")
-    suspend fun retrieveAllReportMailingJobs(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.collections.List<GetReportMailingJobsResponse>>
+    suspend fun retrieveAllReportMailingJobs(
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): List<GetReportMailingJobsResponse>
 
     /**
      * Retrieve a Report Mailing Job
@@ -65,7 +74,7 @@ interface ReportMailingJobsApi {
      * @return [GetReportMailingJobsResponse]
      */
     @GET("v1/reportmailingjobs/{entityId}")
-    suspend fun retrieveReportMailingJob(@Path("entityId") entityId: kotlin.Long): Response<GetReportMailingJobsResponse>
+    suspend fun retrieveReportMailingJob(@Path("entityId") entityId: Long): GetReportMailingJobsResponse
 
     /**
      * Retrieve Report Mailing Job Details Template
@@ -76,19 +85,22 @@ interface ReportMailingJobsApi {
      * @return [GetReportMailingJobsTemplate]
      */
     @GET("v1/reportmailingjobs/template")
-    suspend fun retrieveReportMailingJobTemplate(): Response<GetReportMailingJobsTemplate>
+    suspend fun retrieveReportMailingJobTemplate(): GetReportMailingJobsTemplate
 
     /**
-     * Update a Report Mailing Job 
-     * 
+     * Update a Report Mailing Job
+     *
      * Responses:
      *  - 200: OK
      *
      * @param entityId entityId
-     * @param putReportMailingJobsRequest 
+     * @param putReportMailingJobsRequest
      * @return [PutReportMailingJobsResponse]
      */
     @PUT("v1/reportmailingjobs/{entityId}")
-    suspend fun updateReportMailingJob(@Path("entityId") entityId: kotlin.Long, @Body putReportMailingJobsRequest: PutReportMailingJobsRequest): Response<PutReportMailingJobsResponse>
+    suspend fun updateReportMailingJob(
+        @Path("entityId") entityId: Long,
+        @Body putReportMailingJobsRequest: PutReportMailingJobsRequest
+    ): PutReportMailingJobsResponse
 
 }

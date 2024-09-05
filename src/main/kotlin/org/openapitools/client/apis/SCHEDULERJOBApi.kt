@@ -1,15 +1,15 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.ExecuteJobRequest
 import org.openapitools.client.models.GetJobsJobIDJobRunHistoryResponse
 import org.openapitools.client.models.GetJobsResponse
 import org.openapitools.client.models.PutJobsJobIDRequest
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SCHEDULERJOBApi {
     /**
@@ -24,7 +24,11 @@ interface SCHEDULERJOBApi {
      * @return [Unit]
      */
     @POST("v1/jobs/{jobId}")
-    suspend fun executeJob(@Path("jobId") jobId: kotlin.Long, @Query("command") command: kotlin.String? = null, @Body executeJobRequest: ExecuteJobRequest? = null): Response<Unit>
+    suspend fun executeJob(
+        @Path("jobId") jobId: Long,
+        @Query("command") command: String? = null,
+        @Body executeJobRequest: ExecuteJobRequest? = null
+    ): Unit
 
     /**
      * Retrieve Scheduler Jobs
@@ -32,10 +36,10 @@ interface SCHEDULERJOBApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetJobsResponse>]
+     * @return [kotlin.collections.List<GetJobsResponse]
      */
     @GET("v1/jobs")
-    suspend fun retrieveAll8(): Response<kotlin.collections.List<GetJobsResponse>>
+    suspend fun retrieveAll8(): List<GetJobsResponse>
 
     /**
      * Retrieve Job Run History
@@ -51,7 +55,13 @@ interface SCHEDULERJOBApi {
      * @return [GetJobsJobIDJobRunHistoryResponse]
      */
     @GET("v1/jobs/{jobId}/runhistory")
-    suspend fun retrieveHistory(@Path("jobId") jobId: kotlin.Long, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<GetJobsJobIDJobRunHistoryResponse>
+    suspend fun retrieveHistory(
+        @Path("jobId") jobId: Long,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): GetJobsJobIDJobRunHistoryResponse
 
     /**
      * Retrieve a Job
@@ -63,7 +73,7 @@ interface SCHEDULERJOBApi {
      * @return [GetJobsResponse]
      */
     @GET("v1/jobs/{jobId}")
-    suspend fun retrieveOne5(@Path("jobId") jobId: kotlin.Long): Response<GetJobsResponse>
+    suspend fun retrieveOne5(@Path("jobId") jobId: Long): GetJobsResponse
 
     /**
      * Update a Job
@@ -72,10 +82,13 @@ interface SCHEDULERJOBApi {
      *  - 200: OK
      *
      * @param jobId jobId
-     * @param putJobsJobIDRequest 
+     * @param putJobsJobIDRequest
      * @return [Unit]
      */
     @PUT("v1/jobs/{jobId}")
-    suspend fun updateJobDetail(@Path("jobId") jobId: kotlin.Long, @Body putJobsJobIDRequest: PutJobsJobIDRequest): Response<Unit>
+    suspend fun updateJobDetail(
+        @Path("jobId") jobId: Long,
+        @Body putJobsJobIDRequest: PutJobsJobIDRequest
+    ): Unit
 
 }

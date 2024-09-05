@@ -1,16 +1,16 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
 import com.squareup.moshi.Json
-
 import org.openapitools.client.models.PagedLocalRequestAdvancedQueryRequest
 import org.openapitools.client.models.PostSavingsAccountBulkReversalTransactionsRequest
 import org.openapitools.client.models.PostSavingsAccountTransactionsRequest
 import org.openapitools.client.models.PostSavingsAccountTransactionsResponse
 import org.openapitools.client.models.SavingsAccountTransactionsSearchResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SavingsAccountTransactionsApi {
     /**
@@ -19,18 +19,23 @@ interface SavingsAccountTransactionsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param savingsId 
-     * @param transactionId 
-     * @param postSavingsAccountBulkReversalTransactionsRequest 
+     * @param savingsId
+     * @param transactionId
+     * @param postSavingsAccountBulkReversalTransactionsRequest
      * @param command  (optional)
-     * @return [kotlin.collections.List<PostSavingsAccountBulkReversalTransactionsRequest>]
+     * @return [kotlin.collections.List<PostSavingsAccountBulkReversalTransactionsRequest]
      */
     @POST("v1/savingsaccounts/{savingsId}/transactions/{transactionId}")
-    suspend fun adjustTransaction1(@Path("savingsId") savingsId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long, @Body postSavingsAccountBulkReversalTransactionsRequest: PostSavingsAccountBulkReversalTransactionsRequest, @Query("command") command: kotlin.String? = null): Response<kotlin.collections.List<PostSavingsAccountBulkReversalTransactionsRequest>>
+    suspend fun adjustTransaction1(
+        @Path("savingsId") savingsId: Long,
+        @Path("transactionId") transactionId: Long,
+        @Body postSavingsAccountBulkReversalTransactionsRequest: PostSavingsAccountBulkReversalTransactionsRequest,
+        @Query("command") command: String? = null
+    ): List<PostSavingsAccountBulkReversalTransactionsRequest>
 
     /**
      * Advanced search Savings Account Transactions
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -39,45 +44,53 @@ interface SavingsAccountTransactionsApi {
      * @return [kotlin.String]
      */
     @POST("v1/savingsaccounts/{savingsId}/transactions/query")
-    suspend fun advancedQuery1(@Path("savingsId") savingsId: kotlin.Long, @Body pagedLocalRequestAdvancedQueryRequest: PagedLocalRequestAdvancedQueryRequest? = null): Response<kotlin.String>
+    suspend fun advancedQuery1(
+        @Path("savingsId") savingsId: Long,
+        @Body pagedLocalRequestAdvancedQueryRequest: PagedLocalRequestAdvancedQueryRequest? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param savingsId 
-     * @param transactionId 
+     * @param savingsId
+     * @param transactionId
      * @return [kotlin.String]
      */
     @GET("v1/savingsaccounts/{savingsId}/transactions/{transactionId}")
-    suspend fun retrieveOne24(@Path("savingsId") savingsId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveOne24(
+        @Path("savingsId") savingsId: Long,
+        @Path("transactionId") transactionId: Long
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param savingsId 
+     * @param savingsId
      * @return [kotlin.String]
      */
     @GET("v1/savingsaccounts/{savingsId}/transactions/template")
-    suspend fun retrieveTemplate19(@Path("savingsId") savingsId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveTemplate19(@Path("savingsId") savingsId: Long): String
 
 
     /**
-    * enum for parameter sortOrder
-    */
-    enum class SortOrderSearchTransactions(val value: kotlin.String) {
-        @Json(name = "ASC") ASC("ASC"),
-        @Json(name = "DESC") DESC("DESC")
+     * enum for parameter sortOrder
+     */
+    enum class SortOrderSearchTransactions(val value: String) {
+        @Json(name = "ASC")
+        ASC("ASC"),
+        @Json(name = "DESC")
+        DESC("DESC")
     }
 
     /**
      * Search Savings Account Transactions
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -100,20 +113,41 @@ interface SavingsAccountTransactionsApi {
      * @return [SavingsAccountTransactionsSearchResponse]
      */
     @GET("v1/savingsaccounts/{savingsId}/transactions/search")
-    suspend fun searchTransactions(@Path("savingsId") savingsId: kotlin.Long, @Query("fromDate") fromDate: kotlin.String? = null, @Query("toDate") toDate: kotlin.String? = null, @Query("fromSubmittedDate") fromSubmittedDate: kotlin.String? = null, @Query("toSubmittedDate") toSubmittedDate: kotlin.String? = null, @Query("fromAmount") fromAmount: java.math.BigDecimal? = null, @Query("toAmount") toAmount: java.math.BigDecimal? = null, @Query("types") types: kotlin.String? = null, @Query("credit") credit: kotlin.Boolean? = null, @Query("debit") debit: kotlin.Boolean? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: SortOrderSearchTransactions? = null, @Query("locale") locale: kotlin.String? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<SavingsAccountTransactionsSearchResponse>
+    suspend fun searchTransactions(
+        @Path("savingsId") savingsId: Long,
+        @Query("fromDate") fromDate: String? = null,
+        @Query("toDate") toDate: String? = null,
+        @Query("fromSubmittedDate") fromSubmittedDate: String? = null,
+        @Query("toSubmittedDate") toSubmittedDate: String? = null,
+        @Query("fromAmount") fromAmount: java.math.BigDecimal? = null,
+        @Query("toAmount") toAmount: java.math.BigDecimal? = null,
+        @Query("types") types: String? = null,
+        @Query("credit") credit: Boolean? = null,
+        @Query("debit") debit: Boolean? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: SortOrderSearchTransactions? = null,
+        @Query("locale") locale: String? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): SavingsAccountTransactionsSearchResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param savingsId 
-     * @param postSavingsAccountTransactionsRequest 
+     * @param savingsId
+     * @param postSavingsAccountTransactionsRequest
      * @param command  (optional)
      * @return [PostSavingsAccountTransactionsResponse]
      */
     @POST("v1/savingsaccounts/{savingsId}/transactions")
-    suspend fun transaction2(@Path("savingsId") savingsId: kotlin.Long, @Body postSavingsAccountTransactionsRequest: PostSavingsAccountTransactionsRequest, @Query("command") command: kotlin.String? = null): Response<PostSavingsAccountTransactionsResponse>
+    suspend fun transaction2(
+        @Path("savingsId") savingsId: Long,
+        @Body postSavingsAccountTransactionsRequest: PostSavingsAccountTransactionsRequest,
+        @Query("command") command: String? = null
+    ): PostSavingsAccountTransactionsResponse
 
 }

@@ -1,16 +1,13 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface BulkImportApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -18,11 +15,11 @@ interface BulkImportApi {
      * @return [Unit]
      */
     @GET("v1/imports/downloadOutputTemplate")
-    suspend fun getOutputTemplate(@Query("importDocumentId") importDocumentId: kotlin.String? = null): Response<Unit>
+    suspend fun getOutputTemplate(@Query("importDocumentId") importDocumentId: String? = null): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -30,11 +27,11 @@ interface BulkImportApi {
      * @return [kotlin.String]
      */
     @GET("v1/imports")
-    suspend fun retrieveImportDocuments(@Query("entityType") entityType: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveImportDocuments(@Query("entityType") entityType: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -42,6 +39,6 @@ interface BulkImportApi {
      * @return [kotlin.String]
      */
     @GET("v1/imports/getOutputTemplateLocation")
-    suspend fun retriveOutputTemplateLocation(@Query("importDocumentId") importDocumentId: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retriveOutputTemplateLocation(@Query("importDocumentId") importDocumentId: String? = null): String
 
 }

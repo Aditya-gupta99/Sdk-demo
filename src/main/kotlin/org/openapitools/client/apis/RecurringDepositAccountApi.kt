@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteRecurringDepositAccountsResponse
 import org.openapitools.client.models.GetRecurringDepositAccountsAccountIdResponse
 import org.openapitools.client.models.GetRecurringDepositAccountsResponse
@@ -15,13 +10,20 @@ import org.openapitools.client.models.PostRecurringDepositAccountsRequest
 import org.openapitools.client.models.PostRecurringDepositAccountsResponse
 import org.openapitools.client.models.PutRecurringDepositAccountsAccountIdRequest
 import org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RecurringDepositAccountApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -30,7 +32,10 @@ interface RecurringDepositAccountApi {
      * @return [kotlin.String]
      */
     @GET("v1/recurringdepositaccounts/{accountId}/template")
-    suspend fun accountClosureTemplate1(@Path("accountId") accountId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<kotlin.String>
+    suspend fun accountClosureTemplate1(
+        @Path("accountId") accountId: Long,
+        @Query("command") command: String? = null
+    ): String
 
     /**
      * Delete a recurring deposit application
@@ -42,11 +47,11 @@ interface RecurringDepositAccountApi {
      * @return [DeleteRecurringDepositAccountsResponse]
      */
     @DELETE("v1/recurringdepositaccounts/{accountId}")
-    suspend fun delete17(@Path("accountId") accountId: kotlin.Long): Response<DeleteRecurringDepositAccountsResponse>
+    suspend fun delete17(@Path("accountId") accountId: Long): DeleteRecurringDepositAccountsResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -56,11 +61,15 @@ interface RecurringDepositAccountApi {
      * @return [Unit]
      */
     @GET("v1/recurringdepositaccounts/downloadtemplate")
-    suspend fun getRecurringDepositTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getRecurringDepositTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -69,7 +78,10 @@ interface RecurringDepositAccountApi {
      * @return [Unit]
      */
     @GET("v1/recurringdepositaccounts/transactions/downloadtemplate")
-    suspend fun getRecurringDepositTransactionTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getRecurringDepositTransactionTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
      * Approve recurring deposit application | Undo approval recurring deposit application | Reject recurring deposit application | Withdraw recurring deposit application | Activate a recurring deposit account | Update the recommended deposit amount for a recurring deposit account | Close a recurring deposit account | Premature Close a recurring deposit account | Calculate Premature amount on Recurring deposit account | Calculate Interest on recurring Deposit Account | Post Interest on recurring Deposit Account
@@ -78,16 +90,20 @@ interface RecurringDepositAccountApi {
      *  - 200: OK
      *
      * @param accountId accountId
-     * @param body 
+     * @param body
      * @param command command (optional)
      * @return [PostRecurringDepositAccountsAccountIdResponse]
      */
     @POST("v1/recurringdepositaccounts/{accountId}")
-    suspend fun handleCommands5(@Path("accountId") accountId: kotlin.Long, @Body body: kotlin.Any, @Query("command") command: kotlin.String? = null): Response<PostRecurringDepositAccountsAccountIdResponse>
+    suspend fun handleCommands5(
+        @Path("accountId") accountId: Long,
+        @Body body: Any,
+        @Query("command") command: String? = null
+    ): PostRecurringDepositAccountsAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -98,11 +114,15 @@ interface RecurringDepositAccountApi {
      */
     @Multipart
     @POST("v1/recurringdepositaccounts/uploadtemplate")
-    suspend fun postRecurringDepositTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postRecurringDepositTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -113,7 +133,11 @@ interface RecurringDepositAccountApi {
      */
     @Multipart
     @POST("v1/recurringdepositaccounts/transactions/uploadtemplate")
-    suspend fun postRecurringDepositTransactionsTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postRecurringDepositTransactionsTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List Recurring deposit applications/accounts
@@ -126,10 +150,16 @@ interface RecurringDepositAccountApi {
      * @param limit limit (optional)
      * @param orderBy orderBy (optional)
      * @param sortOrder sortOrder (optional)
-     * @return [kotlin.collections.List<GetRecurringDepositAccountsResponse>]
+     * @return [kotlin.collections.List<GetRecurringDepositAccountsResponse]
      */
     @GET("v1/recurringdepositaccounts")
-    suspend fun retrieveAll31(@Query("paged") paged: kotlin.Boolean? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.collections.List<GetRecurringDepositAccountsResponse>>
+    suspend fun retrieveAll31(
+        @Query("paged") paged: Boolean? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): List<GetRecurringDepositAccountsResponse>
 
     /**
      * Retrieve a recurring deposit application/account
@@ -143,7 +173,11 @@ interface RecurringDepositAccountApi {
      * @return [GetRecurringDepositAccountsAccountIdResponse]
      */
     @GET("v1/recurringdepositaccounts/{accountId}")
-    suspend fun retrieveOne22(@Path("accountId") accountId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<GetRecurringDepositAccountsAccountIdResponse>
+    suspend fun retrieveOne22(
+        @Path("accountId") accountId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): GetRecurringDepositAccountsAccountIdResponse
 
     /**
      * Submit new recurring deposit application
@@ -151,11 +185,11 @@ interface RecurringDepositAccountApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postRecurringDepositAccountsRequest 
+     * @param postRecurringDepositAccountsRequest
      * @return [PostRecurringDepositAccountsResponse]
      */
     @POST("v1/recurringdepositaccounts")
-    suspend fun submitApplication1(@Body postRecurringDepositAccountsRequest: PostRecurringDepositAccountsRequest): Response<PostRecurringDepositAccountsResponse>
+    suspend fun submitApplication1(@Body postRecurringDepositAccountsRequest: PostRecurringDepositAccountsRequest): PostRecurringDepositAccountsResponse
 
     /**
      * Retrieve recurring Deposit Account Template
@@ -170,7 +204,12 @@ interface RecurringDepositAccountApi {
      * @return [GetRecurringDepositAccountsTemplateResponse]
      */
     @GET("v1/recurringdepositaccounts/template")
-    suspend fun template13(@Query("clientId") clientId: kotlin.Long? = null, @Query("groupId") groupId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetRecurringDepositAccountsTemplateResponse>
+    suspend fun template13(
+        @Query("clientId") clientId: Long? = null,
+        @Query("groupId") groupId: Long? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetRecurringDepositAccountsTemplateResponse
 
     /**
      * Modify a recurring deposit application
@@ -179,10 +218,13 @@ interface RecurringDepositAccountApi {
      *  - 200: OK
      *
      * @param accountId accountId
-     * @param putRecurringDepositAccountsAccountIdRequest 
+     * @param putRecurringDepositAccountsAccountIdRequest
      * @return [PutRecurringDepositAccountsAccountIdResponse]
      */
     @PUT("v1/recurringdepositaccounts/{accountId}")
-    suspend fun update18(@Path("accountId") accountId: kotlin.Long, @Body putRecurringDepositAccountsAccountIdRequest: PutRecurringDepositAccountsAccountIdRequest): Response<PutRecurringDepositAccountsAccountIdResponse>
+    suspend fun update18(
+        @Path("accountId") accountId: Long,
+        @Body putRecurringDepositAccountsAccountIdRequest: PutRecurringDepositAccountsAccountIdRequest
+    ): PutRecurringDepositAccountsAccountIdResponse
 
 }

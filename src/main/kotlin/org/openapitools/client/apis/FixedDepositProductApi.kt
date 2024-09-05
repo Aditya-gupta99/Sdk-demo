@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteFixedDepositProductsProductIdResponse
 import org.openapitools.client.models.GetFixedDepositProductsProductIdResponse
 import org.openapitools.client.models.GetFixedDepositProductsResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostFixedDepositProductsRequest
 import org.openapitools.client.models.PostFixedDepositProductsResponse
 import org.openapitools.client.models.PutFixedDepositProductsProductIdRequest
 import org.openapitools.client.models.PutFixedDepositProductsProductIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface FixedDepositProductApi {
     /**
@@ -21,11 +21,11 @@ interface FixedDepositProductApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postFixedDepositProductsRequest 
+     * @param postFixedDepositProductsRequest
      * @return [PostFixedDepositProductsResponse]
      */
     @POST("v1/fixeddepositproducts")
-    suspend fun create11(@Body postFixedDepositProductsRequest: PostFixedDepositProductsRequest): Response<PostFixedDepositProductsResponse>
+    suspend fun create11(@Body postFixedDepositProductsRequest: PostFixedDepositProductsRequest): PostFixedDepositProductsResponse
 
     /**
      * Delete a Fixed Deposit Product
@@ -37,7 +37,7 @@ interface FixedDepositProductApi {
      * @return [DeleteFixedDepositProductsProductIdResponse]
      */
     @DELETE("v1/fixeddepositproducts/{productId}")
-    suspend fun delete16(@Path("productId") productId: kotlin.Long): Response<DeleteFixedDepositProductsProductIdResponse>
+    suspend fun delete16(@Path("productId") productId: Long): DeleteFixedDepositProductsProductIdResponse
 
     /**
      * List Fixed Deposit Products
@@ -45,10 +45,10 @@ interface FixedDepositProductApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetFixedDepositProductsResponse>]
+     * @return [kotlin.collections.List<GetFixedDepositProductsResponse]
      */
     @GET("v1/fixeddepositproducts")
-    suspend fun retrieveAll30(): Response<kotlin.collections.List<GetFixedDepositProductsResponse>>
+    suspend fun retrieveAll30(): List<GetFixedDepositProductsResponse>
 
     /**
      * Retrieve a Fixed Deposit Product
@@ -60,18 +60,18 @@ interface FixedDepositProductApi {
      * @return [GetFixedDepositProductsProductIdResponse]
      */
     @GET("v1/fixeddepositproducts/{productId}")
-    suspend fun retrieveOne20(@Path("productId") productId: kotlin.Long): Response<GetFixedDepositProductsProductIdResponse>
+    suspend fun retrieveOne20(@Path("productId") productId: Long): GetFixedDepositProductsProductIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/fixeddepositproducts/template")
-    suspend fun retrieveTemplate15(): Response<kotlin.String>
+    suspend fun retrieveTemplate15(): String
 
     /**
      * Update a Fixed Deposit Product
@@ -80,10 +80,13 @@ interface FixedDepositProductApi {
      *  - 200: OK
      *
      * @param productId productId
-     * @param putFixedDepositProductsProductIdRequest 
+     * @param putFixedDepositProductsProductIdRequest
      * @return [PutFixedDepositProductsProductIdResponse]
      */
     @PUT("v1/fixeddepositproducts/{productId}")
-    suspend fun update17(@Path("productId") productId: kotlin.Long, @Body putFixedDepositProductsProductIdRequest: PutFixedDepositProductsProductIdRequest): Response<PutFixedDepositProductsProductIdResponse>
+    suspend fun update17(
+        @Path("productId") productId: Long,
+        @Body putFixedDepositProductsProductIdRequest: PutFixedDepositProductsProductIdRequest
+    ): PutFixedDepositProductsProductIdResponse
 
 }

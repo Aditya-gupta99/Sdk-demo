@@ -1,36 +1,43 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.AdvancedPaymentData
 import org.openapitools.client.models.CommandProcessingResult
 import org.openapitools.client.models.CommandWrapper
 import org.openapitools.client.models.SmsCampaignData
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface DefaultApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @param command  (optional)
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @POST("v1/email/campaign/{resourceId}")
-    suspend fun activate(@Path("resourceId") resourceId: kotlin.Long, @Query("command") command: kotlin.String? = null, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun activate(
+        @Path("resourceId") resourceId: Long,
+        @Query("command") command: String? = null,
+        @Body body: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -42,16 +49,21 @@ interface DefaultApi {
      */
     @Multipart
     @POST("v1/creditBureauIntegration/addCreditReport")
-    suspend fun addCreditReport(@Query("creditBureauId") creditBureauId: kotlin.Long? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun addCreditReport(
+        @Query("creditBureauId") creditBureauId: Long? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param entity 
-     * @param entityId 
+     * @param entity
+     * @param entityId
      * @param contentLength  (optional)
      * @param dateFormat  (optional)
      * @param locale  (optional)
@@ -60,11 +72,18 @@ interface DefaultApi {
      */
     @Multipart
     @POST("v1/{entity}/{entityId}/images")
-    suspend fun addNewClientImage1(@Path("entity") entity: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Header("Content-Length") contentLength: kotlin.Long? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun addNewClientImage1(
+        @Path("entity") entity: String,
+        @Path("entityId") entityId: Long,
+        @Header("Content-Length") contentLength: Long? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -72,11 +91,11 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/email")
-    suspend fun create1(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun create1(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -84,7 +103,7 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/email/campaign")
-    suspend fun createCampaign(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun createCampaign(@Body body: String? = null): String
 
     /**
      * Create a SMS Campaign
@@ -92,35 +111,35 @@ interface DefaultApi {
      * Responses:
      *  - 200: OK
      *
-     * @param commandWrapper 
+     * @param commandWrapper
      * @return [CommandProcessingResult]
      */
     @POST("v1/smscampaigns")
-    suspend fun createCampaign1(@Body commandWrapper: CommandWrapper): Response<CommandProcessingResult>
+    suspend fun createCampaign1(@Body commandWrapper: CommandWrapper): CommandProcessingResult
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @DELETE("v1/email/{resourceId}")
-    suspend fun delete1(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun delete1(@Path("resourceId") resourceId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @DELETE("v1/email/campaign/{resourceId}")
-    suspend fun delete2(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun delete2(@Path("resourceId") resourceId: Long): String
 
     /**
      * Delete a SMS Campaign
@@ -128,40 +147,43 @@ interface DefaultApi {
      * Responses:
      *  - 200: OK
      *
-     * @param campaignId 
+     * @param campaignId
      * @return [CommandProcessingResult]
      */
     @DELETE("v1/smscampaigns/{campaignId}")
-    suspend fun delete3(@Path("campaignId") campaignId: kotlin.Long): Response<CommandProcessingResult>
+    suspend fun delete3(@Path("campaignId") campaignId: Long): CommandProcessingResult
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param transactionId 
+     * @param transactionId
      * @return [kotlin.String]
      */
     @DELETE("v1/officetransactions/{transactionId}")
-    suspend fun delete8(@Path("transactionId") transactionId: kotlin.Long): Response<kotlin.String>
+    suspend fun delete8(@Path("transactionId") transactionId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param entity 
-     * @param entityId 
+     * @param entity
+     * @param entityId
      * @return [kotlin.String]
      */
     @DELETE("v1/{entity}/{entityId}/images")
-    suspend fun deleteClientImage(@Path("entity") entity: kotlin.String, @Path("entityId") entityId: kotlin.Long): Response<kotlin.String>
+    suspend fun deleteClientImage(
+        @Path("entity") entity: String,
+        @Path("entityId") entityId: Long
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -169,11 +191,11 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @DELETE("v1/creditBureauIntegration/deleteCreditReport/{creditBureauId}")
-    suspend fun deleteCreditReport(@Path("creditBureauId") creditBureauId: kotlin.Long): Response<kotlin.String>
+    suspend fun deleteCreditReport(@Path("creditBureauId") creditBureauId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -181,107 +203,110 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/creditBureauIntegration/creditReport")
-    suspend fun fetchCreditReport(@Body body: kotlin.Any? = null): Response<kotlin.String>
+    suspend fun fetchCreditReport(@Body body: Any? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/echo")
-    suspend fun get(): Response<kotlin.String>
+    suspend fun get(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
-     * @return [kotlin.collections.List<AdvancedPaymentData>]
+     * @param loanId
+     * @return [kotlin.collections.List<AdvancedPaymentData]
      */
     @GET("v1/internal/loan/{loanId}/advanced-payment-allocation-rules")
-    suspend fun getAdvancedPaymentAllocationRulesOfLoan(@Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<AdvancedPaymentData>>
+    suspend fun getAdvancedPaymentAllocationRulesOfLoan(@Path("loanId") loanId: Long): List<AdvancedPaymentData>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param clientId 
+     * @param clientId
      * @return [kotlin.String]
      */
     @GET("v1/internal/client/{clientId}/audit")
-    suspend fun getClientAuditFields(@Path("clientId") clientId: kotlin.Long): Response<kotlin.String>
+    suspend fun getClientAuditFields(@Path("clientId") clientId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param partitionSize 
+     * @param partitionSize
      * @return [kotlin.String]
      */
     @GET("v1/internal/cob/partitions/{partitionSize}")
-    suspend fun getCobPartitions(@Path("partitionSize") partitionSize: kotlin.Int): Response<kotlin.String>
+    suspend fun getCobPartitions(@Path("partitionSize") partitionSize: Int): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param path 
+     * @param path
      * @return [Unit]
      */
     @GET("application.wadl/{path}")
-    suspend fun getExternalGrammar(@Path("path") path: kotlin.String): Response<Unit>
+    suspend fun getExternalGrammar(@Path("path") path: String): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
+     * @param loanId
      * @return [kotlin.String]
      */
     @GET("v1/internal/loan/{loanId}/audit")
-    suspend fun getLoanAuditFields(@Path("loanId") loanId: kotlin.Long): Response<kotlin.String>
+    suspend fun getLoanAuditFields(@Path("loanId") loanId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
-     * @param transactionId 
+     * @param loanId
+     * @param transactionId
      * @return [kotlin.String]
      */
     @GET("v1/internal/loan/{loanId}/transaction/{transactionId}/audit")
-    suspend fun getLoanTransactionAuditFields(@Path("loanId") loanId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long): Response<kotlin.String>
+    suspend fun getLoanTransactionAuditFields(
+        @Path("loanId") loanId: Long,
+        @Path("transactionId") transactionId: Long
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param statusId 
+     * @param statusId
      * @return [kotlin.String]
      */
     @GET("v1/internal/loan/status/{statusId}")
-    suspend fun getLoansByStatus(@Path("statusId") statusId: kotlin.Int): Response<kotlin.String>
+    suspend fun getLoansByStatus(@Path("statusId") statusId: Int): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -289,18 +314,18 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @GET("v1/creditBureauIntegration/creditReport/{creditBureauId}")
-    suspend fun getSavedCreditReport(@Path("creditBureauId") creditBureauId: kotlin.Long): Response<kotlin.String>
+    suspend fun getSavedCreditReport(@Path("creditBureauId") creditBureauId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [Unit]
      */
     @GET("application.wadl")
-    suspend fun getWadl(): Response<Unit>
+    suspend fun getWadl(): Unit
 
     /**
      * SMS Campaign
@@ -308,41 +333,48 @@ interface DefaultApi {
      * Responses:
      *  - 200: OK
      *
-     * @param campaignId 
+     * @param campaignId
      * @param command  (optional)
      * @return [CommandProcessingResult]
      */
     @POST("v1/smscampaigns/{campaignId}")
-    suspend fun handleCommands(@Path("campaignId") campaignId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<CommandProcessingResult>
+    suspend fun handleCommands(
+        @Path("campaignId") campaignId: Long,
+        @Query("command") command: String? = null
+    ): CommandProcessingResult
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/officetransactions/template")
-    suspend fun newOfficeTransactionDetails(): Response<kotlin.String>
+    suspend fun newOfficeTransactionDetails(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
-     * @param lockOwner 
+     * @param loanId
+     * @param lockOwner
      * @param body  (optional)
      * @return [Unit]
      */
     @POST("v1/internal/loans/{loanId}/place-lock/{lockOwner}")
-    suspend fun placeLockOnLoanAccount(@Path("loanId") loanId: kotlin.Long, @Path("lockOwner") lockOwner: kotlin.String, @Body body: kotlin.String? = null): Response<Unit>
+    suspend fun placeLockOnLoanAccount(
+        @Path("loanId") loanId: Long,
+        @Path("lockOwner") lockOwner: String,
+        @Body body: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -350,11 +382,11 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/email/campaign/preview")
-    suspend fun preview(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun preview(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -362,44 +394,44 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/smscampaigns/preview")
-    suspend fun preview1(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun preview1(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/email/configuration")
-    suspend fun retrieveAll5(): Response<kotlin.String>
+    suspend fun retrieveAll5(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/twofactor/configure")
-    suspend fun retrieveAll9(): Response<kotlin.String>
+    suspend fun retrieveAll9(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/email/campaign")
-    suspend fun retrieveAllCampaign(): Response<kotlin.String>
+    suspend fun retrieveAllCampaign(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -416,18 +448,29 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @GET("v1/email/messageByStatus")
-    suspend fun retrieveAllEmailByStatus(@Query("sqlSearch") sqlSearch: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("status") status: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("fromDate") fromDate: kotlin.Any? = null, @Query("toDate") toDate: kotlin.Any? = null, @Query("locale") locale: kotlin.String? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveAllEmailByStatus(
+        @Query("sqlSearch") sqlSearch: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("status") status: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("fromDate") fromDate: Any? = null,
+        @Query("toDate") toDate: Any? = null,
+        @Query("locale") locale: String? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/email")
-    suspend fun retrieveAllEmails(): Response<kotlin.String>
+    suspend fun retrieveAllEmails(): String
 
     /**
      * List SMS Campaigns
@@ -442,23 +485,28 @@ interface DefaultApi {
      * @return [SmsCampaignData]
      */
     @GET("v1/smscampaigns")
-    suspend fun retrieveAllEmails1(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<SmsCampaignData>
+    suspend fun retrieveAllEmails1(
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): SmsCampaignData
 
     /**
      * Retrieve a SMS Campaign
-     * Example Requests:  smscampaigns/1 
+     * Example Requests:  smscampaigns/1
      * Responses:
      *  - 200: OK
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [SmsCampaignData]
      */
     @GET("v1/smscampaigns/{resourceId}")
-    suspend fun retrieveCampaign(@Path("resourceId") resourceId: kotlin.Long): Response<SmsCampaignData>
+    suspend fun retrieveCampaign(@Path("resourceId") resourceId: Long): SmsCampaignData
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -470,16 +518,22 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @GET("v1/email/failedEmail")
-    suspend fun retrieveFailedEmail(@Query("sqlSearch") sqlSearch: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveFailedEmail(
+        @Query("sqlSearch") sqlSearch: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param entity 
-     * @param entityId 
+     * @param entity
+     * @param entityId
      * @param maxWidth  (optional)
      * @param maxHeight  (optional)
      * @param output  (optional)
@@ -487,58 +541,65 @@ interface DefaultApi {
      * @return [Unit]
      */
     @GET("v1/{entity}/{entityId}/images")
-    suspend fun retrieveImage(@Path("entity") entity: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Query("maxWidth") maxWidth: kotlin.Int? = null, @Query("maxHeight") maxHeight: kotlin.Int? = null, @Query("output") output: kotlin.String? = null, @Header("Accept") accept: kotlin.String? = null): Response<Unit>
+    suspend fun retrieveImage(
+        @Path("entity") entity: String,
+        @Path("entityId") entityId: Long,
+        @Query("maxWidth") maxWidth: Int? = null,
+        @Query("maxHeight") maxHeight: Int? = null,
+        @Query("output") output: String? = null,
+        @Header("Accept") accept: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/officetransactions")
-    suspend fun retrieveOfficeTransactions(): Response<kotlin.String>
+    suspend fun retrieveOfficeTransactions(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @GET("v1/email/{resourceId}")
-    suspend fun retrieveOne1(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveOne1(@Path("resourceId") resourceId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @GET("v1/email/campaign/{resourceId}")
-    suspend fun retrieveOneCampaign(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveOneCampaign(@Path("resourceId") resourceId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @GET("v1/email/campaign/template/{resourceId}")
-    suspend fun retrieveOneTemplate(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveOneTemplate(@Path("resourceId") resourceId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -549,11 +610,16 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @GET("v1/email/pendingEmail")
-    suspend fun retrievePendingEmail(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrievePendingEmail(
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -564,11 +630,16 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @GET("v1/email/sentEmail")
-    suspend fun retrieveSentEmail(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveSentEmail(
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -577,18 +648,21 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/creditBureauIntegration/saveCreditReport")
-    suspend fun saveCreditReport(@Query("creditBureauId") creditBureauId: kotlin.Long? = null, @Query("nationalId") nationalId: kotlin.String? = null): Response<kotlin.String>
+    suspend fun saveCreditReport(
+        @Query("creditBureauId") creditBureauId: Long? = null,
+        @Query("nationalId") nationalId: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/email/campaign/template")
-    suspend fun template1(): Response<kotlin.String>
+    suspend fun template1(): String
 
     /**
      * Retrieve a SMS Campaign
@@ -599,11 +673,11 @@ interface DefaultApi {
      * @return [SmsCampaignData]
      */
     @GET("v1/smscampaigns/template")
-    suspend fun template2(): Response<SmsCampaignData>
+    suspend fun template2(): SmsCampaignData
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -611,55 +685,64 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @POST("v1/officetransactions")
-    suspend fun transferMoneyFrom(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun transferMoneyFrom(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/email/{resourceId}")
-    suspend fun update2(@Path("resourceId") resourceId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun update2(
+        @Path("resourceId") resourceId: Long,
+        @Body body: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/email/campaign/{resourceId}")
-    suspend fun updateCampaign(@Path("resourceId") resourceId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun updateCampaign(
+        @Path("resourceId") resourceId: Long,
+        @Body body: String? = null
+    ): String
 
     /**
      * Update a Campaign
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param campaignId 
-     * @param commandWrapper 
+     * @param campaignId
+     * @param commandWrapper
      * @return [CommandProcessingResult]
      */
     @PUT("v1/smscampaigns/{campaignId}")
-    suspend fun updateCampaign1(@Path("campaignId") campaignId: kotlin.Long, @Body commandWrapper: CommandWrapper): Response<CommandProcessingResult>
+    suspend fun updateCampaign1(
+        @Path("campaignId") campaignId: Long,
+        @Body commandWrapper: CommandWrapper
+    ): CommandProcessingResult
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param entity 
-     * @param entityId 
+     * @param entity
+     * @param entityId
      * @param contentLength  (optional)
      * @param dateFormat  (optional)
      * @param locale  (optional)
@@ -668,11 +751,18 @@ interface DefaultApi {
      */
     @Multipart
     @PUT("v1/{entity}/{entityId}/images")
-    suspend fun updateClientImage1(@Path("entity") entity: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Header("Content-Length") contentLength: kotlin.Long? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun updateClientImage1(
+        @Path("entity") entity: String,
+        @Path("entityId") entityId: Long,
+        @Header("Content-Length") contentLength: Long? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -680,11 +770,11 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @PUT("v1/email/configuration")
-    suspend fun updateConfiguration(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun updateConfiguration(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -692,6 +782,6 @@ interface DefaultApi {
      * @return [kotlin.String]
      */
     @PUT("v1/twofactor/configure")
-    suspend fun updateConfiguration3(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun updateConfiguration3(@Body body: String? = null): String
 
 }

@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetSelfLoansLoanIdChargesResponse
 import org.openapitools.client.models.GetSelfLoansLoanIdResponse
 import org.openapitools.client.models.GetSelfLoansLoanIdTransactionsTransactionIdResponse
@@ -16,6 +10,12 @@ import org.openapitools.client.models.PostSelfLoansRequest
 import org.openapitools.client.models.PostSelfLoansResponse
 import org.openapitools.client.models.PutSelfLoansLoanIdRequest
 import org.openapitools.client.models.PutSelfLoansLoanIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SelfLoansApi {
     /**
@@ -24,12 +24,15 @@ interface SelfLoansApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postSelfLoansRequest 
+     * @param postSelfLoansRequest
      * @param command command (optional)
      * @return [PostSelfLoansResponse]
      */
     @POST("v1/self/loans")
-    suspend fun calculateLoanScheduleOrSubmitLoanApplication1(@Body postSelfLoansRequest: PostSelfLoansRequest, @Query("command") command: kotlin.String? = null): Response<PostSelfLoansResponse>
+    suspend fun calculateLoanScheduleOrSubmitLoanApplication1(
+        @Body postSelfLoansRequest: PostSelfLoansRequest,
+        @Query("command") command: String? = null
+    ): PostSelfLoansResponse
 
     /**
      * Update a Loan Application
@@ -38,11 +41,14 @@ interface SelfLoansApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param putSelfLoansLoanIdRequest 
+     * @param putSelfLoansLoanIdRequest
      * @return [PutSelfLoansLoanIdResponse]
      */
     @PUT("v1/self/loans/{loanId}")
-    suspend fun modifyLoanApplication2(@Path("loanId") loanId: kotlin.Long, @Body putSelfLoansLoanIdRequest: PutSelfLoansLoanIdRequest): Response<PutSelfLoansLoanIdResponse>
+    suspend fun modifyLoanApplication2(
+        @Path("loanId") loanId: Long,
+        @Body putSelfLoansLoanIdRequest: PutSelfLoansLoanIdRequest
+    ): PutSelfLoansLoanIdResponse
 
     /**
      * List Loan Charges
@@ -51,22 +57,22 @@ interface SelfLoansApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @return [kotlin.collections.List<GetSelfLoansLoanIdChargesResponse>]
+     * @return [kotlin.collections.List<GetSelfLoansLoanIdChargesResponse]
      */
     @GET("v1/self/loans/{loanId}/charges")
-    suspend fun retrieveAllLoanCharges2(@Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<GetSelfLoansLoanIdChargesResponse>>
+    suspend fun retrieveAllLoanCharges2(@Path("loanId") loanId: Long): List<GetSelfLoansLoanIdChargesResponse>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param loanId 
+     * @param loanId
      * @return [kotlin.String]
      */
     @GET("v1/self/loans/{loanId}/guarantors")
-    suspend fun retrieveGuarantorDetails2(@Path("loanId") loanId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveGuarantorDetails2(@Path("loanId") loanId: Long): String
 
     /**
      * Retrieve a Loan
@@ -78,7 +84,7 @@ interface SelfLoansApi {
      * @return [GetSelfLoansLoanIdResponse]
      */
     @GET("v1/self/loans/{loanId}")
-    suspend fun retrieveLoan2(@Path("loanId") loanId: kotlin.Long): Response<GetSelfLoansLoanIdResponse>
+    suspend fun retrieveLoan2(@Path("loanId") loanId: Long): GetSelfLoansLoanIdResponse
 
     /**
      * Retrieve a Loan Charge
@@ -91,7 +97,10 @@ interface SelfLoansApi {
      * @return [GetSelfLoansLoanIdChargesResponse]
      */
     @GET("v1/self/loans/{loanId}/charges/{chargeId}")
-    suspend fun retrieveLoanCharge4(@Path("loanId") loanId: kotlin.Long, @Path("chargeId") chargeId: kotlin.Long): Response<GetSelfLoansLoanIdChargesResponse>
+    suspend fun retrieveLoanCharge4(
+        @Path("loanId") loanId: Long,
+        @Path("chargeId") chargeId: Long
+    ): GetSelfLoansLoanIdChargesResponse
 
     /**
      * Retrieve a Loan Transaction Details
@@ -105,7 +114,11 @@ interface SelfLoansApi {
      * @return [GetSelfLoansLoanIdTransactionsTransactionIdResponse]
      */
     @GET("v1/self/loans/{loanId}/transactions/{transactionId}")
-    suspend fun retrieveTransaction1(@Path("loanId") loanId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long, @Query("fields") fields: kotlin.String? = null): Response<GetSelfLoansLoanIdTransactionsTransactionIdResponse>
+    suspend fun retrieveTransaction1(
+        @Path("loanId") loanId: Long,
+        @Path("transactionId") transactionId: Long,
+        @Query("fields") fields: String? = null
+    ): GetSelfLoansLoanIdTransactionsTransactionIdResponse
 
     /**
      * Applicant Withdraws from Loan Application
@@ -114,12 +127,16 @@ interface SelfLoansApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param postSelfLoansLoanIdRequest 
+     * @param postSelfLoansLoanIdRequest
      * @param command command (optional)
      * @return [PostSelfLoansLoanIdResponse]
      */
     @POST("v1/self/loans/{loanId}")
-    suspend fun stateTransitions2(@Path("loanId") loanId: kotlin.Long, @Body postSelfLoansLoanIdRequest: PostSelfLoansLoanIdRequest, @Query("command") command: kotlin.String? = null): Response<PostSelfLoansLoanIdResponse>
+    suspend fun stateTransitions2(
+        @Path("loanId") loanId: Long,
+        @Body postSelfLoansLoanIdRequest: PostSelfLoansLoanIdRequest,
+        @Query("command") command: String? = null
+    ): PostSelfLoansLoanIdResponse
 
     /**
      * Retrieve Loan Details Template
@@ -133,6 +150,10 @@ interface SelfLoansApi {
      * @return [GetSelfLoansTemplateResponse]
      */
     @GET("v1/self/loans/template")
-    suspend fun template17(@Query("clientId") clientId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null, @Query("templateType") templateType: kotlin.String? = null): Response<GetSelfLoansTemplateResponse>
+    suspend fun template17(
+        @Query("clientId") clientId: Long? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("templateType") templateType: String? = null
+    ): GetSelfLoansTemplateResponse
 
 }

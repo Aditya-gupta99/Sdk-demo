@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteLoansLoanIdResponse
 import org.openapitools.client.models.GetDelinquencyActionsResponse
 import org.openapitools.client.models.GetDelinquencyTagHistoryResponse
@@ -21,8 +16,15 @@ import org.openapitools.client.models.PostLoansRequest
 import org.openapitools.client.models.PostLoansResponse
 import org.openapitools.client.models.PutLoansLoanIdRequest
 import org.openapitools.client.models.PutLoansLoanIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface LoansApi {
     /**
@@ -31,38 +33,47 @@ interface LoansApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postLoansRequest 
+     * @param postLoansRequest
      * @param command command (optional)
      * @return [PostLoansResponse]
      */
     @POST("v1/loans")
-    suspend fun calculateLoanScheduleOrSubmitLoanApplication(@Body postLoansRequest: PostLoansRequest, @Query("command") command: kotlin.String? = null): Response<PostLoansResponse>
+    suspend fun calculateLoanScheduleOrSubmitLoanApplication(
+        @Body postLoansRequest: PostLoansRequest,
+        @Query("command") command: String? = null
+    ): PostLoansResponse
 
     /**
      * Adds a new delinquency action for a loan
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param postLoansDelinquencyActionRequest 
+     * @param postLoansDelinquencyActionRequest
      * @return [PostLoansDelinquencyActionResponse]
      */
     @POST("v1/loans/{loanId}/delinquency-actions")
-    suspend fun createLoanDelinquencyAction(@Path("loanId") loanId: kotlin.Long, @Body postLoansDelinquencyActionRequest: PostLoansDelinquencyActionRequest): Response<PostLoansDelinquencyActionResponse>
+    suspend fun createLoanDelinquencyAction(
+        @Path("loanId") loanId: Long,
+        @Body postLoansDelinquencyActionRequest: PostLoansDelinquencyActionRequest
+    ): PostLoansDelinquencyActionResponse
 
     /**
      * Adds a new delinquency action for a loan
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanExternalId loanExternalId
-     * @param postLoansDelinquencyActionRequest 
+     * @param postLoansDelinquencyActionRequest
      * @return [PostLoansDelinquencyActionResponse]
      */
     @POST("v1/loans/external-id/{loanExternalId}/delinquency-actions")
-    suspend fun createLoanDelinquencyAction1(@Path("loanExternalId") loanExternalId: kotlin.String, @Body postLoansDelinquencyActionRequest: PostLoansDelinquencyActionRequest): Response<PostLoansDelinquencyActionResponse>
+    suspend fun createLoanDelinquencyAction1(
+        @Path("loanExternalId") loanExternalId: String,
+        @Body postLoansDelinquencyActionRequest: PostLoansDelinquencyActionRequest
+    ): PostLoansDelinquencyActionResponse
 
     /**
      * Delete a Loan Application
@@ -74,7 +85,7 @@ interface LoansApi {
      * @return [DeleteLoansLoanIdResponse]
      */
     @DELETE("v1/loans/{loanId}")
-    suspend fun deleteLoanApplication(@Path("loanId") loanId: kotlin.Long): Response<DeleteLoansLoanIdResponse>
+    suspend fun deleteLoanApplication(@Path("loanId") loanId: Long): DeleteLoansLoanIdResponse
 
     /**
      * Delete a Loan Application
@@ -86,71 +97,71 @@ interface LoansApi {
      * @return [DeleteLoansLoanIdResponse]
      */
     @DELETE("v1/loans/external-id/{loanExternalId}")
-    suspend fun deleteLoanApplication1(@Path("loanExternalId") loanExternalId: kotlin.String): Response<DeleteLoansLoanIdResponse>
+    suspend fun deleteLoanApplication1(@Path("loanExternalId") loanExternalId: String): DeleteLoansLoanIdResponse
 
     /**
      * Retrieve the Loan Delinquency Tag history using the Loan Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanId loanId
-     * @return [kotlin.collections.List<GetDelinquencyTagHistoryResponse>]
+     * @return [kotlin.collections.List<GetDelinquencyTagHistoryResponse]
      */
     @GET("v1/loans/{loanId}/delinquencytags")
-    suspend fun getDelinquencyTagHistory(@Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<GetDelinquencyTagHistoryResponse>>
+    suspend fun getDelinquencyTagHistory(@Path("loanId") loanId: Long): List<GetDelinquencyTagHistoryResponse>
 
     /**
      * Retrieve the Loan Delinquency Tag history using the Loan Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanExternalId loanExternalId
-     * @return [kotlin.collections.List<GetDelinquencyTagHistoryResponse>]
+     * @return [kotlin.collections.List<GetDelinquencyTagHistoryResponse]
      */
     @GET("v1/loans/external-id/{loanExternalId}/delinquencytags")
-    suspend fun getDelinquencyTagHistory1(@Path("loanExternalId") loanExternalId: kotlin.String): Response<kotlin.collections.List<GetDelinquencyTagHistoryResponse>>
+    suspend fun getDelinquencyTagHistory1(@Path("loanExternalId") loanExternalId: String): List<GetDelinquencyTagHistoryResponse>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param glimId 
+     * @param glimId
      * @return [kotlin.String]
      */
     @GET("v1/loans/glimAccount/{glimId}")
-    suspend fun getGlimRepaymentTemplate(@Path("glimId") glimId: kotlin.Long): Response<kotlin.String>
+    suspend fun getGlimRepaymentTemplate(@Path("glimId") glimId: Long): String
 
     /**
      * Retrieve delinquency actions related to the loan
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanId loanId
-     * @return [kotlin.collections.List<GetDelinquencyActionsResponse>]
+     * @return [kotlin.collections.List<GetDelinquencyActionsResponse]
      */
     @GET("v1/loans/{loanId}/delinquency-actions")
-    suspend fun getLoanDelinquencyActions(@Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<GetDelinquencyActionsResponse>>
+    suspend fun getLoanDelinquencyActions(@Path("loanId") loanId: Long): List<GetDelinquencyActionsResponse>
 
     /**
      * Retrieve delinquency actions related to the loan
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanExternalId loanExternalId
-     * @return [kotlin.collections.List<GetDelinquencyActionsResponse>]
+     * @return [kotlin.collections.List<GetDelinquencyActionsResponse]
      */
     @GET("v1/loans/external-id/{loanExternalId}/delinquency-actions")
-    suspend fun getLoanDelinquencyActions1(@Path("loanExternalId") loanExternalId: kotlin.String): Response<kotlin.collections.List<GetDelinquencyActionsResponse>>
+    suspend fun getLoanDelinquencyActions1(@Path("loanExternalId") loanExternalId: String): List<GetDelinquencyActionsResponse>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -159,11 +170,14 @@ interface LoansApi {
      * @return [Unit]
      */
     @GET("v1/loans/repayments/downloadtemplate")
-    suspend fun getLoanRepaymentTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getLoanRepaymentTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -173,21 +187,29 @@ interface LoansApi {
      * @return [Unit]
      */
     @GET("v1/loans/downloadtemplate")
-    suspend fun getLoansTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getLoansTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
      * Approve GLIM Application | Undo GLIM Application Approval | Reject GLIM Application | Disburse Loan Disburse Loan To Savings Account | Undo Loan Disbursal
-     * Approve GLIM Application: Mandatory Fields: approvedOnDate Optional Fields: approvedLoanAmount and expectedDisbursementDate Approves the GLIM application  Undo GLIM Application Approval: Undoes the GLIM Application Approval  Reject GLIM Application: Mandatory Fields: rejectedOnDate Allows you to reject the GLIM application  Disburse Loan: Mandatory Fields: actualDisbursementDate Optional Fields: transactionAmount and fixedEmiAmount Disburses the Loan  Disburse Loan To Savings Account: Mandatory Fields: actualDisbursementDate Optional Fields: transactionAmount and fixedEmiAmount Disburses the loan to Saving Account  Undo Loan Disbursal: Undoes the Loan Disbursal 
+     * Approve GLIM Application: Mandatory Fields: approvedOnDate Optional Fields: approvedLoanAmount and expectedDisbursementDate Approves the GLIM application  Undo GLIM Application Approval: Undoes the GLIM Application Approval  Reject GLIM Application: Mandatory Fields: rejectedOnDate Allows you to reject the GLIM application  Disburse Loan: Mandatory Fields: actualDisbursementDate Optional Fields: transactionAmount and fixedEmiAmount Disburses the Loan  Disburse Loan To Savings Account: Mandatory Fields: actualDisbursementDate Optional Fields: transactionAmount and fixedEmiAmount Disburses the loan to Saving Account  Undo Loan Disbursal: Undoes the Loan Disbursal
      * Responses:
      *  - 200: OK
      *
-     * @param glimId 
-     * @param postLoansLoanIdRequest 
+     * @param glimId
+     * @param postLoansLoanIdRequest
      * @param command  (optional)
      * @return [PostLoansLoanIdResponse]
      */
     @POST("v1/loans/glimAccount/{glimId}")
-    suspend fun glimStateTransitions(@Path("glimId") glimId: kotlin.Long, @Body postLoansLoanIdRequest: PostLoansLoanIdRequest, @Query("command") command: kotlin.String? = null): Response<PostLoansLoanIdResponse>
+    suspend fun glimStateTransitions(
+        @Path("glimId") glimId: Long,
+        @Body postLoansLoanIdRequest: PostLoansLoanIdRequest,
+        @Query("command") command: String? = null
+    ): PostLoansLoanIdResponse
 
     /**
      * Modify a loan application
@@ -196,12 +218,16 @@ interface LoansApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param putLoansLoanIdRequest 
+     * @param putLoansLoanIdRequest
      * @param command command (optional)
      * @return [PutLoansLoanIdResponse]
      */
     @PUT("v1/loans/{loanId}")
-    suspend fun modifyLoanApplication(@Path("loanId") loanId: kotlin.Long, @Body putLoansLoanIdRequest: PutLoansLoanIdRequest, @Query("command") command: kotlin.String? = null): Response<PutLoansLoanIdResponse>
+    suspend fun modifyLoanApplication(
+        @Path("loanId") loanId: Long,
+        @Body putLoansLoanIdRequest: PutLoansLoanIdRequest,
+        @Query("command") command: String? = null
+    ): PutLoansLoanIdResponse
 
     /**
      * Modify a loan application
@@ -210,16 +236,20 @@ interface LoansApi {
      *  - 200: OK
      *
      * @param loanExternalId loanExternalId
-     * @param putLoansLoanIdRequest 
+     * @param putLoansLoanIdRequest
      * @param command command (optional)
      * @return [PutLoansLoanIdResponse]
      */
     @PUT("v1/loans/external-id/{loanExternalId}")
-    suspend fun modifyLoanApplication1(@Path("loanExternalId") loanExternalId: kotlin.String, @Body putLoansLoanIdRequest: PutLoansLoanIdRequest, @Query("command") command: kotlin.String? = null): Response<PutLoansLoanIdResponse>
+    suspend fun modifyLoanApplication1(
+        @Path("loanExternalId") loanExternalId: String,
+        @Body putLoansLoanIdRequest: PutLoansLoanIdRequest,
+        @Query("command") command: String? = null
+    ): PutLoansLoanIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -230,11 +260,15 @@ interface LoansApi {
      */
     @Multipart
     @POST("v1/loans/repayments/uploadtemplate")
-    suspend fun postLoanRepaymentTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postLoanRepaymentTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -245,7 +279,11 @@ interface LoansApi {
      */
     @Multipart
     @POST("v1/loans/uploadtemplate")
-    suspend fun postLoanTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postLoanTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List Loans
@@ -263,11 +301,19 @@ interface LoansApi {
      * @return [GetLoansResponse]
      */
     @GET("v1/loans")
-    suspend fun retrieveAll27(@Query("externalId") externalId: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("accountNo") accountNo: kotlin.String? = null, @Query("status") status: kotlin.String? = null): Response<GetLoansResponse>
+    suspend fun retrieveAll27(
+        @Query("externalId") externalId: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("accountNo") accountNo: String? = null,
+        @Query("status") status: String? = null
+    ): GetLoansResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 200: OK
      *
@@ -276,11 +322,14 @@ interface LoansApi {
      * @return [GetLoansApprovalTemplateResponse]
      */
     @GET("v1/loans/{loanId}/template")
-    suspend fun retrieveApprovalTemplate(@Path("loanId") loanId: kotlin.Long, @Query("templateType") templateType: kotlin.String? = null): Response<GetLoansApprovalTemplateResponse>
+    suspend fun retrieveApprovalTemplate(
+        @Path("loanId") loanId: Long,
+        @Query("templateType") templateType: String? = null
+    ): GetLoansApprovalTemplateResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 200: OK
      *
@@ -289,7 +338,10 @@ interface LoansApi {
      * @return [GetLoansApprovalTemplateResponse]
      */
     @GET("v1/loans/external-id/{loanExternalId}/template")
-    suspend fun retrieveApprovalTemplate1(@Path("loanExternalId") loanExternalId: kotlin.String, @Query("templateType") templateType: kotlin.String? = null): Response<GetLoansApprovalTemplateResponse>
+    suspend fun retrieveApprovalTemplate1(
+        @Path("loanExternalId") loanExternalId: String,
+        @Query("templateType") templateType: String? = null
+    ): GetLoansApprovalTemplateResponse
 
     /**
      * Retrieve a Loan
@@ -305,7 +357,13 @@ interface LoansApi {
      * @return [GetLoansLoanIdResponse]
      */
     @GET("v1/loans/{loanId}")
-    suspend fun retrieveLoan(@Path("loanId") loanId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("associations") associations: kotlin.String? = "all", @Query("exclude") exclude: kotlin.String? = null, @Query("fields") fields: kotlin.String? = null): Response<GetLoansLoanIdResponse>
+    suspend fun retrieveLoan(
+        @Path("loanId") loanId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("associations") associations: String? = "all",
+        @Query("exclude") exclude: String? = null,
+        @Query("fields") fields: String? = null
+    ): GetLoansLoanIdResponse
 
     /**
      * Retrieve a Loan
@@ -321,7 +379,13 @@ interface LoansApi {
      * @return [GetLoansLoanIdResponse]
      */
     @GET("v1/loans/external-id/{loanExternalId}")
-    suspend fun retrieveLoan1(@Path("loanExternalId") loanExternalId: kotlin.String, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("associations") associations: kotlin.String? = "all", @Query("exclude") exclude: kotlin.String? = null, @Query("fields") fields: kotlin.String? = null): Response<GetLoansLoanIdResponse>
+    suspend fun retrieveLoan1(
+        @Path("loanExternalId") loanExternalId: String,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("associations") associations: String? = "all",
+        @Query("exclude") exclude: String? = null,
+        @Query("fields") fields: String? = null
+    ): GetLoansLoanIdResponse
 
     /**
      * Approve Loan Application | Recover Loan Guarantee | Undo Loan Application Approval | Assign a Loan Officer | Unassign a Loan Officer | Reject Loan Application | Applicant Withdraws from Loan Application | Disburse Loan Disburse Loan To Savings Account | Undo Loan Disbursal
@@ -330,12 +394,16 @@ interface LoansApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param postLoansLoanIdRequest 
+     * @param postLoansLoanIdRequest
      * @param command command (optional)
      * @return [PostLoansLoanIdResponse]
      */
     @POST("v1/loans/{loanId}")
-    suspend fun stateTransitions(@Path("loanId") loanId: kotlin.Long, @Body postLoansLoanIdRequest: PostLoansLoanIdRequest, @Query("command") command: kotlin.String? = null): Response<PostLoansLoanIdResponse>
+    suspend fun stateTransitions(
+        @Path("loanId") loanId: Long,
+        @Body postLoansLoanIdRequest: PostLoansLoanIdRequest,
+        @Query("command") command: String? = null
+    ): PostLoansLoanIdResponse
 
     /**
      * Approve Loan Application | Recover Loan Guarantee | Undo Loan Application Approval | Assign a Loan Officer | Unassign a Loan Officer | Reject Loan Application | Applicant Withdraws from Loan Application | Disburse Loan Disburse Loan To Savings Account | Undo Loan Disbursal
@@ -344,12 +412,16 @@ interface LoansApi {
      *  - 200: OK
      *
      * @param loanExternalId loanExternalId
-     * @param postLoansLoanIdRequest 
+     * @param postLoansLoanIdRequest
      * @param command command (optional)
      * @return [PostLoansLoanIdResponse]
      */
     @POST("v1/loans/external-id/{loanExternalId}")
-    suspend fun stateTransitions1(@Path("loanExternalId") loanExternalId: kotlin.String, @Body postLoansLoanIdRequest: PostLoansLoanIdRequest, @Query("command") command: kotlin.String? = null): Response<PostLoansLoanIdResponse>
+    suspend fun stateTransitions1(
+        @Path("loanExternalId") loanExternalId: String,
+        @Body postLoansLoanIdRequest: PostLoansLoanIdRequest,
+        @Query("command") command: String? = null
+    ): PostLoansLoanIdResponse
 
     /**
      * Retrieve Loan Details Template
@@ -366,6 +438,13 @@ interface LoansApi {
      * @return [GetLoansTemplateResponse]
      */
     @GET("v1/loans/template")
-    suspend fun template10(@Query("clientId") clientId: kotlin.Long? = null, @Query("groupId") groupId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null, @Query("templateType") templateType: kotlin.String? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("activeOnly") activeOnly: kotlin.Boolean? = false): Response<GetLoansTemplateResponse>
+    suspend fun template10(
+        @Query("clientId") clientId: Long? = null,
+        @Query("groupId") groupId: Long? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("templateType") templateType: String? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("activeOnly") activeOnly: Boolean? = false
+    ): GetLoansTemplateResponse
 
 }

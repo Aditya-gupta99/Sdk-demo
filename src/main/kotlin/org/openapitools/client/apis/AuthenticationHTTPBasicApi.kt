@@ -1,13 +1,10 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.PostAuthenticationRequest
 import org.openapitools.client.models.PostAuthenticationResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface AuthenticationHTTPBasicApi {
     /**
@@ -17,11 +14,14 @@ interface AuthenticationHTTPBasicApi {
      *  - 200: OK
      *  - 400: Unauthenticated. Please login
      *
-     * @param postAuthenticationRequest 
+     * @param postAuthenticationRequest
      * @param returnClientList  (optional, default to false)
      * @return [PostAuthenticationResponse]
      */
     @POST("v1/authentication")
-    suspend fun authenticate(@Body postAuthenticationRequest: PostAuthenticationRequest, @Query("returnClientList") returnClientList: kotlin.Boolean? = false): Response<PostAuthenticationResponse>
+    suspend fun authenticate(
+        @Body postAuthenticationRequest: PostAuthenticationRequest,
+        @Query("returnClientList") returnClientList: Boolean? = false
+    ): PostAuthenticationResponse
 
 }

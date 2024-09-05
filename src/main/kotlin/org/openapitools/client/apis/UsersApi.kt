@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteUsersUserIdResponse
 import org.openapitools.client.models.GetUsersResponse
 import org.openapitools.client.models.GetUsersTemplateResponse
@@ -14,8 +9,15 @@ import org.openapitools.client.models.PostUsersRequest
 import org.openapitools.client.models.PostUsersResponse
 import org.openapitools.client.models.PutUsersUserIdRequest
 import org.openapitools.client.models.PutUsersUserIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface UsersApi {
     /**
@@ -24,11 +26,11 @@ interface UsersApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postUsersRequest 
+     * @param postUsersRequest
      * @return [PostUsersResponse]
      */
     @POST("v1/users")
-    suspend fun create15(@Body postUsersRequest: PostUsersRequest): Response<PostUsersResponse>
+    suspend fun create15(@Body postUsersRequest: PostUsersRequest): PostUsersResponse
 
     /**
      * Delete a User
@@ -40,11 +42,11 @@ interface UsersApi {
      * @return [DeleteUsersUserIdResponse]
      */
     @DELETE("v1/users/{userId}")
-    suspend fun delete23(@Path("userId") userId: kotlin.Long): Response<DeleteUsersUserIdResponse>
+    suspend fun delete23(@Path("userId") userId: Long): DeleteUsersUserIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -54,11 +56,15 @@ interface UsersApi {
      * @return [Unit]
      */
     @GET("v1/users/downloadtemplate")
-    suspend fun getUserTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getUserTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -69,7 +75,11 @@ interface UsersApi {
      */
     @Multipart
     @POST("v1/users/uploadtemplate")
-    suspend fun postUsersTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postUsersTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * Retrieve list of users
@@ -77,10 +87,10 @@ interface UsersApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetUsersResponse>]
+     * @return [kotlin.collections.List<GetUsersResponse]
      */
     @GET("v1/users")
-    suspend fun retrieveAll41(): Response<kotlin.collections.List<GetUsersResponse>>
+    suspend fun retrieveAll41(): List<GetUsersResponse>
 
     /**
      * Retrieve a User
@@ -92,7 +102,7 @@ interface UsersApi {
      * @return [GetUsersUserIdResponse]
      */
     @GET("v1/users/{userId}")
-    suspend fun retrieveOne31(@Path("userId") userId: kotlin.Long): Response<GetUsersUserIdResponse>
+    suspend fun retrieveOne31(@Path("userId") userId: Long): GetUsersUserIdResponse
 
     /**
      * Retrieve User Details Template
@@ -103,7 +113,7 @@ interface UsersApi {
      * @return [GetUsersTemplateResponse]
      */
     @GET("v1/users/template")
-    suspend fun template22(): Response<GetUsersTemplateResponse>
+    suspend fun template22(): GetUsersTemplateResponse
 
     /**
      * Update a User
@@ -112,10 +122,13 @@ interface UsersApi {
      *  - 200: OK
      *
      * @param userId userId
-     * @param putUsersUserIdRequest 
+     * @param putUsersUserIdRequest
      * @return [PutUsersUserIdResponse]
      */
     @PUT("v1/users/{userId}")
-    suspend fun update26(@Path("userId") userId: kotlin.Long, @Body putUsersUserIdRequest: PutUsersUserIdRequest): Response<PutUsersUserIdResponse>
+    suspend fun update26(
+        @Path("userId") userId: Long,
+        @Body putUsersUserIdRequest: PutUsersUserIdRequest
+    ): PutUsersUserIdResponse
 
 }

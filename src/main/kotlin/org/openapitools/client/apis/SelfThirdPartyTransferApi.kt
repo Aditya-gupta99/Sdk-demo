@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteSelfBeneficiariesTPTBeneficiaryIdResponse
 import org.openapitools.client.models.GetSelfBeneficiariesTPTResponse
 import org.openapitools.client.models.GetSelfBeneficiariesTPTTemplateResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostSelfBeneficiariesTPTRequest
 import org.openapitools.client.models.PostSelfBeneficiariesTPTResponse
 import org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdRequest
 import org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface SelfThirdPartyTransferApi {
     /**
@@ -21,11 +21,11 @@ interface SelfThirdPartyTransferApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postSelfBeneficiariesTPTRequest 
+     * @param postSelfBeneficiariesTPTRequest
      * @return [PostSelfBeneficiariesTPTResponse]
      */
     @POST("v1/self/beneficiaries/tpt")
-    suspend fun add(@Body postSelfBeneficiariesTPTRequest: PostSelfBeneficiariesTPTRequest): Response<PostSelfBeneficiariesTPTResponse>
+    suspend fun add(@Body postSelfBeneficiariesTPTRequest: PostSelfBeneficiariesTPTRequest): PostSelfBeneficiariesTPTResponse
 
     /**
      * Delete TPT Beneficiary
@@ -33,11 +33,11 @@ interface SelfThirdPartyTransferApi {
      * Responses:
      *  - 200: OK
      *
-     * @param beneficiaryId 
+     * @param beneficiaryId
      * @return [DeleteSelfBeneficiariesTPTBeneficiaryIdResponse]
      */
     @DELETE("v1/self/beneficiaries/tpt/{beneficiaryId}")
-    suspend fun delete22(@Path("beneficiaryId") beneficiaryId: kotlin.Long): Response<DeleteSelfBeneficiariesTPTBeneficiaryIdResponse>
+    suspend fun delete22(@Path("beneficiaryId") beneficiaryId: Long): DeleteSelfBeneficiariesTPTBeneficiaryIdResponse
 
     /**
      * Get All TPT Beneficiary
@@ -45,10 +45,10 @@ interface SelfThirdPartyTransferApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetSelfBeneficiariesTPTResponse>]
+     * @return [kotlin.collections.List<GetSelfBeneficiariesTPTResponse]
      */
     @GET("v1/self/beneficiaries/tpt")
-    suspend fun retrieveAll35(): Response<kotlin.collections.List<GetSelfBeneficiariesTPTResponse>>
+    suspend fun retrieveAll35(): List<GetSelfBeneficiariesTPTResponse>
 
     /**
      * Beneficiary Third Party Transfer Template
@@ -59,7 +59,7 @@ interface SelfThirdPartyTransferApi {
      * @return [GetSelfBeneficiariesTPTTemplateResponse]
      */
     @GET("v1/self/beneficiaries/tpt/template")
-    suspend fun template16(): Response<GetSelfBeneficiariesTPTTemplateResponse>
+    suspend fun template16(): GetSelfBeneficiariesTPTTemplateResponse
 
     /**
      * Update TPT Beneficiary
@@ -68,10 +68,13 @@ interface SelfThirdPartyTransferApi {
      *  - 200: OK
      *
      * @param beneficiaryId beneficiaryId
-     * @param putSelfBeneficiariesTPTBeneficiaryIdRequest 
+     * @param putSelfBeneficiariesTPTBeneficiaryIdRequest
      * @return [PutSelfBeneficiariesTPTBeneficiaryIdResponse]
      */
     @PUT("v1/self/beneficiaries/tpt/{beneficiaryId}")
-    suspend fun update23(@Path("beneficiaryId") beneficiaryId: kotlin.Long, @Body putSelfBeneficiariesTPTBeneficiaryIdRequest: PutSelfBeneficiariesTPTBeneficiaryIdRequest): Response<PutSelfBeneficiariesTPTBeneficiaryIdResponse>
+    suspend fun update23(
+        @Path("beneficiaryId") beneficiaryId: Long,
+        @Body putSelfBeneficiariesTPTBeneficiaryIdRequest: PutSelfBeneficiariesTPTBeneficiaryIdRequest
+    ): PutSelfBeneficiariesTPTBeneficiaryIdResponse
 
 }

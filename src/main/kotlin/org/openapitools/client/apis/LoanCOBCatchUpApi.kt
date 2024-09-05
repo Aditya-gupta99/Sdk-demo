@@ -1,13 +1,9 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetOldestCOBProcessedLoanResponse
 import org.openapitools.client.models.IsCatchUpRunningResponse
+import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface LoanCOBCatchUpApi {
     /**
@@ -21,7 +17,7 @@ interface LoanCOBCatchUpApi {
      * @return [Unit]
      */
     @POST("v1/loans/catch-up")
-    suspend fun executeLoanCOBCatchUp(): Response<Unit>
+    suspend fun executeLoanCOBCatchUp(): Unit
 
     /**
      * Retrieves the oldest COB processed loan
@@ -32,7 +28,7 @@ interface LoanCOBCatchUpApi {
      * @return [GetOldestCOBProcessedLoanResponse]
      */
     @GET("v1/loans/oldest-cob-closed")
-    suspend fun getOldestCOBProcessedLoan(): Response<GetOldestCOBProcessedLoanResponse>
+    suspend fun getOldestCOBProcessedLoan(): GetOldestCOBProcessedLoanResponse
 
     /**
      * Retrieves whether Loan COB catch up is running
@@ -43,6 +39,6 @@ interface LoanCOBCatchUpApi {
      * @return [IsCatchUpRunningResponse]
      */
     @GET("v1/loans/is-catch-up-running")
-    suspend fun isCatchUpRunning(): Response<IsCatchUpRunningResponse>
+    suspend fun isCatchUpRunning(): IsCatchUpRunningResponse
 
 }

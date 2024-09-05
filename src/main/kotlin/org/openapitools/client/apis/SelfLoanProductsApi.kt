@@ -1,16 +1,14 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface SelfLoanProductsApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -18,19 +16,22 @@ interface SelfLoanProductsApi {
      * @return [kotlin.String]
      */
     @GET("v1/self/loanproducts")
-    suspend fun retrieveAllLoanProducts1(@Query("clientId") clientId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun retrieveAllLoanProducts1(@Query("clientId") clientId: Long? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param productId 
+     * @param productId
      * @param clientId  (optional)
      * @return [kotlin.String]
      */
     @GET("v1/self/loanproducts/{productId}")
-    suspend fun retrieveLoanProductDetails2(@Path("productId") productId: kotlin.Long, @Query("clientId") clientId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun retrieveLoanProductDetails2(
+        @Path("productId") productId: Long,
+        @Query("clientId") clientId: Long? = null
+    ): String
 
 }

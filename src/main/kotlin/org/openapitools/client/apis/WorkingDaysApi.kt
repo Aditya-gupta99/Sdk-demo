@@ -1,15 +1,12 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetWorkingDaysResponse
 import org.openapitools.client.models.GetWorkingDaysTemplateResponse
 import org.openapitools.client.models.PutWorkingDaysRequest
 import org.openapitools.client.models.PutWorkingDaysResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
 
 interface WorkingDaysApi {
     /**
@@ -18,10 +15,10 @@ interface WorkingDaysApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetWorkingDaysResponse>]
+     * @return [kotlin.collections.List<GetWorkingDaysResponse]
      */
     @GET("v1/workingdays")
-    suspend fun retrieveAll17(): Response<kotlin.collections.List<GetWorkingDaysResponse>>
+    suspend fun retrieveAll17(): List<GetWorkingDaysResponse>
 
     /**
      * Working Days Template
@@ -32,7 +29,7 @@ interface WorkingDaysApi {
      * @return [GetWorkingDaysTemplateResponse]
      */
     @GET("v1/workingdays/template")
-    suspend fun template4(): Response<GetWorkingDaysTemplateResponse>
+    suspend fun template4(): GetWorkingDaysTemplateResponse
 
     /**
      * Update a Working Day
@@ -40,10 +37,10 @@ interface WorkingDaysApi {
      * Responses:
      *  - 200: OK
      *
-     * @param putWorkingDaysRequest 
+     * @param putWorkingDaysRequest
      * @return [PutWorkingDaysResponse]
      */
     @PUT("v1/workingdays")
-    suspend fun update8(@Body putWorkingDaysRequest: PutWorkingDaysRequest): Response<PutWorkingDaysResponse>
+    suspend fun update8(@Body putWorkingDaysRequest: PutWorkingDaysRequest): PutWorkingDaysResponse
 
 }

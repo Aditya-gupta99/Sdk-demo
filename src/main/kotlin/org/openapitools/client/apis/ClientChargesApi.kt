@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteClientsClientIdChargesChargeIdResponse
 import org.openapitools.client.models.GetClientsChargesPageItems
 import org.openapitools.client.models.GetClientsClientIdChargesResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostClientsClientIdChargesChargeIdRequest
 import org.openapitools.client.models.PostClientsClientIdChargesChargeIdResponse
 import org.openapitools.client.models.PostClientsClientIdChargesRequest
 import org.openapitools.client.models.PostClientsClientIdChargesResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ClientChargesApi {
     /**
@@ -22,15 +22,18 @@ interface ClientChargesApi {
      *  - 200: OK
      *
      * @param clientId clientId
-     * @param postClientsClientIdChargesRequest 
+     * @param postClientsClientIdChargesRequest
      * @return [PostClientsClientIdChargesResponse]
      */
     @POST("v1/clients/{clientId}/charges")
-    suspend fun applyClientCharge(@Path("clientId") clientId: kotlin.Long, @Body postClientsClientIdChargesRequest: PostClientsClientIdChargesRequest): Response<PostClientsClientIdChargesResponse>
+    suspend fun applyClientCharge(
+        @Path("clientId") clientId: Long,
+        @Body postClientsClientIdChargesRequest: PostClientsClientIdChargesRequest
+    ): PostClientsClientIdChargesResponse
 
     /**
      * Delete a Client Charge
-     * Deletes a Client Charge on which no transactions have taken place (either payments or waivers). 
+     * Deletes a Client Charge on which no transactions have taken place (either payments or waivers).
      * Responses:
      *  - 200: OK
      *
@@ -39,7 +42,10 @@ interface ClientChargesApi {
      * @return [DeleteClientsClientIdChargesChargeIdResponse]
      */
     @DELETE("v1/clients/{clientId}/charges/{chargeId}")
-    suspend fun deleteClientCharge(@Path("clientId") clientId: kotlin.Long, @Path("chargeId") chargeId: kotlin.Long): Response<DeleteClientsClientIdChargesChargeIdResponse>
+    suspend fun deleteClientCharge(
+        @Path("clientId") clientId: Long,
+        @Path("chargeId") chargeId: Long
+    ): DeleteClientsClientIdChargesChargeIdResponse
 
     /**
      * Pay a Client Charge | Waive a Client Charge
@@ -49,12 +55,17 @@ interface ClientChargesApi {
      *
      * @param clientId clientId
      * @param chargeId chargeId
-     * @param postClientsClientIdChargesChargeIdRequest 
+     * @param postClientsClientIdChargesChargeIdRequest
      * @param command command (optional)
      * @return [PostClientsClientIdChargesChargeIdResponse]
      */
     @POST("v1/clients/{clientId}/charges/{chargeId}")
-    suspend fun payOrWaiveClientCharge(@Path("clientId") clientId: kotlin.Long, @Path("chargeId") chargeId: kotlin.Long, @Body postClientsClientIdChargesChargeIdRequest: PostClientsClientIdChargesChargeIdRequest, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdChargesChargeIdResponse>
+    suspend fun payOrWaiveClientCharge(
+        @Path("clientId") clientId: Long,
+        @Path("chargeId") chargeId: Long,
+        @Body postClientsClientIdChargesChargeIdRequest: PostClientsClientIdChargesChargeIdRequest,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdChargesChargeIdResponse
 
     /**
      * List Client Charges
@@ -70,7 +81,13 @@ interface ClientChargesApi {
      * @return [GetClientsClientIdChargesResponse]
      */
     @GET("v1/clients/{clientId}/charges")
-    suspend fun retrieveAllClientCharges(@Path("clientId") clientId: kotlin.Long, @Query("chargeStatus") chargeStatus: kotlin.String? = "all", @Query("pendingPayment") pendingPayment: kotlin.Boolean? = null, @Query("limit") limit: kotlin.Int? = null, @Query("offset") offset: kotlin.Int? = null): Response<GetClientsClientIdChargesResponse>
+    suspend fun retrieveAllClientCharges(
+        @Path("clientId") clientId: Long,
+        @Query("chargeStatus") chargeStatus: String? = "all",
+        @Query("pendingPayment") pendingPayment: Boolean? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
+    ): GetClientsClientIdChargesResponse
 
     /**
      * Retrieve a Client Charge
@@ -83,11 +100,14 @@ interface ClientChargesApi {
      * @return [GetClientsChargesPageItems]
      */
     @GET("v1/clients/{clientId}/charges/{chargeId}")
-    suspend fun retrieveClientCharge(@Path("clientId") clientId: kotlin.Long, @Path("chargeId") chargeId: kotlin.Long): Response<GetClientsChargesPageItems>
+    suspend fun retrieveClientCharge(
+        @Path("clientId") clientId: Long,
+        @Path("chargeId") chargeId: Long
+    ): GetClientsChargesPageItems
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -95,6 +115,6 @@ interface ClientChargesApi {
      * @return [kotlin.String]
      */
     @GET("v1/clients/{clientId}/charges/template")
-    suspend fun retrieveTemplate4(@Path("clientId") clientId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveTemplate4(@Path("clientId") clientId: Long): String
 
 }

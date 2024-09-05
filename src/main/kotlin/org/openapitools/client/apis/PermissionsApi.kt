@@ -1,14 +1,11 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.CommandProcessingResult
 import org.openapitools.client.models.GetPermissionsResponse
 import org.openapitools.client.models.PutPermissionsRequest
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
 
 interface PermissionsApi {
     /**
@@ -17,21 +14,21 @@ interface PermissionsApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetPermissionsResponse>]
+     * @return [kotlin.collections.List<GetPermissionsResponse]
      */
     @GET("v1/permissions")
-    suspend fun retrieveAllPermissions(): Response<kotlin.collections.List<GetPermissionsResponse>>
+    suspend fun retrieveAllPermissions(): List<GetPermissionsResponse>
 
     /**
      * Enable/Disable Permissions for Maker Checker
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param putPermissionsRequest 
+     * @param putPermissionsRequest
      * @return [CommandProcessingResult]
      */
     @PUT("v1/permissions")
-    suspend fun updatePermissionsDetails(@Body putPermissionsRequest: PutPermissionsRequest): Response<CommandProcessingResult>
+    suspend fun updatePermissionsDetails(@Body putPermissionsRequest: PutPermissionsRequest): CommandProcessingResult
 
 }

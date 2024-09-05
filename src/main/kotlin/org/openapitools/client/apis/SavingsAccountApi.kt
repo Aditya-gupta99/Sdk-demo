@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteSavingsAccountsAccountIdResponse
 import org.openapitools.client.models.GetSavingsAccountsAccountIdResponse
 import org.openapitools.client.models.GetSavingsAccountsResponse
@@ -16,8 +11,15 @@ import org.openapitools.client.models.PostSavingsAccountsRequest
 import org.openapitools.client.models.PostSavingsAccountsResponse
 import org.openapitools.client.models.PutSavingsAccountsAccountIdRequest
 import org.openapitools.client.models.PutSavingsAccountsAccountIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SavingsAccountApi {
     /**
@@ -30,7 +32,7 @@ interface SavingsAccountApi {
      * @return [DeleteSavingsAccountsAccountIdResponse]
      */
     @DELETE("v1/savingsaccounts/{accountId}")
-    suspend fun delete19(@Path("accountId") accountId: kotlin.Long): Response<DeleteSavingsAccountsAccountIdResponse>
+    suspend fun delete19(@Path("accountId") accountId: Long): DeleteSavingsAccountsAccountIdResponse
 
     /**
      * Delete a savings application
@@ -42,11 +44,11 @@ interface SavingsAccountApi {
      * @return [DeleteSavingsAccountsAccountIdResponse]
      */
     @DELETE("v1/savingsaccounts/external-id/{externalId}")
-    suspend fun delete20(@Path("externalId") externalId: kotlin.String): Response<DeleteSavingsAccountsAccountIdResponse>
+    suspend fun delete20(@Path("externalId") externalId: String): DeleteSavingsAccountsAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -56,11 +58,15 @@ interface SavingsAccountApi {
      * @return [Unit]
      */
     @GET("v1/savingsaccounts/downloadtemplate")
-    suspend fun getSavingsTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getSavingsTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -69,7 +75,10 @@ interface SavingsAccountApi {
      * @return [Unit]
      */
     @GET("v1/savingsaccounts/transactions/downloadtemplate")
-    suspend fun getSavingsTransactionTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getSavingsTransactionTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
      * Approve savings application | Undo approval savings application | Assign Savings Officer | Unassign Savings Officer | Reject savings application | Withdraw savings application | Activate a savings account | Close a savings account | Calculate Interest on Savings Account | Post Interest on Savings Account | Block Savings Account | Unblock Savings Account | Block Savings Account Credit transactions | Unblock Savings Account Credit transactions | Block Savings Account Debit transactions | Unblock Savings Account debit transactions
@@ -78,12 +87,16 @@ interface SavingsAccountApi {
      *  - 200: OK
      *
      * @param accountId accountId
-     * @param postSavingsAccountsAccountIdRequest 
+     * @param postSavingsAccountsAccountIdRequest
      * @param command command (optional)
      * @return [PostSavingsAccountsAccountIdResponse]
      */
     @POST("v1/savingsaccounts/{accountId}")
-    suspend fun handleCommands6(@Path("accountId") accountId: kotlin.Long, @Body postSavingsAccountsAccountIdRequest: PostSavingsAccountsAccountIdRequest, @Query("command") command: kotlin.String? = null): Response<PostSavingsAccountsAccountIdResponse>
+    suspend fun handleCommands6(
+        @Path("accountId") accountId: Long,
+        @Body postSavingsAccountsAccountIdRequest: PostSavingsAccountsAccountIdRequest,
+        @Query("command") command: String? = null
+    ): PostSavingsAccountsAccountIdResponse
 
     /**
      * Approve savings application | Undo approval savings application | Assign Savings Officer | Unassign Savings Officer | Reject savings application | Withdraw savings application | Activate a savings account | Close a savings account | Calculate Interest on Savings Account | Post Interest on Savings Account | Block Savings Account | Unblock Savings Account | Block Savings Account Credit transactions | Unblock Savings Account Credit transactions | Block Savings Account Debit transactions | Unblock Savings Account debit transactions
@@ -92,30 +105,38 @@ interface SavingsAccountApi {
      *  - 200: OK
      *
      * @param externalId externalId
-     * @param postSavingsAccountsAccountIdRequest 
+     * @param postSavingsAccountsAccountIdRequest
      * @param command command (optional)
      * @return [PostSavingsAccountsAccountIdResponse]
      */
     @POST("v1/savingsaccounts/external-id/{externalId}")
-    suspend fun handleCommands7(@Path("externalId") externalId: kotlin.String, @Body postSavingsAccountsAccountIdRequest: PostSavingsAccountsAccountIdRequest, @Query("command") command: kotlin.String? = null): Response<PostSavingsAccountsAccountIdResponse>
+    suspend fun handleCommands7(
+        @Path("externalId") externalId: String,
+        @Body postSavingsAccountsAccountIdRequest: PostSavingsAccountsAccountIdRequest,
+        @Query("command") command: String? = null
+    ): PostSavingsAccountsAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param parentAccountId 
+     * @param parentAccountId
      * @param command  (optional)
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @POST("v1/savingsaccounts/gsimcommands/{parentAccountId}")
-    suspend fun handleGSIMCommands(@Path("parentAccountId") parentAccountId: kotlin.Long, @Query("command") command: kotlin.String? = null, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun handleGSIMCommands(
+        @Path("parentAccountId") parentAccountId: Long,
+        @Query("command") command: String? = null,
+        @Body body: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -126,11 +147,15 @@ interface SavingsAccountApi {
      */
     @Multipart
     @POST("v1/savingsaccounts/uploadtemplate")
-    suspend fun postSavingsTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postSavingsTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -141,7 +166,11 @@ interface SavingsAccountApi {
      */
     @Multipart
     @POST("v1/savingsaccounts/transactions/uploadtemplate")
-    suspend fun postSavingsTransactionTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postSavingsTransactionTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List savings applications/accounts
@@ -157,7 +186,13 @@ interface SavingsAccountApi {
      * @return [GetSavingsAccountsResponse]
      */
     @GET("v1/savingsaccounts")
-    suspend fun retrieveAll33(@Query("externalId") externalId: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<GetSavingsAccountsResponse>
+    suspend fun retrieveAll33(
+        @Query("externalId") externalId: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): GetSavingsAccountsResponse
 
     /**
      * Retrieve a savings application/account
@@ -171,7 +206,11 @@ interface SavingsAccountApi {
      * @return [GetSavingsAccountsAccountIdResponse]
      */
     @GET("v1/savingsaccounts/{accountId}")
-    suspend fun retrieveOne25(@Path("accountId") accountId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<GetSavingsAccountsAccountIdResponse>
+    suspend fun retrieveOne25(
+        @Path("accountId") accountId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): GetSavingsAccountsAccountIdResponse
 
     /**
      * Retrieve a savings application/account by external id
@@ -185,7 +224,11 @@ interface SavingsAccountApi {
      * @return [GetSavingsAccountsAccountIdResponse]
      */
     @GET("v1/savingsaccounts/external-id/{externalId}")
-    suspend fun retrieveOne26(@Path("externalId") externalId: kotlin.String, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<GetSavingsAccountsAccountIdResponse>
+    suspend fun retrieveOne26(
+        @Path("externalId") externalId: String,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): GetSavingsAccountsAccountIdResponse
 
     /**
      * Submit new savings application
@@ -193,15 +236,15 @@ interface SavingsAccountApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postSavingsAccountsRequest 
+     * @param postSavingsAccountsRequest
      * @return [PostSavingsAccountsResponse]
      */
     @POST("v1/savingsaccounts")
-    suspend fun submitApplication2(@Body postSavingsAccountsRequest: PostSavingsAccountsRequest): Response<PostSavingsAccountsResponse>
+    suspend fun submitApplication2(@Body postSavingsAccountsRequest: PostSavingsAccountsRequest): PostSavingsAccountsResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -209,7 +252,7 @@ interface SavingsAccountApi {
      * @return [kotlin.String]
      */
     @POST("v1/savingsaccounts/gsim")
-    suspend fun submitGSIMApplication(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun submitGSIMApplication(@Body body: String? = null): String
 
     /**
      * Retrieve Savings Account Template
@@ -224,7 +267,12 @@ interface SavingsAccountApi {
      * @return [GetSavingsAccountsTemplateResponse]
      */
     @GET("v1/savingsaccounts/template")
-    suspend fun template14(@Query("clientId") clientId: kotlin.Long? = null, @Query("groupId") groupId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetSavingsAccountsTemplateResponse>
+    suspend fun template14(
+        @Query("clientId") clientId: Long? = null,
+        @Query("groupId") groupId: Long? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetSavingsAccountsTemplateResponse
 
     /**
      * Modify a savings application | Modify savings account withhold tax applicability
@@ -233,12 +281,16 @@ interface SavingsAccountApi {
      *  - 200: OK
      *
      * @param accountId accountId
-     * @param putSavingsAccountsAccountIdRequest 
+     * @param putSavingsAccountsAccountIdRequest
      * @param command command (optional)
      * @return [PutSavingsAccountsAccountIdResponse]
      */
     @PUT("v1/savingsaccounts/{accountId}")
-    suspend fun update20(@Path("accountId") accountId: kotlin.Long, @Body putSavingsAccountsAccountIdRequest: PutSavingsAccountsAccountIdRequest, @Query("command") command: kotlin.String? = null): Response<PutSavingsAccountsAccountIdResponse>
+    suspend fun update20(
+        @Path("accountId") accountId: Long,
+        @Body putSavingsAccountsAccountIdRequest: PutSavingsAccountsAccountIdRequest,
+        @Query("command") command: String? = null
+    ): PutSavingsAccountsAccountIdResponse
 
     /**
      * Modify a savings application | Modify savings account withhold tax applicability
@@ -247,24 +299,31 @@ interface SavingsAccountApi {
      *  - 200: OK
      *
      * @param externalId externalId
-     * @param putSavingsAccountsAccountIdRequest 
+     * @param putSavingsAccountsAccountIdRequest
      * @param command command (optional)
      * @return [PutSavingsAccountsAccountIdResponse]
      */
     @PUT("v1/savingsaccounts/external-id/{externalId}")
-    suspend fun update21(@Path("externalId") externalId: kotlin.String, @Body putSavingsAccountsAccountIdRequest: PutSavingsAccountsAccountIdRequest, @Query("command") command: kotlin.String? = null): Response<PutSavingsAccountsAccountIdResponse>
+    suspend fun update21(
+        @Path("externalId") externalId: String,
+        @Body putSavingsAccountsAccountIdRequest: PutSavingsAccountsAccountIdRequest,
+        @Query("command") command: String? = null
+    ): PutSavingsAccountsAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param parentAccountId 
+     * @param parentAccountId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/savingsaccounts/gsim/{parentAccountId}")
-    suspend fun updateGsim(@Path("parentAccountId") parentAccountId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun updateGsim(
+        @Path("parentAccountId") parentAccountId: Long,
+        @Body body: String? = null
+    ): String
 
 }

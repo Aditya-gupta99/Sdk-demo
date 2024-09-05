@@ -1,16 +1,15 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 
 interface BulkLoansApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -18,11 +17,11 @@ interface BulkLoansApi {
      * @return [kotlin.String]
      */
     @POST("v1/loans/loanreassignment")
-    suspend fun loanReassignment(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun loanReassignment(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -31,6 +30,9 @@ interface BulkLoansApi {
      * @return [kotlin.String]
      */
     @GET("v1/loans/loanreassignment/template")
-    suspend fun loanReassignmentTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("fromLoanOfficerId") fromLoanOfficerId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun loanReassignmentTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("fromLoanOfficerId") fromLoanOfficerId: Long? = null
+    ): String
 
 }

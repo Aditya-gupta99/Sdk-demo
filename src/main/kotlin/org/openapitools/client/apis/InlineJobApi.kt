@@ -1,13 +1,10 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.InlineJobRequest
 import org.openapitools.client.models.InlineJobResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface InlineJobApi {
     /**
@@ -22,6 +19,9 @@ interface InlineJobApi {
      * @return [InlineJobResponse]
      */
     @POST("v1/jobs/{jobName}/inline")
-    suspend fun executeInlineJob(@Path("jobName") jobName: kotlin.String, @Body inlineJobRequest: InlineJobRequest? = null): Response<InlineJobResponse>
+    suspend fun executeInlineJob(
+        @Path("jobName") jobName: String,
+        @Body inlineJobRequest: InlineJobRequest? = null
+    ): InlineJobResponse
 
 }

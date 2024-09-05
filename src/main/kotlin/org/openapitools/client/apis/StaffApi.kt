@@ -1,18 +1,19 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.CreateStaffResponse
 import org.openapitools.client.models.PostStaffRequest
 import org.openapitools.client.models.PutStaffRequest
 import org.openapitools.client.models.RetrieveOneResponse
 import org.openapitools.client.models.UpdateStaffResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface StaffApi {
     /**
@@ -21,15 +22,15 @@ interface StaffApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postStaffRequest 
+     * @param postStaffRequest
      * @return [CreateStaffResponse]
      */
     @POST("v1/staff")
-    suspend fun create3(@Body postStaffRequest: PostStaffRequest): Response<CreateStaffResponse>
+    suspend fun create3(@Body postStaffRequest: PostStaffRequest): CreateStaffResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -38,11 +39,14 @@ interface StaffApi {
      * @return [Unit]
      */
     @GET("v1/staff/downloadtemplate")
-    suspend fun getTemplate1(@Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getTemplate1(
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -53,7 +57,11 @@ interface StaffApi {
      */
     @Multipart
     @POST("v1/staff/uploadtemplate")
-    suspend fun postTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * Retrieve Staff
@@ -65,10 +73,15 @@ interface StaffApi {
      * @param staffInOfficeHierarchy staffInOfficeHierarchy (optional, default to false)
      * @param loanOfficersOnly loanOfficersOnly (optional, default to false)
      * @param status status (optional, default to "active")
-     * @return [kotlin.collections.List<RetrieveOneResponse>]
+     * @return [kotlin.collections.List<RetrieveOneResponse]
      */
     @GET("v1/staff")
-    suspend fun retrieveAll16(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffInOfficeHierarchy") staffInOfficeHierarchy: kotlin.Boolean? = false, @Query("loanOfficersOnly") loanOfficersOnly: kotlin.Boolean? = false, @Query("status") status: kotlin.String? = "active"): Response<kotlin.collections.List<RetrieveOneResponse>>
+    suspend fun retrieveAll16(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffInOfficeHierarchy") staffInOfficeHierarchy: Boolean? = false,
+        @Query("loanOfficersOnly") loanOfficersOnly: Boolean? = false,
+        @Query("status") status: String? = "active"
+    ): List<RetrieveOneResponse>
 
     /**
      * Retrieve a Staff Member
@@ -80,7 +93,7 @@ interface StaffApi {
      * @return [RetrieveOneResponse]
      */
     @GET("v1/staff/{staffId}")
-    suspend fun retrieveOne8(@Path("staffId") staffId: kotlin.Long): Response<RetrieveOneResponse>
+    suspend fun retrieveOne8(@Path("staffId") staffId: Long): RetrieveOneResponse
 
     /**
      * Update a Staff Member
@@ -89,10 +102,13 @@ interface StaffApi {
      *  - 200: OK
      *
      * @param staffId staffId
-     * @param putStaffRequest 
+     * @param putStaffRequest
      * @return [UpdateStaffResponse]
      */
     @PUT("v1/staff/{staffId}")
-    suspend fun update7(@Path("staffId") staffId: kotlin.Long, @Body putStaffRequest: PutStaffRequest): Response<UpdateStaffResponse>
+    suspend fun update7(
+        @Path("staffId") staffId: Long,
+        @Body putStaffRequest: PutStaffRequest
+    ): UpdateStaffResponse
 
 }

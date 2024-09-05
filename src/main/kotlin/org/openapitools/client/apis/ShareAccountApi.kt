@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.GetAccountsTypeAccountIdResponse
 import org.openapitools.client.models.GetAccountsTypeResponse
 import org.openapitools.client.models.GetAccountsTypeTemplateResponse
@@ -15,8 +10,14 @@ import org.openapitools.client.models.PostAccountsTypeRequest
 import org.openapitools.client.models.PostAccountsTypeResponse
 import org.openapitools.client.models.PutAccountsTypeAccountIdRequest
 import org.openapitools.client.models.PutAccountsTypeAccountIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ShareAccountApi {
     /**
@@ -26,15 +27,18 @@ interface ShareAccountApi {
      *  - 200: OK
      *
      * @param type type
-     * @param postAccountsTypeRequest 
+     * @param postAccountsTypeRequest
      * @return [PostAccountsTypeResponse]
      */
     @POST("v1/accounts/{type}")
-    suspend fun createAccount(@Path("type") type: kotlin.String, @Body postAccountsTypeRequest: PostAccountsTypeRequest): Response<PostAccountsTypeResponse>
+    suspend fun createAccount(
+        @Path("type") type: String,
+        @Body postAccountsTypeRequest: PostAccountsTypeRequest
+    ): PostAccountsTypeResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -44,7 +48,11 @@ interface ShareAccountApi {
      * @return [Unit]
      */
     @GET("v1/accounts/{type}/downloadtemplate")
-    suspend fun getSharedAccountsTemplate(@Path("type") type: kotlin.String, @Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getSharedAccountsTemplate(
+        @Path("type") type: String,
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    )
 
     /**
      * Approve share application | Undo approval share application | Reject share application | Activate a share account | Close a share account | Apply additional shares on a share account | Approve additional shares request on a share account | Reject additional shares request on a share account | Redeem shares on a share account
@@ -54,16 +62,21 @@ interface ShareAccountApi {
      *
      * @param type type
      * @param accountId accountId
-     * @param postAccountsTypeAccountIdRequest 
+     * @param postAccountsTypeAccountIdRequest
      * @param command command (optional)
      * @return [PostAccountsTypeAccountIdResponse]
      */
     @POST("v1/accounts/{type}/{accountId}")
-    suspend fun handleCommands2(@Path("type") type: kotlin.String, @Path("accountId") accountId: kotlin.Long, @Body postAccountsTypeAccountIdRequest: PostAccountsTypeAccountIdRequest, @Query("command") command: kotlin.String? = null): Response<PostAccountsTypeAccountIdResponse>
+    suspend fun handleCommands2(
+        @Path("type") type: String,
+        @Path("accountId") accountId: Long,
+        @Body postAccountsTypeAccountIdRequest: PostAccountsTypeAccountIdRequest,
+        @Query("command") command: String? = null
+    ): PostAccountsTypeAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -75,7 +88,12 @@ interface ShareAccountApi {
      */
     @Multipart
     @POST("v1/accounts/{type}/uploadtemplate")
-    suspend fun postSharedAccountsTemplate(@Path("type") type: kotlin.String, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postSharedAccountsTemplate(
+        @Path("type") type: String,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * Retrieve a share application/account
@@ -88,7 +106,10 @@ interface ShareAccountApi {
      * @return [GetAccountsTypeAccountIdResponse]
      */
     @GET("v1/accounts/{type}/{accountId}")
-    suspend fun retrieveAccount(@Path("accountId") accountId: kotlin.Long, @Path("type") type: kotlin.String): Response<GetAccountsTypeAccountIdResponse>
+    suspend fun retrieveAccount(
+        @Path("accountId") accountId: Long,
+        @Path("type") type: String
+    ): GetAccountsTypeAccountIdResponse
 
     /**
      * List share applications/accounts
@@ -102,7 +123,11 @@ interface ShareAccountApi {
      * @return [GetAccountsTypeResponse]
      */
     @GET("v1/accounts/{type}")
-    suspend fun retrieveAllAccounts1(@Path("type") type: kotlin.String, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<GetAccountsTypeResponse>
+    suspend fun retrieveAllAccounts1(
+        @Path("type") type: String,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): GetAccountsTypeResponse
 
     /**
      * Retrieve Share Account Template
@@ -116,7 +141,11 @@ interface ShareAccountApi {
      * @return [GetAccountsTypeTemplateResponse]
      */
     @GET("v1/accounts/{type}/template")
-    suspend fun template7(@Path("type") type: kotlin.String, @Query("clientId") clientId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null): Response<GetAccountsTypeTemplateResponse>
+    suspend fun template7(
+        @Path("type") type: String,
+        @Query("clientId") clientId: Long? = null,
+        @Query("productId") productId: Long? = null
+    ): GetAccountsTypeTemplateResponse
 
     /**
      * Modify a share application
@@ -126,10 +155,14 @@ interface ShareAccountApi {
      *
      * @param type type
      * @param accountId accountId
-     * @param putAccountsTypeAccountIdRequest 
+     * @param putAccountsTypeAccountIdRequest
      * @return [PutAccountsTypeAccountIdResponse]
      */
     @PUT("v1/accounts/{type}/{accountId}")
-    suspend fun updateAccount(@Path("type") type: kotlin.String, @Path("accountId") accountId: kotlin.Long, @Body putAccountsTypeAccountIdRequest: PutAccountsTypeAccountIdRequest): Response<PutAccountsTypeAccountIdResponse>
+    suspend fun updateAccount(
+        @Path("type") type: String,
+        @Path("accountId") accountId: Long,
+        @Body putAccountsTypeAccountIdRequest: PutAccountsTypeAccountIdRequest
+    ): PutAccountsTypeAccountIdResponse
 
 }

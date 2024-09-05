@@ -15,67 +15,59 @@
 
 package org.openapitools.client.models
 
-import com.google.gson.annotations.SerializedName
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.RoleData
-
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 /**
  * PostAuthenticationResponse
  *
- * @param authenticated 
- * @param base64EncodedAuthenticationKey 
- * @param officeId 
- * @param officeName 
- * @param organisationalRole 
- * @param permissions 
- * @param roles 
- * @param staffDisplayName 
- * @param staffId 
- * @param userId 
- * @param username 
+ * @param authenticated
+ * @param base64EncodedAuthenticationKey
+ * @param officeId
+ * @param officeName
+ * @param organisationalRole
+ * @param permissions
+ * @param roles
+ * @param staffDisplayName
+ * @param staffId
+ * @param userId
+ * @param username
  */
 
 
-data class PostAuthenticationResponse (
+data class PostAuthenticationResponse(
 
-    @SerializedName("authenticated")
+    @Json(name = "authenticated")
     val authenticated: kotlin.Boolean? = null,
 
-    @SerializedName("base64EncodedAuthenticationKey")
+    @Json(name = "base64EncodedAuthenticationKey")
     val base64EncodedAuthenticationKey: kotlin.String? = null,
 
-    @SerializedName("officeId")
+    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @SerializedName("officeName")
+    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @SerializedName("organisationalRole")
+    @Json(name = "organisationalRole")
     val organisationalRole: EnumOptionData? = null,
 
-    @SerializedName("permissions")
+    @Json(name = "permissions")
     val permissions: kotlin.collections.List<kotlin.String>? = null,
 
-    @SerializedName("roles")
+    @Json(name = "roles")
     val roles: kotlin.collections.List<RoleData>? = null,
 
-    @SerializedName("staffDisplayName")
+    @Json(name = "staffDisplayName")
     val staffDisplayName: kotlin.String? = null,
 
-    @SerializedName("staffId")
+    @Json(name = "staffId")
     val staffId: kotlin.Long? = null,
 
-    @SerializedName("userId")
+    @Json(name = "userId")
     val userId: kotlin.Long? = null,
 
-    @SerializedName("username")
+    @Json(name = "username")
     val username: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -1,16 +1,15 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetTaxesComponentsResponse
 import org.openapitools.client.models.PostTaxesComponentsRequest
 import org.openapitools.client.models.PostTaxesComponentsResponse
 import org.openapitools.client.models.PutTaxesComponentsTaxComponentIdRequest
 import org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface TaxComponentsApi {
     /**
@@ -19,11 +18,11 @@ interface TaxComponentsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postTaxesComponentsRequest 
+     * @param postTaxesComponentsRequest
      * @return [PostTaxesComponentsResponse]
      */
     @POST("v1/taxes/component")
-    suspend fun createTaxCompoent(@Body postTaxesComponentsRequest: PostTaxesComponentsRequest): Response<PostTaxesComponentsResponse>
+    suspend fun createTaxCompoent(@Body postTaxesComponentsRequest: PostTaxesComponentsRequest): PostTaxesComponentsResponse
 
     /**
      * List Tax Components
@@ -31,10 +30,10 @@ interface TaxComponentsApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetTaxesComponentsResponse>]
+     * @return [kotlin.collections.List<GetTaxesComponentsResponse]
      */
     @GET("v1/taxes/component")
-    suspend fun retrieveAllTaxComponents(): Response<kotlin.collections.List<GetTaxesComponentsResponse>>
+    suspend fun retrieveAllTaxComponents(): List<GetTaxesComponentsResponse>
 
     /**
      * Retrieve Tax Component
@@ -46,18 +45,18 @@ interface TaxComponentsApi {
      * @return [GetTaxesComponentsResponse]
      */
     @GET("v1/taxes/component/{taxComponentId}")
-    suspend fun retrieveTaxComponent(@Path("taxComponentId") taxComponentId: kotlin.Long): Response<GetTaxesComponentsResponse>
+    suspend fun retrieveTaxComponent(@Path("taxComponentId") taxComponentId: Long): GetTaxesComponentsResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/taxes/component/template")
-    suspend fun retrieveTemplate21(): Response<kotlin.String>
+    suspend fun retrieveTemplate21(): String
 
     /**
      * Update Tax Component
@@ -66,10 +65,13 @@ interface TaxComponentsApi {
      *  - 200: OK
      *
      * @param taxComponentId taxComponentId
-     * @param putTaxesComponentsTaxComponentIdRequest 
+     * @param putTaxesComponentsTaxComponentIdRequest
      * @return [PutTaxesComponentsTaxComponentIdResponse]
      */
     @PUT("v1/taxes/component/{taxComponentId}")
-    suspend fun updateTaxCompoent(@Path("taxComponentId") taxComponentId: kotlin.Long, @Body putTaxesComponentsTaxComponentIdRequest: PutTaxesComponentsTaxComponentIdRequest): Response<PutTaxesComponentsTaxComponentIdResponse>
+    suspend fun updateTaxCompoent(
+        @Path("taxComponentId") taxComponentId: Long,
+        @Body putTaxesComponentsTaxComponentIdRequest: PutTaxesComponentsTaxComponentIdRequest
+    ): PutTaxesComponentsTaxComponentIdResponse
 
 }

@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteRolesRoleIdResponse
 import org.openapitools.client.models.GetRolesResponse
 import org.openapitools.client.models.GetRolesRoleIdPermissionsResponse
@@ -17,6 +11,13 @@ import org.openapitools.client.models.PutRolesRoleIdPermissionsRequest
 import org.openapitools.client.models.PutRolesRoleIdPermissionsResponse
 import org.openapitools.client.models.PutRolesRoleIdRequest
 import org.openapitools.client.models.PutRolesRoleIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RolesApi {
     /**
@@ -30,7 +31,10 @@ interface RolesApi {
      * @return [PostRolesRoleIdResponse]
      */
     @POST("v1/roles/{roleId}")
-    suspend fun actionsOnRoles(@Path("roleId") roleId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<PostRolesRoleIdResponse>
+    suspend fun actionsOnRoles(
+        @Path("roleId") roleId: Long,
+        @Query("command") command: String? = null
+    ): PostRolesRoleIdResponse
 
     /**
      * Create a New Role
@@ -38,11 +42,11 @@ interface RolesApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postRolesRequest 
+     * @param postRolesRequest
      * @return [PostRolesResponse]
      */
     @POST("v1/roles")
-    suspend fun createRole(@Body postRolesRequest: PostRolesRequest): Response<PostRolesResponse>
+    suspend fun createRole(@Body postRolesRequest: PostRolesRequest): PostRolesResponse
 
     /**
      * Delete a Role
@@ -54,7 +58,7 @@ interface RolesApi {
      * @return [DeleteRolesRoleIdResponse]
      */
     @DELETE("v1/roles/{roleId}")
-    suspend fun deleteRole(@Path("roleId") roleId: kotlin.Long): Response<DeleteRolesRoleIdResponse>
+    suspend fun deleteRole(@Path("roleId") roleId: Long): DeleteRolesRoleIdResponse
 
     /**
      * List Roles
@@ -62,10 +66,10 @@ interface RolesApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetRolesResponse>]
+     * @return [kotlin.collections.List<GetRolesResponse]
      */
     @GET("v1/roles")
-    suspend fun retrieveAllRoles(): Response<kotlin.collections.List<GetRolesResponse>>
+    suspend fun retrieveAllRoles(): List<GetRolesResponse>
 
     /**
      * Retrieve a Role
@@ -77,7 +81,7 @@ interface RolesApi {
      * @return [GetRolesRoleIdResponse]
      */
     @GET("v1/roles/{roleId}")
-    suspend fun retrieveRole(@Path("roleId") roleId: kotlin.Long): Response<GetRolesRoleIdResponse>
+    suspend fun retrieveRole(@Path("roleId") roleId: Long): GetRolesRoleIdResponse
 
     /**
      * Retrieve a Role&#39;s Permissions
@@ -89,32 +93,38 @@ interface RolesApi {
      * @return [GetRolesRoleIdPermissionsResponse]
      */
     @GET("v1/roles/{roleId}/permissions")
-    suspend fun retrieveRolePermissions(@Path("roleId") roleId: kotlin.Long): Response<GetRolesRoleIdPermissionsResponse>
+    suspend fun retrieveRolePermissions(@Path("roleId") roleId: Long): GetRolesRoleIdPermissionsResponse
 
     /**
      * Update a Role
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param roleId roleId
-     * @param putRolesRoleIdRequest 
+     * @param putRolesRoleIdRequest
      * @return [PutRolesRoleIdResponse]
      */
     @PUT("v1/roles/{roleId}")
-    suspend fun updateRole(@Path("roleId") roleId: kotlin.Long, @Body putRolesRoleIdRequest: PutRolesRoleIdRequest): Response<PutRolesRoleIdResponse>
+    suspend fun updateRole(
+        @Path("roleId") roleId: Long,
+        @Body putRolesRoleIdRequest: PutRolesRoleIdRequest
+    ): PutRolesRoleIdResponse
 
     /**
      * Update a Role&#39;s Permissions
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param roleId roleId
-     * @param putRolesRoleIdPermissionsRequest 
+     * @param putRolesRoleIdPermissionsRequest
      * @return [PutRolesRoleIdPermissionsResponse]
      */
     @PUT("v1/roles/{roleId}/permissions")
-    suspend fun updateRolePermissions(@Path("roleId") roleId: kotlin.Long, @Body putRolesRoleIdPermissionsRequest: PutRolesRoleIdPermissionsRequest): Response<PutRolesRoleIdPermissionsResponse>
+    suspend fun updateRolePermissions(
+        @Path("roleId") roleId: Long,
+        @Body putRolesRoleIdPermissionsRequest: PutRolesRoleIdPermissionsRequest
+    ): PutRolesRoleIdPermissionsResponse
 
 }

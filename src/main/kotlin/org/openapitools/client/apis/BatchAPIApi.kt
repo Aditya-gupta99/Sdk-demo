@@ -1,13 +1,10 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.BatchRequest
 import org.openapitools.client.models.BatchResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface BatchAPIApi {
     /**
@@ -16,11 +13,14 @@ interface BatchAPIApi {
      * Responses:
      *  - 200: Success
      *
-     * @param batchRequest 
+     * @param batchRequest
      * @param enclosingTransaction enclosingTransaction (optional, default to false)
      * @return [kotlin.collections.List<BatchResponse>]
      */
     @POST("v1/batches")
-    suspend fun handleBatchRequests(@Body batchRequest: kotlin.collections.List<BatchRequest>, @Query("enclosingTransaction") enclosingTransaction: kotlin.Boolean? = false): Response<kotlin.collections.List<BatchResponse>>
+    suspend fun handleBatchRequests(
+        @Body batchRequest: List<BatchRequest>,
+        @Query("enclosingTransaction") enclosingTransaction: Boolean? = false
+    ): List<BatchResponse>
 
 }

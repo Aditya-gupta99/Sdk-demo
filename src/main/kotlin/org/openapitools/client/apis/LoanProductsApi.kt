@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetLoanProductsProductIdResponse
 import org.openapitools.client.models.GetLoanProductsResponse
 import org.openapitools.client.models.GetLoanProductsTemplateResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostLoanProductsRequest
 import org.openapitools.client.models.PostLoanProductsResponse
 import org.openapitools.client.models.PutLoanProductsProductIdRequest
 import org.openapitools.client.models.PutLoanProductsProductIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface LoanProductsApi {
     /**
@@ -21,11 +21,11 @@ interface LoanProductsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postLoanProductsRequest 
+     * @param postLoanProductsRequest
      * @return [PostLoanProductsResponse]
      */
     @POST("v1/loanproducts")
-    suspend fun createLoanProduct(@Body postLoanProductsRequest: PostLoanProductsRequest): Response<PostLoanProductsResponse>
+    suspend fun createLoanProduct(@Body postLoanProductsRequest: PostLoanProductsRequest): PostLoanProductsResponse
 
     /**
      * List Loan Products
@@ -33,10 +33,10 @@ interface LoanProductsApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetLoanProductsResponse>]
+     * @return [kotlin.collections.List<GetLoanProductsResponse]
      */
     @GET("v1/loanproducts")
-    suspend fun retrieveAllLoanProducts(): Response<kotlin.collections.List<GetLoanProductsResponse>>
+    suspend fun retrieveAllLoanProducts(): List<GetLoanProductsResponse>
 
     /**
      * Retrieve a Loan Product
@@ -48,7 +48,7 @@ interface LoanProductsApi {
      * @return [GetLoanProductsProductIdResponse]
      */
     @GET("v1/loanproducts/{productId}")
-    suspend fun retrieveLoanProductDetails(@Path("productId") productId: kotlin.Long): Response<GetLoanProductsProductIdResponse>
+    suspend fun retrieveLoanProductDetails(@Path("productId") productId: Long): GetLoanProductsProductIdResponse
 
     /**
      * Retrieve a Loan Product
@@ -60,7 +60,7 @@ interface LoanProductsApi {
      * @return [GetLoanProductsProductIdResponse]
      */
     @GET("v1/loanproducts/external-id/{externalProductId}")
-    suspend fun retrieveLoanProductDetails1(@Path("externalProductId") externalProductId: kotlin.String): Response<GetLoanProductsProductIdResponse>
+    suspend fun retrieveLoanProductDetails1(@Path("externalProductId") externalProductId: String): GetLoanProductsProductIdResponse
 
     /**
      * Retrieve Loan Product Details Template
@@ -72,7 +72,7 @@ interface LoanProductsApi {
      * @return [GetLoanProductsTemplateResponse]
      */
     @GET("v1/loanproducts/template")
-    suspend fun retrieveTemplate11(@Query("isProductMixTemplate") isProductMixTemplate: kotlin.Boolean? = null): Response<GetLoanProductsTemplateResponse>
+    suspend fun retrieveTemplate11(@Query("isProductMixTemplate") isProductMixTemplate: Boolean? = null): GetLoanProductsTemplateResponse
 
     /**
      * Update a Loan Product
@@ -81,11 +81,14 @@ interface LoanProductsApi {
      *  - 200: OK
      *
      * @param productId productId
-     * @param putLoanProductsProductIdRequest 
+     * @param putLoanProductsProductIdRequest
      * @return [PutLoanProductsProductIdResponse]
      */
     @PUT("v1/loanproducts/{productId}")
-    suspend fun updateLoanProduct(@Path("productId") productId: kotlin.Long, @Body putLoanProductsProductIdRequest: PutLoanProductsProductIdRequest): Response<PutLoanProductsProductIdResponse>
+    suspend fun updateLoanProduct(
+        @Path("productId") productId: Long,
+        @Body putLoanProductsProductIdRequest: PutLoanProductsProductIdRequest
+    ): PutLoanProductsProductIdResponse
 
     /**
      * Update a Loan Product
@@ -94,10 +97,13 @@ interface LoanProductsApi {
      *  - 200: OK
      *
      * @param externalProductId externalProductId
-     * @param putLoanProductsProductIdRequest 
+     * @param putLoanProductsProductIdRequest
      * @return [PutLoanProductsProductIdResponse]
      */
     @PUT("v1/loanproducts/external-id/{externalProductId}")
-    suspend fun updateLoanProduct1(@Path("externalProductId") externalProductId: kotlin.String, @Body putLoanProductsProductIdRequest: PutLoanProductsProductIdRequest): Response<PutLoanProductsProductIdResponse>
+    suspend fun updateLoanProduct1(
+        @Path("externalProductId") externalProductId: String,
+        @Body putLoanProductsProductIdRequest: PutLoanProductsProductIdRequest
+    ): PutLoanProductsProductIdResponse
 
 }

@@ -1,17 +1,17 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteCodesResponse
 import org.openapitools.client.models.GetCodesResponse
 import org.openapitools.client.models.PostCodesRequest
 import org.openapitools.client.models.PostCodesResponse
 import org.openapitools.client.models.PutCodesRequest
 import org.openapitools.client.models.PutCodesResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface CodesApi {
     /**
@@ -20,11 +20,11 @@ interface CodesApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postCodesRequest 
+     * @param postCodesRequest
      * @return [PostCodesResponse]
      */
     @POST("v1/codes")
-    suspend fun createCode(@Body postCodesRequest: PostCodesRequest): Response<PostCodesResponse>
+    suspend fun createCode(@Body postCodesRequest: PostCodesRequest): PostCodesResponse
 
     /**
      * Delete a Code
@@ -36,7 +36,7 @@ interface CodesApi {
      * @return [DeleteCodesResponse]
      */
     @DELETE("v1/codes/{codeId}")
-    suspend fun deleteCode(@Path("codeId") codeId: kotlin.Long): Response<DeleteCodesResponse>
+    suspend fun deleteCode(@Path("codeId") codeId: Long): DeleteCodesResponse
 
     /**
      * Retrieve a Code
@@ -48,7 +48,7 @@ interface CodesApi {
      * @return [GetCodesResponse]
      */
     @GET("v1/codes/{codeId}")
-    suspend fun retrieveCode(@Path("codeId") codeId: kotlin.Long): Response<GetCodesResponse>
+    suspend fun retrieveCode(@Path("codeId") codeId: Long): GetCodesResponse
 
     /**
      * Retrieve Codes
@@ -59,7 +59,7 @@ interface CodesApi {
      * @return [kotlin.collections.List<GetCodesResponse>]
      */
     @GET("v1/codes")
-    suspend fun retrieveCodes(): Response<kotlin.collections.List<GetCodesResponse>>
+    suspend fun retrieveCodes(): List<GetCodesResponse>
 
     /**
      * Update a Code
@@ -68,10 +68,13 @@ interface CodesApi {
      *  - 200: OK
      *
      * @param codeId codeId
-     * @param putCodesRequest 
+     * @param putCodesRequest
      * @return [PutCodesResponse]
      */
     @PUT("v1/codes/{codeId}")
-    suspend fun updateCode(@Path("codeId") codeId: kotlin.Long, @Body putCodesRequest: PutCodesRequest): Response<PutCodesResponse>
+    suspend fun updateCode(
+        @Path("codeId") codeId: Long,
+        @Body putCodesRequest: PutCodesRequest
+    ): PutCodesResponse
 
 }

@@ -1,17 +1,18 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteGlClosuresResponse
 import org.openapitools.client.models.GetGlClosureResponse
 import org.openapitools.client.models.PostGlClosuresRequest
 import org.openapitools.client.models.PostGlClosuresResponse
 import org.openapitools.client.models.PutGlClosuresRequest
 import org.openapitools.client.models.PutGlClosuresResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AccountingClosureApi {
     /**
@@ -20,11 +21,11 @@ interface AccountingClosureApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postGlClosuresRequest 
+     * @param postGlClosuresRequest
      * @return [PostGlClosuresResponse]
      */
     @POST("v1/glclosures")
-    suspend fun createGLClosure(@Body postGlClosuresRequest: PostGlClosuresRequest): Response<PostGlClosuresResponse>
+    suspend fun createGLClosure(@Body postGlClosuresRequest: PostGlClosuresRequest): PostGlClosuresResponse
 
     /**
      * Delete an accounting closure
@@ -36,7 +37,7 @@ interface AccountingClosureApi {
      * @return [DeleteGlClosuresResponse]
      */
     @DELETE("v1/glclosures/{glClosureId}")
-    suspend fun deleteGLClosure(@Path("glClosureId") glClosureId: kotlin.Long): Response<DeleteGlClosuresResponse>
+    suspend fun deleteGLClosure(@Path("glClosureId") glClosureId: Long): DeleteGlClosuresResponse
 
     /**
      * Retrieve an Accounting Closure
@@ -48,7 +49,7 @@ interface AccountingClosureApi {
      * @return [GetGlClosureResponse]
      */
     @GET("v1/glclosures/{glClosureId}")
-    suspend fun retreiveClosure(@Path("glClosureId") glClosureId: kotlin.Long): Response<GetGlClosureResponse>
+    suspend fun retreiveClosure(@Path("glClosureId") glClosureId: Long): GetGlClosureResponse
 
     /**
      * List Accounting closures
@@ -60,7 +61,7 @@ interface AccountingClosureApi {
      * @return [kotlin.collections.List<GetGlClosureResponse>]
      */
     @GET("v1/glclosures")
-    suspend fun retrieveAllClosures(@Query("officeId") officeId: kotlin.Long? = null): Response<kotlin.collections.List<GetGlClosureResponse>>
+    suspend fun retrieveAllClosures(@Query("officeId") officeId: Long? = null): List<GetGlClosureResponse>
 
     /**
      * Update an Accounting closure
@@ -73,6 +74,9 @@ interface AccountingClosureApi {
      * @return [PutGlClosuresResponse]
      */
     @PUT("v1/glclosures/{glClosureId}")
-    suspend fun updateGLClosure(@Path("glClosureId") glClosureId: kotlin.Long, @Body putGlClosuresRequest: PutGlClosuresRequest? = null): Response<PutGlClosuresResponse>
+    suspend fun updateGLClosure(
+        @Path("glClosureId") glClosureId: Long,
+        @Body putGlClosuresRequest: PutGlClosuresRequest? = null
+    ): PutGlClosuresResponse
 
 }

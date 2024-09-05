@@ -1,17 +1,17 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteInterestRateChartsChartIdChartSlabsResponse
 import org.openapitools.client.models.GetInterestRateChartsChartIdChartSlabsResponse
 import org.openapitools.client.models.PostInterestRateChartsChartIdChartSlabsRequest
 import org.openapitools.client.models.PostInterestRateChartsChartIdChartSlabsResponse
 import org.openapitools.client.models.PutInterestRateChartsChartIdChartSlabsChartSlabIdRequest
 import org.openapitools.client.models.PutInterestRateChartsChartIdChartSlabsChartSlabIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface InterestRateSlabAKAInterestBandsApi {
     /**
@@ -21,11 +21,14 @@ interface InterestRateSlabAKAInterestBandsApi {
      *  - 200: OK
      *
      * @param chartId chartId
-     * @param postInterestRateChartsChartIdChartSlabsRequest 
+     * @param postInterestRateChartsChartIdChartSlabsRequest
      * @return [PostInterestRateChartsChartIdChartSlabsResponse]
      */
     @POST("v1/interestratecharts/{chartId}/chartslabs")
-    suspend fun create9(@Path("chartId") chartId: kotlin.Long, @Body postInterestRateChartsChartIdChartSlabsRequest: PostInterestRateChartsChartIdChartSlabsRequest): Response<PostInterestRateChartsChartIdChartSlabsResponse>
+    suspend fun create9(
+        @Path("chartId") chartId: Long,
+        @Body postInterestRateChartsChartIdChartSlabsRequest: PostInterestRateChartsChartIdChartSlabsRequest
+    ): PostInterestRateChartsChartIdChartSlabsResponse
 
     /**
      * Delete a Slab
@@ -38,7 +41,10 @@ interface InterestRateSlabAKAInterestBandsApi {
      * @return [DeleteInterestRateChartsChartIdChartSlabsResponse]
      */
     @DELETE("v1/interestratecharts/{chartId}/chartslabs/{chartSlabId}")
-    suspend fun delete13(@Path("chartId") chartId: kotlin.Long, @Path("chartSlabId") chartSlabId: kotlin.Long): Response<DeleteInterestRateChartsChartIdChartSlabsResponse>
+    suspend fun delete13(
+        @Path("chartId") chartId: Long,
+        @Path("chartSlabId") chartSlabId: Long
+    ): DeleteInterestRateChartsChartIdChartSlabsResponse
 
     /**
      * Retrieve all Slabs
@@ -47,14 +53,14 @@ interface InterestRateSlabAKAInterestBandsApi {
      *  - 200: OK
      *
      * @param chartId chartId
-     * @return [kotlin.collections.List<GetInterestRateChartsChartIdChartSlabsResponse>]
+     * @return [kotlin.collections.List<GetInterestRateChartsChartIdChartSlabsResponse]
      */
     @GET("v1/interestratecharts/{chartId}/chartslabs")
-    suspend fun retrieveAll25(@Path("chartId") chartId: kotlin.Long): Response<kotlin.collections.List<GetInterestRateChartsChartIdChartSlabsResponse>>
+    suspend fun retrieveAll25(@Path("chartId") chartId: Long): List<GetInterestRateChartsChartIdChartSlabsResponse>
 
     /**
      * Retrieve a Slab
-     * Retrieve a slab associated with an Interest rate chart  Example Requests:  interestratecharts/1/chartslabs/1 
+     * Retrieve a slab associated with an Interest rate chart  Example Requests:  interestratecharts/1/chartslabs/1
      * Responses:
      *  - 200: OK
      *
@@ -63,11 +69,14 @@ interface InterestRateSlabAKAInterestBandsApi {
      * @return [GetInterestRateChartsChartIdChartSlabsResponse]
      */
     @GET("v1/interestratecharts/{chartId}/chartslabs/{chartSlabId}")
-    suspend fun retrieveOne16(@Path("chartId") chartId: kotlin.Long, @Path("chartSlabId") chartSlabId: kotlin.Long): Response<GetInterestRateChartsChartIdChartSlabsResponse>
+    suspend fun retrieveOne16(
+        @Path("chartId") chartId: Long,
+        @Path("chartSlabId") chartSlabId: Long
+    ): GetInterestRateChartsChartIdChartSlabsResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -75,7 +84,7 @@ interface InterestRateSlabAKAInterestBandsApi {
      * @return [kotlin.String]
      */
     @GET("v1/interestratecharts/{chartId}/chartslabs/template")
-    suspend fun template8(@Path("chartId") chartId: kotlin.Long): Response<kotlin.String>
+    suspend fun template8(@Path("chartId") chartId: Long): String
 
     /**
      * Update a Slab
@@ -85,10 +94,14 @@ interface InterestRateSlabAKAInterestBandsApi {
      *
      * @param chartId chartId
      * @param chartSlabId chartSlabId
-     * @param putInterestRateChartsChartIdChartSlabsChartSlabIdRequest 
+     * @param putInterestRateChartsChartIdChartSlabsChartSlabIdRequest
      * @return [PutInterestRateChartsChartIdChartSlabsChartSlabIdResponse]
      */
     @PUT("v1/interestratecharts/{chartId}/chartslabs/{chartSlabId}")
-    suspend fun update14(@Path("chartId") chartId: kotlin.Long, @Path("chartSlabId") chartSlabId: kotlin.Long, @Body putInterestRateChartsChartIdChartSlabsChartSlabIdRequest: PutInterestRateChartsChartIdChartSlabsChartSlabIdRequest): Response<PutInterestRateChartsChartIdChartSlabsChartSlabIdResponse>
+    suspend fun update14(
+        @Path("chartId") chartId: Long,
+        @Path("chartSlabId") chartSlabId: Long,
+        @Body putInterestRateChartsChartIdChartSlabsChartSlabIdRequest: PutInterestRateChartsChartIdChartSlabsChartSlabIdRequest
+    ): PutInterestRateChartsChartIdChartSlabsChartSlabIdResponse
 
 }

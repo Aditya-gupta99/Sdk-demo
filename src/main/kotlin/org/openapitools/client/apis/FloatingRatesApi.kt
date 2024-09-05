@@ -1,17 +1,16 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetFloatingRatesFloatingRateIdResponse
 import org.openapitools.client.models.GetFloatingRatesResponse
 import org.openapitools.client.models.PostFloatingRatesRequest
 import org.openapitools.client.models.PostFloatingRatesResponse
 import org.openapitools.client.models.PutFloatingRatesFloatingRateIdRequest
 import org.openapitools.client.models.PutFloatingRatesFloatingRateIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface FloatingRatesApi {
     /**
@@ -20,11 +19,11 @@ interface FloatingRatesApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postFloatingRatesRequest 
+     * @param postFloatingRatesRequest
      * @return [PostFloatingRatesResponse]
      */
     @POST("v1/floatingrates")
-    suspend fun createFloatingRate(@Body postFloatingRatesRequest: PostFloatingRatesRequest): Response<PostFloatingRatesResponse>
+    suspend fun createFloatingRate(@Body postFloatingRatesRequest: PostFloatingRatesRequest): PostFloatingRatesResponse
 
     /**
      * List Floating Rates
@@ -32,10 +31,10 @@ interface FloatingRatesApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetFloatingRatesResponse>]
+     * @return [kotlin.collections.List<GetFloatingRatesResponse]
      */
     @GET("v1/floatingrates")
-    suspend fun retrieveAll22(): Response<kotlin.collections.List<GetFloatingRatesResponse>>
+    suspend fun retrieveAll22(): List<GetFloatingRatesResponse>
 
     /**
      * Retrieve Floating Rate
@@ -47,7 +46,7 @@ interface FloatingRatesApi {
      * @return [GetFloatingRatesFloatingRateIdResponse]
      */
     @GET("v1/floatingrates/{floatingRateId}")
-    suspend fun retrieveOne13(@Path("floatingRateId") floatingRateId: kotlin.Long): Response<GetFloatingRatesFloatingRateIdResponse>
+    suspend fun retrieveOne13(@Path("floatingRateId") floatingRateId: Long): GetFloatingRatesFloatingRateIdResponse
 
     /**
      * Update Floating Rate
@@ -56,10 +55,13 @@ interface FloatingRatesApi {
      *  - 200: OK
      *
      * @param floatingRateId floatingRateId
-     * @param putFloatingRatesFloatingRateIdRequest 
+     * @param putFloatingRatesFloatingRateIdRequest
      * @return [PutFloatingRatesFloatingRateIdResponse]
      */
     @PUT("v1/floatingrates/{floatingRateId}")
-    suspend fun updateFloatingRate(@Path("floatingRateId") floatingRateId: kotlin.Long, @Body putFloatingRatesFloatingRateIdRequest: PutFloatingRatesFloatingRateIdRequest): Response<PutFloatingRatesFloatingRateIdResponse>
+    suspend fun updateFloatingRate(
+        @Path("floatingRateId") floatingRateId: Long,
+        @Body putFloatingRatesFloatingRateIdRequest: PutFloatingRatesFloatingRateIdRequest
+    ): PutFloatingRatesFloatingRateIdResponse
 
 }

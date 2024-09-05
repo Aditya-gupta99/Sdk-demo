@@ -1,12 +1,8 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetStandingInstructionRunHistoryResponse
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface StandingInstructionsHistoryApi {
     /**
@@ -32,6 +28,21 @@ interface StandingInstructionsHistoryApi {
      * @return [GetStandingInstructionRunHistoryResponse]
      */
     @GET("v1/standinginstructionrunhistory")
-    suspend fun retrieveAll20(@Query("externalId") externalId: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("transferType") transferType: kotlin.Int? = null, @Query("clientName") clientName: kotlin.String? = null, @Query("clientId") clientId: kotlin.Long? = null, @Query("fromAccountId") fromAccountId: kotlin.Long? = null, @Query("fromAccountType") fromAccountType: kotlin.Int? = null, @Query("locale") locale: kotlin.String? = null, @Query("dateFormat") dateFormat: kotlin.String? = null, @Query("fromDate") fromDate: kotlin.Any? = null, @Query("toDate") toDate: kotlin.Any? = null): Response<GetStandingInstructionRunHistoryResponse>
+    suspend fun retrieveAll20(
+        @Query("externalId") externalId: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("transferType") transferType: Int? = null,
+        @Query("clientName") clientName: String? = null,
+        @Query("clientId") clientId: Long? = null,
+        @Query("fromAccountId") fromAccountId: Long? = null,
+        @Query("fromAccountType") fromAccountType: Int? = null,
+        @Query("locale") locale: String? = null,
+        @Query("dateFormat") dateFormat: String? = null,
+        @Query("fromDate") fromDate: Any? = null,
+        @Query("toDate") toDate: Any? = null
+    ): GetStandingInstructionRunHistoryResponse
 
 }

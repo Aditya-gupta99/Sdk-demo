@@ -1,27 +1,26 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 
 interface TwoFactorApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/twofactor")
-    suspend fun getOTPDeliveryMethods(): Response<kotlin.String>
+    suspend fun getOTPDeliveryMethods(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -30,11 +29,14 @@ interface TwoFactorApi {
      * @return [kotlin.String]
      */
     @POST("v1/twofactor")
-    suspend fun requestToken(@Query("deliveryMethod") deliveryMethod: kotlin.String? = null, @Query("extendedToken") extendedToken: kotlin.Boolean? = false): Response<kotlin.String>
+    suspend fun requestToken(
+        @Query("deliveryMethod") deliveryMethod: String? = null,
+        @Query("extendedToken") extendedToken: Boolean? = false
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -42,11 +44,11 @@ interface TwoFactorApi {
      * @return [kotlin.String]
      */
     @POST("v1/twofactor/invalidate")
-    suspend fun updateConfiguration2(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun updateConfiguration2(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -54,6 +56,6 @@ interface TwoFactorApi {
      * @return [kotlin.String]
      */
     @POST("v1/twofactor/validate")
-    suspend fun validate(@Query("token") token: kotlin.String? = null): Response<kotlin.String>
+    suspend fun validate(@Query("token") token: String? = null): String
 
 }

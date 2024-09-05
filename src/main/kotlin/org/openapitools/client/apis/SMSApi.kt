@@ -1,16 +1,18 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface SMSApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -18,38 +20,38 @@ interface SMSApi {
      * @return [kotlin.String]
      */
     @POST("v1/sms")
-    suspend fun create2(@Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun create2(@Body body: String? = null): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @DELETE("v1/sms/{resourceId}")
-    suspend fun delete6(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun delete6(@Path("resourceId") resourceId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/sms")
-    suspend fun retrieveAll10(): Response<kotlin.String>
+    suspend fun retrieveAll10(): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param campaignId 
+     * @param campaignId
      * @param status  (optional)
      * @param fromDate  (optional)
      * @param toDate  (optional)
@@ -62,31 +64,45 @@ interface SMSApi {
      * @return [kotlin.String]
      */
     @GET("v1/sms/{campaignId}/messageByStatus")
-    suspend fun retrieveAllSmsByStatus(@Path("campaignId") campaignId: kotlin.Long, @Query("status") status: kotlin.Long? = null, @Query("fromDate") fromDate: kotlin.Any? = null, @Query("toDate") toDate: kotlin.Any? = null, @Query("locale") locale: kotlin.String? = null, @Query("dateFormat") dateFormat: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveAllSmsByStatus(
+        @Path("campaignId") campaignId: Long,
+        @Query("status") status: Long? = null,
+        @Query("fromDate") fromDate: Any? = null,
+        @Query("toDate") toDate: Any? = null,
+        @Query("locale") locale: String? = null,
+        @Query("dateFormat") dateFormat: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @return [kotlin.String]
      */
     @GET("v1/sms/{resourceId}")
-    suspend fun retrieveOne6(@Path("resourceId") resourceId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveOne6(@Path("resourceId") resourceId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param resourceId 
+     * @param resourceId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/sms/{resourceId}")
-    suspend fun update3(@Path("resourceId") resourceId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun update3(
+        @Path("resourceId") resourceId: Long,
+        @Body body: String? = null
+    ): String
 
 }

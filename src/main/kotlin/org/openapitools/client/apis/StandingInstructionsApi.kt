@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetStandingInstructionsResponse
 import org.openapitools.client.models.GetStandingInstructionsStandingInstructionIdResponse
 import org.openapitools.client.models.GetStandingInstructionsTemplateResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostStandingInstructionsRequest
 import org.openapitools.client.models.PostStandingInstructionsResponse
 import org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdRequest
 import org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface StandingInstructionsApi {
     /**
@@ -21,11 +21,11 @@ interface StandingInstructionsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postStandingInstructionsRequest 
+     * @param postStandingInstructionsRequest
      * @return [PostStandingInstructionsResponse]
      */
     @POST("v1/standinginstructions")
-    suspend fun create5(@Body postStandingInstructionsRequest: PostStandingInstructionsRequest): Response<PostStandingInstructionsResponse>
+    suspend fun create5(@Body postStandingInstructionsRequest: PostStandingInstructionsRequest): PostStandingInstructionsResponse
 
     /**
      * List Standing Instructions
@@ -46,7 +46,18 @@ interface StandingInstructionsApi {
      * @return [GetStandingInstructionsResponse]
      */
     @GET("v1/standinginstructions")
-    suspend fun retrieveAll19(@Query("externalId") externalId: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("transferType") transferType: kotlin.Int? = null, @Query("clientName") clientName: kotlin.String? = null, @Query("clientId") clientId: kotlin.Long? = null, @Query("fromAccountId") fromAccountId: kotlin.Long? = null, @Query("fromAccountType") fromAccountType: kotlin.Int? = null): Response<GetStandingInstructionsResponse>
+    suspend fun retrieveAll19(
+        @Query("externalId") externalId: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("transferType") transferType: Int? = null,
+        @Query("clientName") clientName: String? = null,
+        @Query("clientId") clientId: Long? = null,
+        @Query("fromAccountId") fromAccountId: Long? = null,
+        @Query("fromAccountType") fromAccountType: Int? = null
+    ): GetStandingInstructionsResponse
 
     /**
      * Retrieve Standing Instruction
@@ -63,7 +74,14 @@ interface StandingInstructionsApi {
      * @return [GetStandingInstructionsStandingInstructionIdResponse]
      */
     @GET("v1/standinginstructions/{standingInstructionId}")
-    suspend fun retrieveOne10(@Path("standingInstructionId") standingInstructionId: kotlin.Long, @Query("externalId") externalId: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<GetStandingInstructionsStandingInstructionIdResponse>
+    suspend fun retrieveOne10(
+        @Path("standingInstructionId") standingInstructionId: Long,
+        @Query("externalId") externalId: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): GetStandingInstructionsStandingInstructionIdResponse
 
     /**
      * Retrieve Standing Instruction Template
@@ -83,7 +101,17 @@ interface StandingInstructionsApi {
      * @return [GetStandingInstructionsTemplateResponse]
      */
     @GET("v1/standinginstructions/template")
-    suspend fun template6(@Query("fromOfficeId") fromOfficeId: kotlin.Long? = null, @Query("fromClientId") fromClientId: kotlin.Long? = null, @Query("fromAccountId") fromAccountId: kotlin.Long? = null, @Query("fromAccountType") fromAccountType: kotlin.Int? = null, @Query("toOfficeId") toOfficeId: kotlin.Long? = null, @Query("toClientId") toClientId: kotlin.Long? = null, @Query("toAccountId") toAccountId: kotlin.Long? = null, @Query("toAccountType") toAccountType: kotlin.Int? = null, @Query("transferType") transferType: kotlin.Int? = null): Response<GetStandingInstructionsTemplateResponse>
+    suspend fun template6(
+        @Query("fromOfficeId") fromOfficeId: Long? = null,
+        @Query("fromClientId") fromClientId: Long? = null,
+        @Query("fromAccountId") fromAccountId: Long? = null,
+        @Query("fromAccountType") fromAccountType: Int? = null,
+        @Query("toOfficeId") toOfficeId: Long? = null,
+        @Query("toClientId") toClientId: Long? = null,
+        @Query("toAccountId") toAccountId: Long? = null,
+        @Query("toAccountType") toAccountType: Int? = null,
+        @Query("transferType") transferType: Int? = null
+    ): GetStandingInstructionsTemplateResponse
 
     /**
      * Update Standing Instruction | Delete Standing Instruction
@@ -97,6 +125,10 @@ interface StandingInstructionsApi {
      * @return [PutStandingInstructionsStandingInstructionIdResponse]
      */
     @PUT("v1/standinginstructions/{standingInstructionId}")
-    suspend fun update9(@Path("standingInstructionId") standingInstructionId: kotlin.Long, @Query("command") command: kotlin.String? = null, @Body putStandingInstructionsStandingInstructionIdRequest: PutStandingInstructionsStandingInstructionIdRequest? = null): Response<PutStandingInstructionsStandingInstructionIdResponse>
+    suspend fun update9(
+        @Path("standingInstructionId") standingInstructionId: Long,
+        @Query("command") command: String? = null,
+        @Body putStandingInstructionsStandingInstructionIdRequest: PutStandingInstructionsStandingInstructionIdRequest? = null
+    ): PutStandingInstructionsStandingInstructionIdResponse
 
 }

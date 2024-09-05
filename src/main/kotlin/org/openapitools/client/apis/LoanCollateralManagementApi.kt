@@ -1,10 +1,8 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 interface LoanCollateralManagementApi {
@@ -19,7 +17,10 @@ interface LoanCollateralManagementApi {
      * @return [kotlin.String]
      */
     @DELETE("v1/loan-collateral-management/{id}")
-    suspend fun deleteLoanCollateral(@Path("loanId") loanId: kotlin.Long, @Path("id") id: kotlin.Long): Response<kotlin.String>
+    suspend fun deleteLoanCollateral(
+        @Path("loanId") loanId: Long,
+        @Path("id") id: Long
+    ): String
 
     /**
      * Get Loan Collateral Details
@@ -31,6 +32,6 @@ interface LoanCollateralManagementApi {
      * @return [kotlin.String]
      */
     @GET("v1/loan-collateral-management/{collateralId}")
-    suspend fun getLoanCollateral(@Path("collateralId") collateralId: kotlin.Long): Response<kotlin.String>
+    suspend fun getLoanCollateral(@Path("collateralId") collateralId: Long): String
 
 }

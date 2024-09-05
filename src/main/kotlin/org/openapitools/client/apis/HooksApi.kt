@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteHookResponse
 import org.openapitools.client.models.GetHookResponse
 import org.openapitools.client.models.GetHookTemplateResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostHookRequest
 import org.openapitools.client.models.PostHookResponse
 import org.openapitools.client.models.PutHookRequest
 import org.openapitools.client.models.PutHookResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface HooksApi {
     /**
@@ -21,11 +21,11 @@ interface HooksApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postHookRequest 
+     * @param postHookRequest
      * @return [PostHookResponse]
      */
     @POST("v1/hooks")
-    suspend fun createHook(@Body postHookRequest: PostHookRequest): Response<PostHookResponse>
+    suspend fun createHook(@Body postHookRequest: PostHookRequest): PostHookResponse
 
     /**
      * Delete a Hook
@@ -37,7 +37,7 @@ interface HooksApi {
      * @return [DeleteHookResponse]
      */
     @DELETE("v1/hooks/{hookId}")
-    suspend fun deleteHook(@Path("hookId") hookId: kotlin.Long): Response<DeleteHookResponse>
+    suspend fun deleteHook(@Path("hookId") hookId: Long): DeleteHookResponse
 
     /**
      * Retrieve a Hook
@@ -49,7 +49,7 @@ interface HooksApi {
      * @return [GetHookResponse]
      */
     @GET("v1/hooks/{hookId}")
-    suspend fun retrieveHook(@Path("hookId") hookId: kotlin.Long): Response<GetHookResponse>
+    suspend fun retrieveHook(@Path("hookId") hookId: Long): GetHookResponse
 
     /**
      * Retrieve Hooks
@@ -57,10 +57,10 @@ interface HooksApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetHookResponse>]
+     * @return [kotlin.collections.List<GetHookResponse]
      */
     @GET("v1/hooks")
-    suspend fun retrieveHooks(): Response<kotlin.collections.List<GetHookResponse>>
+    suspend fun retrieveHooks(): List<GetHookResponse>
 
     /**
      * Retrieve Hooks Template
@@ -71,7 +71,7 @@ interface HooksApi {
      * @return [GetHookTemplateResponse]
      */
     @GET("v1/hooks/template")
-    suspend fun template3(): Response<GetHookTemplateResponse>
+    suspend fun template3(): GetHookTemplateResponse
 
     /**
      * Update a Hook
@@ -80,10 +80,13 @@ interface HooksApi {
      *  - 200: OK
      *
      * @param hookId hookId
-     * @param putHookRequest 
+     * @param putHookRequest
      * @return [PutHookResponse]
      */
     @PUT("v1/hooks/{hookId}")
-    suspend fun updateHook(@Path("hookId") hookId: kotlin.Long, @Body putHookRequest: PutHookRequest): Response<PutHookResponse>
+    suspend fun updateHook(
+        @Path("hookId") hookId: Long,
+        @Body putHookRequest: PutHookRequest
+    ): PutHookResponse
 
 }

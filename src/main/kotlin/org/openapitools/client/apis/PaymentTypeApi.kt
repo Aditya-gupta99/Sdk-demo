@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeletePaymentTypesPaymentTypeIdResponse
 import org.openapitools.client.models.GetPaymentTypesPaymentTypeIdResponse
 import org.openapitools.client.models.GetPaymentTypesResponse
@@ -13,6 +7,13 @@ import org.openapitools.client.models.PostPaymentTypesRequest
 import org.openapitools.client.models.PostPaymentTypesResponse
 import org.openapitools.client.models.PutPaymentTypesPaymentTypeIdRequest
 import org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PaymentTypeApi {
     /**
@@ -21,11 +22,11 @@ interface PaymentTypeApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postPaymentTypesRequest 
+     * @param postPaymentTypesRequest
      * @return [PostPaymentTypesResponse]
      */
     @POST("v1/paymenttypes")
-    suspend fun createPaymentType(@Body postPaymentTypesRequest: PostPaymentTypesRequest): Response<PostPaymentTypesResponse>
+    suspend fun createPaymentType(@Body postPaymentTypesRequest: PostPaymentTypesRequest): PostPaymentTypesResponse
 
     /**
      * Delete a Payment Type
@@ -37,7 +38,7 @@ interface PaymentTypeApi {
      * @return [DeletePaymentTypesPaymentTypeIdResponse]
      */
     @DELETE("v1/paymenttypes/{paymentTypeId}")
-    suspend fun deleteCode1(@Path("paymentTypeId") paymentTypeId: kotlin.Long): Response<DeletePaymentTypesPaymentTypeIdResponse>
+    suspend fun deleteCode1(@Path("paymentTypeId") paymentTypeId: Long): DeletePaymentTypesPaymentTypeIdResponse
 
     /**
      * Retrieve all Payment Types
@@ -46,10 +47,10 @@ interface PaymentTypeApi {
      *  - 200: OK
      *
      * @param onlyWithCode onlyWithCode (optional)
-     * @return [kotlin.collections.List<GetPaymentTypesResponse>]
+     * @return [kotlin.collections.List<GetPaymentTypesResponse]
      */
     @GET("v1/paymenttypes")
-    suspend fun getAllPaymentTypes(@Query("onlyWithCode") onlyWithCode: kotlin.Boolean? = null): Response<kotlin.collections.List<GetPaymentTypesResponse>>
+    suspend fun getAllPaymentTypes(@Query("onlyWithCode") onlyWithCode: Boolean? = null): List<GetPaymentTypesResponse>
 
     /**
      * Retrieve a Payment Type
@@ -61,7 +62,7 @@ interface PaymentTypeApi {
      * @return [GetPaymentTypesPaymentTypeIdResponse]
      */
     @GET("v1/paymenttypes/{paymentTypeId}")
-    suspend fun retrieveOnePaymentType(@Path("paymentTypeId") paymentTypeId: kotlin.Long): Response<GetPaymentTypesPaymentTypeIdResponse>
+    suspend fun retrieveOnePaymentType(@Path("paymentTypeId") paymentTypeId: Long): GetPaymentTypesPaymentTypeIdResponse
 
     /**
      * Update a Payment Type
@@ -70,10 +71,13 @@ interface PaymentTypeApi {
      *  - 200: OK
      *
      * @param paymentTypeId paymentTypeId
-     * @param putPaymentTypesPaymentTypeIdRequest 
+     * @param putPaymentTypesPaymentTypeIdRequest
      * @return [PutPaymentTypesPaymentTypeIdResponse]
      */
     @PUT("v1/paymenttypes/{paymentTypeId}")
-    suspend fun updatePaymentType(@Path("paymentTypeId") paymentTypeId: kotlin.Long, @Body putPaymentTypesPaymentTypeIdRequest: PutPaymentTypesPaymentTypeIdRequest): Response<PutPaymentTypesPaymentTypeIdResponse>
+    suspend fun updatePaymentType(
+        @Path("paymentTypeId") paymentTypeId: Long,
+        @Body putPaymentTypesPaymentTypeIdRequest: PutPaymentTypesPaymentTypeIdRequest
+    ): PutPaymentTypesPaymentTypeIdResponse
 
 }

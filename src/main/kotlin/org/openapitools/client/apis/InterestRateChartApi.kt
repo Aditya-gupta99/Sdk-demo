@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteInterestRateChartsChartIdResponse
 import org.openapitools.client.models.GetInterestRateChartsResponse
 import org.openapitools.client.models.GetInterestRateChartsTemplateResponse
@@ -13,6 +7,13 @@ import org.openapitools.client.models.PostInterestRateChartsRequest
 import org.openapitools.client.models.PostInterestRateChartsResponse
 import org.openapitools.client.models.PutInterestRateChartsChartIdRequest
 import org.openapitools.client.models.PutInterestRateChartsChartIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface InterestRateChartApi {
     /**
@@ -21,11 +22,11 @@ interface InterestRateChartApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postInterestRateChartsRequest 
+     * @param postInterestRateChartsRequest
      * @return [PostInterestRateChartsResponse]
      */
     @POST("v1/interestratecharts")
-    suspend fun create10(@Body postInterestRateChartsRequest: PostInterestRateChartsRequest): Response<PostInterestRateChartsResponse>
+    suspend fun create10(@Body postInterestRateChartsRequest: PostInterestRateChartsRequest): PostInterestRateChartsResponse
 
     /**
      * Delete a Chart
@@ -37,7 +38,7 @@ interface InterestRateChartApi {
      * @return [DeleteInterestRateChartsChartIdResponse]
      */
     @DELETE("v1/interestratecharts/{chartId}")
-    suspend fun delete14(@Path("chartId") chartId: kotlin.Long): Response<DeleteInterestRateChartsChartIdResponse>
+    suspend fun delete14(@Path("chartId") chartId: Long): DeleteInterestRateChartsChartIdResponse
 
     /**
      * Retrieve all Charts
@@ -46,10 +47,10 @@ interface InterestRateChartApi {
      *  - 200: OK
      *
      * @param productId productId (optional)
-     * @return [kotlin.collections.List<GetInterestRateChartsResponse>]
+     * @return [kotlin.collections.List<GetInterestRateChartsResponse]
      */
     @GET("v1/interestratecharts")
-    suspend fun retrieveAll26(@Query("productId") productId: kotlin.Long? = null): Response<kotlin.collections.List<GetInterestRateChartsResponse>>
+    suspend fun retrieveAll26(@Query("productId") productId: Long? = null): List<GetInterestRateChartsResponse>
 
     /**
      * Retrieve a Chart
@@ -61,7 +62,7 @@ interface InterestRateChartApi {
      * @return [GetInterestRateChartsResponse]
      */
     @GET("v1/interestratecharts/{chartId}")
-    suspend fun retrieveOne17(@Path("chartId") chartId: kotlin.Long): Response<GetInterestRateChartsResponse>
+    suspend fun retrieveOne17(@Path("chartId") chartId: Long): GetInterestRateChartsResponse
 
     /**
      * Retrieve Chart Details Template
@@ -72,7 +73,7 @@ interface InterestRateChartApi {
      * @return [GetInterestRateChartsTemplateResponse]
      */
     @GET("v1/interestratecharts/template")
-    suspend fun template9(): Response<GetInterestRateChartsTemplateResponse>
+    suspend fun template9(): GetInterestRateChartsTemplateResponse
 
     /**
      * Update a Chart
@@ -81,10 +82,13 @@ interface InterestRateChartApi {
      *  - 200: OK
      *
      * @param chartId chartId
-     * @param putInterestRateChartsChartIdRequest 
+     * @param putInterestRateChartsChartIdRequest
      * @return [PutInterestRateChartsChartIdResponse]
      */
     @PUT("v1/interestratecharts/{chartId}")
-    suspend fun update15(@Path("chartId") chartId: kotlin.Long, @Body putInterestRateChartsChartIdRequest: PutInterestRateChartsChartIdRequest): Response<PutInterestRateChartsChartIdResponse>
+    suspend fun update15(
+        @Path("chartId") chartId: Long,
+        @Body putInterestRateChartsChartIdRequest: PutInterestRateChartsChartIdRequest
+    ): PutInterestRateChartsChartIdResponse
 
 }

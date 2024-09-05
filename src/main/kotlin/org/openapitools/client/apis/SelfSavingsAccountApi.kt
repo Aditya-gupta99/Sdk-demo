@@ -1,30 +1,34 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetSelfSavingsAccountsAccountIdChargesResponse
 import org.openapitools.client.models.GetSelfSavingsAccountsAccountIdChargesSavingsAccountChargeIdResponse
 import org.openapitools.client.models.GetSelfSavingsAccountsAccountIdTransactionsTransactionIdResponse
 import org.openapitools.client.models.GetSelfSavingsAccountsResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SelfSavingsAccountApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param accountId 
+     * @param accountId
      * @param command  (optional)
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @PUT("v1/self/savingsaccounts/{accountId}")
-    suspend fun modifySavingsAccountApplication(@Path("accountId") accountId: kotlin.Long, @Query("command") command: kotlin.String? = null, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun modifySavingsAccountApplication(
+        @Path("accountId") accountId: Long,
+        @Query("command") command: String? = null,
+        @Body body: String? = null
+    ): String
 
     /**
      * List Savings Charges
@@ -34,10 +38,13 @@ interface SelfSavingsAccountApi {
      *
      * @param accountId accountId
      * @param chargeStatus chargeStatus (optional, default to "all")
-     * @return [kotlin.collections.List<GetSelfSavingsAccountsAccountIdChargesResponse>]
+     * @return [kotlin.collections.List<GetSelfSavingsAccountsAccountIdChargesResponse]
      */
     @GET("v1/self/savingsaccounts/{accountId}/charges")
-    suspend fun retrieveAllSavingsAccountCharges1(@Path("accountId") accountId: kotlin.Long, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<kotlin.collections.List<GetSelfSavingsAccountsAccountIdChargesResponse>>
+    suspend fun retrieveAllSavingsAccountCharges1(
+        @Path("accountId") accountId: Long,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): List<GetSelfSavingsAccountsAccountIdChargesResponse>
 
     /**
      * Retrieve a savings account
@@ -50,7 +57,10 @@ interface SelfSavingsAccountApi {
      * @return [GetSelfSavingsAccountsResponse]
      */
     @GET("v1/self/savingsaccounts/{accountId}")
-    suspend fun retrieveSavings(@Path("accountId") accountId: kotlin.Long, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<GetSelfSavingsAccountsResponse>
+    suspend fun retrieveSavings(
+        @Path("accountId") accountId: Long,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): GetSelfSavingsAccountsResponse
 
     /**
      * Retrieve a Savings account Charge
@@ -63,7 +73,10 @@ interface SelfSavingsAccountApi {
      * @return [GetSelfSavingsAccountsAccountIdChargesSavingsAccountChargeIdResponse]
      */
     @GET("v1/self/savingsaccounts/{accountId}/charges/{savingsAccountChargeId}")
-    suspend fun retrieveSavingsAccountCharge1(@Path("accountId") accountId: kotlin.Long, @Path("savingsAccountChargeId") savingsAccountChargeId: kotlin.Long): Response<GetSelfSavingsAccountsAccountIdChargesSavingsAccountChargeIdResponse>
+    suspend fun retrieveSavingsAccountCharge1(
+        @Path("accountId") accountId: Long,
+        @Path("savingsAccountChargeId") savingsAccountChargeId: Long
+    ): GetSelfSavingsAccountsAccountIdChargesSavingsAccountChargeIdResponse
 
     /**
      * Retrieve Savings Account Transaction
@@ -76,11 +89,14 @@ interface SelfSavingsAccountApi {
      * @return [GetSelfSavingsAccountsAccountIdTransactionsTransactionIdResponse]
      */
     @GET("v1/self/savingsaccounts/{accountId}/transactions/{transactionId}")
-    suspend fun retrieveSavingsTransaction(@Path("accountId") accountId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long): Response<GetSelfSavingsAccountsAccountIdTransactionsTransactionIdResponse>
+    suspend fun retrieveSavingsTransaction(
+        @Path("accountId") accountId: Long,
+        @Path("transactionId") transactionId: Long
+    ): GetSelfSavingsAccountsAccountIdTransactionsTransactionIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -89,11 +105,14 @@ interface SelfSavingsAccountApi {
      * @return [kotlin.String]
      */
     @POST("v1/self/savingsaccounts")
-    suspend fun submitSavingsAccountApplication(@Query("command") command: kotlin.String? = null, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun submitSavingsAccountApplication(
+        @Query("command") command: String? = null,
+        @Body body: String? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -102,6 +121,9 @@ interface SelfSavingsAccountApi {
      * @return [kotlin.String]
      */
     @GET("v1/self/savingsaccounts/template")
-    suspend fun template18(@Query("clientId") clientId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun template18(
+        @Query("clientId") clientId: Long? = null,
+        @Query("productId") productId: Long? = null
+    ): String
 
 }

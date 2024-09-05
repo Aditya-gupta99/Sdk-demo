@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteCollateralProductResponse
 import org.openapitools.client.models.GetCollateralManagementsResponse
 import org.openapitools.client.models.GetCollateralProductTemplate
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostCollateralManagementProductRequest
 import org.openapitools.client.models.PostCollateralManagementProductResponse
 import org.openapitools.client.models.PutCollateralProductRequest
 import org.openapitools.client.models.PutCollateralProductResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface CollateralManagementApi {
     /**
@@ -21,11 +21,11 @@ interface CollateralManagementApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postCollateralManagementProductRequest 
+     * @param postCollateralManagementProductRequest
      * @return [PostCollateralManagementProductResponse]
      */
     @POST("v1/collateral-management")
-    suspend fun createCollateral1(@Body postCollateralManagementProductRequest: PostCollateralManagementProductRequest): Response<PostCollateralManagementProductResponse>
+    suspend fun createCollateral1(@Body postCollateralManagementProductRequest: PostCollateralManagementProductRequest): PostCollateralManagementProductResponse
 
     /**
      * Delete a Collateral
@@ -37,7 +37,7 @@ interface CollateralManagementApi {
      * @return [DeleteCollateralProductResponse]
      */
     @DELETE("v1/collateral-management/{collateralId}")
-    suspend fun deleteCollateral2(@Path("collateralId") collateralId: kotlin.Long): Response<DeleteCollateralProductResponse>
+    suspend fun deleteCollateral2(@Path("collateralId") collateralId: Long): DeleteCollateralProductResponse
 
     /**
      * Get All Collaterals
@@ -48,7 +48,7 @@ interface CollateralManagementApi {
      * @return [kotlin.collections.List<GetCollateralManagementsResponse>]
      */
     @GET("v1/collateral-management")
-    suspend fun getAllCollaterals(): Response<kotlin.collections.List<GetCollateralManagementsResponse>>
+    suspend fun getAllCollaterals(): List<GetCollateralManagementsResponse>
 
     /**
      * Get Collateral
@@ -60,7 +60,7 @@ interface CollateralManagementApi {
      * @return [GetCollateralManagementsResponse]
      */
     @GET("v1/collateral-management/{collateralId}")
-    suspend fun getCollateral(@Path("collateralId") collateralId: kotlin.Long): Response<GetCollateralManagementsResponse>
+    suspend fun getCollateral(@Path("collateralId") collateralId: Long): GetCollateralManagementsResponse
 
     /**
      * Get Collateral Template
@@ -71,7 +71,7 @@ interface CollateralManagementApi {
      * @return [kotlin.collections.List<GetCollateralProductTemplate>]
      */
     @GET("v1/collateral-management/template")
-    suspend fun getCollateralTemplate(): Response<kotlin.collections.List<GetCollateralProductTemplate>>
+    suspend fun getCollateralTemplate(): List<GetCollateralProductTemplate>
 
     /**
      * Update Collateral
@@ -80,10 +80,13 @@ interface CollateralManagementApi {
      *  - 200: OK
      *
      * @param collateralId collateralId
-     * @param putCollateralProductRequest 
+     * @param putCollateralProductRequest
      * @return [PutCollateralProductResponse]
      */
     @PUT("v1/collateral-management/{collateralId}")
-    suspend fun updateCollateral2(@Path("collateralId") collateralId: kotlin.Long, @Body putCollateralProductRequest: PutCollateralProductRequest): Response<PutCollateralProductResponse>
+    suspend fun updateCollateral2(
+        @Path("collateralId") collateralId: Long,
+        @Body putCollateralProductRequest: PutCollateralProductRequest
+    ): PutCollateralProductResponse
 
 }

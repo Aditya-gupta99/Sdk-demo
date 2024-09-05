@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteLoansLoanIdCollateralsCollateralIdResponse
 import org.openapitools.client.models.GetLoansLoanIdCollateralsResponse
 import org.openapitools.client.models.GetLoansLoanIdCollateralsTemplateResponse
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostLoansLoanIdCollateralsRequest
 import org.openapitools.client.models.PostLoansLoanIdCollateralsResponse
 import org.openapitools.client.models.PutLoansLoanIdCollateralsCollateralIdResponse
 import org.openapitools.client.models.PutLoansLoandIdCollateralsCollateralIdRequest
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface LoanCollateralApi {
     /**
@@ -22,11 +22,14 @@ interface LoanCollateralApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param postLoansLoanIdCollateralsRequest 
+     * @param postLoansLoanIdCollateralsRequest
      * @return [PostLoansLoanIdCollateralsResponse]
      */
     @POST("v1/loans/{loanId}/collaterals")
-    suspend fun createCollateral(@Path("loanId") loanId: kotlin.Long, @Body postLoansLoanIdCollateralsRequest: PostLoansLoanIdCollateralsRequest): Response<PostLoansLoanIdCollateralsResponse>
+    suspend fun createCollateral(
+        @Path("loanId") loanId: Long,
+        @Body postLoansLoanIdCollateralsRequest: PostLoansLoanIdCollateralsRequest
+    ): PostLoansLoanIdCollateralsResponse
 
     /**
      * Remove a Collateral
@@ -39,7 +42,10 @@ interface LoanCollateralApi {
      * @return [DeleteLoansLoanIdCollateralsCollateralIdResponse]
      */
     @DELETE("v1/loans/{loanId}/collaterals/{collateralId}")
-    suspend fun deleteCollateral(@Path("loanId") loanId: kotlin.Long, @Path("collateralId") collateralId: kotlin.Long): Response<DeleteLoansLoanIdCollateralsCollateralIdResponse>
+    suspend fun deleteCollateral(
+        @Path("loanId") loanId: Long,
+        @Path("collateralId") collateralId: Long
+    ): DeleteLoansLoanIdCollateralsCollateralIdResponse
 
     /**
      * Retrieve Collateral Details Template
@@ -51,7 +57,7 @@ interface LoanCollateralApi {
      * @return [GetLoansLoanIdCollateralsTemplateResponse]
      */
     @GET("v1/loans/{loanId}/collaterals/template")
-    suspend fun newCollateralTemplate(@Path("loanId") loanId: kotlin.Long): Response<GetLoansLoanIdCollateralsTemplateResponse>
+    suspend fun newCollateralTemplate(@Path("loanId") loanId: Long): GetLoansLoanIdCollateralsTemplateResponse
 
     /**
      * List Loan Collaterals
@@ -60,10 +66,10 @@ interface LoanCollateralApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @return [kotlin.collections.List<GetLoansLoanIdCollateralsResponse>]
+     * @return [kotlin.collections.List<GetLoansLoanIdCollateralsResponse]
      */
     @GET("v1/loans/{loanId}/collaterals")
-    suspend fun retrieveCollateralDetails(@Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<GetLoansLoanIdCollateralsResponse>>
+    suspend fun retrieveCollateralDetails(@Path("loanId") loanId: Long): List<GetLoansLoanIdCollateralsResponse>
 
     /**
      * Retrieve a Collateral
@@ -76,20 +82,27 @@ interface LoanCollateralApi {
      * @return [GetLoansLoanIdCollateralsResponse]
      */
     @GET("v1/loans/{loanId}/collaterals/{collateralId}")
-    suspend fun retrieveCollateralDetails1(@Path("loanId") loanId: kotlin.Long, @Path("collateralId") collateralId: kotlin.Long): Response<GetLoansLoanIdCollateralsResponse>
+    suspend fun retrieveCollateralDetails1(
+        @Path("loanId") loanId: Long,
+        @Path("collateralId") collateralId: Long
+    ): GetLoansLoanIdCollateralsResponse
 
     /**
      * Update a Collateral
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param loanId loanId
      * @param collateralId collateralId
-     * @param putLoansLoandIdCollateralsCollateralIdRequest 
+     * @param putLoansLoandIdCollateralsCollateralIdRequest
      * @return [PutLoansLoanIdCollateralsCollateralIdResponse]
      */
     @PUT("v1/loans/{loanId}/collaterals/{collateralId}")
-    suspend fun updateCollateral(@Path("loanId") loanId: kotlin.Long, @Path("collateralId") collateralId: kotlin.Long, @Body putLoansLoandIdCollateralsCollateralIdRequest: PutLoansLoandIdCollateralsCollateralIdRequest): Response<PutLoansLoanIdCollateralsCollateralIdResponse>
+    suspend fun updateCollateral(
+        @Path("loanId") loanId: Long,
+        @Path("collateralId") collateralId: Long,
+        @Body putLoansLoandIdCollateralsCollateralIdRequest: PutLoansLoandIdCollateralsCollateralIdRequest
+    ): PutLoansLoanIdCollateralsCollateralIdResponse
 
 }

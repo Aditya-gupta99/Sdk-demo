@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse
 import org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse
 import org.openapitools.client.models.GetSelfClientsClientIdChargesResponse
@@ -13,17 +8,23 @@ import org.openapitools.client.models.GetSelfClientsClientIdResponse
 import org.openapitools.client.models.GetSelfClientsClientIdTransactionsResponse
 import org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransactionIdResponse
 import org.openapitools.client.models.GetSelfClientsResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SelfClientApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param clientId 
+     * @param clientId
      * @param contentLength  (optional)
      * @param dateFormat  (optional)
      * @param locale  (optional)
@@ -32,19 +33,25 @@ interface SelfClientApi {
      */
     @Multipart
     @POST("v1/self/clients/{clientId}/images")
-    suspend fun addNewClientImage2(@Path("clientId") clientId: kotlin.Long, @Header("Content-Length") contentLength: kotlin.Long? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun addNewClientImage2(
+        @Path("clientId") clientId: Long,
+        @Header("Content-Length") contentLength: Long? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param clientId 
+     * @param clientId
      * @return [kotlin.String]
      */
     @DELETE("v1/self/clients/{clientId}/images")
-    suspend fun deleteClientImage1(@Path("clientId") clientId: kotlin.Long): Response<kotlin.String>
+    suspend fun deleteClientImage1(@Path("clientId") clientId: Long): String
 
     /**
      * List Clients associated to the user
@@ -63,7 +70,16 @@ interface SelfClientApi {
      * @return [GetSelfClientsResponse]
      */
     @GET("v1/self/clients")
-    suspend fun retrieveAll36(@Query("displayName") displayName: kotlin.String? = null, @Query("firstName") firstName: kotlin.String? = null, @Query("lastName") lastName: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("status") status: kotlin.String? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<GetSelfClientsResponse>
+    suspend fun retrieveAll36(
+        @Query("displayName") displayName: String? = null,
+        @Query("firstName") firstName: String? = null,
+        @Query("lastName") lastName: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("status") status: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): GetSelfClientsResponse
 
     /**
      * List Client Charges
@@ -79,7 +95,13 @@ interface SelfClientApi {
      * @return [GetSelfClientsClientIdChargesResponse]
      */
     @GET("v1/self/clients/{clientId}/charges")
-    suspend fun retrieveAllClientCharges1(@Path("clientId") clientId: kotlin.Long, @Query("chargeStatus") chargeStatus: kotlin.String? = "all", @Query("pendingPayment") pendingPayment: kotlin.Boolean? = null, @Query("limit") limit: kotlin.Int? = null, @Query("offset") offset: kotlin.Int? = null): Response<GetSelfClientsClientIdChargesResponse>
+    suspend fun retrieveAllClientCharges1(
+        @Path("clientId") clientId: Long,
+        @Query("chargeStatus") chargeStatus: String? = "all",
+        @Query("pendingPayment") pendingPayment: Boolean? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
+    ): GetSelfClientsClientIdChargesResponse
 
     /**
      * List Client Transactions
@@ -93,7 +115,11 @@ interface SelfClientApi {
      * @return [GetSelfClientsClientIdTransactionsResponse]
      */
     @GET("v1/self/clients/{clientId}/transactions")
-    suspend fun retrieveAllClientTransactions2(@Path("clientId") clientId: kotlin.Long, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<GetSelfClientsClientIdTransactionsResponse>
+    suspend fun retrieveAllClientTransactions2(
+        @Path("clientId") clientId: Long,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): GetSelfClientsClientIdTransactionsResponse
 
     /**
      * Retrieve client accounts overview
@@ -105,7 +131,7 @@ interface SelfClientApi {
      * @return [GetSelfClientsClientIdAccountsResponse]
      */
     @GET("v1/self/clients/{clientId}/accounts")
-    suspend fun retrieveAssociatedAccounts2(@Path("clientId") clientId: kotlin.Long): Response<GetSelfClientsClientIdAccountsResponse>
+    suspend fun retrieveAssociatedAccounts2(@Path("clientId") clientId: Long): GetSelfClientsClientIdAccountsResponse
 
     /**
      * Retrieve a Client Charge
@@ -118,7 +144,10 @@ interface SelfClientApi {
      * @return [GetSelfClientsClientIdChargesChargeIdResponse]
      */
     @GET("v1/self/clients/{clientId}/charges/{chargeId}")
-    suspend fun retrieveClientCharge1(@Path("clientId") clientId: kotlin.Long, @Path("chargeId") chargeId: kotlin.Long): Response<GetSelfClientsClientIdChargesChargeIdResponse>
+    suspend fun retrieveClientCharge1(
+        @Path("clientId") clientId: Long,
+        @Path("chargeId") chargeId: Long
+    ): GetSelfClientsClientIdChargesChargeIdResponse
 
     /**
      * Retrieve a Client Transaction
@@ -131,7 +160,10 @@ interface SelfClientApi {
      * @return [GetSelfClientsClientIdTransactionsTransactionIdResponse]
      */
     @GET("v1/self/clients/{clientId}/transactions/{transactionId}")
-    suspend fun retrieveClientTransaction4(@Path("clientId") clientId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long): Response<GetSelfClientsClientIdTransactionsTransactionIdResponse>
+    suspend fun retrieveClientTransaction4(
+        @Path("clientId") clientId: Long,
+        @Path("transactionId") transactionId: Long
+    ): GetSelfClientsClientIdTransactionsTransactionIdResponse
 
     /**
      * Retrieve Client Image
@@ -146,19 +178,24 @@ interface SelfClientApi {
      * @return [Unit]
      */
     @GET("v1/self/clients/{clientId}/images")
-    suspend fun retrieveImage1(@Path("clientId") clientId: kotlin.Long, @Query("maxWidth") maxWidth: kotlin.Int? = null, @Query("maxHeight") maxHeight: kotlin.Int? = null, @Query("output") output: kotlin.String? = null): Response<Unit>
+    suspend fun retrieveImage1(
+        @Path("clientId") clientId: Long,
+        @Query("maxWidth") maxWidth: Int? = null,
+        @Query("maxHeight") maxHeight: Int? = null,
+        @Query("output") output: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param clientId 
+     * @param clientId
      * @return [kotlin.String]
      */
     @GET("v1/self/clients/{clientId}/obligeedetails")
-    suspend fun retrieveObligeeDetails2(@Path("clientId") clientId: kotlin.Long): Response<kotlin.String>
+    suspend fun retrieveObligeeDetails2(@Path("clientId") clientId: Long): String
 
     /**
      * Retrieve a Client
@@ -170,6 +207,6 @@ interface SelfClientApi {
      * @return [GetSelfClientsClientIdResponse]
      */
     @GET("v1/self/clients/{clientId}")
-    suspend fun retrieveOne28(@Path("clientId") clientId: kotlin.Long): Response<GetSelfClientsClientIdResponse>
+    suspend fun retrieveOne28(@Path("clientId") clientId: Long): GetSelfClientsClientIdResponse
 
 }

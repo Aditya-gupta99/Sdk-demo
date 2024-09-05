@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteAccountNumberFormatsResponse
 import org.openapitools.client.models.GetAccountNumberFormatsIdResponse
 import org.openapitools.client.models.GetAccountNumberFormatsResponseTemplate
@@ -13,6 +7,12 @@ import org.openapitools.client.models.PostAccountNumberFormatsRequest
 import org.openapitools.client.models.PostAccountNumberFormatsResponse
 import org.openapitools.client.models.PutAccountNumberFormatsRequest
 import org.openapitools.client.models.PutAccountNumberFormatsResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface AccountNumberFormatApi {
     /**
@@ -25,7 +25,7 @@ interface AccountNumberFormatApi {
      * @return [PostAccountNumberFormatsResponse]
      */
     @POST("v1/accountnumberformats")
-    suspend fun create(@Body postAccountNumberFormatsRequest: PostAccountNumberFormatsRequest? = null): Response<PostAccountNumberFormatsResponse>
+    suspend fun create(@Body postAccountNumberFormatsRequest: PostAccountNumberFormatsRequest? = null): PostAccountNumberFormatsResponse
 
     /**
      * Delete an Account number format
@@ -37,7 +37,7 @@ interface AccountNumberFormatApi {
      * @return [DeleteAccountNumberFormatsResponse]
      */
     @DELETE("v1/accountnumberformats/{accountNumberFormatId}")
-    suspend fun delete(@Path("accountNumberFormatId") accountNumberFormatId: kotlin.Long): Response<DeleteAccountNumberFormatsResponse>
+    suspend fun delete(@Path("accountNumberFormatId") accountNumberFormatId: Long): DeleteAccountNumberFormatsResponse
 
     /**
      * List Account number formats
@@ -48,7 +48,7 @@ interface AccountNumberFormatApi {
      * @return [kotlin.collections.List<GetAccountNumberFormatsIdResponse>]
      */
     @GET("v1/accountnumberformats")
-    suspend fun retrieveAll3(): Response<kotlin.collections.List<GetAccountNumberFormatsIdResponse>>
+    suspend fun retrieveAll3(): List<GetAccountNumberFormatsIdResponse>
 
     /**
      * Retrieve an Account number format
@@ -60,7 +60,7 @@ interface AccountNumberFormatApi {
      * @return [GetAccountNumberFormatsIdResponse]
      */
     @GET("v1/accountnumberformats/{accountNumberFormatId}")
-    suspend fun retrieveOne(@Path("accountNumberFormatId") accountNumberFormatId: kotlin.Long): Response<GetAccountNumberFormatsIdResponse>
+    suspend fun retrieveOne(@Path("accountNumberFormatId") accountNumberFormatId: Long): GetAccountNumberFormatsIdResponse
 
     /**
      * Retrieve Account number format Template
@@ -71,19 +71,22 @@ interface AccountNumberFormatApi {
      * @return [GetAccountNumberFormatsResponseTemplate]
      */
     @GET("v1/accountnumberformats/template")
-    suspend fun retrieveTemplate2(): Response<GetAccountNumberFormatsResponseTemplate>
+    suspend fun retrieveTemplate2(): GetAccountNumberFormatsResponseTemplate
 
     /**
      * Update an Account number format
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param accountNumberFormatId accountNumberFormatId
-     * @param putAccountNumberFormatsRequest 
+     * @param putAccountNumberFormatsRequest
      * @return [PutAccountNumberFormatsResponse]
      */
     @PUT("v1/accountnumberformats/{accountNumberFormatId}")
-    suspend fun update1(@Path("accountNumberFormatId") accountNumberFormatId: kotlin.Long, @Body putAccountNumberFormatsRequest: PutAccountNumberFormatsRequest): Response<PutAccountNumberFormatsResponse>
+    suspend fun update1(
+        @Path("accountNumberFormatId") accountNumberFormatId: Long,
+        @Body putAccountNumberFormatsRequest: PutAccountNumberFormatsRequest
+    ): PutAccountNumberFormatsResponse
 
 }

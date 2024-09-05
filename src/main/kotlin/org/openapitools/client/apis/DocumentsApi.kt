@@ -1,17 +1,18 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface DocumentsApi {
     /**
@@ -32,11 +33,20 @@ interface DocumentsApi {
      */
     @Multipart
     @POST("v1/{entityType}/{entityId}/documents")
-    suspend fun createDocument(@Path("entityType") entityType: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Header("Content-Length") contentLength: kotlin.Long? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("description") description: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part("name") name: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<PostEntityTypeEntityIdDocumentsResponse>
+    suspend fun createDocument(
+        @Path("entityType") entityType: String,
+        @Path("entityId") entityId: Long,
+        @Header("Content-Length") contentLength: Long? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("description") description: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part("name") name: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): PostEntityTypeEntityIdDocumentsResponse
 
     /**
      * Remove a Document
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -46,7 +56,11 @@ interface DocumentsApi {
      * @return [DeleteEntityTypeEntityIdDocumentsResponse]
      */
     @DELETE("v1/{entityType}/{entityId}/documents/{documentId}")
-    suspend fun deleteDocument(@Path("entityType") entityType: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Path("documentId") documentId: kotlin.Long): Response<DeleteEntityTypeEntityIdDocumentsResponse>
+    suspend fun deleteDocument(
+        @Path("entityType") entityType: String,
+        @Path("entityId") entityId: Long,
+        @Path("documentId") documentId: Long
+    ): DeleteEntityTypeEntityIdDocumentsResponse
 
     /**
      * Retrieve Binary File associated with Document
@@ -60,7 +74,11 @@ interface DocumentsApi {
      * @return [Unit]
      */
     @GET("v1/{entityType}/{entityId}/documents/{documentId}/attachment")
-    suspend fun downloadFile(@Path("entityType") entityType: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Path("documentId") documentId: kotlin.Long): Response<Unit>
+    suspend fun downloadFile(
+        @Path("entityType") entityType: String,
+        @Path("entityId") entityId: Long,
+        @Path("documentId") documentId: Long
+    ): Unit
 
     /**
      * Retrieve a Document
@@ -74,7 +92,11 @@ interface DocumentsApi {
      * @return [GetEntityTypeEntityIdDocumentsResponse]
      */
     @GET("v1/{entityType}/{entityId}/documents/{documentId}")
-    suspend fun getDocument(@Path("entityType") entityType: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Path("documentId") documentId: kotlin.Long): Response<GetEntityTypeEntityIdDocumentsResponse>
+    suspend fun getDocument(
+        @Path("entityType") entityType: String,
+        @Path("entityId") entityId: Long,
+        @Path("documentId") documentId: Long
+    ): GetEntityTypeEntityIdDocumentsResponse
 
     /**
      * List documents
@@ -84,10 +106,13 @@ interface DocumentsApi {
      *
      * @param entityType entityType
      * @param entityId entityId
-     * @return [kotlin.collections.List<GetEntityTypeEntityIdDocumentsResponse>]
+     * @return [kotlin.collections.List<GetEntityTypeEntityIdDocumentsResponse]
      */
     @GET("v1/{entityType}/{entityId}/documents")
-    suspend fun retrieveAllDocuments(@Path("entityType") entityType: kotlin.String, @Path("entityId") entityId: kotlin.Long): Response<kotlin.collections.List<GetEntityTypeEntityIdDocumentsResponse>>
+    suspend fun retrieveAllDocuments(
+        @Path("entityType") entityType: String,
+        @Path("entityId") entityId: Long
+    ): List<GetEntityTypeEntityIdDocumentsResponse>
 
     /**
      * Update a Document
@@ -108,6 +133,16 @@ interface DocumentsApi {
      */
     @Multipart
     @PUT("v1/{entityType}/{entityId}/documents/{documentId}")
-    suspend fun updateDocument(@Path("entityType") entityType: kotlin.String, @Path("entityId") entityId: kotlin.Long, @Path("documentId") documentId: kotlin.Long, @Header("Content-Length") contentLength: kotlin.Long? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("description") description: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part("name") name: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<PutEntityTypeEntityIdDocumentsResponse>
+    suspend fun updateDocument(
+        @Path("entityType") entityType: String,
+        @Path("entityId") entityId: Long,
+        @Path("documentId") documentId: Long,
+        @Header("Content-Length") contentLength: Long? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("description") description: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part("name") name: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): PutEntityTypeEntityIdDocumentsResponse
 
 }

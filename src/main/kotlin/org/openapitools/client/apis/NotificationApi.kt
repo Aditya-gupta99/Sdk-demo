@@ -1,17 +1,14 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetNotificationsResponse
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Query
 
 interface NotificationApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 200: OK
      *
@@ -23,17 +20,23 @@ interface NotificationApi {
      * @return [GetNotificationsResponse]
      */
     @GET("v1/notifications")
-    suspend fun getAllNotifications(@Query("orderBy") orderBy: kotlin.String? = null, @Query("limit") limit: kotlin.Int? = null, @Query("offset") offset: kotlin.Int? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("isRead") isRead: kotlin.Boolean? = null): Response<GetNotificationsResponse>
+    suspend fun getAllNotifications(
+        @Query("orderBy") orderBy: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("isRead") isRead: Boolean? = null
+    ): GetNotificationsResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [Unit]
      */
     @PUT("v1/notifications")
-    suspend fun update5(): Response<Unit>
+    suspend fun update5(): Unit
 
 }

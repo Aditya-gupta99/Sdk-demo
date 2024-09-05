@@ -1,13 +1,10 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.PostCollectionSheetRequest
 import org.openapitools.client.models.PostCollectionSheetResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface CollectionSheetApi {
     /**
@@ -16,11 +13,14 @@ interface CollectionSheetApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postCollectionSheetRequest 
+     * @param postCollectionSheetRequest
      * @param command command (optional)
      * @return [PostCollectionSheetResponse]
      */
     @POST("v1/collectionsheet")
-    suspend fun generateCollectionSheet(@Body postCollectionSheetRequest: PostCollectionSheetRequest, @Query("command") command: kotlin.String? = null): Response<PostCollectionSheetResponse>
+    suspend fun generateCollectionSheet(
+        @Body postCollectionSheetRequest: PostCollectionSheetRequest,
+        @Query("command") command: String? = null
+    ): PostCollectionSheetResponse
 
 }

@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteGroupsGroupIdResponse
 import org.openapitools.client.models.GetGroupsGroupIdAccountsResponse
 import org.openapitools.client.models.GetGroupsGroupIdResponse
@@ -19,8 +14,15 @@ import org.openapitools.client.models.PostGroupsRequest
 import org.openapitools.client.models.PostGroupsResponse
 import org.openapitools.client.models.PutGroupsGroupIdRequest
 import org.openapitools.client.models.PutGroupsGroupIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GroupsApi {
     /**
@@ -30,13 +32,18 @@ interface GroupsApi {
      *  - 200: OK
      *
      * @param groupId groupId
-     * @param postGroupsGroupIdRequest 
+     * @param postGroupsGroupIdRequest
      * @param command command (optional)
      * @param roleId roleId (optional)
      * @return [PostGroupsGroupIdResponse]
      */
     @POST("v1/groups/{groupId}")
-    suspend fun activateOrGenerateCollectionSheet(@Path("groupId") groupId: kotlin.Long, @Body postGroupsGroupIdRequest: PostGroupsGroupIdRequest, @Query("command") command: kotlin.String? = null, @Query("roleId") roleId: kotlin.Long? = null): Response<PostGroupsGroupIdResponse>
+    suspend fun activateOrGenerateCollectionSheet(
+        @Path("groupId") groupId: Long,
+        @Body postGroupsGroupIdRequest: PostGroupsGroupIdRequest,
+        @Query("command") command: String? = null,
+        @Query("roleId") roleId: Long? = null
+    ): PostGroupsGroupIdResponse
 
     /**
      * Create a Group
@@ -44,11 +51,11 @@ interface GroupsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postGroupsRequest 
+     * @param postGroupsRequest
      * @return [PostGroupsResponse]
      */
     @POST("v1/groups")
-    suspend fun create8(@Body postGroupsRequest: PostGroupsRequest): Response<PostGroupsResponse>
+    suspend fun create8(@Body postGroupsRequest: PostGroupsRequest): PostGroupsResponse
 
     /**
      * Delete a Group
@@ -60,11 +67,11 @@ interface GroupsApi {
      * @return [DeleteGroupsGroupIdResponse]
      */
     @DELETE("v1/groups/{groupId}")
-    suspend fun delete12(@Path("groupId") groupId: kotlin.Long): Response<DeleteGroupsGroupIdResponse>
+    suspend fun delete12(@Path("groupId") groupId: Long): DeleteGroupsGroupIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -74,11 +81,15 @@ interface GroupsApi {
      * @return [Unit]
      */
     @GET("v1/groups/downloadtemplate")
-    suspend fun getGroupsTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getGroupsTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -89,7 +100,11 @@ interface GroupsApi {
      */
     @Multipart
     @POST("v1/groups/uploadtemplate")
-    suspend fun postGroupTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postGroupTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * Retrieve Group accounts overview
@@ -101,7 +116,7 @@ interface GroupsApi {
      * @return [GetGroupsGroupIdAccountsResponse]
      */
     @GET("v1/groups/{groupId}/accounts")
-    suspend fun retrieveAccounts(@Path("groupId") groupId: kotlin.Long): Response<GetGroupsGroupIdAccountsResponse>
+    suspend fun retrieveAccounts(@Path("groupId") groupId: Long): GetGroupsGroupIdAccountsResponse
 
     /**
      * List Groups
@@ -123,21 +138,37 @@ interface GroupsApi {
      * @return [GetGroupsResponse]
      */
     @GET("v1/groups")
-    suspend fun retrieveAll24(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("externalId") externalId: kotlin.String? = null, @Query("name") name: kotlin.String? = null, @Query("underHierarchy") underHierarchy: kotlin.String? = null, @Query("paged") paged: kotlin.Boolean? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("orphansOnly") orphansOnly: kotlin.Boolean? = null): Response<GetGroupsResponse>
+    suspend fun retrieveAll24(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("externalId") externalId: String? = null,
+        @Query("name") name: String? = null,
+        @Query("underHierarchy") underHierarchy: String? = null,
+        @Query("paged") paged: Boolean? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("orphansOnly") orphansOnly: Boolean? = null
+    ): GetGroupsResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param groupId 
+     * @param groupId
      * @param parentGSIMAccountNo  (optional)
      * @param parentGSIMId  (optional)
      * @return [kotlin.String]
      */
     @GET("v1/groups/{groupId}/gsimaccounts")
-    suspend fun retrieveGsimAccounts(@Path("groupId") groupId: kotlin.Long, @Query("parentGSIMAccountNo") parentGSIMAccountNo: kotlin.String? = null, @Query("parentGSIMId") parentGSIMId: kotlin.Long? = null): Response<kotlin.String>
+    suspend fun retrieveGsimAccounts(
+        @Path("groupId") groupId: Long,
+        @Query("parentGSIMAccountNo") parentGSIMAccountNo: String? = null,
+        @Query("parentGSIMId") parentGSIMId: Long? = null
+    ): String
 
     /**
      * Retrieve a Group
@@ -151,7 +182,11 @@ interface GroupsApi {
      * @return [GetGroupsGroupIdResponse]
      */
     @GET("v1/groups/{groupId}")
-    suspend fun retrieveOne15(@Path("groupId") groupId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("roleId") roleId: kotlin.Long? = null): Response<GetGroupsGroupIdResponse>
+    suspend fun retrieveOne15(
+        @Path("groupId") groupId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("roleId") roleId: Long? = null
+    ): GetGroupsGroupIdResponse
 
     /**
      * Retrieve Group Template
@@ -167,20 +202,29 @@ interface GroupsApi {
      * @return [GetGroupsTemplateResponse]
      */
     @GET("v1/groups/template")
-    suspend fun retrieveTemplate7(@Query("officeId") officeId: kotlin.Long? = null, @Query("center") center: kotlin.Boolean? = null, @Query("centerId") centerId: kotlin.Long? = null, @Query("command") command: kotlin.String? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetGroupsTemplateResponse>
+    suspend fun retrieveTemplate7(
+        @Query("officeId") officeId: Long? = null,
+        @Query("center") center: Boolean? = null,
+        @Query("centerId") centerId: Long? = null,
+        @Query("command") command: String? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetGroupsTemplateResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param groupId 
+     * @param groupId
      * @param parentLoanAccountNo  (optional)
      * @return [kotlin.String]
      */
     @GET("v1/groups/{groupId}/glimaccounts")
-    suspend fun retrieveglimAccounts(@Path("groupId") groupId: kotlin.Long, @Query("parentLoanAccountNo") parentLoanAccountNo: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveglimAccounts(
+        @Path("groupId") groupId: Long,
+        @Query("parentLoanAccountNo") parentLoanAccountNo: String? = null
+    ): String
 
     /**
      * Unassign a Staff
@@ -189,11 +233,14 @@ interface GroupsApi {
      *  - 200: OK
      *
      * @param groupId groupId
-     * @param postGroupsGroupIdCommandUnassignStaffRequest 
+     * @param postGroupsGroupIdCommandUnassignStaffRequest
      * @return [PostGroupsGroupIdCommandUnassignStaffResponse]
      */
     @POST("v1/groups/{groupId}/command/unassign_staff")
-    suspend fun unassignLoanOfficer(@Path("groupId") groupId: kotlin.Long, @Body postGroupsGroupIdCommandUnassignStaffRequest: PostGroupsGroupIdCommandUnassignStaffRequest): Response<PostGroupsGroupIdCommandUnassignStaffResponse>
+    suspend fun unassignLoanOfficer(
+        @Path("groupId") groupId: Long,
+        @Body postGroupsGroupIdCommandUnassignStaffRequest: PostGroupsGroupIdCommandUnassignStaffRequest
+    ): PostGroupsGroupIdCommandUnassignStaffResponse
 
     /**
      * Update a Group
@@ -202,10 +249,13 @@ interface GroupsApi {
      *  - 200: OK
      *
      * @param groupId groupId
-     * @param putGroupsGroupIdRequest 
+     * @param putGroupsGroupIdRequest
      * @return [PutGroupsGroupIdResponse]
      */
     @PUT("v1/groups/{groupId}")
-    suspend fun update13(@Path("groupId") groupId: kotlin.Long, @Body putGroupsGroupIdRequest: PutGroupsGroupIdRequest): Response<PutGroupsGroupIdResponse>
+    suspend fun update13(
+        @Path("groupId") groupId: Long,
+        @Body putGroupsGroupIdRequest: PutGroupsGroupIdRequest
+    ): PutGroupsGroupIdResponse
 
 }

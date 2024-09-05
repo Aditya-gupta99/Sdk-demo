@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteFixedDepositAccountsAccountIdResponse
 import org.openapitools.client.models.GetFixedDepositAccountsAccountIdResponse
 import org.openapitools.client.models.GetFixedDepositAccountsResponse
@@ -15,13 +10,20 @@ import org.openapitools.client.models.PostFixedDepositAccountsRequest
 import org.openapitools.client.models.PostFixedDepositAccountsResponse
 import org.openapitools.client.models.PutFixedDepositAccountsAccountIdRequest
 import org.openapitools.client.models.PutFixedDepositAccountsAccountIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface FixedDepositAccountApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -30,7 +32,10 @@ interface FixedDepositAccountApi {
      * @return [kotlin.String]
      */
     @GET("v1/fixeddepositaccounts/{accountId}/template")
-    suspend fun accountClosureTemplate(@Path("accountId") accountId: kotlin.Long, @Query("command") command: kotlin.String? = null): Response<kotlin.String>
+    suspend fun accountClosureTemplate(
+        @Path("accountId") accountId: Long,
+        @Query("command") command: String? = null
+    ): String
 
     /**
      * Delete a fixed deposit application
@@ -42,11 +47,11 @@ interface FixedDepositAccountApi {
      * @return [DeleteFixedDepositAccountsAccountIdResponse]
      */
     @DELETE("v1/fixeddepositaccounts/{accountId}")
-    suspend fun delete15(@Path("accountId") accountId: kotlin.Long): Response<DeleteFixedDepositAccountsAccountIdResponse>
+    suspend fun delete15(@Path("accountId") accountId: Long): DeleteFixedDepositAccountsAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -56,11 +61,15 @@ interface FixedDepositAccountApi {
      * @return [Unit]
      */
     @GET("v1/fixeddepositaccounts/downloadtemplate")
-    suspend fun getFixedDepositTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getFixedDepositTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -69,7 +78,10 @@ interface FixedDepositAccountApi {
      * @return [Unit]
      */
     @GET("v1/fixeddepositaccounts/transaction/downloadtemplate")
-    suspend fun getFixedDepositTransactionTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getFixedDepositTransactionTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
      * Approve fixed deposit application | Undo approval fixed deposit application | Reject fixed deposit application | Withdraw fixed deposit application | Activate a fixed deposit account | Close a fixed deposit account | Premature Close a fixed deposit account | Calculate Premature amount on Fixed deposit account | Calculate Interest on Fixed Deposit Account | Post Interest on Fixed Deposit Account
@@ -78,16 +90,20 @@ interface FixedDepositAccountApi {
      *  - 200: OK
      *
      * @param accountId accountId
-     * @param body 
+     * @param body
      * @param command command (optional)
      * @return [PostFixedDepositAccountsAccountIdResponse]
      */
     @POST("v1/fixeddepositaccounts/{accountId}")
-    suspend fun handleCommands4(@Path("accountId") accountId: kotlin.Long, @Body body: kotlin.Any, @Query("command") command: kotlin.String? = null): Response<PostFixedDepositAccountsAccountIdResponse>
+    suspend fun handleCommands4(
+        @Path("accountId") accountId: Long,
+        @Body body: Any,
+        @Query("command") command: String? = null
+    ): PostFixedDepositAccountsAccountIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -98,11 +114,15 @@ interface FixedDepositAccountApi {
      */
     @Multipart
     @POST("v1/fixeddepositaccounts/uploadtemplate")
-    suspend fun postFixedDepositTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postFixedDepositTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -113,7 +133,11 @@ interface FixedDepositAccountApi {
      */
     @Multipart
     @POST("v1/fixeddepositaccounts/transaction/uploadtemplate")
-    suspend fun postFixedDepositTransactionTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postFixedDepositTransactionTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List Fixed deposit applications/accounts
@@ -126,10 +150,16 @@ interface FixedDepositAccountApi {
      * @param limit limit (optional)
      * @param orderBy orderBy (optional)
      * @param sortOrder sortOrder (optional)
-     * @return [kotlin.collections.List<GetFixedDepositAccountsResponse>]
+     * @return [kotlin.collections.List<GetFixedDepositAccountsResponse]
      */
     @GET("v1/fixeddepositaccounts")
-    suspend fun retrieveAll29(@Query("paged") paged: kotlin.Boolean? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.collections.List<GetFixedDepositAccountsResponse>>
+    suspend fun retrieveAll29(
+        @Query("paged") paged: Boolean? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): List<GetFixedDepositAccountsResponse>
 
     /**
      * Retrieve a fixed deposit application/account
@@ -143,7 +173,11 @@ interface FixedDepositAccountApi {
      * @return [GetFixedDepositAccountsAccountIdResponse]
      */
     @GET("v1/fixeddepositaccounts/{accountId}")
-    suspend fun retrieveOne19(@Path("accountId") accountId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false, @Query("chargeStatus") chargeStatus: kotlin.String? = "all"): Response<GetFixedDepositAccountsAccountIdResponse>
+    suspend fun retrieveOne19(
+        @Path("accountId") accountId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false,
+        @Query("chargeStatus") chargeStatus: String? = "all"
+    ): GetFixedDepositAccountsAccountIdResponse
 
     /**
      * Submit new fixed deposit application
@@ -151,11 +185,11 @@ interface FixedDepositAccountApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postFixedDepositAccountsRequest 
+     * @param postFixedDepositAccountsRequest
      * @return [PostFixedDepositAccountsResponse]
      */
     @POST("v1/fixeddepositaccounts")
-    suspend fun submitApplication(@Body postFixedDepositAccountsRequest: PostFixedDepositAccountsRequest): Response<PostFixedDepositAccountsResponse>
+    suspend fun submitApplication(@Body postFixedDepositAccountsRequest: PostFixedDepositAccountsRequest): PostFixedDepositAccountsResponse
 
     /**
      * Retrieve Fixed Deposit Account Template
@@ -170,7 +204,12 @@ interface FixedDepositAccountApi {
      * @return [GetFixedDepositAccountsTemplateResponse]
      */
     @GET("v1/fixeddepositaccounts/template")
-    suspend fun template12(@Query("clientId") clientId: kotlin.Long? = null, @Query("groupId") groupId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetFixedDepositAccountsTemplateResponse>
+    suspend fun template12(
+        @Query("clientId") clientId: Long? = null,
+        @Query("groupId") groupId: Long? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetFixedDepositAccountsTemplateResponse
 
     /**
      * Modify a fixed deposit application
@@ -179,10 +218,13 @@ interface FixedDepositAccountApi {
      *  - 200: OK
      *
      * @param accountId accountId
-     * @param putFixedDepositAccountsAccountIdRequest 
+     * @param putFixedDepositAccountsAccountIdRequest
      * @return [PutFixedDepositAccountsAccountIdResponse]
      */
     @PUT("v1/fixeddepositaccounts/{accountId}")
-    suspend fun update16(@Path("accountId") accountId: kotlin.Long, @Body putFixedDepositAccountsAccountIdRequest: PutFixedDepositAccountsAccountIdRequest): Response<PutFixedDepositAccountsAccountIdResponse>
+    suspend fun update16(
+        @Path("accountId") accountId: Long,
+        @Body putFixedDepositAccountsAccountIdRequest: PutFixedDepositAccountsAccountIdRequest
+    ): PutFixedDepositAccountsAccountIdResponse
 
 }

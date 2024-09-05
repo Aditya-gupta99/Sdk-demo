@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteTemplatesTemplateIdResponse
 import org.openapitools.client.models.GetTemplatesResponse
 import org.openapitools.client.models.GetTemplatesTemplateIdResponse
@@ -14,6 +8,13 @@ import org.openapitools.client.models.PostTemplatesRequest
 import org.openapitools.client.models.PostTemplatesResponse
 import org.openapitools.client.models.PutTemplatesTemplateIdRequest
 import org.openapitools.client.models.PutTemplatesTemplateIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface UserGeneratedDocumentsApi {
     /**
@@ -22,15 +23,15 @@ interface UserGeneratedDocumentsApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postTemplatesRequest 
+     * @param postTemplatesRequest
      * @return [PostTemplatesResponse]
      */
     @POST("v1/templates")
-    suspend fun createTemplate(@Body postTemplatesRequest: PostTemplatesRequest): Response<PostTemplatesResponse>
+    suspend fun createTemplate(@Body postTemplatesRequest: PostTemplatesRequest): PostTemplatesResponse
 
     /**
      * Delete a UGD
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -38,32 +39,35 @@ interface UserGeneratedDocumentsApi {
      * @return [DeleteTemplatesTemplateIdResponse]
      */
     @DELETE("v1/templates/{templateId}")
-    suspend fun deleteTemplate(@Path("templateId") templateId: kotlin.Long): Response<DeleteTemplatesTemplateIdResponse>
+    suspend fun deleteTemplate(@Path("templateId") templateId: Long): DeleteTemplatesTemplateIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param templateId 
+     * @param templateId
      * @return [kotlin.String]
      */
     @GET("v1/templates/{templateId}/template")
-    suspend fun getTemplateByTemplate(@Path("templateId") templateId: kotlin.Long): Response<kotlin.String>
+    suspend fun getTemplateByTemplate(@Path("templateId") templateId: Long): String
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param templateId 
+     * @param templateId
      * @param body  (optional)
      * @return [kotlin.String]
      */
     @POST("v1/templates/{templateId}")
-    suspend fun mergeTemplate(@Path("templateId") templateId: kotlin.Long, @Body body: kotlin.String? = null): Response<kotlin.String>
+    suspend fun mergeTemplate(
+        @Path("templateId") templateId: Long,
+        @Body body: String? = null
+    ): String
 
     /**
      * Retrieve all UGDs
@@ -76,7 +80,10 @@ interface UserGeneratedDocumentsApi {
      * @return [GetTemplatesResponse]
      */
     @GET("v1/templates")
-    suspend fun retrieveAll40(@Query("typeId") typeId: kotlin.Int? = -1, @Query("entityId") entityId: kotlin.Int? = -1): Response<GetTemplatesResponse>
+    suspend fun retrieveAll40(
+        @Query("typeId") typeId: Int? = -1,
+        @Query("entityId") entityId: Int? = -1
+    ): GetTemplatesResponse
 
     /**
      * Retrieve a UGD
@@ -88,20 +95,23 @@ interface UserGeneratedDocumentsApi {
      * @return [GetTemplatesTemplateIdResponse]
      */
     @GET("v1/templates/{templateId}")
-    suspend fun retrieveOne30(@Path("templateId") templateId: kotlin.Long): Response<GetTemplatesTemplateIdResponse>
+    suspend fun retrieveOne30(@Path("templateId") templateId: Long): GetTemplatesTemplateIdResponse
 
     /**
      * Update a UGD
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param templateId templateId
-     * @param putTemplatesTemplateIdRequest 
+     * @param putTemplatesTemplateIdRequest
      * @return [PutTemplatesTemplateIdResponse]
      */
     @PUT("v1/templates/{templateId}")
-    suspend fun saveTemplate(@Path("templateId") templateId: kotlin.Long, @Body putTemplatesTemplateIdRequest: PutTemplatesTemplateIdRequest): Response<PutTemplatesTemplateIdResponse>
+    suspend fun saveTemplate(
+        @Path("templateId") templateId: Long,
+        @Body putTemplatesTemplateIdRequest: PutTemplatesTemplateIdRequest
+    ): PutTemplatesTemplateIdResponse
 
     /**
      * Retrieve UGD Details Template
@@ -112,6 +122,6 @@ interface UserGeneratedDocumentsApi {
      * @return [GetTemplatesTemplateResponse]
      */
     @GET("v1/templates/template")
-    suspend fun template20(): Response<GetTemplatesTemplateResponse>
+    suspend fun template20(): GetTemplatesTemplateResponse
 
 }

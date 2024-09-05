@@ -1,16 +1,15 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetTaxesGroupResponse
 import org.openapitools.client.models.PostTaxesGroupRequest
 import org.openapitools.client.models.PostTaxesGroupResponse
 import org.openapitools.client.models.PutTaxesGroupTaxGroupIdRequest
 import org.openapitools.client.models.PutTaxesGroupTaxGroupIdResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface TaxGroupApi {
     /**
@@ -19,11 +18,11 @@ interface TaxGroupApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postTaxesGroupRequest 
+     * @param postTaxesGroupRequest
      * @return [PostTaxesGroupResponse]
      */
     @POST("v1/taxes/group")
-    suspend fun createTaxGroup(@Body postTaxesGroupRequest: PostTaxesGroupRequest): Response<PostTaxesGroupResponse>
+    suspend fun createTaxGroup(@Body postTaxesGroupRequest: PostTaxesGroupRequest): PostTaxesGroupResponse
 
     /**
      * List Tax Group
@@ -31,10 +30,10 @@ interface TaxGroupApi {
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetTaxesGroupResponse>]
+     * @return [kotlin.collections.List<GetTaxesGroupResponse]
      */
     @GET("v1/taxes/group")
-    suspend fun retrieveAllTaxGroups(): Response<kotlin.collections.List<GetTaxesGroupResponse>>
+    suspend fun retrieveAllTaxGroups(): List<GetTaxesGroupResponse>
 
     /**
      * Retrieve Tax Group
@@ -46,18 +45,18 @@ interface TaxGroupApi {
      * @return [GetTaxesGroupResponse]
      */
     @GET("v1/taxes/group/{taxGroupId}")
-    suspend fun retrieveTaxGroup(@Path("taxGroupId") taxGroupId: kotlin.Long): Response<GetTaxesGroupResponse>
+    suspend fun retrieveTaxGroup(@Path("taxGroupId") taxGroupId: Long): GetTaxesGroupResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/taxes/group/template")
-    suspend fun retrieveTemplate22(): Response<kotlin.String>
+    suspend fun retrieveTemplate22(): String
 
     /**
      * Update Tax Group
@@ -66,10 +65,13 @@ interface TaxGroupApi {
      *  - 200: OK
      *
      * @param taxGroupId taxGroupId
-     * @param putTaxesGroupTaxGroupIdRequest 
+     * @param putTaxesGroupTaxGroupIdRequest
      * @return [PutTaxesGroupTaxGroupIdResponse]
      */
     @PUT("v1/taxes/group/{taxGroupId}")
-    suspend fun updateTaxGroup(@Path("taxGroupId") taxGroupId: kotlin.Long, @Body putTaxesGroupTaxGroupIdRequest: PutTaxesGroupTaxGroupIdRequest): Response<PutTaxesGroupTaxGroupIdResponse>
+    suspend fun updateTaxGroup(
+        @Path("taxGroupId") taxGroupId: Long,
+        @Body putTaxesGroupTaxGroupIdRequest: PutTaxesGroupTaxGroupIdRequest
+    ): PutTaxesGroupTaxGroupIdResponse
 
 }

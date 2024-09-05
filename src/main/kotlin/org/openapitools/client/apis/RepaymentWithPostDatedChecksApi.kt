@@ -1,15 +1,15 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeletePostDatedCheck
 import org.openapitools.client.models.GetPostDatedChecks
 import org.openapitools.client.models.UpdatePostDatedCheckRequest
 import org.openapitools.client.models.UpdatePostDatedCheckResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RepaymentWithPostDatedChecksApi {
     /**
@@ -20,10 +20,13 @@ interface RepaymentWithPostDatedChecksApi {
      *
      * @param postDatedCheckId postDatedCheckId
      * @param loanId loanId
-     * @return [kotlin.collections.List<DeletePostDatedCheck>]
+     * @return [kotlin.collections.List<DeletePostDatedCheck]
      */
     @DELETE("v1/loans/{loanId}/postdatedchecks/{postDatedCheckId}")
-    suspend fun deletePostDatedCheck(@Path("postDatedCheckId") postDatedCheckId: kotlin.Long, @Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<DeletePostDatedCheck>>
+    suspend fun deletePostDatedCheck(
+        @Path("postDatedCheckId") postDatedCheckId: Long,
+        @Path("loanId") loanId: Long
+    ): List<DeletePostDatedCheck>
 
     /**
      * Get Post Dated Check
@@ -33,10 +36,13 @@ interface RepaymentWithPostDatedChecksApi {
      *
      * @param installmentId installmentId
      * @param loanId loanId
-     * @return [kotlin.collections.List<GetPostDatedChecks>]
+     * @return [kotlin.collections.List<GetPostDatedChecks]
      */
     @GET("v1/loans/{loanId}/postdatedchecks/{installmentId}")
-    suspend fun getPostDatedCheck(@Path("installmentId") installmentId: kotlin.Int, @Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<GetPostDatedChecks>>
+    suspend fun getPostDatedCheck(
+        @Path("installmentId") installmentId: Int,
+        @Path("loanId") loanId: Long
+    ): List<GetPostDatedChecks>
 
     /**
      * Get All Post Dated Checks
@@ -45,10 +51,10 @@ interface RepaymentWithPostDatedChecksApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @return [kotlin.collections.List<GetPostDatedChecks>]
+     * @return [kotlin.collections.List<GetPostDatedChecks]
      */
     @GET("v1/loans/{loanId}/postdatedchecks")
-    suspend fun getPostDatedChecks(@Path("loanId") loanId: kotlin.Long): Response<kotlin.collections.List<GetPostDatedChecks>>
+    suspend fun getPostDatedChecks(@Path("loanId") loanId: Long): List<GetPostDatedChecks>
 
     /**
      * Update Post Dated Check, Bounced Check
@@ -58,11 +64,16 @@ interface RepaymentWithPostDatedChecksApi {
      *
      * @param postDatedCheckId postDatedCheckId
      * @param loanId loanId
-     * @param updatePostDatedCheckRequest 
+     * @param updatePostDatedCheckRequest
      * @param editType editType (optional)
-     * @return [kotlin.collections.List<UpdatePostDatedCheckResponse>]
+     * @return [kotlin.collections.List<UpdatePostDatedCheckResponse]
      */
     @PUT("v1/loans/{loanId}/postdatedchecks/{postDatedCheckId}")
-    suspend fun updatePostDatedChecks(@Path("postDatedCheckId") postDatedCheckId: kotlin.Long, @Path("loanId") loanId: kotlin.Long, @Body updatePostDatedCheckRequest: UpdatePostDatedCheckRequest, @Query("editType") editType: kotlin.String? = null): Response<kotlin.collections.List<UpdatePostDatedCheckResponse>>
+    suspend fun updatePostDatedChecks(
+        @Path("postDatedCheckId") postDatedCheckId: Long,
+        @Path("loanId") loanId: Long,
+        @Body updatePostDatedCheckRequest: UpdatePostDatedCheckRequest,
+        @Query("editType") editType: String? = null
+    ): List<UpdatePostDatedCheckResponse>
 
 }

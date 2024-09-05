@@ -1,16 +1,16 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetClientClientIdAddressesResponse
 import org.openapitools.client.models.PostClientClientIdAddressesRequest
 import org.openapitools.client.models.PostClientClientIdAddressesResponse
 import org.openapitools.client.models.PutClientClientIdAddressesRequest
 import org.openapitools.client.models.PutClientClientIdAddressesResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ClientsAddressApi {
     /**
@@ -20,12 +20,16 @@ interface ClientsAddressApi {
      *  - 200: OK
      *
      * @param clientid clientId
-     * @param postClientClientIdAddressesRequest 
+     * @param postClientClientIdAddressesRequest
      * @param type type (optional)
      * @return [PostClientClientIdAddressesResponse]
      */
     @POST("v1/client/{clientid}/addresses")
-    suspend fun addClientAddress(@Path("clientid") clientid: kotlin.Long, @Body postClientClientIdAddressesRequest: PostClientClientIdAddressesRequest, @Query("type") type: kotlin.Long? = null): Response<PostClientClientIdAddressesResponse>
+    suspend fun addClientAddress(
+        @Path("clientid") clientid: Long,
+        @Body postClientClientIdAddressesRequest: PostClientClientIdAddressesRequest,
+        @Query("type") type: Long? = null
+    ): PostClientClientIdAddressesResponse
 
     /**
      * List all addresses for a Client
@@ -39,18 +43,22 @@ interface ClientsAddressApi {
      * @return [kotlin.collections.List<GetClientClientIdAddressesResponse>]
      */
     @GET("v1/client/{clientid}/addresses")
-    suspend fun getAddresses1(@Path("clientid") clientid: kotlin.Long, @Query("status") status: kotlin.String? = null, @Query("type") type: kotlin.Long? = null): Response<kotlin.collections.List<GetClientClientIdAddressesResponse>>
+    suspend fun getAddresses1(
+        @Path("clientid") clientid: Long,
+        @Query("status") status: String? = null,
+        @Query("type") type: Long? = null
+    ): List<GetClientClientIdAddressesResponse>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @return [kotlin.String]
      */
     @GET("v1/client/addresses/template")
-    suspend fun getAddressesTemplate(): Response<kotlin.String>
+    suspend fun getAddressesTemplate(): String
 
     /**
      * Update an address for a Client
@@ -59,10 +67,13 @@ interface ClientsAddressApi {
      *  - 200: OK
      *
      * @param clientid clientId
-     * @param putClientClientIdAddressesRequest 
+     * @param putClientClientIdAddressesRequest
      * @return [PutClientClientIdAddressesResponse]
      */
     @PUT("v1/client/{clientid}/addresses")
-    suspend fun updateClientAddress(@Path("clientid") clientid: kotlin.Long, @Body putClientClientIdAddressesRequest: PutClientClientIdAddressesRequest): Response<PutClientClientIdAddressesResponse>
+    suspend fun updateClientAddress(
+        @Path("clientid") clientid: Long,
+        @Body putClientClientIdAddressesRequest: PutClientClientIdAddressesRequest
+    ): PutClientClientIdAddressesResponse
 
 }

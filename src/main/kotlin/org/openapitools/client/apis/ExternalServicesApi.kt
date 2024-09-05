@@ -1,13 +1,11 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.ExternalServicesPropertiesData
 import org.openapitools.client.models.PutExternalServiceRequest
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface ExternalServicesApi {
     /**
@@ -20,7 +18,7 @@ interface ExternalServicesApi {
      * @return [ExternalServicesPropertiesData]
      */
     @GET("v1/externalservice/{servicename}")
-    suspend fun retrieveOne2(@Path("servicename") servicename: kotlin.String): Response<ExternalServicesPropertiesData>
+    suspend fun retrieveOne2(@Path("servicename") servicename: String): ExternalServicesPropertiesData
 
     /**
      * Update External Service
@@ -29,10 +27,13 @@ interface ExternalServicesApi {
      *  - 200: OK
      *
      * @param servicename servicename
-     * @param putExternalServiceRequest 
+     * @param putExternalServiceRequest
      * @return [Unit]
      */
     @PUT("v1/externalservice/{servicename}")
-    suspend fun updateExternalServiceProperties(@Path("servicename") servicename: kotlin.String, @Body putExternalServiceRequest: PutExternalServiceRequest): Response<Unit>
+    suspend fun updateExternalServiceProperties(
+        @Path("servicename") servicename: String,
+        @Body putExternalServiceRequest: PutExternalServiceRequest
+    )
 
 }

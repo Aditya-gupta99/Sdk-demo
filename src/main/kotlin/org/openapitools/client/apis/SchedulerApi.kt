@@ -1,12 +1,9 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetSchedulerResponse
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface SchedulerApi {
     /**
@@ -19,7 +16,7 @@ interface SchedulerApi {
      * @return [Unit]
      */
     @POST("v1/scheduler")
-    suspend fun changeSchedulerStatus(@Query("command") command: kotlin.String? = null): Response<Unit>
+    suspend fun changeSchedulerStatus(@Query("command") command: String? = null): Unit
 
     /**
      * Retrieve Scheduler Status
@@ -30,6 +27,6 @@ interface SchedulerApi {
      * @return [GetSchedulerResponse]
      */
     @GET("v1/scheduler")
-    suspend fun retrieveStatus(): Response<GetSchedulerResponse>
+    suspend fun retrieveStatus(): GetSchedulerResponse
 
 }

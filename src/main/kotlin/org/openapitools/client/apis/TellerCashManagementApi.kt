@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteTellersTellerIdCashiersCashierIdResponse
 import org.openapitools.client.models.GetTellersResponse
 import org.openapitools.client.models.GetTellersTellerIdCashiersCashierIdResponse
@@ -26,6 +20,13 @@ import org.openapitools.client.models.PutTellersRequest
 import org.openapitools.client.models.PutTellersResponse
 import org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdRequest
 import org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface TellerCashManagementApi {
     /**
@@ -36,11 +37,15 @@ interface TellerCashManagementApi {
      *
      * @param tellerId tellerId
      * @param cashierId cashierId
-     * @param postTellersTellerIdCashiersCashierIdAllocateRequest 
+     * @param postTellersTellerIdCashiersCashierIdAllocateRequest
      * @return [PostTellersTellerIdCashiersCashierIdAllocateResponse]
      */
     @POST("v1/tellers/{tellerId}/cashiers/{cashierId}/allocate")
-    suspend fun allocateCashToCashier(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long, @Body postTellersTellerIdCashiersCashierIdAllocateRequest: PostTellersTellerIdCashiersCashierIdAllocateRequest): Response<PostTellersTellerIdCashiersCashierIdAllocateResponse>
+    suspend fun allocateCashToCashier(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long,
+        @Body postTellersTellerIdCashiersCashierIdAllocateRequest: PostTellersTellerIdCashiersCashierIdAllocateRequest
+    ): PostTellersTellerIdCashiersCashierIdAllocateResponse
 
     /**
      * Create Cashiers
@@ -49,11 +54,14 @@ interface TellerCashManagementApi {
      *  - 200: OK
      *
      * @param tellerId tellerId
-     * @param postTellersTellerIdCashiersRequest 
+     * @param postTellersTellerIdCashiersRequest
      * @return [PostTellersTellerIdCashiersResponse]
      */
     @POST("v1/tellers/{tellerId}/cashiers")
-    suspend fun createCashier(@Path("tellerId") tellerId: kotlin.Long, @Body postTellersTellerIdCashiersRequest: PostTellersTellerIdCashiersRequest): Response<PostTellersTellerIdCashiersResponse>
+    suspend fun createCashier(
+        @Path("tellerId") tellerId: Long,
+        @Body postTellersTellerIdCashiersRequest: PostTellersTellerIdCashiersRequest
+    ): PostTellersTellerIdCashiersResponse
 
     /**
      * Create teller
@@ -61,15 +69,15 @@ interface TellerCashManagementApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postTellersRequest 
+     * @param postTellersRequest
      * @return [PostTellersResponse]
      */
     @POST("v1/tellers")
-    suspend fun createTeller(@Body postTellersRequest: PostTellersRequest): Response<PostTellersResponse>
+    suspend fun createTeller(@Body postTellersRequest: PostTellersRequest): PostTellersResponse
 
     /**
      * Delete Cashier
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -78,11 +86,14 @@ interface TellerCashManagementApi {
      * @return [DeleteTellersTellerIdCashiersCashierIdResponse]
      */
     @DELETE("v1/tellers/{tellerId}/cashiers/{cashierId}")
-    suspend fun deleteCashier(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long): Response<DeleteTellersTellerIdCashiersCashierIdResponse>
+    suspend fun deleteCashier(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long
+    ): DeleteTellersTellerIdCashiersCashierIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -90,11 +101,11 @@ interface TellerCashManagementApi {
      * @return [kotlin.String]
      */
     @DELETE("v1/tellers/{tellerId}")
-    suspend fun deleteTeller(@Path("tellerId") tellerId: kotlin.Long): Response<kotlin.String>
+    suspend fun deleteTeller(@Path("tellerId") tellerId: Long): String
 
     /**
      * Retrieve a cashier
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -103,11 +114,14 @@ interface TellerCashManagementApi {
      * @return [GetTellersTellerIdCashiersCashierIdResponse]
      */
     @GET("v1/tellers/{tellerId}/cashiers/{cashierId}")
-    suspend fun findCashierData(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long): Response<GetTellersTellerIdCashiersCashierIdResponse>
+    suspend fun findCashierData(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long
+    ): GetTellersTellerIdCashiersCashierIdResponse
 
     /**
      * Retrieve tellers
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -115,11 +129,11 @@ interface TellerCashManagementApi {
      * @return [GetTellersResponse]
      */
     @GET("v1/tellers/{tellerId}")
-    suspend fun findTeller(@Path("tellerId") tellerId: kotlin.Long): Response<GetTellersResponse>
+    suspend fun findTeller(@Path("tellerId") tellerId: Long): GetTellersResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -128,11 +142,14 @@ interface TellerCashManagementApi {
      * @return [kotlin.String]
      */
     @GET("v1/tellers/{tellerId}/transactions/{transactionId}")
-    suspend fun findTransactionData(@Path("tellerId") tellerId: kotlin.Long, @Path("transactionId") transactionId: kotlin.Long): Response<kotlin.String>
+    suspend fun findTransactionData(
+        @Path("tellerId") tellerId: Long,
+        @Path("transactionId") transactionId: Long
+    ): String
 
     /**
      * List Cashiers
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -142,11 +159,15 @@ interface TellerCashManagementApi {
      * @return [GetTellersTellerIdCashiersResponse]
      */
     @GET("v1/tellers/{tellerId}/cashiers")
-    suspend fun getCashierData1(@Path("tellerId") tellerId: kotlin.Long, @Query("fromdate") fromdate: kotlin.String? = null, @Query("todate") todate: kotlin.String? = null): Response<GetTellersTellerIdCashiersResponse>
+    suspend fun getCashierData1(
+        @Path("tellerId") tellerId: Long,
+        @Query("fromdate") fromdate: String? = null,
+        @Query("todate") todate: String? = null
+    ): GetTellersTellerIdCashiersResponse
 
     /**
      * Find Cashiers
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -154,11 +175,11 @@ interface TellerCashManagementApi {
      * @return [GetTellersTellerIdCashiersTemplateResponse]
      */
     @GET("v1/tellers/{tellerId}/cashiers/template")
-    suspend fun getCashierTemplate(@Path("tellerId") tellerId: kotlin.Long): Response<GetTellersTellerIdCashiersTemplateResponse>
+    suspend fun getCashierTemplate(@Path("tellerId") tellerId: Long): GetTellersTellerIdCashiersTemplateResponse
 
     /**
      * Retrieve Cashier Transaction Template
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -167,11 +188,14 @@ interface TellerCashManagementApi {
      * @return [GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse]
      */
     @GET("v1/tellers/{tellerId}/cashiers/{cashierId}/transactions/template")
-    suspend fun getCashierTxnTemplate(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long): Response<GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse>
+    suspend fun getCashierTxnTemplate(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long
+    ): GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -181,7 +205,11 @@ interface TellerCashManagementApi {
      * @return [kotlin.String]
      */
     @GET("v1/tellers/{tellerId}/journals")
-    suspend fun getJournalData(@Path("tellerId") tellerId: kotlin.Long, @Query("cashierId") cashierId: kotlin.Long? = null, @Query("dateRange") dateRange: kotlin.String? = null): Response<kotlin.String>
+    suspend fun getJournalData(
+        @Path("tellerId") tellerId: Long,
+        @Query("cashierId") cashierId: Long? = null,
+        @Query("dateRange") dateRange: String? = null
+    ): String
 
     /**
      * List all tellers
@@ -190,14 +218,14 @@ interface TellerCashManagementApi {
      *  - 200: OK
      *
      * @param officeId officeId (optional)
-     * @return [kotlin.collections.List<GetTellersResponse>]
+     * @return [kotlin.collections.List<GetTellersResponse]
      */
     @GET("v1/tellers")
-    suspend fun getTellerData(@Query("officeId") officeId: kotlin.Long? = null): Response<kotlin.collections.List<GetTellersResponse>>
+    suspend fun getTellerData(@Query("officeId") officeId: Long? = null): List<GetTellersResponse>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -206,11 +234,14 @@ interface TellerCashManagementApi {
      * @return [kotlin.String]
      */
     @GET("v1/tellers/{tellerId}/transactions")
-    suspend fun getTransactionData(@Path("tellerId") tellerId: kotlin.Long, @Query("dateRange") dateRange: kotlin.String? = null): Response<kotlin.String>
+    suspend fun getTransactionData(
+        @Path("tellerId") tellerId: Long,
+        @Query("dateRange") dateRange: String? = null
+    ): String
 
     /**
      * Retrieve Cashier Transaction
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -221,14 +252,22 @@ interface TellerCashManagementApi {
      * @param limit limit (optional)
      * @param orderBy orderBy (optional)
      * @param sortOrder sortOrder (optional)
-     * @return [kotlin.collections.List<GetTellersTellerIdCashiersCashiersIdTransactionsResponse>]
+     * @return [kotlin.collections.List<GetTellersTellerIdCashiersCashiersIdTransactionsResponse]
      */
     @GET("v1/tellers/{tellerId}/cashiers/{cashierId}/transactions")
-    suspend fun getTransactionsForCashier(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long, @Query("currencyCode") currencyCode: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.collections.List<GetTellersTellerIdCashiersCashiersIdTransactionsResponse>>
+    suspend fun getTransactionsForCashier(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long,
+        @Query("currencyCode") currencyCode: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): List<GetTellersTellerIdCashiersCashiersIdTransactionsResponse>
 
     /**
      * Transactions Wtih Summary For Cashier
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -242,7 +281,15 @@ interface TellerCashManagementApi {
      * @return [GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse]
      */
     @GET("v1/tellers/{tellerId}/cashiers/{cashierId}/summaryandtransactions")
-    suspend fun getTransactionsWtihSummaryForCashier(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long, @Query("currencyCode") currencyCode: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse>
+    suspend fun getTransactionsWtihSummaryForCashier(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long,
+        @Query("currencyCode") currencyCode: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse
 
     /**
      * Settle Cash From Cashier
@@ -252,37 +299,48 @@ interface TellerCashManagementApi {
      *
      * @param tellerId tellerId
      * @param cashierId cashierId
-     * @param postTellersTellerIdCashiersCashierIdSettleRequest 
+     * @param postTellersTellerIdCashiersCashierIdSettleRequest
      * @return [PostTellersTellerIdCashiersCashierIdSettleResponse]
      */
     @POST("v1/tellers/{tellerId}/cashiers/{cashierId}/settle")
-    suspend fun settleCashFromCashier(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long, @Body postTellersTellerIdCashiersCashierIdSettleRequest: PostTellersTellerIdCashiersCashierIdSettleRequest): Response<PostTellersTellerIdCashiersCashierIdSettleResponse>
+    suspend fun settleCashFromCashier(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long,
+        @Body postTellersTellerIdCashiersCashierIdSettleRequest: PostTellersTellerIdCashiersCashierIdSettleRequest
+    ): PostTellersTellerIdCashiersCashierIdSettleResponse
 
     /**
      * Update Cashier
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param tellerId tellerId
      * @param cashierId cashierId
-     * @param putTellersTellerIdCashiersCashierIdRequest 
+     * @param putTellersTellerIdCashiersCashierIdRequest
      * @return [PutTellersTellerIdCashiersCashierIdResponse]
      */
     @PUT("v1/tellers/{tellerId}/cashiers/{cashierId}")
-    suspend fun updateCashier(@Path("tellerId") tellerId: kotlin.Long, @Path("cashierId") cashierId: kotlin.Long, @Body putTellersTellerIdCashiersCashierIdRequest: PutTellersTellerIdCashiersCashierIdRequest): Response<PutTellersTellerIdCashiersCashierIdResponse>
+    suspend fun updateCashier(
+        @Path("tellerId") tellerId: Long,
+        @Path("cashierId") cashierId: Long,
+        @Body putTellersTellerIdCashiersCashierIdRequest: PutTellersTellerIdCashiersCashierIdRequest
+    ): PutTellersTellerIdCashiersCashierIdResponse
 
     /**
      * Update teller
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param tellerId tellerId
-     * @param putTellersRequest 
+     * @param putTellersRequest
      * @return [PutTellersResponse]
      */
     @PUT("v1/tellers/{tellerId}")
-    suspend fun updateTeller(@Path("tellerId") tellerId: kotlin.Long, @Body putTellersRequest: PutTellersRequest): Response<PutTellersResponse>
+    suspend fun updateTeller(
+        @Path("tellerId") tellerId: Long,
+        @Body putTellersRequest: PutTellersRequest
+    ): PutTellersResponse
 
 }

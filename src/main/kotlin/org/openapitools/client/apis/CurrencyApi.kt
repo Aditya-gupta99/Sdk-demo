@@ -1,14 +1,11 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetCurrenciesResponse
 import org.openapitools.client.models.PutCurrenciesRequest
 import org.openapitools.client.models.PutCurrenciesResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
 
 interface CurrencyApi {
     /**
@@ -20,7 +17,7 @@ interface CurrencyApi {
      * @return [GetCurrenciesResponse]
      */
     @GET("v1/currencies")
-    suspend fun retrieveCurrencies(): Response<GetCurrenciesResponse>
+    suspend fun retrieveCurrencies(): GetCurrenciesResponse
 
     /**
      * Update Currency Configuration
@@ -28,10 +25,10 @@ interface CurrencyApi {
      * Responses:
      *  - 200: OK
      *
-     * @param putCurrenciesRequest 
+     * @param putCurrenciesRequest
      * @return [PutCurrenciesResponse]
      */
     @PUT("v1/currencies")
-    suspend fun updateCurrencies(@Body putCurrenciesRequest: PutCurrenciesRequest): Response<PutCurrenciesResponse>
+    suspend fun updateCurrencies(@Body putCurrenciesRequest: PutCurrenciesRequest): PutCurrenciesResponse
 
 }

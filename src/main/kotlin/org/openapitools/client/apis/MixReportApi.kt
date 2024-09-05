@@ -1,16 +1,13 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface MixReportApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -20,6 +17,10 @@ interface MixReportApi {
      * @return [kotlin.String]
      */
     @GET("v1/mixreport")
-    suspend fun retrieveXBRLReport(@Query("startDate") startDate: java.time.OffsetDateTime? = null, @Query("endDate") endDate: java.time.OffsetDateTime? = null, @Query("currency") currency: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveXBRLReport(
+        @Query("startDate") startDate: java.time.OffsetDateTime? = null,
+        @Query("endDate") endDate: java.time.OffsetDateTime? = null,
+        @Query("currency") currency: String? = null
+    ): String
 
 }

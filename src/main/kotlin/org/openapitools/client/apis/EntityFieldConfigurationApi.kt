@@ -1,12 +1,8 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetFieldConfigurationEntityResponse
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface EntityFieldConfigurationApi {
     /**
@@ -19,6 +15,6 @@ interface EntityFieldConfigurationApi {
      * @return [kotlin.collections.List<GetFieldConfigurationEntityResponse>]
      */
     @GET("v1/fieldconfiguration/{entity}")
-    suspend fun getAddresses(@Path("entity") entity: kotlin.String): Response<kotlin.collections.List<GetFieldConfigurationEntityResponse>>
+    suspend fun getAddresses(@Path("entity") entity: String): List<GetFieldConfigurationEntityResponse>
 
 }

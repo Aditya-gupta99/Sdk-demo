@@ -1,17 +1,18 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteClientCollateralResponse
 import org.openapitools.client.models.GetLoanCollateralManagementTemplate
 import org.openapitools.client.models.PostClientCollateralRequest
 import org.openapitools.client.models.PostClientCollateralResponse
 import org.openapitools.client.models.PutClientCollateralRequest
 import org.openapitools.client.models.PutClientCollateralResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ClientCollateralManagementApi {
     /**
@@ -21,11 +22,14 @@ interface ClientCollateralManagementApi {
      *  - 200: OK
      *
      * @param clientId clientId
-     * @param postClientCollateralRequest 
+     * @param postClientCollateralRequest
      * @return [PostClientCollateralResponse]
      */
     @POST("v1/clients/{clientId}/collaterals")
-    suspend fun addCollateral(@Path("clientId") clientId: kotlin.Long, @Body postClientCollateralRequest: PostClientCollateralRequest): Response<PostClientCollateralResponse>
+    suspend fun addCollateral(
+        @Path("clientId") clientId: Long,
+        @Body postClientCollateralRequest: PostClientCollateralRequest
+    ): PostClientCollateralResponse
 
     /**
      * Delete Client Collateral
@@ -38,7 +42,10 @@ interface ClientCollateralManagementApi {
      * @return [DeleteClientCollateralResponse]
      */
     @DELETE("v1/clients/{clientId}/collaterals/{collateralId}")
-    suspend fun deleteCollateral1(@Path("clientId") clientId: kotlin.Long, @Path("collateralId") collateralId: kotlin.Long): Response<DeleteClientCollateralResponse>
+    suspend fun deleteCollateral1(
+        @Path("clientId") clientId: Long,
+        @Path("collateralId") collateralId: Long
+    ): DeleteClientCollateralResponse
 
     /**
      * Get Clients Collateral Products
@@ -51,7 +58,10 @@ interface ClientCollateralManagementApi {
      * @return [kotlin.collections.List<kotlin.Any>]
      */
     @GET("v1/clients/{clientId}/collaterals")
-    suspend fun getClientCollateral(@Path("clientId") clientId: kotlin.Long, @Query("prodId") prodId: kotlin.Long? = null): Response<kotlin.collections.List<kotlin.Any>>
+    suspend fun getClientCollateral(
+        @Path("clientId") clientId: Long,
+        @Query("prodId") prodId: Long? = null
+    ): List<Any>
 
     /**
      * Get Client Collateral Data
@@ -64,7 +74,10 @@ interface ClientCollateralManagementApi {
      * @return [kotlin.Any]
      */
     @GET("v1/clients/{clientId}/collaterals/{clientCollateralId}")
-    suspend fun getClientCollateralData(@Path("clientId") clientId: kotlin.Long, @Path("clientCollateralId") clientCollateralId: kotlin.Long): Response<kotlin.Any>
+    suspend fun getClientCollateralData(
+        @Path("clientId") clientId: Long,
+        @Path("clientCollateralId") clientCollateralId: Long
+    ): Any
 
     /**
      * Get Client Collateral Template
@@ -76,7 +89,7 @@ interface ClientCollateralManagementApi {
      * @return [kotlin.collections.List<GetLoanCollateralManagementTemplate>]
      */
     @GET("v1/clients/{clientId}/collaterals/template")
-    suspend fun getClientCollateralTemplate(@Path("clientId") clientId: kotlin.Long): Response<kotlin.collections.List<GetLoanCollateralManagementTemplate>>
+    suspend fun getClientCollateralTemplate(@Path("clientId") clientId: Long): List<GetLoanCollateralManagementTemplate>
 
     /**
      * Update New Collateral of a Client
@@ -86,10 +99,14 @@ interface ClientCollateralManagementApi {
      *
      * @param clientId clientId
      * @param collateralId collateralId
-     * @param putClientCollateralRequest 
+     * @param putClientCollateralRequest
      * @return [PutClientCollateralResponse]
      */
     @PUT("v1/clients/{clientId}/collaterals/{collateralId}")
-    suspend fun updateCollateral1(@Path("clientId") clientId: kotlin.Long, @Path("collateralId") collateralId: kotlin.Long, @Body putClientCollateralRequest: PutClientCollateralRequest): Response<PutClientCollateralResponse>
+    suspend fun updateCollateral1(
+        @Path("clientId") clientId: Long,
+        @Path("collateralId") collateralId: Long,
+        @Body putClientCollateralRequest: PutClientCollateralRequest
+    ): PutClientCollateralResponse
 
 }

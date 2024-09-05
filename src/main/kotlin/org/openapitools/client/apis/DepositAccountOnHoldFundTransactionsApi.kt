@@ -1,20 +1,18 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface DepositAccountOnHoldFundTransactionsApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param savingsId 
+     * @param savingsId
      * @param guarantorFundingId  (optional)
      * @param offset  (optional)
      * @param limit  (optional)
@@ -23,6 +21,13 @@ interface DepositAccountOnHoldFundTransactionsApi {
      * @return [kotlin.String]
      */
     @GET("v1/savingsaccounts/{savingsId}/onholdtransactions")
-    suspend fun retrieveAll28(@Path("savingsId") savingsId: kotlin.Long, @Query("guarantorFundingId") guarantorFundingId: kotlin.Long? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null): Response<kotlin.String>
+    suspend fun retrieveAll28(
+        @Path("savingsId") savingsId: Long,
+        @Query("guarantorFundingId") guarantorFundingId: Long? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null
+    ): String
 
 }

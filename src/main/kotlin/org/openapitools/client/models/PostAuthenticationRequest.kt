@@ -16,7 +16,6 @@
 package org.openapitools.client.models
 
 
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -30,10 +29,10 @@ import com.squareup.moshi.JsonClass
 
 data class PostAuthenticationRequest (
 
-    @SerializedName("password")
+    @Json(name = "password")
     val password: kotlin.String,
 
-    @SerializedName("username")
+    @Json(name = "username")
     val username: kotlin.String
 
 ) {

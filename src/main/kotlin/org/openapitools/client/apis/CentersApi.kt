@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteCentersCenterIdResponse
 import org.openapitools.client.models.GetCentersCenterIdAccountsResponse
 import org.openapitools.client.models.GetCentersCenterIdResponse
@@ -17,8 +12,15 @@ import org.openapitools.client.models.PostCentersRequest
 import org.openapitools.client.models.PostCentersResponse
 import org.openapitools.client.models.PutCentersCenterIdRequest
 import org.openapitools.client.models.PutCentersCenterIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CentersApi {
     /**
@@ -28,12 +30,16 @@ interface CentersApi {
      *  - 200: OK
      *
      * @param centerId centerId
-     * @param postCentersCenterIdRequest 
+     * @param postCentersCenterIdRequest
      * @param command command (optional)
      * @return [PostCentersCenterIdResponse]
      */
     @POST("v1/centers/{centerId}")
-    suspend fun activate2(@Path("centerId") centerId: kotlin.Long, @Body postCentersCenterIdRequest: PostCentersCenterIdRequest, @Query("command") command: kotlin.String? = null): Response<PostCentersCenterIdResponse>
+    suspend fun activate2(
+        @Path("centerId") centerId: Long,
+        @Body postCentersCenterIdRequest: PostCentersCenterIdRequest,
+        @Query("command") command: String? = null
+    ): PostCentersCenterIdResponse
 
     /**
      * Create a Center
@@ -41,11 +47,11 @@ interface CentersApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postCentersRequest 
+     * @param postCentersRequest
      * @return [PostCentersResponse]
      */
     @POST("v1/centers")
-    suspend fun create7(@Body postCentersRequest: PostCentersRequest): Response<PostCentersResponse>
+    suspend fun create7(@Body postCentersRequest: PostCentersRequest): PostCentersResponse
 
     /**
      * Delete a Center
@@ -57,11 +63,11 @@ interface CentersApi {
      * @return [DeleteCentersCenterIdResponse]
      */
     @DELETE("v1/centers/{centerId}")
-    suspend fun delete11(@Path("centerId") centerId: kotlin.Long): Response<DeleteCentersCenterIdResponse>
+    suspend fun delete11(@Path("centerId") centerId: Long): DeleteCentersCenterIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -71,11 +77,15 @@ interface CentersApi {
      * @return [Unit]
      */
     @GET("v1/centers/downloadtemplate")
-    suspend fun getCentersTemplate(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getCentersTemplate(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -86,7 +96,11 @@ interface CentersApi {
      */
     @Multipart
     @POST("v1/centers/uploadtemplate")
-    suspend fun postCentersTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postCentersTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List Centers
@@ -110,7 +124,21 @@ interface CentersApi {
      * @return [GetCentersResponse]
      */
     @GET("v1/centers")
-    suspend fun retrieveAll23(@Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("externalId") externalId: kotlin.String? = null, @Query("name") name: kotlin.String? = null, @Query("underHierarchy") underHierarchy: kotlin.String? = null, @Query("paged") paged: kotlin.Boolean? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("meetingDate") meetingDate: kotlin.Any? = null, @Query("dateFormat") dateFormat: kotlin.String? = null, @Query("locale") locale: kotlin.String? = null): Response<GetCentersResponse>
+    suspend fun retrieveAll23(
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("externalId") externalId: String? = null,
+        @Query("name") name: String? = null,
+        @Query("underHierarchy") underHierarchy: String? = null,
+        @Query("paged") paged: Boolean? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("meetingDate") meetingDate: Any? = null,
+        @Query("dateFormat") dateFormat: String? = null,
+        @Query("locale") locale: String? = null
+    ): GetCentersResponse
 
     /**
      * Retrieve Center accounts overview
@@ -122,7 +150,7 @@ interface CentersApi {
      * @return [GetCentersCenterIdAccountsResponse]
      */
     @GET("v1/centers/{centerId}/accounts")
-    suspend fun retrieveGroupAccount(@Path("centerId") centerId: kotlin.Long): Response<GetCentersCenterIdAccountsResponse>
+    suspend fun retrieveGroupAccount(@Path("centerId") centerId: Long): GetCentersCenterIdAccountsResponse
 
     /**
      * Retrieve a Center
@@ -135,7 +163,10 @@ interface CentersApi {
      * @return [GetCentersCenterIdResponse]
      */
     @GET("v1/centers/{centerId}")
-    suspend fun retrieveOne14(@Path("centerId") centerId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetCentersCenterIdResponse>
+    suspend fun retrieveOne14(
+        @Path("centerId") centerId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetCentersCenterIdResponse
 
     /**
      * Retrieve a Center Template
@@ -149,7 +180,11 @@ interface CentersApi {
      * @return [GetCentersTemplateResponse]
      */
     @GET("v1/centers/template")
-    suspend fun retrieveTemplate6(@Query("command") command: kotlin.String? = null, @Query("officeId") officeId: kotlin.Long? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetCentersTemplateResponse>
+    suspend fun retrieveTemplate6(
+        @Query("command") command: String? = null,
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetCentersTemplateResponse
 
     /**
      * Update a Center
@@ -158,10 +193,13 @@ interface CentersApi {
      *  - 200: OK
      *
      * @param centerId centerId
-     * @param putCentersCenterIdRequest 
+     * @param putCentersCenterIdRequest
      * @return [PutCentersCenterIdResponse]
      */
     @PUT("v1/centers/{centerId}")
-    suspend fun update12(@Path("centerId") centerId: kotlin.Long, @Body putCentersCenterIdRequest: PutCentersCenterIdRequest): Response<PutCentersCenterIdResponse>
+    suspend fun update12(
+        @Path("centerId") centerId: Long,
+        @Body putCentersCenterIdRequest: PutCentersCenterIdRequest
+    ): PutCentersCenterIdResponse
 
 }

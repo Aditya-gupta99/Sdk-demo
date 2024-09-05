@@ -1,13 +1,11 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetAccountsLinkedToPocketResponse
 import org.openapitools.client.models.PostLinkDelinkAccountsToFromPocketResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface PocketApi {
     /**
@@ -21,7 +19,10 @@ interface PocketApi {
      * @return [PostLinkDelinkAccountsToFromPocketResponse]
      */
     @POST("v1/self/pockets")
-    suspend fun handleCommands8(@Query("command") command: kotlin.String? = null, @Body body: kotlin.String? = null): Response<PostLinkDelinkAccountsToFromPocketResponse>
+    suspend fun handleCommands8(
+        @Query("command") command: String? = null,
+        @Body body: String? = null
+    ): PostLinkDelinkAccountsToFromPocketResponse
 
     /**
      * Retrieve accounts linked to pocket
@@ -32,6 +33,6 @@ interface PocketApi {
      * @return [GetAccountsLinkedToPocketResponse]
      */
     @GET("v1/self/pockets")
-    suspend fun retrieveAll37(): Response<GetAccountsLinkedToPocketResponse>
+    suspend fun retrieveAll37(): GetAccountsLinkedToPocketResponse
 
 }

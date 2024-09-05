@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.AccountingRuleData
 import org.openapitools.client.models.DeleteAccountingRulesResponse
 import org.openapitools.client.models.GetAccountRulesResponse
@@ -14,6 +8,12 @@ import org.openapitools.client.models.PostAccountingRulesRequest
 import org.openapitools.client.models.PostAccountingRulesResponse
 import org.openapitools.client.models.PutAccountingRulesRequest
 import org.openapitools.client.models.PutAccountingRulesResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface AccountingRulesApi {
     /**
@@ -26,7 +26,7 @@ interface AccountingRulesApi {
      * @return [PostAccountingRulesResponse]
      */
     @POST("v1/accountingrules")
-    suspend fun createAccountingRule(@Body postAccountingRulesRequest: PostAccountingRulesRequest? = null): Response<PostAccountingRulesResponse>
+    suspend fun createAccountingRule(@Body postAccountingRulesRequest: PostAccountingRulesRequest? = null): PostAccountingRulesResponse
 
     /**
      * Delete a Accounting Rule
@@ -38,7 +38,7 @@ interface AccountingRulesApi {
      * @return [DeleteAccountingRulesResponse]
      */
     @DELETE("v1/accountingrules/{accountingRuleId}")
-    suspend fun deleteAccountingRule(@Path("accountingRuleId") accountingRuleId: kotlin.Long): Response<DeleteAccountingRulesResponse>
+    suspend fun deleteAccountingRule(@Path("accountingRuleId") accountingRuleId: Long): DeleteAccountingRulesResponse
 
     /**
      * Retrieve a Accounting rule
@@ -50,7 +50,7 @@ interface AccountingRulesApi {
      * @return [AccountingRuleData]
      */
     @GET("v1/accountingrules/{accountingRuleId}")
-    suspend fun retreiveAccountingRule(@Path("accountingRuleId") accountingRuleId: kotlin.Long): Response<AccountingRuleData>
+    suspend fun retreiveAccountingRule(@Path("accountingRuleId") accountingRuleId: Long): AccountingRuleData
 
     /**
      * Retrieve Accounting Rules
@@ -61,7 +61,7 @@ interface AccountingRulesApi {
      * @return [kotlin.collections.List<GetAccountRulesResponse>]
      */
     @GET("v1/accountingrules")
-    suspend fun retrieveAllAccountingRules(): Response<kotlin.collections.List<GetAccountRulesResponse>>
+    suspend fun retrieveAllAccountingRules(): List<GetAccountRulesResponse>
 
     /**
      * Retrieve Accounting Rule Details Template
@@ -72,7 +72,7 @@ interface AccountingRulesApi {
      * @return [GetAccountRulesTemplateResponse]
      */
     @GET("v1/accountingrules/template")
-    suspend fun retrieveTemplate1(): Response<GetAccountRulesTemplateResponse>
+    suspend fun retrieveTemplate1(): GetAccountRulesTemplateResponse
 
     /**
      * Update a Accounting Rule
@@ -85,6 +85,9 @@ interface AccountingRulesApi {
      * @return [PutAccountingRulesResponse]
      */
     @PUT("v1/accountingrules/{accountingRuleId}")
-    suspend fun updateAccountingRule(@Path("accountingRuleId") accountingRuleId: kotlin.Long, @Body putAccountingRulesRequest: PutAccountingRulesRequest? = null): Response<PutAccountingRulesResponse>
+    suspend fun updateAccountingRule(
+        @Path("accountingRuleId") accountingRuleId: Long,
+        @Body putAccountingRulesRequest: PutAccountingRulesRequest? = null
+    ): PutAccountingRulesResponse
 
 }

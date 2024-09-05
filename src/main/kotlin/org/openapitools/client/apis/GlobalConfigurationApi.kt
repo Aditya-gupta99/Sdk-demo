@@ -1,15 +1,14 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.GetGlobalConfigurationsResponse
 import org.openapitools.client.models.GlobalConfigurationPropertyData
 import org.openapitools.client.models.PutGlobalConfigurationsRequest
 import org.openapitools.client.models.PutGlobalConfigurationsResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GlobalConfigurationApi {
     /**
@@ -22,7 +21,7 @@ interface GlobalConfigurationApi {
      * @return [GetGlobalConfigurationsResponse]
      */
     @GET("v1/configurations")
-    suspend fun retrieveConfiguration(@Query("survey") survey: kotlin.Boolean? = false): Response<GetGlobalConfigurationsResponse>
+    suspend fun retrieveConfiguration(@Query("survey") survey: Boolean? = false): GetGlobalConfigurationsResponse
 
     /**
      * Retrieve Global Configuration
@@ -34,7 +33,7 @@ interface GlobalConfigurationApi {
      * @return [GetGlobalConfigurationsResponse]
      */
     @GET("v1/configurations/{configId}")
-    suspend fun retrieveOne3(@Path("configId") configId: kotlin.Long): Response<GetGlobalConfigurationsResponse>
+    suspend fun retrieveOne3(@Path("configId") configId: Long): GetGlobalConfigurationsResponse
 
     /**
      * Retrieve Global Configuration
@@ -46,7 +45,7 @@ interface GlobalConfigurationApi {
      * @return [GlobalConfigurationPropertyData]
      */
     @GET("v1/configurations/name/{name}")
-    suspend fun retrieveOneByName(@Path("name") name: kotlin.String): Response<GlobalConfigurationPropertyData>
+    suspend fun retrieveOneByName(@Path("name") name: String): GlobalConfigurationPropertyData
 
     /**
      * Update Global Configuration
@@ -55,10 +54,13 @@ interface GlobalConfigurationApi {
      *  - 200: OK
      *
      * @param configId configId
-     * @param putGlobalConfigurationsRequest 
+     * @param putGlobalConfigurationsRequest
      * @return [PutGlobalConfigurationsResponse]
      */
     @PUT("v1/configurations/{configId}")
-    suspend fun updateConfiguration1(@Path("configId") configId: kotlin.Long, @Body putGlobalConfigurationsRequest: PutGlobalConfigurationsRequest): Response<PutGlobalConfigurationsResponse>
+    suspend fun updateConfiguration1(
+        @Path("configId") configId: Long,
+        @Body putGlobalConfigurationsRequest: PutGlobalConfigurationsRequest
+    ): PutGlobalConfigurationsResponse
 
 }

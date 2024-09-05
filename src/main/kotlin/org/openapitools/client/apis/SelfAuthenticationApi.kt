@@ -1,13 +1,9 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.PostAuthenticationRequest
 import org.openapitools.client.models.PostSelfAuthenticationResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface SelfAuthenticationApi {
     /**
@@ -16,10 +12,10 @@ interface SelfAuthenticationApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postAuthenticationRequest 
+     * @param postAuthenticationRequest
      * @return [PostSelfAuthenticationResponse]
      */
     @POST("v1/self/authentication")
-    suspend fun authenticate1(@Body postAuthenticationRequest: PostAuthenticationRequest): Response<PostSelfAuthenticationResponse>
+    suspend fun authenticate1(@Body postAuthenticationRequest: PostAuthenticationRequest): PostSelfAuthenticationResponse
 
 }

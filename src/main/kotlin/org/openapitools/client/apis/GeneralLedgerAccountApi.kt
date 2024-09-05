@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteGLAccountsRequest
 import org.openapitools.client.models.GetGLAccountsResponse
 import org.openapitools.client.models.GetGLAccountsTemplateResponse
@@ -13,8 +8,15 @@ import org.openapitools.client.models.PostGLAccountsRequest
 import org.openapitools.client.models.PostGLAccountsResponse
 import org.openapitools.client.models.PutGLAccountsRequest
 import org.openapitools.client.models.PutGLAccountsResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GeneralLedgerAccountApi {
     /**
@@ -27,7 +29,7 @@ interface GeneralLedgerAccountApi {
      * @return [PostGLAccountsResponse]
      */
     @POST("v1/glaccounts")
-    suspend fun createGLAccount1(@Body postGLAccountsRequest: PostGLAccountsRequest? = null): Response<PostGLAccountsResponse>
+    suspend fun createGLAccount1(@Body postGLAccountsRequest: PostGLAccountsRequest? = null): PostGLAccountsResponse
 
     /**
      * Delete a GL Account
@@ -39,11 +41,11 @@ interface GeneralLedgerAccountApi {
      * @return [DeleteGLAccountsRequest]
      */
     @DELETE("v1/glaccounts/{glAccountId}")
-    suspend fun deleteGLAccount1(@Path("glAccountId") glAccountId: kotlin.Long): Response<DeleteGLAccountsRequest>
+    suspend fun deleteGLAccount1(@Path("glAccountId") glAccountId: Long): DeleteGLAccountsRequest
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -51,11 +53,11 @@ interface GeneralLedgerAccountApi {
      * @return [Unit]
      */
     @GET("v1/glaccounts/downloadtemplate")
-    suspend fun getGlAccountsTemplate(@Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getGlAccountsTemplate(@Query("dateFormat") dateFormat: String? = null): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -66,7 +68,11 @@ interface GeneralLedgerAccountApi {
      */
     @Multipart
     @POST("v1/glaccounts/uploadtemplate")
-    suspend fun postGlAccountsTemplate(@Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postGlAccountsTemplate(
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * Retrieve a General Ledger Account
@@ -79,7 +85,10 @@ interface GeneralLedgerAccountApi {
      * @return [GetGLAccountsResponse]
      */
     @GET("v1/glaccounts/{glAccountId}")
-    suspend fun retreiveAccount(@Path("glAccountId") glAccountId: kotlin.Long, @Query("fetchRunningBalance") fetchRunningBalance: kotlin.Boolean? = null): Response<GetGLAccountsResponse>
+    suspend fun retreiveAccount(
+        @Path("glAccountId") glAccountId: Long,
+        @Query("fetchRunningBalance") fetchRunningBalance: Boolean? = null
+    ): GetGLAccountsResponse
 
     /**
      * List General Ledger Accounts
@@ -93,10 +102,17 @@ interface GeneralLedgerAccountApi {
      * @param manualEntriesAllowed manualEntriesAllowed (optional)
      * @param disabled disabled (optional)
      * @param fetchRunningBalance fetchRunningBalance (optional)
-     * @return [kotlin.collections.List<GetGLAccountsResponse>]
+     * @return [kotlin.collections.List<GetGLAccountsResponse]
      */
     @GET("v1/glaccounts")
-    suspend fun retrieveAllAccounts(@Query("type") type: kotlin.Int? = null, @Query("searchParam") searchParam: kotlin.String? = null, @Query("usage") usage: kotlin.Int? = null, @Query("manualEntriesAllowed") manualEntriesAllowed: kotlin.Boolean? = null, @Query("disabled") disabled: kotlin.Boolean? = null, @Query("fetchRunningBalance") fetchRunningBalance: kotlin.Boolean? = null): Response<kotlin.collections.List<GetGLAccountsResponse>>
+    suspend fun retrieveAllAccounts(
+        @Query("type") type: Int? = null,
+        @Query("searchParam") searchParam: String? = null,
+        @Query("usage") usage: Int? = null,
+        @Query("manualEntriesAllowed") manualEntriesAllowed: Boolean? = null,
+        @Query("disabled") disabled: Boolean? = null,
+        @Query("fetchRunningBalance") fetchRunningBalance: Boolean? = null
+    ): List<GetGLAccountsResponse>
 
     /**
      * Retrieve GL Accounts Template
@@ -108,7 +124,7 @@ interface GeneralLedgerAccountApi {
      * @return [GetGLAccountsTemplateResponse]
      */
     @GET("v1/glaccounts/template")
-    suspend fun retrieveNewAccountDetails(@Query("type") type: kotlin.Int? = null): Response<GetGLAccountsTemplateResponse>
+    suspend fun retrieveNewAccountDetails(@Query("type") type: Int? = null): GetGLAccountsTemplateResponse
 
     /**
      * Update a GL Account
@@ -121,6 +137,9 @@ interface GeneralLedgerAccountApi {
      * @return [PutGLAccountsResponse]
      */
     @PUT("v1/glaccounts/{glAccountId}")
-    suspend fun updateGLAccount1(@Path("glAccountId") glAccountId: kotlin.Long, @Body putGLAccountsRequest: PutGLAccountsRequest? = null): Response<PutGLAccountsResponse>
+    suspend fun updateGLAccount1(
+        @Path("glAccountId") glAccountId: Long,
+        @Body putGLAccountsRequest: PutGLAccountsRequest? = null
+    ): PutGLAccountsResponse
 
 }

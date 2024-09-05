@@ -1,11 +1,5 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteDelinquencyBucketResponse
 import org.openapitools.client.models.DeleteDelinquencyRangeResponse
 import org.openapitools.client.models.GetDelinquencyBucketsResponse
@@ -16,61 +10,73 @@ import org.openapitools.client.models.PostDelinquencyRangeRequest
 import org.openapitools.client.models.PostDelinquencyRangeResponse
 import org.openapitools.client.models.PutDelinquencyBucketResponse
 import org.openapitools.client.models.PutDelinquencyRangeResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface DelinquencyRangeAndBucketsManagementApi {
     /**
      * Create Delinquency Bucket
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param postDelinquencyBucketRequest 
+     * @param postDelinquencyBucketRequest
      * @return [PostDelinquencyBucketResponse]
      */
     @POST("v1/delinquency/buckets")
-    suspend fun createDelinquencyBucket(@Body postDelinquencyBucketRequest: PostDelinquencyBucketRequest): Response<PostDelinquencyBucketResponse>
+    suspend fun createDelinquencyBucket(@Body postDelinquencyBucketRequest: PostDelinquencyBucketRequest): PostDelinquencyBucketResponse
 
     /**
      * Create Delinquency Range
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @param postDelinquencyRangeRequest 
+     * @param postDelinquencyRangeRequest
      * @return [PostDelinquencyRangeResponse]
      */
     @POST("v1/delinquency/ranges")
-    suspend fun createDelinquencyRange(@Body postDelinquencyRangeRequest: PostDelinquencyRangeRequest): Response<PostDelinquencyRangeResponse>
+    suspend fun createDelinquencyRange(@Body postDelinquencyRangeRequest: PostDelinquencyRangeRequest): PostDelinquencyRangeResponse
 
     /**
      * Delete Delinquency Bucket based on the Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param delinquencyBucketId delinquencyBucketId
-     * @param postDelinquencyBucketRequest 
+     * @param postDelinquencyBucketRequest
      * @return [DeleteDelinquencyBucketResponse]
      */
     @DELETE("v1/delinquency/buckets/{delinquencyBucketId}")
-    suspend fun deleteDelinquencyBucket(@Path("delinquencyBucketId") delinquencyBucketId: kotlin.Long, @Body postDelinquencyBucketRequest: PostDelinquencyBucketRequest): Response<DeleteDelinquencyBucketResponse>
+    suspend fun deleteDelinquencyBucket(
+        @Path("delinquencyBucketId") delinquencyBucketId: Long,
+        @Body postDelinquencyBucketRequest: PostDelinquencyBucketRequest
+    ): DeleteDelinquencyBucketResponse
 
     /**
      * Update Delinquency Range based on the Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param delinquencyRangeId delinquencyRangeId
-     * @param postDelinquencyRangeRequest 
+     * @param postDelinquencyRangeRequest
      * @return [DeleteDelinquencyRangeResponse]
      */
     @DELETE("v1/delinquency/ranges/{delinquencyRangeId}")
-    suspend fun deleteDelinquencyRange(@Path("delinquencyRangeId") delinquencyRangeId: kotlin.Long, @Body postDelinquencyRangeRequest: PostDelinquencyRangeRequest): Response<DeleteDelinquencyRangeResponse>
+    suspend fun deleteDelinquencyRange(
+        @Path("delinquencyRangeId") delinquencyRangeId: Long,
+        @Body postDelinquencyRangeRequest: PostDelinquencyRangeRequest
+    ): DeleteDelinquencyRangeResponse
 
     /**
      * Retrieve a specific Delinquency Bucket based on the Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -78,22 +84,22 @@ interface DelinquencyRangeAndBucketsManagementApi {
      * @return [GetDelinquencyBucketsResponse]
      */
     @GET("v1/delinquency/buckets/{delinquencyBucketId}")
-    suspend fun getDelinquencyBucket(@Path("delinquencyBucketId") delinquencyBucketId: kotlin.Long): Response<GetDelinquencyBucketsResponse>
+    suspend fun getDelinquencyBucket(@Path("delinquencyBucketId") delinquencyBucketId: Long): GetDelinquencyBucketsResponse
 
     /**
      * List all Delinquency Buckets
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetDelinquencyBucketsResponse>]
+     * @return [kotlin.collections.List<GetDelinquencyBucketsResponse]
      */
     @GET("v1/delinquency/buckets")
-    suspend fun getDelinquencyBuckets(): Response<kotlin.collections.List<GetDelinquencyBucketsResponse>>
+    suspend fun getDelinquencyBuckets(): List<GetDelinquencyBucketsResponse>
 
     /**
      * Retrieve a specific Delinquency Range based on the Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
@@ -101,43 +107,49 @@ interface DelinquencyRangeAndBucketsManagementApi {
      * @return [GetDelinquencyRangesResponse]
      */
     @GET("v1/delinquency/ranges/{delinquencyRangeId}")
-    suspend fun getDelinquencyRange(@Path("delinquencyRangeId") delinquencyRangeId: kotlin.Long): Response<GetDelinquencyRangesResponse>
+    suspend fun getDelinquencyRange(@Path("delinquencyRangeId") delinquencyRangeId: Long): GetDelinquencyRangesResponse
 
     /**
      * List all Delinquency Ranges
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
-     * @return [kotlin.collections.List<GetDelinquencyRangesResponse>]
+     * @return [kotlin.collections.List<GetDelinquencyRangesResponse]
      */
     @GET("v1/delinquency/ranges")
-    suspend fun getDelinquencyRanges(): Response<kotlin.collections.List<GetDelinquencyRangesResponse>>
+    suspend fun getDelinquencyRanges(): List<GetDelinquencyRangesResponse>
 
     /**
      * Update Delinquency Bucket based on the Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param delinquencyBucketId delinquencyBucketId
-     * @param postDelinquencyBucketRequest 
+     * @param postDelinquencyBucketRequest
      * @return [PutDelinquencyBucketResponse]
      */
     @PUT("v1/delinquency/buckets/{delinquencyBucketId}")
-    suspend fun updateDelinquencyBucket(@Path("delinquencyBucketId") delinquencyBucketId: kotlin.Long, @Body postDelinquencyBucketRequest: PostDelinquencyBucketRequest): Response<PutDelinquencyBucketResponse>
+    suspend fun updateDelinquencyBucket(
+        @Path("delinquencyBucketId") delinquencyBucketId: Long,
+        @Body postDelinquencyBucketRequest: PostDelinquencyBucketRequest
+    ): PutDelinquencyBucketResponse
 
     /**
      * Update Delinquency Range based on the Id
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param delinquencyRangeId delinquencyRangeId
-     * @param postDelinquencyRangeRequest 
+     * @param postDelinquencyRangeRequest
      * @return [PutDelinquencyRangeResponse]
      */
     @PUT("v1/delinquency/ranges/{delinquencyRangeId}")
-    suspend fun updateDelinquencyRange(@Path("delinquencyRangeId") delinquencyRangeId: kotlin.Long, @Body postDelinquencyRangeRequest: PostDelinquencyRangeRequest): Response<PutDelinquencyRangeResponse>
+    suspend fun updateDelinquencyRange(
+        @Path("delinquencyRangeId") delinquencyRangeId: Long,
+        @Body postDelinquencyRangeRequest: PostDelinquencyRangeRequest
+    ): PutDelinquencyRangeResponse
 
 }

@@ -1,17 +1,16 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.LoanProductProvisioningEntryData
 import org.openapitools.client.models.PostProvisioningEntriesRequest
 import org.openapitools.client.models.PostProvisioningEntriesResponse
 import org.openapitools.client.models.ProvisioningEntryData
 import org.openapitools.client.models.PutProvisioningEntriesRequest
 import org.openapitools.client.models.PutProvisioningEntriesResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ProvisioningEntriesApi {
     /**
@@ -24,7 +23,7 @@ interface ProvisioningEntriesApi {
      * @return [PostProvisioningEntriesResponse]
      */
     @POST("v1/provisioningentries")
-    suspend fun createProvisioningEntries(@Body postProvisioningEntriesRequest: PostProvisioningEntriesRequest? = null): Response<PostProvisioningEntriesResponse>
+    suspend fun createProvisioningEntries(@Body postProvisioningEntriesRequest: PostProvisioningEntriesRequest? = null): PostProvisioningEntriesResponse
 
     /**
      * Recreates Provisioning Entry
@@ -38,24 +37,31 @@ interface ProvisioningEntriesApi {
      * @return [PutProvisioningEntriesResponse]
      */
     @POST("v1/provisioningentries/{entryId}")
-    suspend fun modifyProvisioningEntry(@Path("entryId") entryId: kotlin.Long, @Query("command") command: kotlin.String? = null, @Body putProvisioningEntriesRequest: PutProvisioningEntriesRequest? = null): Response<PutProvisioningEntriesResponse>
+    suspend fun modifyProvisioningEntry(
+        @Path("entryId") entryId: Long,
+        @Query("command") command: String? = null,
+        @Body putProvisioningEntriesRequest: PutProvisioningEntriesRequest? = null
+    ): PutProvisioningEntriesResponse
 
     /**
      * List all Provisioning Entries
-     * 
+     *
      * Responses:
      *  - 200: OK
      *
      * @param offset offset (optional)
      * @param limit limit (optional)
-     * @return [kotlin.collections.List<ProvisioningEntryData>]
+     * @return [kotlin.collections.List<ProvisioningEntryData]
      */
     @GET("v1/provisioningentries")
-    suspend fun retrieveAllProvisioningEntries(@Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<kotlin.collections.List<ProvisioningEntryData>>
+    suspend fun retrieveAllProvisioningEntries(
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): List<ProvisioningEntryData>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 200: OK
      *
@@ -68,7 +74,14 @@ interface ProvisioningEntriesApi {
      * @return [LoanProductProvisioningEntryData]
      */
     @GET("v1/provisioningentries/entries")
-    suspend fun retrieveProviioningEntries(@Query("entryId") entryId: kotlin.Long? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("officeId") officeId: kotlin.Long? = null, @Query("productId") productId: kotlin.Long? = null, @Query("categoryId") categoryId: kotlin.Long? = null): Response<LoanProductProvisioningEntryData>
+    suspend fun retrieveProviioningEntries(
+        @Query("entryId") entryId: Long? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("officeId") officeId: Long? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("categoryId") categoryId: Long? = null
+    ): LoanProductProvisioningEntryData
 
     /**
      * Retrieves a Provisioning Entry
@@ -80,6 +93,6 @@ interface ProvisioningEntriesApi {
      * @return [ProvisioningEntryData]
      */
     @GET("v1/provisioningentries/{entryId}")
-    suspend fun retrieveProvisioningEntry(@Path("entryId") entryId: kotlin.Long): Response<ProvisioningEntryData>
+    suspend fun retrieveProvisioningEntry(@Path("entryId") entryId: Long): ProvisioningEntryData
 
 }

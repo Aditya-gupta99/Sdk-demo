@@ -1,11 +1,6 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
+import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteClientsClientIdResponse
 import org.openapitools.client.models.GetClientObligeeDetailsResponse
 import org.openapitools.client.models.GetClientTransferProposalDateResponse
@@ -19,8 +14,15 @@ import org.openapitools.client.models.PostClientsRequest
 import org.openapitools.client.models.PostClientsResponse
 import org.openapitools.client.models.PutClientsClientIdRequest
 import org.openapitools.client.models.PutClientsClientIdResponse
-
-import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ClientApi {
     /**
@@ -30,12 +32,16 @@ interface ClientApi {
      *  - 200: OK
      *
      * @param clientId clientId
-     * @param postClientsClientIdRequest 
+     * @param postClientsClientIdRequest
      * @param command command (optional)
      * @return [PostClientsClientIdResponse]
      */
     @POST("v1/clients/{clientId}")
-    suspend fun activate1(@Path("clientId") clientId: kotlin.Long, @Body postClientsClientIdRequest: PostClientsClientIdRequest, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdResponse>
+    suspend fun activate1(
+        @Path("clientId") clientId: Long,
+        @Body postClientsClientIdRequest: PostClientsClientIdRequest,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdResponse
 
     /**
      * Activate a Client | Close a Client | Reject a Client | Withdraw a Client | Reactivate a Client | UndoReject a Client | UndoWithdraw a Client | Assign a Staff | Unassign a Staff | Update Default Savings Account | Propose a Client Transfer | Withdraw a Client Transfer | Reject a Client Transfer | Accept a Client Transfer | Propose and Accept a Client Transfer
@@ -44,12 +50,16 @@ interface ClientApi {
      *  - 200: OK
      *
      * @param externalId externalId
-     * @param postClientsClientIdRequest 
+     * @param postClientsClientIdRequest
      * @param command command (optional)
      * @return [PostClientsClientIdResponse]
      */
     @POST("v1/clients/external-id/{externalId}")
-    suspend fun applyCommand(@Path("externalId") externalId: kotlin.String, @Body postClientsClientIdRequest: PostClientsClientIdRequest, @Query("command") command: kotlin.String? = null): Response<PostClientsClientIdResponse>
+    suspend fun applyCommand(
+        @Path("externalId") externalId: String,
+        @Body postClientsClientIdRequest: PostClientsClientIdRequest,
+        @Query("command") command: String? = null
+    ): PostClientsClientIdResponse
 
     /**
      * Create a Client
@@ -57,11 +67,11 @@ interface ClientApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postClientsRequest 
+     * @param postClientsRequest
      * @return [PostClientsResponse]
      */
     @POST("v1/clients")
-    suspend fun create6(@Body postClientsRequest: PostClientsRequest): Response<PostClientsResponse>
+    suspend fun create6(@Body postClientsRequest: PostClientsRequest): PostClientsResponse
 
     /**
      * Delete a Client
@@ -70,11 +80,14 @@ interface ClientApi {
      *  - 200: OK
      *
      * @param externalId externalId
-     * @param body 
+     * @param body
      * @return [DeleteClientsClientIdResponse]
      */
     @DELETE("v1/clients/external-id/{externalId}")
-    suspend fun delete10(@Path("externalId") externalId: kotlin.String, @Body body: kotlin.Any): Response<DeleteClientsClientIdResponse>
+    suspend fun delete10(
+        @Path("externalId") externalId: String,
+        @Body body: Any
+    ): DeleteClientsClientIdResponse
 
     /**
      * Delete a Client
@@ -83,15 +96,18 @@ interface ClientApi {
      *  - 200: OK
      *
      * @param clientId clientId
-     * @param body 
+     * @param body
      * @return [DeleteClientsClientIdResponse]
      */
     @DELETE("v1/clients/{clientId}")
-    suspend fun delete9(@Path("clientId") clientId: kotlin.Long, @Body body: kotlin.Any): Response<DeleteClientsClientIdResponse>
+    suspend fun delete9(
+        @Path("clientId") clientId: Long,
+        @Body body: Any
+    ): DeleteClientsClientIdResponse
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -102,11 +118,16 @@ interface ClientApi {
      * @return [Unit]
      */
     @GET("v1/clients/downloadtemplate")
-    suspend fun getClientTemplate(@Query("legalFormType") legalFormType: kotlin.String? = null, @Query("officeId") officeId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("dateFormat") dateFormat: kotlin.String? = null): Response<Unit>
+    suspend fun getClientTemplate(
+        @Query("legalFormType") legalFormType: String? = null,
+        @Query("officeId") officeId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("dateFormat") dateFormat: String? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -118,7 +139,12 @@ interface ClientApi {
      */
     @Multipart
     @POST("v1/clients/uploadtemplate")
-    suspend fun postClientTemplate(@Query("legalFormType") legalFormType: kotlin.String? = null, @Part("dateFormat") dateFormat: kotlin.String? = null, @Part("locale") locale: kotlin.String? = null, @Part uploadedInputStream: MultipartBody.Part? = null): Response<kotlin.String>
+    suspend fun postClientTemplate(
+        @Query("legalFormType") legalFormType: String? = null,
+        @Part("dateFormat") dateFormat: String? = null,
+        @Part("locale") locale: String? = null,
+        @Part uploadedInputStream: MultipartBody.Part? = null
+    ): String
 
     /**
      * List Clients
@@ -141,7 +167,20 @@ interface ClientApi {
      * @return [GetClientsResponse]
      */
     @GET("v1/clients")
-    suspend fun retrieveAll21(@Query("officeId") officeId: kotlin.Long? = null, @Query("externalId") externalId: kotlin.String? = null, @Query("displayName") displayName: kotlin.String? = null, @Query("firstName") firstName: kotlin.String? = null, @Query("lastName") lastName: kotlin.String? = null, @Query("status") status: kotlin.String? = null, @Query("underHierarchy") underHierarchy: kotlin.String? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null, @Query("orderBy") orderBy: kotlin.String? = null, @Query("sortOrder") sortOrder: kotlin.String? = null, @Query("orphansOnly") orphansOnly: kotlin.Boolean? = null): Response<GetClientsResponse>
+    suspend fun retrieveAll21(
+        @Query("officeId") officeId: Long? = null,
+        @Query("externalId") externalId: String? = null,
+        @Query("displayName") displayName: String? = null,
+        @Query("firstName") firstName: String? = null,
+        @Query("lastName") lastName: String? = null,
+        @Query("status") status: String? = null,
+        @Query("underHierarchy") underHierarchy: String? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("orderBy") orderBy: String? = null,
+        @Query("sortOrder") sortOrder: String? = null,
+        @Query("orphansOnly") orphansOnly: Boolean? = null
+    ): GetClientsResponse
 
     /**
      * Retrieve client accounts overview
@@ -154,7 +193,7 @@ interface ClientApi {
      * @return [GetClientsClientIdAccountsResponse]
      */
     @GET("v1/clients/{clientId}/accounts")
-    suspend fun retrieveAssociatedAccounts(@Path("clientId") clientId: kotlin.Long): Response<GetClientsClientIdAccountsResponse>
+    suspend fun retrieveAssociatedAccounts(@Path("clientId") clientId: Long): GetClientsClientIdAccountsResponse
 
     /**
      * Retrieve client accounts overview
@@ -167,7 +206,7 @@ interface ClientApi {
      * @return [GetClientsClientIdAccountsResponse]
      */
     @GET("v1/clients/external-id/{externalId}/accounts")
-    suspend fun retrieveAssociatedAccounts1(@Path("externalId") externalId: kotlin.String): Response<GetClientsClientIdAccountsResponse>
+    suspend fun retrieveAssociatedAccounts1(@Path("externalId") externalId: String): GetClientsClientIdAccountsResponse
 
     /**
      * Retrieve client obligee details
@@ -176,11 +215,11 @@ interface ClientApi {
      *  - 200: OK
      *  - 400: Bad Request
      *
-     * @param clientId 
+     * @param clientId
      * @return [GetClientObligeeDetailsResponse]
      */
     @GET("v1/clients/{clientId}/obligeedetails")
-    suspend fun retrieveObligeeDetails(@Path("clientId") clientId: kotlin.Long): Response<GetClientObligeeDetailsResponse>
+    suspend fun retrieveObligeeDetails(@Path("clientId") clientId: Long): GetClientObligeeDetailsResponse
 
     /**
      * Retrieve client obligee details
@@ -189,11 +228,11 @@ interface ClientApi {
      *  - 200: OK
      *  - 400: Bad Request
      *
-     * @param externalId 
+     * @param externalId
      * @return [GetClientObligeeDetailsResponse]
      */
     @GET("v1/clients/external-id/{externalId}/obligeedetails")
-    suspend fun retrieveObligeeDetails1(@Path("externalId") externalId: kotlin.String): Response<GetClientObligeeDetailsResponse>
+    suspend fun retrieveObligeeDetails1(@Path("externalId") externalId: String): GetClientObligeeDetailsResponse
 
     /**
      * Retrieve a Client
@@ -206,7 +245,10 @@ interface ClientApi {
      * @return [GetClientsClientIdResponse]
      */
     @GET("v1/clients/{clientId}")
-    suspend fun retrieveOne11(@Path("clientId") clientId: kotlin.Long, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetClientsClientIdResponse>
+    suspend fun retrieveOne11(
+        @Path("clientId") clientId: Long,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetClientsClientIdResponse
 
     /**
      * Retrieve a Client by External Id
@@ -219,7 +261,10 @@ interface ClientApi {
      * @return [GetClientsClientIdResponse]
      */
     @GET("v1/clients/external-id/{externalId}")
-    suspend fun retrieveOne12(@Path("externalId") externalId: kotlin.String, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetClientsClientIdResponse>
+    suspend fun retrieveOne12(
+        @Path("externalId") externalId: String,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetClientsClientIdResponse
 
     /**
      * Retrieve Client Details Template
@@ -233,7 +278,11 @@ interface ClientApi {
      * @return [GetClientsTemplateResponse]
      */
     @GET("v1/clients/template")
-    suspend fun retrieveTemplate5(@Query("officeId") officeId: kotlin.Long? = null, @Query("commandParam") commandParam: kotlin.String? = null, @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: kotlin.Boolean? = false): Response<GetClientsTemplateResponse>
+    suspend fun retrieveTemplate5(
+        @Query("officeId") officeId: Long? = null,
+        @Query("commandParam") commandParam: String? = null,
+        @Query("staffInSelectedOfficeOnly") staffInSelectedOfficeOnly: Boolean? = false
+    ): GetClientsTemplateResponse
 
     /**
      * Retrieve client transfer template
@@ -242,11 +291,11 @@ interface ClientApi {
      *  - 200: OK
      *  - 400: Bad Request
      *
-     * @param clientId 
+     * @param clientId
      * @return [GetClientTransferProposalDateResponse]
      */
     @GET("v1/clients/{clientId}/transferproposaldate")
-    suspend fun retrieveTransferTemplate(@Path("clientId") clientId: kotlin.Long): Response<GetClientTransferProposalDateResponse>
+    suspend fun retrieveTransferTemplate(@Path("clientId") clientId: Long): GetClientTransferProposalDateResponse
 
     /**
      * Retrieve client transfer template
@@ -255,11 +304,11 @@ interface ClientApi {
      *  - 200: OK
      *  - 400: Bad Request
      *
-     * @param externalId 
+     * @param externalId
      * @return [GetClientTransferProposalDateResponse]
      */
     @GET("v1/clients/external-id/{externalId}/transferproposaldate")
-    suspend fun retrieveTransferTemplate1(@Path("externalId") externalId: kotlin.String): Response<GetClientTransferProposalDateResponse>
+    suspend fun retrieveTransferTemplate1(@Path("externalId") externalId: String): GetClientTransferProposalDateResponse
 
     /**
      * Update a Client
@@ -268,11 +317,14 @@ interface ClientApi {
      *  - 200: OK
      *
      * @param clientId clientId
-     * @param putClientsClientIdRequest 
+     * @param putClientsClientIdRequest
      * @return [PutClientsClientIdResponse]
      */
     @PUT("v1/clients/{clientId}")
-    suspend fun update10(@Path("clientId") clientId: kotlin.Long, @Body putClientsClientIdRequest: PutClientsClientIdRequest): Response<PutClientsClientIdResponse>
+    suspend fun update10(
+        @Path("clientId") clientId: Long,
+        @Body putClientsClientIdRequest: PutClientsClientIdRequest
+    ): PutClientsClientIdResponse
 
     /**
      * Update a Client using the External Id
@@ -281,10 +333,13 @@ interface ClientApi {
      *  - 200: OK
      *
      * @param externalId externalId
-     * @param putClientsClientIdRequest 
+     * @param putClientsClientIdRequest
      * @return [PutClientsClientIdResponse]
      */
     @PUT("v1/clients/external-id/{externalId}")
-    suspend fun update11(@Path("externalId") externalId: kotlin.String, @Body putClientsClientIdRequest: PutClientsClientIdRequest): Response<PutClientsClientIdResponse>
+    suspend fun update11(
+        @Path("externalId") externalId: String,
+        @Body putClientsClientIdRequest: PutClientsClientIdRequest
+    ): PutClientsClientIdResponse
 
 }

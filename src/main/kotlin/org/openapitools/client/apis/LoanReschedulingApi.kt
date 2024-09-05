@@ -1,12 +1,10 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.PostLoansLoanIdScheduleResponse
+import retrofit2.http.Body
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface LoanReschedulingApi {
     /**
@@ -16,11 +14,15 @@ interface LoanReschedulingApi {
      *  - 200: OK
      *
      * @param loanId loanId
-     * @param body 
+     * @param body
      * @param command command (optional)
      * @return [PostLoansLoanIdScheduleResponse]
      */
     @POST("v1/loans/{loanId}/schedule")
-    suspend fun calculateLoanScheduleOrSubmitVariableSchedule(@Path("loanId") loanId: kotlin.Long, @Body body: kotlin.Any, @Query("command") command: kotlin.String? = null): Response<PostLoansLoanIdScheduleResponse>
+    suspend fun calculateLoanScheduleOrSubmitVariableSchedule(
+        @Path("loanId") loanId: Long,
+        @Body body: Any,
+        @Query("command") command: String? = null
+    ): PostLoansLoanIdScheduleResponse
 
 }

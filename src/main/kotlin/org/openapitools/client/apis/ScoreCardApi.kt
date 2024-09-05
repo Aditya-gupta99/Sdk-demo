@@ -1,13 +1,11 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.Scorecard
 import org.openapitools.client.models.ScorecardData
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ScoreCardApi {
     /**
@@ -21,19 +19,22 @@ interface ScoreCardApi {
      * @return [Unit]
      */
     @POST("v1/surveys/scorecards/{surveyId}")
-    suspend fun createScorecard1(@Path("surveyId") surveyId: kotlin.Long, @Body scorecardData: ScorecardData? = null): Response<Unit>
+    suspend fun createScorecard1(
+        @Path("surveyId") surveyId: Long,
+        @Body scorecardData: ScorecardData? = null
+    ): Unit
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
-     * @param clientId 
-     * @return [kotlin.collections.List<ScorecardData>]
+     * @param clientId
+     * @return [kotlin.collections.List<ScorecardData]
      */
     @GET("v1/surveys/scorecards/clients/{clientId}")
-    suspend fun findByClient1(@Path("clientId") clientId: kotlin.Long): Response<kotlin.collections.List<ScorecardData>>
+    suspend fun findByClient1(@Path("clientId") clientId: Long): List<ScorecardData>
 
     /**
      * List all Scorecard entries
@@ -42,22 +43,25 @@ interface ScoreCardApi {
      *  - 200: OK
      *
      * @param surveyId Enter surveyId
-     * @return [kotlin.collections.List<Scorecard>]
+     * @return [kotlin.collections.List<Scorecard]
      */
     @GET("v1/surveys/scorecards/{surveyId}")
-    suspend fun findBySurvey(@Path("surveyId") surveyId: kotlin.Long): Response<kotlin.collections.List<Scorecard>>
+    suspend fun findBySurvey(@Path("surveyId") surveyId: Long): List<Scorecard>
 
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
      * @param surveyId Enter surveyId
      * @param clientId Enter clientId
-     * @return [kotlin.collections.List<ScorecardData>]
+     * @return [kotlin.collections.List<ScorecardData]
      */
     @GET("v1/surveys/scorecards/{surveyId}/clients/{clientId}")
-    suspend fun findBySurveyAndClient(@Path("surveyId") surveyId: kotlin.Long, @Path("clientId") clientId: kotlin.Long): Response<kotlin.collections.List<ScorecardData>>
+    suspend fun findBySurveyAndClient(
+        @Path("surveyId") surveyId: Long,
+        @Path("clientId") clientId: Long
+    ): List<ScorecardData>
 
 }

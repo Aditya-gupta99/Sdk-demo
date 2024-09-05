@@ -1,16 +1,16 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
-
 import org.openapitools.client.models.DeleteEntityDatatableChecksTemplateResponse
 import org.openapitools.client.models.GetEntityDatatableChecksResponse
 import org.openapitools.client.models.GetEntityDatatableChecksTemplateResponse
 import org.openapitools.client.models.PostEntityDatatableChecksTemplateRequest
 import org.openapitools.client.models.PostEntityDatatableChecksTemplateResponse
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface EntityDataTableApi {
     /**
@@ -19,11 +19,11 @@ interface EntityDataTableApi {
      * Responses:
      *  - 200: OK
      *
-     * @param postEntityDatatableChecksTemplateRequest 
+     * @param postEntityDatatableChecksTemplateRequest
      * @return [PostEntityDatatableChecksTemplateResponse]
      */
     @POST("v1/entityDatatableChecks")
-    suspend fun createEntityDatatableCheck(@Body postEntityDatatableChecksTemplateRequest: PostEntityDatatableChecksTemplateRequest): Response<PostEntityDatatableChecksTemplateResponse>
+    suspend fun createEntityDatatableCheck(@Body postEntityDatatableChecksTemplateRequest: PostEntityDatatableChecksTemplateRequest): PostEntityDatatableChecksTemplateResponse
 
     /**
      * Delete Entity-Datatable Checks
@@ -36,7 +36,10 @@ interface EntityDataTableApi {
      * @return [DeleteEntityDatatableChecksTemplateResponse]
      */
     @DELETE("v1/entityDatatableChecks/{entityDatatableCheckId}")
-    suspend fun deleteDatatable1(@Path("entityDatatableCheckId") entityDatatableCheckId: kotlin.Long, @Body body: kotlin.String? = null): Response<DeleteEntityDatatableChecksTemplateResponse>
+    suspend fun deleteDatatable1(
+        @Path("entityDatatableCheckId") entityDatatableCheckId: Long,
+        @Body body: String? = null
+    ): DeleteEntityDatatableChecksTemplateResponse
 
     /**
      * Retrieve Entity-Datatable Checks Template
@@ -47,7 +50,7 @@ interface EntityDataTableApi {
      * @return [GetEntityDatatableChecksTemplateResponse]
      */
     @GET("v1/entityDatatableChecks/template")
-    suspend fun getTemplate(): Response<GetEntityDatatableChecksTemplateResponse>
+    suspend fun getTemplate(): GetEntityDatatableChecksTemplateResponse
 
     /**
      * List Entity-Datatable Checks
@@ -60,9 +63,15 @@ interface EntityDataTableApi {
      * @param productId productId (optional)
      * @param offset offset (optional)
      * @param limit limit (optional)
-     * @return [kotlin.collections.List<GetEntityDatatableChecksResponse>]
+     * @return [kotlin.collections.List<GetEntityDatatableChecksResponse]
      */
     @GET("v1/entityDatatableChecks")
-    suspend fun retrieveAll6(@Query("status") status: kotlin.Long? = null, @Query("entity") entity: kotlin.String? = null, @Query("productId") productId: kotlin.Long? = null, @Query("offset") offset: kotlin.Int? = null, @Query("limit") limit: kotlin.Int? = null): Response<kotlin.collections.List<GetEntityDatatableChecksResponse>>
+    suspend fun retrieveAll6(
+        @Query("status") status: Long? = null,
+        @Query("entity") entity: String? = null,
+        @Query("productId") productId: Long? = null,
+        @Query("offset") offset: Int? = null,
+        @Query("limit") limit: Int? = null
+    ): List<GetEntityDatatableChecksResponse>
 
 }

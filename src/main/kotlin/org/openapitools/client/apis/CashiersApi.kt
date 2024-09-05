@@ -1,16 +1,13 @@
 package org.openapitools.client.apis
 
-import org.openapitools.client.infrastructure.CollectionFormats.*
-import retrofit2.http.*
-import retrofit2.Response
-import okhttp3.RequestBody
-import com.squareup.moshi.Json
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface CashiersApi {
     /**
-     * 
-     * 
+     *
+     *
      * Responses:
      *  - 0: default response
      *
@@ -21,6 +18,11 @@ interface CashiersApi {
      * @return [kotlin.String]
      */
     @GET("v1/cashiers")
-    suspend fun getCashierData(@Query("officeId") officeId: kotlin.Long? = null, @Query("tellerId") tellerId: kotlin.Long? = null, @Query("staffId") staffId: kotlin.Long? = null, @Query("date") date: kotlin.String? = null): Response<kotlin.String>
+    suspend fun getCashierData(
+        @Query("officeId") officeId: Long? = null,
+        @Query("tellerId") tellerId: Long? = null,
+        @Query("staffId") staffId: Long? = null,
+        @Query("date") date: String? = null
+    ): String
 
 }
