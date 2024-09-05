@@ -163,11 +163,17 @@ import javax.net.ssl.SSLSession
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
+/**
+ * Fineract Client Kotlin SDK API entry point. Use this instead of the {@link ApiClient}.
+ *
+ * @author Aditya Gupta
+ */
+
 class FineractClient private constructor(
     private val okHttpClient: OkHttpClient,
     private val retrofit: Retrofit
 ) {
-    val glClosures: AccountingClosureApi = retrofit.create(AccountingClosureApi::class.java)
+    val accountingClosures: AccountingClosureApi = retrofit.create(AccountingClosureApi::class.java)
     val accountingRules: AccountingRulesApi = retrofit.create(AccountingRulesApi::class.java)
     val accountNumberFormats: AccountNumberFormatApi =
         retrofit.create(AccountNumberFormatApi::class.java)
