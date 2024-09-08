@@ -20,7 +20,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:2.3.+"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.24.23"
-        classpath "de.jensklingenberg.ktorfit:ktorfit-gradle-plugin:2.0.1"
+        classpath "de.jensklingenberg.ktorfit:ktorfit-gradle-plugin:2.1.0"
     }
 }
 
@@ -202,7 +202,7 @@ dependencies {
     implementation "io.gsonfire:gson-fire:1.8.0"
 
     // Add Ktorfit
-    implementation "de.jensklingenberg.ktorfit:ktorfit-lib:2.0.1"
+    implementation "de.jensklingenberg.ktorfit:ktorfit-lib:2.1.0"
 
     // Add Ktor dependencies
     implementation "io.ktor:ktor-client-core:2.3.12"
