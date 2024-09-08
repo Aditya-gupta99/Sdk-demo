@@ -84,8 +84,8 @@ if (hasProperty('target') && target == 'android') {
             targetSdkVersion 25
         }
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
         }
 
     }
@@ -114,8 +114,8 @@ if (hasProperty('target') && target == 'android') {
 
     apply plugin: 'java'
 
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 
     task execute(type: JavaExec) {
         main = System.getProperty('mainClass')
