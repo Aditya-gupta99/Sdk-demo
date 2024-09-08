@@ -1,9 +1,23 @@
+@file:OptIn(InternalKtorfitApi::class)
+
 package org.openapitools.client.infrastructure
 
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.Level
+import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.internal.InternalKtorfitApi
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BasicAuthCredentials
+import io.ktor.client.plugins.auth.providers.basic
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.http.headers
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import org.openapitools.client.apis.AccountNumberFormatApi
 import org.openapitools.client.apis.AccountTransfersApi
 import org.openapitools.client.apis.AccountingClosureApi
@@ -148,18 +162,12 @@ import org.openapitools.client.apis.TwoFactorApi
 import org.openapitools.client.apis.UserGeneratedDocumentsApi
 import org.openapitools.client.apis.UsersApi
 import org.openapitools.client.apis.WorkingDaysApi
-import org.openapitools.client.auth.ApiKeyAuth
-import org.openapitools.client.auth.HttpBasicAuth
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
-import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
-import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSession
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
@@ -170,206 +178,161 @@ import javax.net.ssl.X509TrustManager
  */
 
 class FineractClient private constructor(
-    private val okHttpClient: OkHttpClient,
-    private val retrofit: Retrofit
+    private val httpClient: HttpClient,
+    private val ktorfit: Ktorfit
 ) {
-    val accountingClosures: AccountingClosureApi = retrofit.create(AccountingClosureApi::class.java)
-    val accountingRules: AccountingRulesApi = retrofit.create(AccountingRulesApi::class.java)
-    val accountNumberFormats: AccountNumberFormatApi =
-        retrofit.create(AccountNumberFormatApi::class.java)
-    val accountTransfers: AccountTransfersApi = retrofit.create(AccountTransfersApi::class.java)
-    val adhocQuery: AdhocQueryApiApi = retrofit.create(AdhocQueryApiApi::class.java)
-    val audits: AuditsApi = retrofit.create(AuditsApi::class.java)
-    val authentication: AuthenticationHTTPBasicApi =
-        retrofit.create(AuthenticationHTTPBasicApi::class.java)
-    val batches: BatchAPIApi = retrofit.create(BatchAPIApi::class.java)
-    val bulkImport: BulkImportApi = retrofit.create(BulkImportApi::class.java)
-    val bulkLoans: BulkLoansApi = retrofit.create(BulkLoansApi::class.java)
-    val businessDateManagement: BusinessDateManagementApi =
-        retrofit.create(BusinessDateManagementApi::class.java)
-    val businessStepConfiguration: BusinessStepConfigurationApi =
-        retrofit.create(BusinessStepConfigurationApi::class.java)
-    val caches: CacheApi = retrofit.create(CacheApi::class.java)
-    val calender: CalendarApi = retrofit.create(CalendarApi::class.java)
-    val cashiersJournal: CashierJournalsApi = retrofit.create(CashierJournalsApi::class.java)
-    val cashiers: CashiersApi = retrofit.create(CashiersApi::class.java)
-    val centers: CentersApi = retrofit.create(CentersApi::class.java)
-    val charges: ChargesApi = retrofit.create(ChargesApi::class.java)
-    val clients: ClientApi = retrofit.create(ClientApi::class.java)
-    val clientCharges: ClientChargesApi = retrofit.create(ClientChargesApi::class.java)
-    val clientCollateralManagement: ClientCollateralManagementApi =
-        retrofit.create(ClientCollateralManagementApi::class.java)
-    val clientFamilyMember: ClientFamilyMemberApi =
-        retrofit.create(ClientFamilyMemberApi::class.java)
-    val clientIdentifiers: ClientIdentifierApi = retrofit.create(ClientIdentifierApi::class.java)
-    val clientAddresses: ClientsAddressApi = retrofit.create(ClientsAddressApi::class.java)
-    val clientSearch: ClientSearchV2Api = retrofit.create(ClientSearchV2Api::class.java)
-    val clientTransactions: ClientTransactionApi = retrofit.create(ClientTransactionApi::class.java)
-    val codes: CodesApi = retrofit.create(CodesApi::class.java)
-    val codeValues: CodeValuesApi = retrofit.create(CodeValuesApi::class.java)
-    val collateralManagement: CollateralManagementApi =
-        retrofit.create(CollateralManagementApi::class.java)
-    val collectionSheet: CollectionSheetApi = retrofit.create(CollectionSheetApi::class.java)
-    val creditBureauConfiguration: CreditBureauConfigurationApi =
-        retrofit.create(CreditBureauConfigurationApi::class.java)
-    val currencies: CurrencyApi = retrofit.create(CurrencyApi::class.java)
-    val dataTables: DataTablesApi = retrofit.create(DataTablesApi::class.java)
-    val legacy: DefaultApi = retrofit.create(DefaultApi::class.java) // TODO FINERACT-1222
-    val delinquencyRangeAndBucketsManagement: DelinquencyRangeAndBucketsManagementApi =
-        retrofit.create(DelinquencyRangeAndBucketsManagementApi::class.java)
-    val depositAccountOnHoldFundTransactions: DepositAccountOnHoldFundTransactionsApi =
-        retrofit.create(DepositAccountOnHoldFundTransactionsApi::class.java)
-    val deviceRegistrationApi: DeviceRegistrationApi =
-        retrofit.create(DeviceRegistrationApi::class.java)
-    val documents: DocumentsApi = retrofit.create(DocumentsApi::class.java)
-    val entityDatatableChecks: EntityDataTableApi = retrofit.create(EntityDataTableApi::class.java)
-    val entityFieldConfigurations: EntityFieldConfigurationApi =
-        retrofit.create(EntityFieldConfigurationApi::class.java)
-    val externalAssetOwners: ExternalAssetOwnersApi =
-        retrofit.create(ExternalAssetOwnersApi::class.java)
-    val externalEventConfiguration: ExternalEventConfigurationApi =
-        retrofit.create(ExternalEventConfigurationApi::class.java)
-    val externalServices: ExternalServicesApi = retrofit.create(ExternalServicesApi::class.java)
-    val userDetails: FetchAuthenticatedUserDetailsApi =
-        retrofit.create(FetchAuthenticatedUserDetailsApi::class.java)
-    val fineractEntity: FineractEntityApi = retrofit.create(FineractEntityApi::class.java)
-    val fixedDepositAccounts: FixedDepositAccountApi =
-        retrofit.create(FixedDepositAccountApi::class.java)
-    val fixedDepositAccountTransactions: FixedDepositAccountTransactionsApi =
-        retrofit.create(FixedDepositAccountTransactionsApi::class.java)
-    val fixedDepositProducts: FixedDepositProductApi =
-        retrofit.create(FixedDepositProductApi::class.java)
-    val floatingRates: FloatingRatesApi = retrofit.create(FloatingRatesApi::class.java)
-    val funds: FundsApi = retrofit.create(FundsApi::class.java)
-    val glAccounts: GeneralLedgerAccountApi = retrofit.create(GeneralLedgerAccountApi::class.java)
-    val globalConfigurations: GlobalConfigurationApi =
-        retrofit.create(GlobalConfigurationApi::class.java)
-    val groups: GroupsApi = retrofit.create(GroupsApi::class.java)
-    val groupsLoans: GroupsLevelApi = retrofit.create(GroupsLevelApi::class.java)
-    val guarantors: GuarantorsApi = retrofit.create(GuarantorsApi::class.java)
-    val holidays: HolidaysApi = retrofit.create(HolidaysApi::class.java)
-    val hooks: HooksApi = retrofit.create(HooksApi::class.java)
-    val inlineJob: InlineJobApi = retrofit.create(InlineJobApi::class.java)
-    val instanceMode: InstanceModeApi = retrofit.create(InstanceModeApi::class.java)
-    val interestRateCharts: InterestRateChartApi = retrofit.create(InterestRateChartApi::class.java)
-    val interestRateChartLabs: InterestRateSlabAKAInterestBandsApi =
-        retrofit.create(InterestRateSlabAKAInterestBandsApi::class.java)
-    val interOperation: InterOperationApi = retrofit.create(InterOperationApi::class.java)
-    val journalEntries: JournalEntriesApi = retrofit.create(JournalEntriesApi::class.java)
-    val likelihood: LikelihoodApi = retrofit.create(LikelihoodApi::class.java)
-    val reportMailings: ListReportMailingJobHistoryApi =
-        retrofit.create(ListReportMailingJobHistoryApi::class.java)
-    val loanAccountLock: LoanAccountLockApi = retrofit.create(LoanAccountLockApi::class.java)
-    val loanCharges: LoanChargesApi = retrofit.create(LoanChargesApi::class.java)
-    val loanCOBCatchUp: LoanCOBCatchUpApi = retrofit.create(LoanCOBCatchUpApi::class.java)
-    val loanCollaterals: LoanCollateralApi = retrofit.create(LoanCollateralApi::class.java)
-    val loanCollateralManagement: LoanCollateralManagementApi =
-        retrofit.create(LoanCollateralManagementApi::class.java)
-    val loanDisbursementDetails: LoanDisbursementDetailsApi =
-        retrofit.create(LoanDisbursementDetailsApi::class.java)
-    val loanProducts: LoanProductsApi = retrofit.create(LoanProductsApi::class.java)
-    val loanSchedules: LoanReschedulingApi = retrofit.create(LoanReschedulingApi::class.java)
-    val loans: LoansApi = retrofit.create(LoansApi::class.java)
-    val loanTransactions: LoanTransactionsApi = retrofit.create(LoanTransactionsApi::class.java)
-    val makerCheckers: MakerCheckerOr4EyeFunctionalityApi =
-        retrofit.create(MakerCheckerOr4EyeFunctionalityApi::class.java)
-    val financialActivityAccountMappings: MappingFinancialActivitiesToAccountsApi =
-        retrofit.create(MappingFinancialActivitiesToAccountsApi::class.java)
-    val meetings: MeetingsApi = retrofit.create(MeetingsApi::class.java)
-    val mixMappings: MixMappingApi = retrofit.create(MixMappingApi::class.java)
-    val mixReports: MixReportApi = retrofit.create(MixReportApi::class.java)
-    val mixTaxonomies: MixTaxonomyApi = retrofit.create(MixTaxonomyApi::class.java)
-    val notes: NotesApi = retrofit.create(NotesApi::class.java)
-    val notifications: NotificationApi = retrofit.create(NotificationApi::class.java)
-    val offices: OfficesApi = retrofit.create(OfficesApi::class.java)
-    val passwordPreferences: PasswordPreferencesApi =
-        retrofit.create(PasswordPreferencesApi::class.java)
-    val paymentTypes: PaymentTypeApi = retrofit.create(PaymentTypeApi::class.java)
-    val periodicAccrualAccounting: PeriodicAccrualAccountingApi =
-        retrofit.create(PeriodicAccrualAccountingApi::class.java)
-    val permissions: PermissionsApi = retrofit.create(PermissionsApi::class.java)
-    val selfPockets: PocketApi = retrofit.create(PocketApi::class.java)
-    val povertyLine: PovertyLineApi = retrofit.create(PovertyLineApi::class.java)
-    val productMix: ProductMixApi = retrofit.create(ProductMixApi::class.java)
-    val products: ProductsApi = retrofit.create(ProductsApi::class.java)
-    val provisioningCategories: ProvisioningCategoryApi =
-        retrofit.create(ProvisioningCategoryApi::class.java)
-    val provisioningCriterias: ProvisioningCriteriaApi =
-        retrofit.create(ProvisioningCriteriaApi::class.java)
-    val provisioningEntries: ProvisioningEntriesApi =
-        retrofit.create(ProvisioningEntriesApi::class.java)
-    val rate: RateApi = retrofit.create(RateApi::class.java)
-    val recurringDepositAccounts: RecurringDepositAccountApi =
-        retrofit.create(RecurringDepositAccountApi::class.java)
-    val recurringDepositAccountTransactions: RecurringDepositAccountTransactionsApi =
-        retrofit.create(RecurringDepositAccountTransactionsApi::class.java)
-    val recurringDepositProducts: RecurringDepositProductApi =
-        retrofit.create(RecurringDepositProductApi::class.java)
-    val repaymentWithPostDatedChecks: RepaymentWithPostDatedChecksApi =
-        retrofit.create(RepaymentWithPostDatedChecksApi::class.java)
-    val reportMailingJobs: ReportMailingJobsApi = retrofit.create(ReportMailingJobsApi::class.java)
-    val reports: ReportsApi = retrofit.create(ReportsApi::class.java)
-    val rescheduling: RescheduleLoansApi = retrofit.create(RescheduleLoansApi::class.java)
-    val roles: RolesApi = retrofit.create(RolesApi::class.java)
-    val reportsRun: RunReportsApi = retrofit.create(RunReportsApi::class.java)
-    val savingsAccounts: SavingsAccountApi = retrofit.create(SavingsAccountApi::class.java)
-    val savingsTransactions: SavingsAccountTransactionsApi =
-        retrofit.create(SavingsAccountTransactionsApi::class.java)
-    val savingsAccountCharges: SavingsChargesApi = retrofit.create(SavingsChargesApi::class.java)
-    val savingsProducts: SavingsProductApi = retrofit.create(SavingsProductApi::class.java)
-    val jobsScheduler: SchedulerApi = retrofit.create(SchedulerApi::class.java)
-    val jobs: SCHEDULERJOBApi = retrofit.create(SCHEDULERJOBApi::class.java)
-    val surveyScorecards: ScoreCardApi = retrofit.create(ScoreCardApi::class.java)
-    val search: SearchAPIApi = retrofit.create(SearchAPIApi::class.java)
-    val selfAccountTransfers: SelfAccountTransferApi =
-        retrofit.create(SelfAccountTransferApi::class.java)
-    val selfAuthentication: SelfAuthenticationApi =
-        retrofit.create(SelfAuthenticationApi::class.java)
-    val selfClients: SelfClientApi = retrofit.create(SelfClientApi::class.java)
-    val selfDividend: SelfDividendApi = retrofit.create(SelfDividendApi::class.java)
-    val selfLoanProducts: SelfLoanProductsApi = retrofit.create(SelfLoanProductsApi::class.java)
-    val selfLoans: SelfLoansApi = retrofit.create(SelfLoansApi::class.java)
-    val selfReportsRun: SelfRunReportApi = retrofit.create(SelfRunReportApi::class.java)
-    val selfSavingsAccounts: SelfSavingsAccountApi =
-        retrofit.create(SelfSavingsAccountApi::class.java)
-    val selfSavingsProducts: SelfSavingsProductsApi =
-        retrofit.create(SelfSavingsProductsApi::class.java)
-    val selfSurveyScorecards: SelfScoreCardApi = retrofit.create(SelfScoreCardApi::class.java)
-    val selfRegistration: SelfServiceRegistrationApi =
-        retrofit.create(SelfServiceRegistrationApi::class.java)
-    val selfShareAccounts: SelfShareAccountsApi = retrofit.create(SelfShareAccountsApi::class.java)
-    val selfShareProducts: SelfSavingsProductsApi =
-        retrofit.create(SelfSavingsProductsApi::class.java)
-    val selfSurveys: SelfSpmApi = retrofit.create(SelfSpmApi::class.java)
-    val selfThirdPartyBeneficiaries: SelfThirdPartyTransferApi =
-        retrofit.create(SelfThirdPartyTransferApi::class.java)
-    val selfUser: SelfUserApi = retrofit.create(SelfUserApi::class.java)
-    val selfUserDetails: SelfUserDetailsApi = retrofit.create(SelfUserDetailsApi::class.java)
-    val shareAccounts: ShareAccountApi = retrofit.create(ShareAccountApi::class.java)
-    val sms: SMSApi = retrofit.create(SMSApi::class.java)
-    val surveyLookupTables: SPMAPILookUpTableApi = retrofit.create(SPMAPILookUpTableApi::class.java)
-    val spmSurveys: SpmSurveysApi = retrofit.create(SpmSurveysApi::class.java)
-    val staff: StaffApi = retrofit.create(StaffApi::class.java)
-    val standingInstructions: StandingInstructionsApi =
-        retrofit.create(StandingInstructionsApi::class.java)
-    val standingInstructionsHistory: StandingInstructionsHistoryApi =
-        retrofit.create(StandingInstructionsHistoryApi::class.java)
-    val surveys: SurveyApi = retrofit.create(SurveyApi::class.java)
-    val taxComponents: TaxComponentsApi = retrofit.create(TaxComponentsApi::class.java)
-    val taxGroups: TaxGroupApi = retrofit.create(TaxGroupApi::class.java)
-    val tellers: TellerCashManagementApi = retrofit.create(TellerCashManagementApi::class.java)
-    val twoFactor: TwoFactorApi = retrofit.create(TwoFactorApi::class.java)
-    val templates: UserGeneratedDocumentsApi =
-        retrofit.create(UserGeneratedDocumentsApi::class.java)
-    val users: UsersApi = retrofit.create(UsersApi::class.java)
-    val workingDays: WorkingDaysApi = retrofit.create(WorkingDaysApi::class.java)
+    val accountingClosures = ktorfit.create<AccountingClosureApi>()
+    val accountingRules = ktorfit.create<AccountingRulesApi>()
+    val accountNumberFormats = ktorfit.create<AccountNumberFormatApi>()
+    val accountTransfers = ktorfit.create<AccountTransfersApi>()
+    val adhocQuery = ktorfit.create<AdhocQueryApiApi>()
+    val audits = ktorfit.create<AuditsApi>()
+    val authentication = ktorfit.create<AuthenticationHTTPBasicApi>()
+    val batches = ktorfit.create<BatchAPIApi>()
+    val bulkImport = ktorfit.create<BulkImportApi>()
+    val bulkLoans = ktorfit.create<BulkLoansApi>()
+    val businessDateManagement = ktorfit.create<BusinessDateManagementApi>()
+    val businessStepConfiguration = ktorfit.create<BusinessStepConfigurationApi>()
+    val caches = ktorfit.create<CacheApi>()
+    val calender = ktorfit.create<CalendarApi>()
+    val cashiersJournal = ktorfit.create<CashierJournalsApi>()
+    val cashiers = ktorfit.create<CashiersApi>()
+    val centers = ktorfit.create<CentersApi>()
+    val charges = ktorfit.create<ChargesApi>()
+    val clients = ktorfit.create<ClientApi>()
+    val clientCharges = ktorfit.create<ClientChargesApi>()
+    val clientCollateralManagement = ktorfit.create<ClientCollateralManagementApi>()
+    val clientFamilyMember = ktorfit.create<ClientFamilyMemberApi>()
+    val clientIdentifiers = ktorfit.create<ClientIdentifierApi>()
+    val clientAddresses = ktorfit.create<ClientsAddressApi>()
+    val clientSearch = ktorfit.create<ClientSearchV2Api>()
+    val clientTransactions = ktorfit.create<ClientTransactionApi>()
+    val codes = ktorfit.create<CodesApi>()
+    val codeValues = ktorfit.create<CodeValuesApi>()
+    val collateralManagement = ktorfit.create<CollateralManagementApi>()
+    val collectionSheet = ktorfit.create<CollectionSheetApi>()
+    val creditBureauConfiguration = ktorfit.create<CreditBureauConfigurationApi>()
+    val currencies = ktorfit.create<CurrencyApi>()
+    val dataTables = ktorfit.create<DataTablesApi>()
+    val legacy = ktorfit.create<DefaultApi>() // TODO FINERACT-1222
+    val delinquencyRangeAndBucketsManagement = ktorfit.create<DelinquencyRangeAndBucketsManagementApi>()
+    val depositAccountOnHoldFundTransactions = ktorfit.create<DepositAccountOnHoldFundTransactionsApi>()
+    val deviceRegistrationApi = ktorfit.create<DeviceRegistrationApi>()
+    val documents = ktorfit.create<DocumentsApi>()
+    val entityDatatableChecks = ktorfit.create<EntityDataTableApi>()
+    val entityFieldConfigurations = ktorfit.create<EntityFieldConfigurationApi>()
+    val externalAssetOwners = ktorfit.create<ExternalAssetOwnersApi>()
+    val externalEventConfiguration = ktorfit.create<ExternalEventConfigurationApi>()
+    val externalServices = ktorfit.create<ExternalServicesApi>()
+    val userDetails = ktorfit.create<FetchAuthenticatedUserDetailsApi>()
+    val fineractEntity = ktorfit.create<FineractEntityApi>()
+    val fixedDepositAccounts = ktorfit.create<FixedDepositAccountApi>()
+    val fixedDepositAccountTransactions = ktorfit.create<FixedDepositAccountTransactionsApi>()
+    val fixedDepositProducts = ktorfit.create<FixedDepositProductApi>()
+    val floatingRates = ktorfit.create<FloatingRatesApi>()
+    val funds = ktorfit.create<FundsApi>()
+    val glAccounts = ktorfit.create<GeneralLedgerAccountApi>()
+    val globalConfigurations = ktorfit.create<GlobalConfigurationApi>()
+    val groups = ktorfit.create<GroupsApi>()
+    val groupsLoans = ktorfit.create<GroupsLevelApi>()
+    val guarantors = ktorfit.create<GuarantorsApi>()
+    val holidays = ktorfit.create<HolidaysApi>()
+    val hooks = ktorfit.create<HooksApi>()
+    val inlineJob = ktorfit.create<InlineJobApi>()
+    val instanceMode = ktorfit.create<InstanceModeApi>()
+    val interestRateCharts = ktorfit.create<InterestRateChartApi>()
+    val interestRateChartLabs = ktorfit.create<InterestRateSlabAKAInterestBandsApi>()
+    val interOperation = ktorfit.create<InterOperationApi>()
+    val journalEntries = ktorfit.create<JournalEntriesApi>()
+    val likelihood = ktorfit.create<LikelihoodApi>()
+    val reportMailings = ktorfit.create<ListReportMailingJobHistoryApi>()
+    val loanAccountLock = ktorfit.create<LoanAccountLockApi>()
+    val loanCharges = ktorfit.create<LoanChargesApi>()
+    val loanCOBCatchUp = ktorfit.create<LoanCOBCatchUpApi>()
+    val loanCollaterals = ktorfit.create<LoanCollateralApi>()
+    val loanCollateralManagement = ktorfit.create<LoanCollateralManagementApi>()
+    val loanDisbursementDetails = ktorfit.create<LoanDisbursementDetailsApi>()
+    val loanProducts = ktorfit.create<LoanProductsApi>()
+    val loanSchedules = ktorfit.create<LoanReschedulingApi>()
+    val loans = ktorfit.create<LoansApi>()
+    val loanTransactions = ktorfit.create<LoanTransactionsApi>()
+    val makerCheckers = ktorfit.create<MakerCheckerOr4EyeFunctionalityApi>()
+    val financialActivityAccountMappings = ktorfit.create<MappingFinancialActivitiesToAccountsApi>()
+    val meetings = ktorfit.create<MeetingsApi>()
+    val mixMappings = ktorfit.create<MixMappingApi>()
+    val mixReports = ktorfit.create<MixReportApi>()
+    val mixTaxonomies = ktorfit.create<MixTaxonomyApi>()
+    val notes = ktorfit.create<NotesApi>()
+    val notifications = ktorfit.create<NotificationApi>()
+    val offices = ktorfit.create<OfficesApi>()
+    val passwordPreferences = ktorfit.create<PasswordPreferencesApi>()
+    val paymentTypes = ktorfit.create<PaymentTypeApi>()
+    val periodicAccrualAccounting = ktorfit.create<PeriodicAccrualAccountingApi>()
+    val permissions = ktorfit.create<PermissionsApi>()
+    val selfPockets = ktorfit.create<PocketApi>()
+    val povertyLine = ktorfit.create<PovertyLineApi>()
+    val productMix = ktorfit.create<ProductMixApi>()
+    val provisioningCategories = ktorfit.create<ProvisioningCategoryApi>()
+    val products = ktorfit.create<ProductsApi>()
+    val provisioningCriterias = ktorfit.create<ProvisioningCriteriaApi>()
+    val provisioningEntries = ktorfit.create<ProvisioningEntriesApi>()
+    val rate = ktorfit.create<RateApi>()
+    val recurringDepositAccounts = ktorfit.create<RecurringDepositAccountApi>()
+    val recurringDepositAccountTransactions = ktorfit.create<RecurringDepositAccountTransactionsApi>()
+    val recurringDepositProducts = ktorfit.create<RecurringDepositProductApi>()
+    val repaymentWithPostDatedChecks = ktorfit.create<RepaymentWithPostDatedChecksApi>()
+    val reportMailingJobs = ktorfit.create<ReportMailingJobsApi>()
+    val reports = ktorfit.create<ReportsApi>()
+    val rescheduling = ktorfit.create<RescheduleLoansApi>()
+    val roles = ktorfit.create<RolesApi>()
+    val reportsRun = ktorfit.create<RunReportsApi>()
+    val savingsAccounts = ktorfit.create<SavingsAccountApi>()
+    val savingsTransactions = ktorfit.create<SavingsAccountTransactionsApi>()
+    val savingsAccountCharges = ktorfit.create<SavingsChargesApi>()
+    val savingsProducts = ktorfit.create<SavingsProductApi>()
+    val jobsScheduler = ktorfit.create<SchedulerApi>()
+    val jobs = ktorfit.create<SCHEDULERJOBApi>()
+    val surveyScorecards = ktorfit.create<ScoreCardApi>()
+    val search = ktorfit.create<SearchAPIApi>()
+    val selfAccountTransfers = ktorfit.create<SelfAccountTransferApi>()
+    val selfAuthentication = ktorfit.create<SelfAuthenticationApi>()
+    val selfClients = ktorfit.create<SelfClientApi>()
+    val selfDividend = ktorfit.create<SelfDividendApi>()
+    val selfLoanProducts = ktorfit.create<SelfLoanProductsApi>()
+    val selfLoans = ktorfit.create<SelfLoansApi>()
+    val selfReportsRun = ktorfit.create<SelfRunReportApi>()
+    val selfSavingsAccounts = ktorfit.create<SelfSavingsAccountApi>()
+    val selfSavingsProducts = ktorfit.create<SelfSavingsProductsApi>()
+    val selfSurveyScorecards = ktorfit.create<SelfScoreCardApi>()
+    val selfRegistration = ktorfit.create<SelfServiceRegistrationApi>()
+    val selfShareAccounts = ktorfit.create<SelfShareAccountsApi>()
+    val selfShareProducts = ktorfit.create<SelfSavingsProductsApi>()
+    val selfSurveys = ktorfit.create<SelfSpmApi>()
+    val selfThirdPartyBeneficiaries = ktorfit.create<SelfThirdPartyTransferApi>()
+    val selfUser = ktorfit.create<SelfUserApi>()
+    val selfUserDetails = ktorfit.create<SelfUserDetailsApi>()
+    val shareAccounts = ktorfit.create<ShareAccountApi>()
+    val sms = ktorfit.create<SMSApi>()
+    val surveyLookupTables = ktorfit.create<SPMAPILookUpTableApi>()
+    val spmSurveys = ktorfit.create<SpmSurveysApi>()
+    val staff = ktorfit.create<StaffApi>()
+    val standingInstructions = ktorfit.create<StandingInstructionsApi>()
+    val standingInstructionsHistory = ktorfit.create<StandingInstructionsHistoryApi>()
+    val surveys = ktorfit.create<SurveyApi>()
+    val taxComponents = ktorfit.create<TaxComponentsApi>()
+    val taxGroups = ktorfit.create<TaxGroupApi>()
+    val tellers = ktorfit.create<TellerCashManagementApi>()
+    val twoFactor = ktorfit.create<TwoFactorApi>()
+    val templates = ktorfit.create<UserGeneratedDocumentsApi>()
+    val users = ktorfit.create<UsersApi>()
+    val workingDays = ktorfit.create<WorkingDaysApi>()
 
-    fun okHttpClient(): OkHttpClient {
-        return this.okHttpClient
+    fun httpClient(): HttpClient {
+        return this.httpClient
     }
 
-    fun baseURL(): HttpUrl {
-        return retrofit.baseUrl()
+    fun baseURL(): String {
+        return ktorfit.baseUrl
     }
 
     /**
@@ -378,12 +341,12 @@ class FineractClient private constructor(
      * can be a handy back door for non-trivial advanced customizations of the API client if you have extended Fineract
      * with your own REST APIs.
      */
-    fun <S> createService(serviceClass: Class<S>?): S {
-        return retrofit.create(serviceClass)
-    }
+//    fun <S> createService(serviceClass: Class<S>?): S {
+//        return ktorfit.create(serviceClass)
+//    }
 
     class Builder internal constructor() {
-        private val json: JSON = JSON()
+//        private val json: JSON = JSON()
 
         /**
          * Obtain the internal OkHttp Builder. This method is typically not required to be invoked for simple API
@@ -391,7 +354,9 @@ class FineractClient private constructor(
          *
          * @return the [ApiClient] which [.build] will use.
          */
-        val okBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+//        private val json = Json
+
+//        val okBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 
         /**
          * Obtain the internal Retrofit Builder. This method is typically not required to be invoked for simple API
@@ -399,16 +364,17 @@ class FineractClient private constructor(
          *
          * @return the [ApiClient] which [.build] will use.
          */
-        val retrofitBuilder: Retrofit.Builder =
-            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.gson))
+//        val retrofitBuilder: Retrofit.Builder =
+//            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.gson))
 
-        private var baseURL: String? = null
+        private lateinit var baseURL: String
         private var tenant: String? = null
-        private var username: String? = null
-        private var password: String? = null
+        private var loginUsername: String? = null
+        private var loginPassword: String? = null
+        private var insecure: Boolean = false
 
-        fun baseURL(baseURL: String?): Builder {
+        fun baseURL(baseURL: String): Builder {
             this.baseURL = baseURL
             return this
         }
@@ -419,17 +385,22 @@ class FineractClient private constructor(
         }
 
         fun basicAuth(username: String?, password: String?): Builder {
-            this.username = username
-            this.password = password
+            this.loginUsername = username
+            this.loginPassword = password
             return this
         }
 
-        fun logging(level: Level?): Builder {
-            val logging = HttpLoggingInterceptor()
-            level?.let { logging.setLevel(it) }
-            okBuilder.addInterceptor(logging)
+        fun inSecure(insecure: Boolean): Builder {
+            this.insecure = insecure
             return this
         }
+
+//        fun logging(level: Level?): Builder {
+//            val logging = HttpLoggingInterceptor()
+//            level?.let { logging.setLevel(it) }
+//            okBuilder.addInterceptor(logging)
+//            return this
+//        }
 
         /**
          * Skip Fineract API host SSL certificate verification. DO NOT USE THIS when invoking a production server's API!
@@ -437,73 +408,151 @@ class FineractClient private constructor(
          * only. If you do not understand what this is, do not use it. You WILL cause a security issue in your
          * application due to the possibility of a "man in the middle" attack when this is enabled.
          */
-        @Suppress("unused")
-        fun insecure(insecure: Boolean): Builder {
-            // Nota bene: Similar code to this is also in Fineract Provider's
-            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
-            if (insecure) {
-                val insecureHostnameVerifier =
-                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
-                okBuilder.hostnameVerifier(insecureHostnameVerifier)
-
-                try {
-                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
-                        @Throws(CertificateException::class)
-                        override fun checkClientTrusted(
-                            chain: Array<X509Certificate>,
-                            authType: String
-                        ) {
-                        }
-
-                        @Throws(CertificateException::class)
-                        override fun checkServerTrusted(
-                            chain: Array<X509Certificate>,
-                            authType: String
-                        ) {
-                        }
-
-                        override fun getAcceptedIssuers(): Array<X509Certificate> {
-                            return arrayOf()
-                        }
-                    }
-
-                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
-                    val sslContext = SSLContext.getInstance("SSL")
-                    sslContext.init(
-                        null,
-                        arrayOf<TrustManager>(insecureX509TrustManager),
-                        SecureRandom()
-                    )
-                    val insecureSslSocketFactory = sslContext.socketFactory
-
-                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
-                } catch (e: NoSuchAlgorithmException) {
-                    throw IllegalStateException("insecure() SSL configuration failed", e)
-                } catch (e: KeyManagementException) {
-                    throw IllegalStateException("insecure() SSL configuration failed", e)
-                }
-            }
-            return this
-        }
+//        @Suppress("unused")
+//        fun insecure(insecure: Boolean): Builder {
+//            // Nota bene: Similar code to this is also in Fineract Provider's
+//            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
+//            if (insecure) {
+//                val insecureHostnameVerifier =
+//                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
+//                okBuilder.hostnameVerifier(insecureHostnameVerifier)
+//
+//                try {
+//                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
+//                        @Throws(CertificateException::class)
+//                        override fun checkClientTrusted(
+//                            chain: Array<X509Certificate>,
+//                            authType: String
+//                        ) {
+//                        }
+//
+//                        @Throws(CertificateException::class)
+//                        override fun checkServerTrusted(
+//                            chain: Array<X509Certificate>,
+//                            authType: String
+//                        ) {
+//                        }
+//
+//                        override fun getAcceptedIssuers(): Array<X509Certificate> {
+//                            return arrayOf()
+//                        }
+//                    }
+//
+//                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
+//                    val sslContext = SSLContext.getInstance("SSL")
+//                    sslContext.init(
+//                        null,
+//                        arrayOf<TrustManager>(insecureX509TrustManager),
+//                        SecureRandom()
+//                    )
+//                    val insecureSslSocketFactory = sslContext.socketFactory
+//
+//                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
+//                } catch (e: NoSuchAlgorithmException) {
+//                    throw IllegalStateException("insecure() SSL configuration failed", e)
+//                } catch (e: KeyManagementException) {
+//                    throw IllegalStateException("insecure() SSL configuration failed", e)
+//                }
+//            }
+//            return this
+//        }
 
         fun build(): FineractClient {
-            // URL
-            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
 
-            // Tenant
-            val tenantAuth: ApiKeyAuth =
-                ApiKeyAuth("header", "fineract-platform-tenantid", tenant.toString())
-            okBuilder.addInterceptor(tenantAuth)
+            val ktorClient = HttpClient(CIO) {
+                install(ContentNegotiation) {
+                    json(Json {
+                        isLenient = true
+                        ignoreUnknownKeys = true
+                    })
+                }
+                install(Logging) {
+                    logger = Logger.DEFAULT
+                    level = LogLevel.INFO
+                }
+                install(Auth) {
+                    basic {
+                        credentials {
+                            BasicAuthCredentials(
+                                username = loginUsername.toString(),
+                                password = loginPassword.toString()
+                            )
+                        }
+                    }
+                }
 
-            // BASIC Auth
-            val basicAuth: HttpBasicAuth = HttpBasicAuth()
-            basicAuth.setCredentials(has("username", username), has("password", password))
-            okBuilder.addInterceptor(basicAuth)
+                defaultRequest {
+                    headers {
+                        append("Content-Type", "application/json")
+                        append("Accept", "application/json")
+                        tenant?.let {
+                            append("fineract-platform-tenantid", it)
+                        }
+                    }
+                }
 
-            val okHttpClient: OkHttpClient = okBuilder.build()
-            retrofitBuilder.client(okHttpClient)
+                if (insecure) {
+                    engine {
+                        https {
+                            val insecureTrustManager = object : X509TrustManager {
+                                override fun checkClientTrusted(
+                                    chain: Array<X509Certificate>,
+                                    authType: String
+                                ) {
+                                }
 
-            return FineractClient(okHttpClient, retrofitBuilder.build())
+                                override fun checkServerTrusted(
+                                    chain: Array<X509Certificate>,
+                                    authType: String
+                                ) {
+                                }
+
+                                override fun getAcceptedIssuers(): Array<X509Certificate> =
+                                    arrayOf()
+                            }
+
+                            try {
+                                val sslContext = SSLContext.getInstance("SSL").apply {
+                                    init(
+                                        null,
+                                        arrayOf<TrustManager>(insecureTrustManager),
+                                        SecureRandom()
+                                    )
+                                }
+                                trustManager = insecureTrustManager
+                            } catch (e: NoSuchAlgorithmException) {
+                                throw IllegalStateException("SSL configuration failed", e)
+                            } catch (e: KeyManagementException) {
+                                throw IllegalStateException("SSL configuration failed", e)
+                            }
+                        }
+                    }
+                }
+            }
+
+            val ktorfitBuilder = Ktorfit.Builder()
+                .httpClient(ktorClient)
+                .baseUrl(baseURL)
+                .build()
+
+
+//            // URL
+//            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
+//
+//            // Tenant
+//            val tenantAuth: ApiKeyAuth =
+//                ApiKeyAuth("header", "fineract-platform-tenantid", tenant.toString())
+//            okBuilder.addInterceptor(tenantAuth)
+//
+//            // BASIC Auth
+//            val basicAuth: HttpBasicAuth = HttpBasicAuth()
+//            basicAuth.setCredentials(has("username", username), has("password", password))
+//            okBuilder.addInterceptor(basicAuth)
+//
+//            val okHttpClient: OkHttpClient = okBuilder.build()
+//            retrofitBuilder.client(okHttpClient)
+
+            return FineractClient(ktorClient, ktorfitBuilder)
         }
 
         @Throws(IllegalStateException::class)

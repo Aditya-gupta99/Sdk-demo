@@ -7,7 +7,7 @@ wrapper {
 }
 
 buildscript {
-    ext.kotlin_version = '1.9.23'
+    ext.kotlin_version = '2.0.20'
     ext.retrofitVersion = '2.10.0'
     ext.spotless_version = "6.25.0"
 
@@ -20,6 +20,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:2.3.+"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.24.23"
+        classpath "de.jensklingenberg.ktorfit:ktorfit-gradle-plugin:2.0.1"
     }
 }
 
@@ -72,6 +73,8 @@ if (hasProperty('target') && target == 'android') {
 
     apply plugin: 'com.android.library'
     apply plugin: 'com.github.dcendents.android-maven'
+    apply plugin: "de.jensklingenberg.ktorfit"
+    apply plugin: "com.google.devtools.ksp"
 
     android {
         compileSdkVersion 25
@@ -197,4 +200,18 @@ dependencies {
     testImplementation "io.kotlintest:kotlintest-runner-junit5:3.4.2"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "io.gsonfire:gson-fire:1.8.0"
+
+    // Add Ktorfit
+    implementation "de.jensklingenberg.ktorfit:ktorfit-lib:2.0.1"
+
+    // Add Ktor dependencies
+    implementation "io.ktor:ktor-client-core:2.3.12"
+    implementation "io.ktor:ktor-client-cio:2.3.12"
+    implementation "io.ktor:ktor-client-logging:2.3.12"
+    implementation "io.ktor:ktor-client-auth:2.3.12"
+    implementation "io.ktor:ktor-network-tls-certificates:2.3.12"
+    implementation "io.ktor:ktor-client-content-negotiation:2.3.12"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:2.3.12"
+
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:3.4.2"
 }

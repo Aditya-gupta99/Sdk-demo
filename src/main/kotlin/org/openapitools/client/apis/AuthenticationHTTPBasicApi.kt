@@ -1,10 +1,10 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.PostAuthenticationRequest
 import org.openapitools.client.models.PostAuthenticationResponse
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface AuthenticationHTTPBasicApi {
     /**
