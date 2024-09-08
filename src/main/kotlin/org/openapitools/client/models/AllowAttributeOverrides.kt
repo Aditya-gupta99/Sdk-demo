@@ -35,28 +35,28 @@ import com.squareup.moshi.Json
 data class AllowAttributeOverrides(
 
     @Json(name = "amortizationType")
-    val amortizationType: kotlin.Boolean? = null,
+    val amortizationType: Boolean? = null,
 
     @Json(name = "graceOnArrearsAgeing")
-    val graceOnArrearsAgeing: kotlin.Boolean? = null,
+    val graceOnArrearsAgeing: Boolean? = null,
 
     @Json(name = "graceOnPrincipalAndInterestPayment")
-    val graceOnPrincipalAndInterestPayment: kotlin.Boolean? = null,
+    val graceOnPrincipalAndInterestPayment: Boolean? = null,
 
     @Json(name = "inArrearsTolerance")
-    val inArrearsTolerance: kotlin.Boolean? = null,
+    val inArrearsTolerance: Boolean? = null,
 
     @Json(name = "interestCalculationPeriodType")
-    val interestCalculationPeriodType: kotlin.Boolean? = null,
+    val interestCalculationPeriodType: Boolean? = null,
 
     @Json(name = "interestType")
-    val interestType: kotlin.Boolean? = null,
+    val interestType: Boolean? = null,
 
     @Json(name = "repaymentEvery")
-    val repaymentEvery: kotlin.Boolean? = null,
+    val repaymentEvery: Boolean? = null,
 
     @Json(name = "transactionProcessingStrategyCode")
-    val transactionProcessingStrategyCode: kotlin.Boolean? = null
+    val transactionProcessingStrategyCode: Boolean? = null
 
 )
 
