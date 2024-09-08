@@ -7,7 +7,7 @@ wrapper {
 }
 
 buildscript {
-    ext.kotlin_version = '2.0.20'
+    ext.kotlin_version = '1.9.23'
     ext.retrofitVersion = '2.10.0'
     ext.spotless_version = "6.25.0"
 
@@ -74,7 +74,7 @@ if (hasProperty('target') && target == 'android') {
     apply plugin: 'com.android.library'
     apply plugin: 'com.github.dcendents.android-maven'
     apply plugin: "de.jensklingenberg.ktorfit"
-    apply plugin: "com.google.devtools.ksp"
+//    apply plugin: "com.google.devtools.ksp"
 
     android {
         compileSdkVersion 25
