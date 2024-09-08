@@ -1,186 +1,186 @@
-//@file:OptIn(InternalKtorfitApi::class)
-//
-//package org.openapitools.client.infrastructure
-//
-//import de.jensklingenberg.ktorfit.Ktorfit
-//import de.jensklingenberg.ktorfit.internal.InternalKtorfitApi
-//import io.ktor.client.HttpClient
-//import io.ktor.client.engine.cio.CIO
-//import io.ktor.client.plugins.auth.Auth
-//import io.ktor.client.plugins.auth.providers.BasicAuthCredentials
-//import io.ktor.client.plugins.auth.providers.basic
-//import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-//import io.ktor.client.plugins.defaultRequest
-//import io.ktor.client.plugins.logging.DEFAULT
-//import io.ktor.client.plugins.logging.LogLevel
-//import io.ktor.client.plugins.logging.Logger
-//import io.ktor.client.plugins.logging.Logging
-//import io.ktor.http.headers
-//import io.ktor.serialization.kotlinx.json.json
-//import kotlinx.serialization.json.Json
-//import org.openapitools.client.apis.AccountNumberFormatApi
-//import org.openapitools.client.apis.AccountTransfersApi
-//import org.openapitools.client.apis.AccountingClosureApi
-//import org.openapitools.client.apis.AccountingRulesApi
-//import org.openapitools.client.apis.AdhocQueryApiApi
-//import org.openapitools.client.apis.AuditsApi
-//import org.openapitools.client.apis.AuthenticationHTTPBasicApi
-//import org.openapitools.client.apis.BatchAPIApi
-//import org.openapitools.client.apis.BulkImportApi
-//import org.openapitools.client.apis.BulkLoansApi
-//import org.openapitools.client.apis.BusinessDateManagementApi
-//import org.openapitools.client.apis.BusinessStepConfigurationApi
-//import org.openapitools.client.apis.CacheApi
-//import org.openapitools.client.apis.CalendarApi
-//import org.openapitools.client.apis.CashierJournalsApi
-//import org.openapitools.client.apis.CashiersApi
-//import org.openapitools.client.apis.CentersApi
-//import org.openapitools.client.apis.ChargesApi
-//import org.openapitools.client.apis.ClientApi
-//import org.openapitools.client.apis.ClientChargesApi
-//import org.openapitools.client.apis.ClientCollateralManagementApi
-//import org.openapitools.client.apis.ClientFamilyMemberApi
-//import org.openapitools.client.apis.ClientIdentifierApi
-//import org.openapitools.client.apis.ClientSearchV2Api
-//import org.openapitools.client.apis.ClientTransactionApi
-//import org.openapitools.client.apis.ClientsAddressApi
-//import org.openapitools.client.apis.CodeValuesApi
-//import org.openapitools.client.apis.CodesApi
-//import org.openapitools.client.apis.CollateralManagementApi
-//import org.openapitools.client.apis.CollectionSheetApi
-//import org.openapitools.client.apis.CreditBureauConfigurationApi
-//import org.openapitools.client.apis.CurrencyApi
-//import org.openapitools.client.apis.DataTablesApi
-//import org.openapitools.client.apis.DefaultApi
-//import org.openapitools.client.apis.DelinquencyRangeAndBucketsManagementApi
-//import org.openapitools.client.apis.DepositAccountOnHoldFundTransactionsApi
-//import org.openapitools.client.apis.DeviceRegistrationApi
-//import org.openapitools.client.apis.DocumentsApi
-//import org.openapitools.client.apis.EntityDataTableApi
-//import org.openapitools.client.apis.EntityFieldConfigurationApi
-//import org.openapitools.client.apis.ExternalAssetOwnersApi
-//import org.openapitools.client.apis.ExternalEventConfigurationApi
-//import org.openapitools.client.apis.ExternalServicesApi
-//import org.openapitools.client.apis.FetchAuthenticatedUserDetailsApi
-//import org.openapitools.client.apis.FineractEntityApi
-//import org.openapitools.client.apis.FixedDepositAccountApi
-//import org.openapitools.client.apis.FixedDepositAccountTransactionsApi
-//import org.openapitools.client.apis.FixedDepositProductApi
-//import org.openapitools.client.apis.FloatingRatesApi
-//import org.openapitools.client.apis.FundsApi
-//import org.openapitools.client.apis.GeneralLedgerAccountApi
-//import org.openapitools.client.apis.GlobalConfigurationApi
-//import org.openapitools.client.apis.GroupsApi
-//import org.openapitools.client.apis.GroupsLevelApi
-//import org.openapitools.client.apis.GuarantorsApi
-//import org.openapitools.client.apis.HolidaysApi
-//import org.openapitools.client.apis.HooksApi
-//import org.openapitools.client.apis.InlineJobApi
-//import org.openapitools.client.apis.InstanceModeApi
-//import org.openapitools.client.apis.InterOperationApi
-//import org.openapitools.client.apis.InterestRateChartApi
-//import org.openapitools.client.apis.InterestRateSlabAKAInterestBandsApi
-//import org.openapitools.client.apis.JournalEntriesApi
-//import org.openapitools.client.apis.LikelihoodApi
-//import org.openapitools.client.apis.ListReportMailingJobHistoryApi
-//import org.openapitools.client.apis.LoanAccountLockApi
-//import org.openapitools.client.apis.LoanCOBCatchUpApi
-//import org.openapitools.client.apis.LoanChargesApi
-//import org.openapitools.client.apis.LoanCollateralApi
-//import org.openapitools.client.apis.LoanCollateralManagementApi
-//import org.openapitools.client.apis.LoanDisbursementDetailsApi
-//import org.openapitools.client.apis.LoanProductsApi
-//import org.openapitools.client.apis.LoanReschedulingApi
-//import org.openapitools.client.apis.LoanTransactionsApi
-//import org.openapitools.client.apis.LoansApi
-//import org.openapitools.client.apis.MakerCheckerOr4EyeFunctionalityApi
-//import org.openapitools.client.apis.MappingFinancialActivitiesToAccountsApi
-//import org.openapitools.client.apis.MeetingsApi
-//import org.openapitools.client.apis.MixMappingApi
-//import org.openapitools.client.apis.MixReportApi
-//import org.openapitools.client.apis.MixTaxonomyApi
-//import org.openapitools.client.apis.NotesApi
-//import org.openapitools.client.apis.NotificationApi
-//import org.openapitools.client.apis.OfficesApi
-//import org.openapitools.client.apis.PasswordPreferencesApi
-//import org.openapitools.client.apis.PaymentTypeApi
-//import org.openapitools.client.apis.PeriodicAccrualAccountingApi
-//import org.openapitools.client.apis.PermissionsApi
-//import org.openapitools.client.apis.PocketApi
-//import org.openapitools.client.apis.PovertyLineApi
-//import org.openapitools.client.apis.ProductMixApi
-//import org.openapitools.client.apis.ProductsApi
-//import org.openapitools.client.apis.ProvisioningCategoryApi
-//import org.openapitools.client.apis.ProvisioningCriteriaApi
-//import org.openapitools.client.apis.ProvisioningEntriesApi
-//import org.openapitools.client.apis.RateApi
-//import org.openapitools.client.apis.RecurringDepositAccountApi
-//import org.openapitools.client.apis.RecurringDepositAccountTransactionsApi
-//import org.openapitools.client.apis.RecurringDepositProductApi
-//import org.openapitools.client.apis.RepaymentWithPostDatedChecksApi
-//import org.openapitools.client.apis.ReportMailingJobsApi
-//import org.openapitools.client.apis.ReportsApi
-//import org.openapitools.client.apis.RescheduleLoansApi
-//import org.openapitools.client.apis.RolesApi
-//import org.openapitools.client.apis.RunReportsApi
-//import org.openapitools.client.apis.SCHEDULERJOBApi
-//import org.openapitools.client.apis.SMSApi
-//import org.openapitools.client.apis.SPMAPILookUpTableApi
-//import org.openapitools.client.apis.SavingsAccountApi
-//import org.openapitools.client.apis.SavingsAccountTransactionsApi
-//import org.openapitools.client.apis.SavingsChargesApi
-//import org.openapitools.client.apis.SavingsProductApi
-//import org.openapitools.client.apis.SchedulerApi
-//import org.openapitools.client.apis.ScoreCardApi
-//import org.openapitools.client.apis.SearchAPIApi
-//import org.openapitools.client.apis.SelfAccountTransferApi
-//import org.openapitools.client.apis.SelfAuthenticationApi
-//import org.openapitools.client.apis.SelfClientApi
-//import org.openapitools.client.apis.SelfDividendApi
-//import org.openapitools.client.apis.SelfLoanProductsApi
-//import org.openapitools.client.apis.SelfLoansApi
-//import org.openapitools.client.apis.SelfRunReportApi
-//import org.openapitools.client.apis.SelfSavingsAccountApi
-//import org.openapitools.client.apis.SelfSavingsProductsApi
-//import org.openapitools.client.apis.SelfScoreCardApi
-//import org.openapitools.client.apis.SelfServiceRegistrationApi
-//import org.openapitools.client.apis.SelfShareAccountsApi
-//import org.openapitools.client.apis.SelfSpmApi
-//import org.openapitools.client.apis.SelfThirdPartyTransferApi
-//import org.openapitools.client.apis.SelfUserApi
-//import org.openapitools.client.apis.SelfUserDetailsApi
-//import org.openapitools.client.apis.ShareAccountApi
-//import org.openapitools.client.apis.SpmSurveysApi
-//import org.openapitools.client.apis.StaffApi
-//import org.openapitools.client.apis.StandingInstructionsApi
-//import org.openapitools.client.apis.StandingInstructionsHistoryApi
-//import org.openapitools.client.apis.SurveyApi
-//import org.openapitools.client.apis.TaxComponentsApi
-//import org.openapitools.client.apis.TaxGroupApi
-//import org.openapitools.client.apis.TellerCashManagementApi
-//import org.openapitools.client.apis.TwoFactorApi
-//import org.openapitools.client.apis.UserGeneratedDocumentsApi
-//import org.openapitools.client.apis.UsersApi
-//import org.openapitools.client.apis.WorkingDaysApi
-//import retrofit2.Retrofit
-//import java.security.KeyManagementException
-//import java.security.NoSuchAlgorithmException
-//import java.security.SecureRandom
-//import java.security.cert.X509Certificate
-//import javax.net.ssl.SSLContext
-//import javax.net.ssl.TrustManager
-//import javax.net.ssl.X509TrustManager
-//
-///**
-// * Fineract Client Kotlin SDK API entry point. Use this instead of the {@link ApiClient}.
-// *
-// * @author Aditya Gupta
-// */
-//
-//class FineractClient private constructor(
-//    private val httpClient: HttpClient,
-//    private val ktorfit: Ktorfit
-//) {
+@file:OptIn(InternalKtorfitApi::class)
+
+package org.openapitools.client.infrastructure
+
+import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.internal.InternalKtorfitApi
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BasicAuthCredentials
+import io.ktor.client.plugins.auth.providers.basic
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.http.headers
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
+import org.openapitools.client.apis.AccountNumberFormatApi
+import org.openapitools.client.apis.AccountTransfersApi
+import org.openapitools.client.apis.AccountingClosureApi
+import org.openapitools.client.apis.AccountingRulesApi
+import org.openapitools.client.apis.AdhocQueryApiApi
+import org.openapitools.client.apis.AuditsApi
+import org.openapitools.client.apis.AuthenticationHTTPBasicApi
+import org.openapitools.client.apis.BatchAPIApi
+import org.openapitools.client.apis.BulkImportApi
+import org.openapitools.client.apis.BulkLoansApi
+import org.openapitools.client.apis.BusinessDateManagementApi
+import org.openapitools.client.apis.BusinessStepConfigurationApi
+import org.openapitools.client.apis.CacheApi
+import org.openapitools.client.apis.CalendarApi
+import org.openapitools.client.apis.CashierJournalsApi
+import org.openapitools.client.apis.CashiersApi
+import org.openapitools.client.apis.CentersApi
+import org.openapitools.client.apis.ChargesApi
+import org.openapitools.client.apis.ClientApi
+import org.openapitools.client.apis.ClientChargesApi
+import org.openapitools.client.apis.ClientCollateralManagementApi
+import org.openapitools.client.apis.ClientFamilyMemberApi
+import org.openapitools.client.apis.ClientIdentifierApi
+import org.openapitools.client.apis.ClientSearchV2Api
+import org.openapitools.client.apis.ClientTransactionApi
+import org.openapitools.client.apis.ClientsAddressApi
+import org.openapitools.client.apis.CodeValuesApi
+import org.openapitools.client.apis.CodesApi
+import org.openapitools.client.apis.CollateralManagementApi
+import org.openapitools.client.apis.CollectionSheetApi
+import org.openapitools.client.apis.CreditBureauConfigurationApi
+import org.openapitools.client.apis.CurrencyApi
+import org.openapitools.client.apis.DataTablesApi
+import org.openapitools.client.apis.DefaultApi
+import org.openapitools.client.apis.DelinquencyRangeAndBucketsManagementApi
+import org.openapitools.client.apis.DepositAccountOnHoldFundTransactionsApi
+import org.openapitools.client.apis.DeviceRegistrationApi
+import org.openapitools.client.apis.DocumentsApi
+import org.openapitools.client.apis.EntityDataTableApi
+import org.openapitools.client.apis.EntityFieldConfigurationApi
+import org.openapitools.client.apis.ExternalAssetOwnersApi
+import org.openapitools.client.apis.ExternalEventConfigurationApi
+import org.openapitools.client.apis.ExternalServicesApi
+import org.openapitools.client.apis.FetchAuthenticatedUserDetailsApi
+import org.openapitools.client.apis.FineractEntityApi
+import org.openapitools.client.apis.FixedDepositAccountApi
+import org.openapitools.client.apis.FixedDepositAccountTransactionsApi
+import org.openapitools.client.apis.FixedDepositProductApi
+import org.openapitools.client.apis.FloatingRatesApi
+import org.openapitools.client.apis.FundsApi
+import org.openapitools.client.apis.GeneralLedgerAccountApi
+import org.openapitools.client.apis.GlobalConfigurationApi
+import org.openapitools.client.apis.GroupsApi
+import org.openapitools.client.apis.GroupsLevelApi
+import org.openapitools.client.apis.GuarantorsApi
+import org.openapitools.client.apis.HolidaysApi
+import org.openapitools.client.apis.HooksApi
+import org.openapitools.client.apis.InlineJobApi
+import org.openapitools.client.apis.InstanceModeApi
+import org.openapitools.client.apis.InterOperationApi
+import org.openapitools.client.apis.InterestRateChartApi
+import org.openapitools.client.apis.InterestRateSlabAKAInterestBandsApi
+import org.openapitools.client.apis.JournalEntriesApi
+import org.openapitools.client.apis.LikelihoodApi
+import org.openapitools.client.apis.ListReportMailingJobHistoryApi
+import org.openapitools.client.apis.LoanAccountLockApi
+import org.openapitools.client.apis.LoanCOBCatchUpApi
+import org.openapitools.client.apis.LoanChargesApi
+import org.openapitools.client.apis.LoanCollateralApi
+import org.openapitools.client.apis.LoanCollateralManagementApi
+import org.openapitools.client.apis.LoanDisbursementDetailsApi
+import org.openapitools.client.apis.LoanProductsApi
+import org.openapitools.client.apis.LoanReschedulingApi
+import org.openapitools.client.apis.LoanTransactionsApi
+import org.openapitools.client.apis.LoansApi
+import org.openapitools.client.apis.MakerCheckerOr4EyeFunctionalityApi
+import org.openapitools.client.apis.MappingFinancialActivitiesToAccountsApi
+import org.openapitools.client.apis.MeetingsApi
+import org.openapitools.client.apis.MixMappingApi
+import org.openapitools.client.apis.MixReportApi
+import org.openapitools.client.apis.MixTaxonomyApi
+import org.openapitools.client.apis.NotesApi
+import org.openapitools.client.apis.NotificationApi
+import org.openapitools.client.apis.OfficesApi
+import org.openapitools.client.apis.PasswordPreferencesApi
+import org.openapitools.client.apis.PaymentTypeApi
+import org.openapitools.client.apis.PeriodicAccrualAccountingApi
+import org.openapitools.client.apis.PermissionsApi
+import org.openapitools.client.apis.PocketApi
+import org.openapitools.client.apis.PovertyLineApi
+import org.openapitools.client.apis.ProductMixApi
+import org.openapitools.client.apis.ProductsApi
+import org.openapitools.client.apis.ProvisioningCategoryApi
+import org.openapitools.client.apis.ProvisioningCriteriaApi
+import org.openapitools.client.apis.ProvisioningEntriesApi
+import org.openapitools.client.apis.RateApi
+import org.openapitools.client.apis.RecurringDepositAccountApi
+import org.openapitools.client.apis.RecurringDepositAccountTransactionsApi
+import org.openapitools.client.apis.RecurringDepositProductApi
+import org.openapitools.client.apis.RepaymentWithPostDatedChecksApi
+import org.openapitools.client.apis.ReportMailingJobsApi
+import org.openapitools.client.apis.ReportsApi
+import org.openapitools.client.apis.RescheduleLoansApi
+import org.openapitools.client.apis.RolesApi
+import org.openapitools.client.apis.RunReportsApi
+import org.openapitools.client.apis.SCHEDULERJOBApi
+import org.openapitools.client.apis.SMSApi
+import org.openapitools.client.apis.SPMAPILookUpTableApi
+import org.openapitools.client.apis.SavingsAccountApi
+import org.openapitools.client.apis.SavingsAccountTransactionsApi
+import org.openapitools.client.apis.SavingsChargesApi
+import org.openapitools.client.apis.SavingsProductApi
+import org.openapitools.client.apis.SchedulerApi
+import org.openapitools.client.apis.ScoreCardApi
+import org.openapitools.client.apis.SearchAPIApi
+import org.openapitools.client.apis.SelfAccountTransferApi
+import org.openapitools.client.apis.SelfAuthenticationApi
+import org.openapitools.client.apis.SelfClientApi
+import org.openapitools.client.apis.SelfDividendApi
+import org.openapitools.client.apis.SelfLoanProductsApi
+import org.openapitools.client.apis.SelfLoansApi
+import org.openapitools.client.apis.SelfRunReportApi
+import org.openapitools.client.apis.SelfSavingsAccountApi
+import org.openapitools.client.apis.SelfSavingsProductsApi
+import org.openapitools.client.apis.SelfScoreCardApi
+import org.openapitools.client.apis.SelfServiceRegistrationApi
+import org.openapitools.client.apis.SelfShareAccountsApi
+import org.openapitools.client.apis.SelfSpmApi
+import org.openapitools.client.apis.SelfThirdPartyTransferApi
+import org.openapitools.client.apis.SelfUserApi
+import org.openapitools.client.apis.SelfUserDetailsApi
+import org.openapitools.client.apis.ShareAccountApi
+import org.openapitools.client.apis.SpmSurveysApi
+import org.openapitools.client.apis.StaffApi
+import org.openapitools.client.apis.StandingInstructionsApi
+import org.openapitools.client.apis.StandingInstructionsHistoryApi
+import org.openapitools.client.apis.SurveyApi
+import org.openapitools.client.apis.TaxComponentsApi
+import org.openapitools.client.apis.TaxGroupApi
+import org.openapitools.client.apis.TellerCashManagementApi
+import org.openapitools.client.apis.TwoFactorApi
+import org.openapitools.client.apis.UserGeneratedDocumentsApi
+import org.openapitools.client.apis.UsersApi
+import org.openapitools.client.apis.WorkingDaysApi
+import retrofit2.Retrofit
+import java.security.KeyManagementException
+import java.security.NoSuchAlgorithmException
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
+
+/**
+ * Fineract Client Kotlin SDK API entry point. Use this instead of the {@link ApiClient}.
+ *
+ * @author Aditya Gupta
+ */
+
+class FineractClient private constructor(
+    private val httpClient: HttpClient,
+    private val ktorfit: Ktorfit
+) {
 //    val accountingClosures = ktorfit.create<AccountingClosureApi>()
 //    val accountingRules = ktorfit.create<AccountingRulesApi>()
 //    val accountNumberFormats = ktorfit.create<AccountNumberFormatApi>()
@@ -326,254 +326,254 @@
 //    val templates = ktorfit.create<UserGeneratedDocumentsApi>()
 //    val users = ktorfit.create<UsersApi>()
 //    val workingDays = ktorfit.create<WorkingDaysApi>()
-//
-//    fun httpClient(): HttpClient {
-//        return this.httpClient
+
+    fun httpClient(): HttpClient {
+        return this.httpClient
+    }
+
+    fun baseURL(): String {
+        return ktorfit.baseUrl
+    }
+
+    /**
+     * Create an implementation of the API endpoints defined by the `service` interface, using
+     * [Retrofit.create]. This method is typically not required to be invoked for standard API usage, but
+     * can be a handy back door for non-trivial advanced customizations of the API client if you have extended Fineract
+     * with your own REST APIs.
+     */
+//    fun <S> createService(serviceClass: Class<S>?): S {
+//        return ktorfit.create(serviceClass)
 //    }
-//
-//    fun baseURL(): String {
-//        return ktorfit.baseUrl
-//    }
-//
-//    /**
-//     * Create an implementation of the API endpoints defined by the `service` interface, using
-//     * [Retrofit.create]. This method is typically not required to be invoked for standard API usage, but
-//     * can be a handy back door for non-trivial advanced customizations of the API client if you have extended Fineract
-//     * with your own REST APIs.
-//     */
-////    fun <S> createService(serviceClass: Class<S>?): S {
-////        return ktorfit.create(serviceClass)
-////    }
-//
-//    class Builder internal constructor() {
-////        private val json: JSON = JSON()
-//
-//        /**
-//         * Obtain the internal OkHttp Builder. This method is typically not required to be invoked for simple API
-//         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
-//         *
-//         * @return the [ApiClient] which [.build] will use.
-//         */
-////        private val json = Json
-//
-////        val okBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-//
-//        /**
-//         * Obtain the internal Retrofit Builder. This method is typically not required to be invoked for simple API
-//         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
-//         *
-//         * @return the [ApiClient] which [.build] will use.
-//         */
-////        val retrofitBuilder: Retrofit.Builder =
-////            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
-////                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.gson))
-//
-//        private lateinit var baseURL: String
-//        private var tenant: String? = null
-//        private var loginUsername: String? = null
-//        private var loginPassword: String? = null
-//        private var insecure: Boolean = false
-//
-//        fun baseURL(baseURL: String): Builder {
-//            this.baseURL = baseURL
+
+    class Builder internal constructor() {
+//        private val json: JSON = JSON()
+
+        /**
+         * Obtain the internal OkHttp Builder. This method is typically not required to be invoked for simple API
+         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
+         *
+         * @return the [ApiClient] which [.build] will use.
+         */
+//        private val json = Json
+
+//        val okBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+
+        /**
+         * Obtain the internal Retrofit Builder. This method is typically not required to be invoked for simple API
+         * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
+         *
+         * @return the [ApiClient] which [.build] will use.
+         */
+//        val retrofitBuilder: Retrofit.Builder =
+//            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.gson))
+
+        private lateinit var baseURL: String
+        private var tenant: String? = null
+        private var loginUsername: String? = null
+        private var loginPassword: String? = null
+        private var insecure: Boolean = false
+
+        fun baseURL(baseURL: String): Builder {
+            this.baseURL = baseURL
+            return this
+        }
+
+        fun tenant(tenant: String?): Builder {
+            this.tenant = tenant
+            return this
+        }
+
+        fun basicAuth(username: String?, password: String?): Builder {
+            this.loginUsername = username
+            this.loginPassword = password
+            return this
+        }
+
+        fun inSecure(insecure: Boolean): Builder {
+            this.insecure = insecure
+            return this
+        }
+
+//        fun logging(level: Level?): Builder {
+//            val logging = HttpLoggingInterceptor()
+//            level?.let { logging.setLevel(it) }
+//            okBuilder.addInterceptor(logging)
 //            return this
 //        }
+
+        /**
+         * Skip Fineract API host SSL certificate verification. DO NOT USE THIS when invoking a production server's API!
+         * This is intended for https://localhost:8443/ testing of development servers with self-signed certificates,
+         * only. If you do not understand what this is, do not use it. You WILL cause a security issue in your
+         * application due to the possibility of a "man in the middle" attack when this is enabled.
+         */
+//        @Suppress("unused")
+//        fun insecure(insecure: Boolean): Builder {
+//            // Nota bene: Similar code to this is also in Fineract Provider's
+//            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
+//            if (insecure) {
+//                val insecureHostnameVerifier =
+//                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
+//                okBuilder.hostnameVerifier(insecureHostnameVerifier)
 //
-//        fun tenant(tenant: String?): Builder {
-//            this.tenant = tenant
-//            return this
-//        }
+//                try {
+//                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
+//                        @Throws(CertificateException::class)
+//                        override fun checkClientTrusted(
+//                            chain: Array<X509Certificate>,
+//                            authType: String
+//                        ) {
+//                        }
 //
-//        fun basicAuth(username: String?, password: String?): Builder {
-//            this.loginUsername = username
-//            this.loginPassword = password
-//            return this
-//        }
+//                        @Throws(CertificateException::class)
+//                        override fun checkServerTrusted(
+//                            chain: Array<X509Certificate>,
+//                            authType: String
+//                        ) {
+//                        }
 //
-//        fun inSecure(insecure: Boolean): Builder {
-//            this.insecure = insecure
-//            return this
-//        }
-//
-////        fun logging(level: Level?): Builder {
-////            val logging = HttpLoggingInterceptor()
-////            level?.let { logging.setLevel(it) }
-////            okBuilder.addInterceptor(logging)
-////            return this
-////        }
-//
-//        /**
-//         * Skip Fineract API host SSL certificate verification. DO NOT USE THIS when invoking a production server's API!
-//         * This is intended for https://localhost:8443/ testing of development servers with self-signed certificates,
-//         * only. If you do not understand what this is, do not use it. You WILL cause a security issue in your
-//         * application due to the possibility of a "man in the middle" attack when this is enabled.
-//         */
-////        @Suppress("unused")
-////        fun insecure(insecure: Boolean): Builder {
-////            // Nota bene: Similar code to this is also in Fineract Provider's
-////            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
-////            if (insecure) {
-////                val insecureHostnameVerifier =
-////                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
-////                okBuilder.hostnameVerifier(insecureHostnameVerifier)
-////
-////                try {
-////                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
-////                        @Throws(CertificateException::class)
-////                        override fun checkClientTrusted(
-////                            chain: Array<X509Certificate>,
-////                            authType: String
-////                        ) {
-////                        }
-////
-////                        @Throws(CertificateException::class)
-////                        override fun checkServerTrusted(
-////                            chain: Array<X509Certificate>,
-////                            authType: String
-////                        ) {
-////                        }
-////
-////                        override fun getAcceptedIssuers(): Array<X509Certificate> {
-////                            return arrayOf()
-////                        }
-////                    }
-////
-////                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
-////                    val sslContext = SSLContext.getInstance("SSL")
-////                    sslContext.init(
-////                        null,
-////                        arrayOf<TrustManager>(insecureX509TrustManager),
-////                        SecureRandom()
-////                    )
-////                    val insecureSslSocketFactory = sslContext.socketFactory
-////
-////                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
-////                } catch (e: NoSuchAlgorithmException) {
-////                    throw IllegalStateException("insecure() SSL configuration failed", e)
-////                } catch (e: KeyManagementException) {
-////                    throw IllegalStateException("insecure() SSL configuration failed", e)
-////                }
-////            }
-////            return this
-////        }
-//
-//        fun build(): FineractClient {
-//
-//            val ktorClient = HttpClient(CIO) {
-//                install(ContentNegotiation) {
-//                    json(Json {
-//                        isLenient = true
-//                        ignoreUnknownKeys = true
-//                    })
-//                }
-//                install(Logging) {
-//                    logger = Logger.DEFAULT
-//                    level = LogLevel.INFO
-//                }
-//                install(Auth) {
-//                    basic {
-//                        credentials {
-//                            BasicAuthCredentials(
-//                                username = loginUsername.toString(),
-//                                password = loginPassword.toString()
-//                            )
+//                        override fun getAcceptedIssuers(): Array<X509Certificate> {
+//                            return arrayOf()
 //                        }
 //                    }
-//                }
 //
-//                defaultRequest {
-//                    headers {
-//                        append("Content-Type", "application/json")
-//                        append("Accept", "application/json")
-//                        tenant?.let {
-//                            append("fineract-platform-tenantid", it)
-//                        }
-//                    }
-//                }
+//                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
+//                    val sslContext = SSLContext.getInstance("SSL")
+//                    sslContext.init(
+//                        null,
+//                        arrayOf<TrustManager>(insecureX509TrustManager),
+//                        SecureRandom()
+//                    )
+//                    val insecureSslSocketFactory = sslContext.socketFactory
 //
-//                if (insecure) {
-//                    engine {
-//                        https {
-//                            val insecureTrustManager = object : X509TrustManager {
-//                                override fun checkClientTrusted(
-//                                    chain: Array<X509Certificate>,
-//                                    authType: String
-//                                ) {
-//                                }
-//
-//                                override fun checkServerTrusted(
-//                                    chain: Array<X509Certificate>,
-//                                    authType: String
-//                                ) {
-//                                }
-//
-//                                override fun getAcceptedIssuers(): Array<X509Certificate> =
-//                                    arrayOf()
-//                            }
-//
-//                            try {
-//                                val sslContext = SSLContext.getInstance("SSL").apply {
-//                                    init(
-//                                        null,
-//                                        arrayOf<TrustManager>(insecureTrustManager),
-//                                        SecureRandom()
-//                                    )
-//                                }
-//                                trustManager = insecureTrustManager
-//                            } catch (e: NoSuchAlgorithmException) {
-//                                throw IllegalStateException("SSL configuration failed", e)
-//                            } catch (e: KeyManagementException) {
-//                                throw IllegalStateException("SSL configuration failed", e)
-//                            }
-//                        }
-//                    }
+//                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
+//                } catch (e: NoSuchAlgorithmException) {
+//                    throw IllegalStateException("insecure() SSL configuration failed", e)
+//                } catch (e: KeyManagementException) {
+//                    throw IllegalStateException("insecure() SSL configuration failed", e)
 //                }
 //            }
-//
-//            val ktorfitBuilder = Ktorfit.Builder()
-//                .httpClient(ktorClient)
-//                .baseUrl(baseURL)
-//                .build()
-//
-//
-////            // URL
-////            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
-////
-////            // Tenant
-////            val tenantAuth: ApiKeyAuth =
-////                ApiKeyAuth("header", "fineract-platform-tenantid", tenant.toString())
-////            okBuilder.addInterceptor(tenantAuth)
-////
-////            // BASIC Auth
-////            val basicAuth: HttpBasicAuth = HttpBasicAuth()
-////            basicAuth.setCredentials(has("username", username), has("password", password))
-////            okBuilder.addInterceptor(basicAuth)
-////
-////            val okHttpClient: OkHttpClient = okBuilder.build()
-////            retrofitBuilder.client(okHttpClient)
-//
-//            return FineractClient(ktorClient, ktorfitBuilder)
+//            return this
 //        }
+
+        fun build(): FineractClient {
+
+            val ktorClient = HttpClient(CIO) {
+                install(ContentNegotiation) {
+                    json(Json {
+                        isLenient = true
+                        ignoreUnknownKeys = true
+                    })
+                }
+                install(Logging) {
+                    logger = Logger.DEFAULT
+                    level = LogLevel.INFO
+                }
+                install(Auth) {
+                    basic {
+                        credentials {
+                            BasicAuthCredentials(
+                                username = loginUsername.toString(),
+                                password = loginPassword.toString()
+                            )
+                        }
+                    }
+                }
+
+                defaultRequest {
+                    headers {
+                        append("Content-Type", "application/json")
+                        append("Accept", "application/json")
+                        tenant?.let {
+                            append("fineract-platform-tenantid", it)
+                        }
+                    }
+                }
+
+                if (insecure) {
+                    engine {
+                        https {
+                            val insecureTrustManager = object : X509TrustManager {
+                                override fun checkClientTrusted(
+                                    chain: Array<X509Certificate>,
+                                    authType: String
+                                ) {
+                                }
+
+                                override fun checkServerTrusted(
+                                    chain: Array<X509Certificate>,
+                                    authType: String
+                                ) {
+                                }
+
+                                override fun getAcceptedIssuers(): Array<X509Certificate> =
+                                    arrayOf()
+                            }
+
+                            try {
+                                val sslContext = SSLContext.getInstance("SSL").apply {
+                                    init(
+                                        null,
+                                        arrayOf<TrustManager>(insecureTrustManager),
+                                        SecureRandom()
+                                    )
+                                }
+                                trustManager = insecureTrustManager
+                            } catch (e: NoSuchAlgorithmException) {
+                                throw IllegalStateException("SSL configuration failed", e)
+                            } catch (e: KeyManagementException) {
+                                throw IllegalStateException("SSL configuration failed", e)
+                            }
+                        }
+                    }
+                }
+            }
+
+            val ktorfitBuilder = Ktorfit.Builder()
+                .httpClient(ktorClient)
+                .baseUrl(baseURL)
+                .build()
+
+
+//            // URL
+//            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
 //
-//        @Throws(IllegalStateException::class)
-//        private fun <T> has(propertyName: String, value: T?): T {
-//            checkNotNull(value) { "Must call $propertyName(...) to create valid Builder" }
-//            return value
-//        }
-//    }
+//            // Tenant
+//            val tenantAuth: ApiKeyAuth =
+//                ApiKeyAuth("header", "fineract-platform-tenantid", tenant.toString())
+//            okBuilder.addInterceptor(tenantAuth)
 //
-//    companion object {
-//        /**
-//         * Constant to be used in requests where Fineract's API requires a dateFormat to be given. This matches the format
-//         * in which LocalDate instances are serialized. (BTW: In a Java client API, it seems weird to have strong LocalDate
-//         * (not String) instances, and then have to specify its format, see
-//         * https://issues.apache.org/jira/browse/FINERACT-1233.)
-//         */
-//        // Matching org.apache.fineract.client.util.JSON.LocalDateTypeAdapter.formatter
-//        const val DATE_FORMAT: String = "yyyy-MM-dd"
+//            // BASIC Auth
+//            val basicAuth: HttpBasicAuth = HttpBasicAuth()
+//            basicAuth.setCredentials(has("username", username), has("password", password))
+//            okBuilder.addInterceptor(basicAuth)
 //
-//        fun builder(): Builder {
-//            return Builder()
-//        }
-//    }
-//}
+//            val okHttpClient: OkHttpClient = okBuilder.build()
+//            retrofitBuilder.client(okHttpClient)
+
+            return FineractClient(ktorClient, ktorfitBuilder)
+        }
+
+        @Throws(IllegalStateException::class)
+        private fun <T> has(propertyName: String, value: T?): T {
+            checkNotNull(value) { "Must call $propertyName(...) to create valid Builder" }
+            return value
+        }
+    }
+
+    companion object {
+        /**
+         * Constant to be used in requests where Fineract's API requires a dateFormat to be given. This matches the format
+         * in which LocalDate instances are serialized. (BTW: In a Java client API, it seems weird to have strong LocalDate
+         * (not String) instances, and then have to specify its format, see
+         * https://issues.apache.org/jira/browse/FINERACT-1233.)
+         */
+        // Matching org.apache.fineract.client.util.JSON.LocalDateTypeAdapter.formatter
+        const val DATE_FORMAT: String = "yyyy-MM-dd"
+
+        fun builder(): Builder {
+            return Builder()
+        }
+    }
+}
