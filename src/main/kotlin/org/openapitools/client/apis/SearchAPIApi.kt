@@ -1,12 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetSearchResponse
 import org.openapitools.client.models.PostAdhocQuerySearchRequest
 import org.openapitools.client.models.PostAdhocQuerySearchResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface SearchAPIApi {
     /**

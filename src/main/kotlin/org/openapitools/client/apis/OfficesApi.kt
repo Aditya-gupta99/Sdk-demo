@@ -1,5 +1,13 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Multipart
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Part
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetOfficesResponse
 import org.openapitools.client.models.GetOfficesTemplateResponse
@@ -7,14 +15,6 @@ import org.openapitools.client.models.PostOfficesRequest
 import org.openapitools.client.models.PostOfficesResponse
 import org.openapitools.client.models.PutOfficesOfficeIdRequest
 import org.openapitools.client.models.PutOfficesOfficeIdResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface OfficesApi {
     /**

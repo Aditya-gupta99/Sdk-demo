@@ -1,8 +1,8 @@
 package org.openapitools.client.apis
 
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 
 
 interface SelfSavingsProductsApi {

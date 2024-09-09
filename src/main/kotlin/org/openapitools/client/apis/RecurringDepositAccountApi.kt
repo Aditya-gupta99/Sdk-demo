@@ -1,5 +1,14 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Multipart
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Part
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteRecurringDepositAccountsResponse
 import org.openapitools.client.models.GetRecurringDepositAccountsAccountIdResponse
@@ -10,15 +19,6 @@ import org.openapitools.client.models.PostRecurringDepositAccountsRequest
 import org.openapitools.client.models.PostRecurringDepositAccountsResponse
 import org.openapitools.client.models.PutRecurringDepositAccountsAccountIdRequest
 import org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface RecurringDepositAccountApi {
     /**

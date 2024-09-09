@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.AccountingRuleData
 import org.openapitools.client.models.DeleteAccountingRulesResponse
 import org.openapitools.client.models.GetAccountRulesResponse
@@ -8,12 +14,6 @@ import org.openapitools.client.models.PostAccountingRulesRequest
 import org.openapitools.client.models.PostAccountingRulesResponse
 import org.openapitools.client.models.PutAccountingRulesRequest
 import org.openapitools.client.models.PutAccountingRulesResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface AccountingRulesApi {
     /**

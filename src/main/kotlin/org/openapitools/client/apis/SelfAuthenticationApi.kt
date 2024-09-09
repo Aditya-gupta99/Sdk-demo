@@ -1,9 +1,9 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.POST
 import org.openapitools.client.models.PostAuthenticationRequest
 import org.openapitools.client.models.PostSelfAuthenticationResponse
-import retrofit2.http.Body
-import retrofit2.http.POST
 
 interface SelfAuthenticationApi {
     /**

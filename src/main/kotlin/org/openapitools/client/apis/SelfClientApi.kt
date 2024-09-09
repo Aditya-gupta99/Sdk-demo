@@ -1,5 +1,13 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Header
+import de.jensklingenberg.ktorfit.http.Multipart
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Part
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse
 import org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse
@@ -8,14 +16,6 @@ import org.openapitools.client.models.GetSelfClientsClientIdResponse
 import org.openapitools.client.models.GetSelfClientsClientIdTransactionsResponse
 import org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransactionIdResponse
 import org.openapitools.client.models.GetSelfClientsResponse
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface SelfClientApi {
     /**

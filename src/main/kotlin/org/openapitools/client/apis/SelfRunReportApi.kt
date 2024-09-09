@@ -1,8 +1,8 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.GetRunReportResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
 
 interface SelfRunReportApi {
     /**

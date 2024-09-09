@@ -1,5 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeleteLoansLoanIdChargesChargeIdResponse
 import org.openapitools.client.models.GetLoansLoanIdChargesChargeIdResponse
 import org.openapitools.client.models.GetLoansLoanIdChargesTemplateResponse
@@ -9,13 +16,6 @@ import org.openapitools.client.models.PostLoansLoanIdChargesRequest
 import org.openapitools.client.models.PostLoansLoanIdChargesResponse
 import org.openapitools.client.models.PutLoansLoanIdChargesChargeIdRequest
 import org.openapitools.client.models.PutLoansLoanIdChargesChargeIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface LoanChargesApi {
     /**

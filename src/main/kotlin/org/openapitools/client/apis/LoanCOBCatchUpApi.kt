@@ -1,9 +1,9 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
 import org.openapitools.client.models.GetOldestCOBProcessedLoanResponse
 import org.openapitools.client.models.IsCatchUpRunningResponse
-import retrofit2.http.GET
-import retrofit2.http.POST
 
 interface LoanCOBCatchUpApi {
     /**

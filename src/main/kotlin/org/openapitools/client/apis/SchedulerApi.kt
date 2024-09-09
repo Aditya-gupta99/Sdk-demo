@@ -1,9 +1,9 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetSchedulerResponse
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface SchedulerApi {
     /**

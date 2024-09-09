@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.DeleteResourceTypeResourceIdNotesNoteIdResponse
 import org.openapitools.client.models.GetResourceTypeResourceIdNotesNoteIdResponse
 import org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse
@@ -7,12 +13,6 @@ import org.openapitools.client.models.PostResourceTypeResourceIdNotesRequest
 import org.openapitools.client.models.PostResourceTypeResourceIdNotesResponse
 import org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdRequest
 import org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface NotesApi {
     /**

@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.DeleteClientsClientIdIdentifiersIdentifierIdResponse
 import org.openapitools.client.models.GetClientsClientIdIdentifiersResponse
 import org.openapitools.client.models.GetClientsClientIdIdentifiersTemplateResponse
@@ -7,12 +13,6 @@ import org.openapitools.client.models.PostClientsClientIdIdentifiersRequest
 import org.openapitools.client.models.PostClientsClientIdIdentifiersResponse
 import org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdRequest
 import org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface ClientIdentifierApi {
     /**

@@ -1,12 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.GetBusinessJobConfigResponse
 import org.openapitools.client.models.GetBusinessStepConfigResponse
 import org.openapitools.client.models.UpdateBusinessStepConfigRequest
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface BusinessStepConfigurationApi {
     /**

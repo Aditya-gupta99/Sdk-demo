@@ -1,5 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Multipart
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Part
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetJournalEntriesTransactionIdResponse
 import org.openapitools.client.models.JournalEntryCommand
@@ -7,13 +14,6 @@ import org.openapitools.client.models.JournalEntryTransactionItem
 import org.openapitools.client.models.PostJournalEntriesResponse
 import org.openapitools.client.models.PostJournalEntriesTransactionIdRequest
 import org.openapitools.client.models.PostJournalEntriesTransactionIdResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface JournalEntriesApi {
     /**

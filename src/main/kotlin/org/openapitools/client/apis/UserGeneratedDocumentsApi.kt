@@ -1,5 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeleteTemplatesTemplateIdResponse
 import org.openapitools.client.models.GetTemplatesResponse
 import org.openapitools.client.models.GetTemplatesTemplateIdResponse
@@ -8,13 +15,6 @@ import org.openapitools.client.models.PostTemplatesRequest
 import org.openapitools.client.models.PostTemplatesResponse
 import org.openapitools.client.models.PutTemplatesTemplateIdRequest
 import org.openapitools.client.models.PutTemplatesTemplateIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface UserGeneratedDocumentsApi {
     /**

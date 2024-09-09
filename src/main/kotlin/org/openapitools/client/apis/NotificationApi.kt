@@ -1,9 +1,9 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetNotificationsResponse
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Query
 
 interface NotificationApi {
     /**

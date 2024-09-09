@@ -1,10 +1,10 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetMakerCheckerResponse
 import org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface AuditsApi {
     /**

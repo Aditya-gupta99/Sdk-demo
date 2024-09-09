@@ -1,7 +1,7 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.GET
 import org.openapitools.client.models.SurveyData
-import retrofit2.http.GET
 
 interface SelfSpmApi {
     /**

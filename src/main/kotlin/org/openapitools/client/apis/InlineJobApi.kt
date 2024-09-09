@@ -1,10 +1,10 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.InlineJobRequest
 import org.openapitools.client.models.InlineJobResponse
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Path
 
 interface InlineJobApi {
     /**

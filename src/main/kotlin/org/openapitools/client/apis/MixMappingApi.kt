@@ -1,8 +1,8 @@
 package org.openapitools.client.apis
 
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
 
 
 interface MixMappingApi {

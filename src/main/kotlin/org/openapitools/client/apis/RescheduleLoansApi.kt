@@ -1,16 +1,16 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetLoanRescheduleRequestResponse
 import org.openapitools.client.models.GetRescheduleReasonsTemplateResponse
 import org.openapitools.client.models.PostCreateRescheduleLoansRequest
 import org.openapitools.client.models.PostCreateRescheduleLoansResponse
 import org.openapitools.client.models.PostUpdateRescheduleLoansRequest
 import org.openapitools.client.models.PostUpdateRescheduleLoansResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface RescheduleLoansApi {
     /**

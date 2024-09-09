@@ -1,7 +1,7 @@
 package org.openapitools.client.apis
 
-import retrofit2.http.GET
-import retrofit2.http.Path
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Path
 
 
 interface PovertyLineApi {

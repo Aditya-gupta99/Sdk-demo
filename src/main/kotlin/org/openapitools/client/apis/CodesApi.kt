@@ -1,17 +1,17 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.DeleteCodesResponse
 import org.openapitools.client.models.GetCodesResponse
 import org.openapitools.client.models.PostCodesRequest
 import org.openapitools.client.models.PostCodesResponse
 import org.openapitools.client.models.PutCodesRequest
 import org.openapitools.client.models.PutCodesResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface CodesApi {
     /**

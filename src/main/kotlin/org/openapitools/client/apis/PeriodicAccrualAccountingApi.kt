@@ -1,8 +1,8 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.POST
 import org.openapitools.client.models.PostRunaccrualsRequest
-import retrofit2.http.Body
-import retrofit2.http.POST
 
 interface PeriodicAccrualAccountingApi {
     /**

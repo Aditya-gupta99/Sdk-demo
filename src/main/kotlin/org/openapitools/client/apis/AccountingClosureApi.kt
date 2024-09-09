@@ -1,18 +1,18 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeleteGlClosuresResponse
 import org.openapitools.client.models.GetGlClosureResponse
 import org.openapitools.client.models.PostGlClosuresRequest
 import org.openapitools.client.models.PostGlClosuresResponse
 import org.openapitools.client.models.PutGlClosuresRequest
 import org.openapitools.client.models.PutGlClosuresResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface AccountingClosureApi {
     /**

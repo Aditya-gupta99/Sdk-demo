@@ -1,18 +1,18 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Header
+import de.jensklingenberg.ktorfit.http.Multipart
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Part
+import de.jensklingenberg.ktorfit.http.Path
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Part
-import retrofit2.http.Path
 
 interface DocumentsApi {
     /**

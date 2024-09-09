@@ -1,15 +1,15 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.GetTaxesComponentsResponse
 import org.openapitools.client.models.PostTaxesComponentsRequest
 import org.openapitools.client.models.PostTaxesComponentsResponse
 import org.openapitools.client.models.PutTaxesComponentsTaxComponentIdRequest
 import org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface TaxComponentsApi {
     /**

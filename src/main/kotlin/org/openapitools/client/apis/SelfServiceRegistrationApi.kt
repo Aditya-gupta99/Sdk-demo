@@ -1,7 +1,7 @@
 package org.openapitools.client.apis
 
-import retrofit2.http.Body
-import retrofit2.http.POST
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.POST
 
 
 interface SelfServiceRegistrationApi {

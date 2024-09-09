@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetStandingInstructionsResponse
 import org.openapitools.client.models.GetStandingInstructionsStandingInstructionIdResponse
 import org.openapitools.client.models.GetStandingInstructionsTemplateResponse
@@ -7,12 +13,6 @@ import org.openapitools.client.models.PostStandingInstructionsRequest
 import org.openapitools.client.models.PostStandingInstructionsResponse
 import org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdRequest
 import org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface StandingInstructionsApi {
     /**

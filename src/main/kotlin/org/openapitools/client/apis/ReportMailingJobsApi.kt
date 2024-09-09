@@ -1,5 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeleteReportMailingJobsResponse
 import org.openapitools.client.models.GetReportMailingJobsResponse
 import org.openapitools.client.models.GetReportMailingJobsTemplate
@@ -7,13 +14,6 @@ import org.openapitools.client.models.PostReportMailingJobsRequest
 import org.openapitools.client.models.PostReportMailingJobsResponse
 import org.openapitools.client.models.PutReportMailingJobsRequest
 import org.openapitools.client.models.PutReportMailingJobsResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ReportMailingJobsApi {
     /**

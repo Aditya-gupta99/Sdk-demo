@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.DeleteSavingsProductsProductIdResponse
 import org.openapitools.client.models.GetSavingsProductsProductIdResponse
 import org.openapitools.client.models.GetSavingsProductsResponse
@@ -8,12 +14,6 @@ import org.openapitools.client.models.PostSavingsProductsRequest
 import org.openapitools.client.models.PostSavingsProductsResponse
 import org.openapitools.client.models.PutSavingsProductsProductIdRequest
 import org.openapitools.client.models.PutSavingsProductsProductIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface SavingsProductApi {
     /**

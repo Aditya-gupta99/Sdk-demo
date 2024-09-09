@@ -1,6 +1,6 @@
 package org.openapitools.client.apis
 
-import retrofit2.http.GET
+import de.jensklingenberg.ktorfit.http.GET
 
 
 interface GroupsLevelApi {

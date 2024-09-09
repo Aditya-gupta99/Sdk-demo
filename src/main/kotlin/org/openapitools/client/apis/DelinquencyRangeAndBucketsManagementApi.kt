@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
 import org.openapitools.client.models.DeleteDelinquencyBucketResponse
 import org.openapitools.client.models.DeleteDelinquencyRangeResponse
 import org.openapitools.client.models.GetDelinquencyBucketsResponse
@@ -10,12 +16,6 @@ import org.openapitools.client.models.PostDelinquencyRangeRequest
 import org.openapitools.client.models.PostDelinquencyRangeResponse
 import org.openapitools.client.models.PutDelinquencyBucketResponse
 import org.openapitools.client.models.PutDelinquencyRangeResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
 
 interface DelinquencyRangeAndBucketsManagementApi {
     /**

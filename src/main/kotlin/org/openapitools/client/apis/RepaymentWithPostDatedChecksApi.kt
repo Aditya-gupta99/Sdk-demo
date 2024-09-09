@@ -1,15 +1,15 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeletePostDatedCheck
 import org.openapitools.client.models.GetPostDatedChecks
 import org.openapitools.client.models.UpdatePostDatedCheckRequest
 import org.openapitools.client.models.UpdatePostDatedCheckResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface RepaymentWithPostDatedChecksApi {
     /**

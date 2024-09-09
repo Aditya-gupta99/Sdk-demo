@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetLoanProductsProductIdResponse
 import org.openapitools.client.models.GetLoanProductsResponse
 import org.openapitools.client.models.GetLoanProductsTemplateResponse
@@ -7,12 +13,6 @@ import org.openapitools.client.models.PostLoanProductsRequest
 import org.openapitools.client.models.PostLoanProductsResponse
 import org.openapitools.client.models.PutLoanProductsProductIdRequest
 import org.openapitools.client.models.PutLoanProductsProductIdResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface LoanProductsApi {
     /**

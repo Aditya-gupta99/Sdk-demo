@@ -1,11 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
 import org.openapitools.client.models.GetCachesResponse
 import org.openapitools.client.models.PutCachesRequest
 import org.openapitools.client.models.PutCachesResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
 
 interface CacheApi {
     /**

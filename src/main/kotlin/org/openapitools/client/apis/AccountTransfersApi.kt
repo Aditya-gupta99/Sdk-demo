@@ -1,5 +1,10 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetAccountTransfersPageItems
 import org.openapitools.client.models.GetAccountTransfersResponse
 import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferResponse
@@ -8,11 +13,6 @@ import org.openapitools.client.models.PostAccountTransfersRefundByTransferReques
 import org.openapitools.client.models.PostAccountTransfersRefundByTransferResponse
 import org.openapitools.client.models.PostAccountTransfersRequest
 import org.openapitools.client.models.PostAccountTransfersResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface AccountTransfersApi {
     /**

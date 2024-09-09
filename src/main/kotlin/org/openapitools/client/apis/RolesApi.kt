@@ -1,5 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeleteRolesRoleIdResponse
 import org.openapitools.client.models.GetRolesResponse
 import org.openapitools.client.models.GetRolesRoleIdPermissionsResponse
@@ -11,13 +18,6 @@ import org.openapitools.client.models.PutRolesRoleIdPermissionsRequest
 import org.openapitools.client.models.PutRolesRoleIdPermissionsResponse
 import org.openapitools.client.models.PutRolesRoleIdRequest
 import org.openapitools.client.models.PutRolesRoleIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface RolesApi {
     /**

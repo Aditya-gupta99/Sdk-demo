@@ -1,8 +1,8 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.PUT
 import org.openapitools.client.models.ChangeInstanceModeRequest
-import retrofit2.http.Body
-import retrofit2.http.PUT
 
 interface InstanceModeApi {
     /**

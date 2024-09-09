@@ -1,11 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
 import org.openapitools.client.models.GetCurrenciesResponse
 import org.openapitools.client.models.PutCurrenciesRequest
 import org.openapitools.client.models.PutCurrenciesResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
 
 interface CurrencyApi {
     /**

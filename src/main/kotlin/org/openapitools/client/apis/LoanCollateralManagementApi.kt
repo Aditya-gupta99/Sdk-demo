@@ -1,8 +1,8 @@
 package org.openapitools.client.apis
 
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.Path
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Path
 
 
 interface LoanCollateralManagementApi {

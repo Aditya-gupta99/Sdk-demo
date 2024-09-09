@@ -1,5 +1,11 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.GetSelfLoansLoanIdChargesResponse
 import org.openapitools.client.models.GetSelfLoansLoanIdResponse
 import org.openapitools.client.models.GetSelfLoansLoanIdTransactionsTransactionIdResponse
@@ -10,12 +16,6 @@ import org.openapitools.client.models.PostSelfLoansRequest
 import org.openapitools.client.models.PostSelfLoansResponse
 import org.openapitools.client.models.PutSelfLoansLoanIdRequest
 import org.openapitools.client.models.PutSelfLoansLoanIdResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface SelfLoansApi {
     /**

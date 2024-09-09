@@ -1,12 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.PUT
 import org.openapitools.client.models.GetWorkingDaysResponse
 import org.openapitools.client.models.GetWorkingDaysTemplateResponse
 import org.openapitools.client.models.PutWorkingDaysRequest
 import org.openapitools.client.models.PutWorkingDaysResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
 
 interface WorkingDaysApi {
     /**

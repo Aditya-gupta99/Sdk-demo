@@ -1,5 +1,10 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.ExternalOwnerJournalEntryData
 import org.openapitools.client.models.ExternalOwnerTransferJournalEntryData
 import org.openapitools.client.models.ExternalTransferData
@@ -7,11 +12,6 @@ import org.openapitools.client.models.PageExternalTransferData
 import org.openapitools.client.models.PagedRequestExternalAssetOwnerSearchRequest
 import org.openapitools.client.models.PostInitiateTransferRequest
 import org.openapitools.client.models.PostInitiateTransferResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ExternalAssetOwnersApi {
     /**

@@ -1,16 +1,16 @@
 package org.openapitools.client.apis
 
 import com.squareup.moshi.Json
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.PagedLocalRequestAdvancedQueryRequest
 import org.openapitools.client.models.PostSavingsAccountBulkReversalTransactionsRequest
 import org.openapitools.client.models.PostSavingsAccountTransactionsRequest
 import org.openapitools.client.models.PostSavingsAccountTransactionsResponse
 import org.openapitools.client.models.SavingsAccountTransactionsSearchResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface SavingsAccountTransactionsApi {
     /**
@@ -84,6 +84,7 @@ interface SavingsAccountTransactionsApi {
     enum class SortOrderSearchTransactions(val value: String) {
         @Json(name = "ASC")
         ASC("ASC"),
+
         @Json(name = "DESC")
         DESC("DESC")
     }

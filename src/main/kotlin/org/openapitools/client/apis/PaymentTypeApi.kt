@@ -1,5 +1,12 @@
 package org.openapitools.client.apis
 
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.PUT
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.DeletePaymentTypesPaymentTypeIdResponse
 import org.openapitools.client.models.GetPaymentTypesPaymentTypeIdResponse
 import org.openapitools.client.models.GetPaymentTypesResponse
@@ -7,13 +14,6 @@ import org.openapitools.client.models.PostPaymentTypesRequest
 import org.openapitools.client.models.PostPaymentTypesResponse
 import org.openapitools.client.models.PutPaymentTypesPaymentTypeIdRequest
 import org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface PaymentTypeApi {
     /**

@@ -1,6 +1,12 @@
 package org.openapitools.client.apis
 
 import com.squareup.moshi.Json
+import de.jensklingenberg.ktorfit.http.Body
+import de.jensklingenberg.ktorfit.http.DELETE
+import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.POST
+import de.jensklingenberg.ktorfit.http.Path
+import de.jensklingenberg.ktorfit.http.Query
 import org.openapitools.client.models.InteropAccountData
 import org.openapitools.client.models.InteropIdentifierAccountResponseData
 import org.openapitools.client.models.InteropIdentifierRequestData
@@ -13,12 +19,6 @@ import org.openapitools.client.models.InteropTransactionRequestResponseData
 import org.openapitools.client.models.InteropTransactionsData
 import org.openapitools.client.models.InteropTransferRequestData
 import org.openapitools.client.models.InteropTransferResponseData
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface InterOperationApi {
     /**
@@ -52,18 +52,25 @@ interface InterOperationApi {
     enum class IdTypeDeleteAccountIdentifier(val value: String) {
         @Json(name = "MSISDN")
         MSISDN("MSISDN"),
+
         @Json(name = "EMAIL")
         EMAIL("EMAIL"),
+
         @Json(name = "PERSONAL_ID")
         PERSONAL_ID("PERSONAL_ID"),
+
         @Json(name = "BUSINESS")
         BUSINESS("BUSINESS"),
+
         @Json(name = "DEVICE")
         DEVICE("DEVICE"),
+
         @Json(name = "ACCOUNT_ID")
         ACCOUNT_ID("ACCOUNT_ID"),
+
         @Json(name = "IBAN")
         IBAN("IBAN"),
+
         @Json(name = "ALIAS")
         ALIAS("ALIAS")
     }
@@ -93,18 +100,25 @@ interface InterOperationApi {
     enum class IdTypeDeleteAccountIdentifier1(val value: String) {
         @Json(name = "MSISDN")
         MSISDN("MSISDN"),
+
         @Json(name = "EMAIL")
         EMAIL("EMAIL"),
+
         @Json(name = "PERSONAL_ID")
         PERSONAL_ID("PERSONAL_ID"),
+
         @Json(name = "BUSINESS")
         BUSINESS("BUSINESS"),
+
         @Json(name = "DEVICE")
         DEVICE("DEVICE"),
+
         @Json(name = "ACCOUNT_ID")
         ACCOUNT_ID("ACCOUNT_ID"),
+
         @Json(name = "IBAN")
         IBAN("IBAN"),
+
         @Json(name = "ALIAS")
         ALIAS("ALIAS")
     }
@@ -148,18 +162,25 @@ interface InterOperationApi {
     enum class IdTypeGetAccountByIdentifier(val value: String) {
         @Json(name = "MSISDN")
         MSISDN("MSISDN"),
+
         @Json(name = "EMAIL")
         EMAIL("EMAIL"),
+
         @Json(name = "PERSONAL_ID")
         PERSONAL_ID("PERSONAL_ID"),
+
         @Json(name = "BUSINESS")
         BUSINESS("BUSINESS"),
+
         @Json(name = "DEVICE")
         DEVICE("DEVICE"),
+
         @Json(name = "ACCOUNT_ID")
         ACCOUNT_ID("ACCOUNT_ID"),
+
         @Json(name = "IBAN")
         IBAN("IBAN"),
+
         @Json(name = "ALIAS")
         ALIAS("ALIAS")
     }
@@ -187,18 +208,25 @@ interface InterOperationApi {
     enum class IdTypeGetAccountByIdentifier1(val value: String) {
         @Json(name = "MSISDN")
         MSISDN("MSISDN"),
+
         @Json(name = "EMAIL")
         EMAIL("EMAIL"),
+
         @Json(name = "PERSONAL_ID")
         PERSONAL_ID("PERSONAL_ID"),
+
         @Json(name = "BUSINESS")
         BUSINESS("BUSINESS"),
+
         @Json(name = "DEVICE")
         DEVICE("DEVICE"),
+
         @Json(name = "ACCOUNT_ID")
         ACCOUNT_ID("ACCOUNT_ID"),
+
         @Json(name = "IBAN")
         IBAN("IBAN"),
+
         @Json(name = "ALIAS")
         ALIAS("ALIAS")
     }
@@ -373,18 +401,25 @@ interface InterOperationApi {
     enum class IdTypeRegisterAccountIdentifier(val value: String) {
         @Json(name = "MSISDN")
         MSISDN("MSISDN"),
+
         @Json(name = "EMAIL")
         EMAIL("EMAIL"),
+
         @Json(name = "PERSONAL_ID")
         PERSONAL_ID("PERSONAL_ID"),
+
         @Json(name = "BUSINESS")
         BUSINESS("BUSINESS"),
+
         @Json(name = "DEVICE")
         DEVICE("DEVICE"),
+
         @Json(name = "ACCOUNT_ID")
         ACCOUNT_ID("ACCOUNT_ID"),
+
         @Json(name = "IBAN")
         IBAN("IBAN"),
+
         @Json(name = "ALIAS")
         ALIAS("ALIAS")
     }
@@ -414,18 +449,25 @@ interface InterOperationApi {
     enum class IdTypeRegisterAccountIdentifier1(val value: String) {
         @Json(name = "MSISDN")
         MSISDN("MSISDN"),
+
         @Json(name = "EMAIL")
         EMAIL("EMAIL"),
+
         @Json(name = "PERSONAL_ID")
         PERSONAL_ID("PERSONAL_ID"),
+
         @Json(name = "BUSINESS")
         BUSINESS("BUSINESS"),
+
         @Json(name = "DEVICE")
         DEVICE("DEVICE"),
+
         @Json(name = "ACCOUNT_ID")
         ACCOUNT_ID("ACCOUNT_ID"),
+
         @Json(name = "IBAN")
         IBAN("IBAN"),
+
         @Json(name = "ALIAS")
         ALIAS("ALIAS")
     }
