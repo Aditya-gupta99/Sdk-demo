@@ -148,9 +148,9 @@ interface SavingsAccountApi {
     @Multipart
     @POST("v1/savingsaccounts/uploadtemplate")
     suspend fun postSavingsTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
@@ -167,9 +167,9 @@ interface SavingsAccountApi {
     @Multipart
     @POST("v1/savingsaccounts/transactions/uploadtemplate")
     suspend fun postSavingsTransactionTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

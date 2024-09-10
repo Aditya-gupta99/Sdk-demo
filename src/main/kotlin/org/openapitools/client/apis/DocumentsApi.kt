@@ -37,11 +37,11 @@ interface DocumentsApi {
         @Path("entityType") entityType: String,
         @Path("entityId") entityId: Long,
         @Header("Content-Length") contentLength: Long? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("description") description: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part("name") name: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("description") description: String,
+        @Part("locale") locale: String,
+        @Part("name") name: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): PostEntityTypeEntityIdDocumentsResponse
 
     /**
@@ -138,11 +138,11 @@ interface DocumentsApi {
         @Path("entityId") entityId: Long,
         @Path("documentId") documentId: Long,
         @Header("Content-Length") contentLength: Long? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("description") description: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part("name") name: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("description") description: String,
+        @Part("locale") locale: String,
+        @Part("name") name: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): PutEntityTypeEntityIdDocumentsResponse
 
 }

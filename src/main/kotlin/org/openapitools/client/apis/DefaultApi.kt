@@ -51,9 +51,9 @@ interface DefaultApi {
     @POST("v1/creditBureauIntegration/addCreditReport")
     suspend fun addCreditReport(
         @Query("creditBureauId") creditBureauId: Long? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
@@ -76,9 +76,9 @@ interface DefaultApi {
         @Path("entity") entity: String,
         @Path("entityId") entityId: Long,
         @Header("Content-Length") contentLength: Long? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
@@ -755,9 +755,9 @@ interface DefaultApi {
         @Path("entity") entity: String,
         @Path("entityId") entityId: Long,
         @Header("Content-Length") contentLength: Long? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

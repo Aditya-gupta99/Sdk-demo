@@ -109,9 +109,9 @@ interface GuarantorsApi {
     @POST("v1/loans/{loanId}/guarantors/uploadtemplate")
     suspend fun postGuarantorTemplate(
         @Path("loanId") loanId: Long,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

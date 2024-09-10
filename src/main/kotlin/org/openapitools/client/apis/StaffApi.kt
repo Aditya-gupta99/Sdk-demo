@@ -58,9 +58,9 @@ interface StaffApi {
     @Multipart
     @POST("v1/staff/uploadtemplate")
     suspend fun postTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

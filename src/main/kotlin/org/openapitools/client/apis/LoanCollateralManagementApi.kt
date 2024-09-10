@@ -2,6 +2,7 @@ package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.http.DELETE
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.HTTP
 import de.jensklingenberg.ktorfit.http.Path
 
 
@@ -16,7 +17,7 @@ interface LoanCollateralManagementApi {
      * @param id loan collateral id
      * @return [kotlin.String]
      */
-    @DELETE("v1/loan-collateral-management/{id}")
+    @HTTP(method = "DELETE", path = "v1/loan-collateral-management/{id}/{loanId}", hasBody = true)
     suspend fun deleteLoanCollateral(
         @Path("loanId") loanId: Long,
         @Path("id") id: Long

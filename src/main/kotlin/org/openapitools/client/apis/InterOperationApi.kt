@@ -4,6 +4,7 @@ import com.squareup.moshi.Json
 import de.jensklingenberg.ktorfit.http.Body
 import de.jensklingenberg.ktorfit.http.DELETE
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.HTTP
 import de.jensklingenberg.ktorfit.http.POST
 import de.jensklingenberg.ktorfit.http.Path
 import de.jensklingenberg.ktorfit.http.Query
@@ -86,7 +87,7 @@ interface InterOperationApi {
      * @param interopIdentifierRequestData
      * @return [InteropIdentifierAccountResponseData]
      */
-    @DELETE("v1/interoperation/parties/{idType}/{idValue}")
+    @HTTP(method = "DELETE", path = "v1/interoperation/parties/{idType}/{idValue}", hasBody = true)
     suspend fun deleteAccountIdentifier(
         @Path("idType") idType: String,
         @Path("idValue") idValue: String,
@@ -135,7 +136,7 @@ interface InterOperationApi {
      * @param interopIdentifierRequestData
      * @return [InteropIdentifierAccountResponseData]
      */
-    @DELETE("v1/interoperation/parties/{idType}/{idValue}/{subIdOrType}")
+    @HTTP(method = "DELETE", path = "v1/interoperation/parties/{idType}/{idValue}/{subIdOrType}", hasBody = true)
     suspend fun deleteAccountIdentifier1(
         @Path("idType") idType: String,
         @Path("idValue") idValue: String,

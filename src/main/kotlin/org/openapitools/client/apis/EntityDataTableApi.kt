@@ -3,6 +3,7 @@ package org.openapitools.client.apis
 import de.jensklingenberg.ktorfit.http.Body
 import de.jensklingenberg.ktorfit.http.DELETE
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.HTTP
 import de.jensklingenberg.ktorfit.http.POST
 import de.jensklingenberg.ktorfit.http.Path
 import de.jensklingenberg.ktorfit.http.Query
@@ -35,7 +36,7 @@ interface EntityDataTableApi {
      * @param body  (optional)
      * @return [DeleteEntityDatatableChecksTemplateResponse]
      */
-    @DELETE("v1/entityDatatableChecks/{entityDatatableCheckId}")
+    @HTTP(method = "DELETE", path = "v1/entityDatatableChecks/{entityDatatableCheckId}", hasBody = true)
     suspend fun deleteDatatable1(
         @Path("entityDatatableCheckId") entityDatatableCheckId: Long,
         @Body body: String? = null

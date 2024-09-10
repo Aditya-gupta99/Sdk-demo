@@ -61,7 +61,7 @@ interface AccountingClosureApi {
      * @return [kotlin.collections.List<GetGlClosureResponse>]
      */
     @GET("v1/glclosures")
-    suspend fun retrieveAllClosures(@Query("officeId") officeId: Long): List<GetGlClosureResponse>
+    suspend fun retrieveAllClosures(@Query("officeId") officeId: Long? = null): List<GetGlClosureResponse>
 
     /**
      * Update an Accounting closure
@@ -76,7 +76,7 @@ interface AccountingClosureApi {
     @PUT("v1/glclosures/{glClosureId}")
     suspend fun updateGLClosure(
         @Path("glClosureId") glClosureId: Long,
-        @Body putGlClosuresRequest: PutGlClosuresRequest
+        @Body putGlClosuresRequest: PutGlClosuresRequest? = null
     ): PutGlClosuresResponse
 
 }

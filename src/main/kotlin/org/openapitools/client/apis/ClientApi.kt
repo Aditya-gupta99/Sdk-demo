@@ -3,6 +3,7 @@ package org.openapitools.client.apis
 import de.jensklingenberg.ktorfit.http.Body
 import de.jensklingenberg.ktorfit.http.DELETE
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.HTTP
 import de.jensklingenberg.ktorfit.http.Multipart
 import de.jensklingenberg.ktorfit.http.POST
 import de.jensklingenberg.ktorfit.http.PUT
@@ -83,7 +84,7 @@ interface ClientApi {
      * @param body
      * @return [DeleteClientsClientIdResponse]
      */
-    @DELETE("v1/clients/external-id/{externalId}")
+    @HTTP(method = "DELETE", path = "v1/clients/external-id/{externalId}", hasBody = true)
     suspend fun delete10(
         @Path("externalId") externalId: String,
         @Body body: Any
@@ -99,7 +100,7 @@ interface ClientApi {
      * @param body
      * @return [DeleteClientsClientIdResponse]
      */
-    @DELETE("v1/clients/{clientId}")
+    @HTTP(method = "DELETE", path = "v1/clients/{clientId}", hasBody = true)
     suspend fun delete9(
         @Path("clientId") clientId: Long,
         @Body body: Any
@@ -141,9 +142,9 @@ interface ClientApi {
     @POST("v1/clients/uploadtemplate")
     suspend fun postClientTemplate(
         @Query("legalFormType") legalFormType: String? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

@@ -162,7 +162,10 @@ import org.openapitools.client.apis.TwoFactorApi
 import org.openapitools.client.apis.UserGeneratedDocumentsApi
 import org.openapitools.client.apis.UsersApi
 import org.openapitools.client.apis.WorkingDaysApi
+import org.openapitools.client.apis.createAccountNumberFormatApi
 import org.openapitools.client.apis.createAccountingClosureApi
+import org.openapitools.client.apis.createAccountingRulesApi
+import org.openapitools.client.apis.createCentersApi
 import retrofit2.Retrofit
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
@@ -183,8 +186,8 @@ class FineractClient private constructor(
     private val ktorfit: Ktorfit
 ) {
     val accountingClosures = ktorfit.createAccountingClosureApi()
-    val accountingRules = ktorfit.create<AccountingRulesApi>()
-    val accountNumberFormats = ktorfit.create<AccountNumberFormatApi>()
+    val accountingRules = ktorfit.createAccountingRulesApi()
+    val accountNumberFormats = ktorfit.createAccountNumberFormatApi()
     val accountTransfers = ktorfit.create<AccountTransfersApi>()
     val adhocQuery = ktorfit.create<AdhocQueryApiApi>()
     val audits = ktorfit.create<AuditsApi>()
@@ -198,7 +201,7 @@ class FineractClient private constructor(
     val calender = ktorfit.create<CalendarApi>()
     val cashiersJournal = ktorfit.create<CashierJournalsApi>()
     val cashiers = ktorfit.create<CashiersApi>()
-    val centers = ktorfit.create<CentersApi>()
+    val centers = ktorfit.createCentersApi()
     val charges = ktorfit.create<ChargesApi>()
     val clients = ktorfit.create<ClientApi>()
     val clientCharges = ktorfit.create<ClientChargesApi>()

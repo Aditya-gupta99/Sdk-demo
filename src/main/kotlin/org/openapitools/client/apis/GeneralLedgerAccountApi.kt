@@ -69,9 +69,9 @@ interface GeneralLedgerAccountApi {
     @Multipart
     @POST("v1/glaccounts/uploadtemplate")
     suspend fun postGlAccountsTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

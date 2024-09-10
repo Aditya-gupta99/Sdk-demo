@@ -3,6 +3,7 @@ package org.openapitools.client.apis
 import de.jensklingenberg.ktorfit.http.Body
 import de.jensklingenberg.ktorfit.http.DELETE
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.HTTP
 import de.jensklingenberg.ktorfit.http.POST
 import de.jensklingenberg.ktorfit.http.PUT
 import de.jensklingenberg.ktorfit.http.Path
@@ -36,7 +37,7 @@ interface ClientFamilyMemberApi {
      * @param body  (optional)
      * @return [kotlin.String]
      */
-    @DELETE("v1/clients/{clientId}/familymembers/{familyMemberId}")
+    @HTTP(method = "DELETE", path = "v1/clients/{clientId}/familymembers/{familyMemberId}", hasBody = true)
     suspend fun deleteClientFamilyMembers(
         @Path("familyMemberId") familyMemberId: Long,
         @Path("clientId") clientId: Long,

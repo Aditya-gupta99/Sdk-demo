@@ -3,6 +3,7 @@ package org.openapitools.client.apis
 import de.jensklingenberg.ktorfit.http.Body
 import de.jensklingenberg.ktorfit.http.DELETE
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.HTTP
 import de.jensklingenberg.ktorfit.http.POST
 import de.jensklingenberg.ktorfit.http.PUT
 import de.jensklingenberg.ktorfit.http.Path
@@ -38,7 +39,7 @@ interface ReportMailingJobsApi {
      * @param body
      * @return [DeleteReportMailingJobsResponse]
      */
-    @DELETE("v1/reportmailingjobs/{entityId}")
+    @HTTP(method = "DELETE", path = "v1/reportmailingjobs/{entityId}", hasBody = true)
     suspend fun deleteReportMailingJob(
         @Path("entityId") entityId: Long,
         @Body body: Any

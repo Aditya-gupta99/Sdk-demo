@@ -261,9 +261,9 @@ interface LoansApi {
     @Multipart
     @POST("v1/loans/repayments/uploadtemplate")
     suspend fun postLoanRepaymentTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
@@ -280,9 +280,9 @@ interface LoansApi {
     @Multipart
     @POST("v1/loans/uploadtemplate")
     suspend fun postLoanTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

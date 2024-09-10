@@ -115,9 +115,9 @@ interface RecurringDepositAccountApi {
     @Multipart
     @POST("v1/recurringdepositaccounts/uploadtemplate")
     suspend fun postRecurringDepositTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
@@ -134,9 +134,9 @@ interface RecurringDepositAccountApi {
     @Multipart
     @POST("v1/recurringdepositaccounts/transactions/uploadtemplate")
     suspend fun postRecurringDepositTransactionsTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

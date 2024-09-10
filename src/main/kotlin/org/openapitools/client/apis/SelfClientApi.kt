@@ -36,9 +36,9 @@ interface SelfClientApi {
     suspend fun addNewClientImage2(
         @Path("clientId") clientId: Long,
         @Header("Content-Length") contentLength: Long? = null,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

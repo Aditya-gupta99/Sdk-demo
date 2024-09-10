@@ -90,9 +90,9 @@ interface ShareAccountApi {
     @POST("v1/accounts/{type}/uploadtemplate")
     suspend fun postSharedAccountsTemplate(
         @Path("type") type: String,
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**

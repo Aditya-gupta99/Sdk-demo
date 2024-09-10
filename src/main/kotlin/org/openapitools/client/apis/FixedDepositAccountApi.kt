@@ -115,9 +115,9 @@ interface FixedDepositAccountApi {
     @Multipart
     @POST("v1/fixeddepositaccounts/uploadtemplate")
     suspend fun postFixedDepositTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
@@ -134,9 +134,9 @@ interface FixedDepositAccountApi {
     @Multipart
     @POST("v1/fixeddepositaccounts/transaction/uploadtemplate")
     suspend fun postFixedDepositTransactionTemplate(
-        @Part("dateFormat") dateFormat: String? = null,
-        @Part("locale") locale: String? = null,
-        @Part uploadedInputStream: MultipartBody.Part? = null
+        @Part("dateFormat") dateFormat: String,
+        @Part("locale") locale: String,
+        @Part uploadedInputStream: MultipartBody.Part
     ): String
 
     /**
