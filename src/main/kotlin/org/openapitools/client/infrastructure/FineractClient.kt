@@ -162,6 +162,7 @@ import org.openapitools.client.apis.TwoFactorApi
 import org.openapitools.client.apis.UserGeneratedDocumentsApi
 import org.openapitools.client.apis.UsersApi
 import org.openapitools.client.apis.WorkingDaysApi
+import org.openapitools.client.apis.createAccountingClosureApi
 import retrofit2.Retrofit
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
@@ -181,7 +182,7 @@ class FineractClient private constructor(
     private val httpClient: HttpClient,
     private val ktorfit: Ktorfit
 ) {
-    val accountingClosures = ktorfit.create<AccountingClosureApi>()
+    val accountingClosures = ktorfit.createAccountingClosureApi()
     val accountingRules = ktorfit.create<AccountingRulesApi>()
     val accountNumberFormats = ktorfit.create<AccountNumberFormatApi>()
     val accountTransfers = ktorfit.create<AccountTransfersApi>()
