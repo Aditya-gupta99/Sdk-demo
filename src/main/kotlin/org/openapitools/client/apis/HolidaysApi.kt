@@ -74,8 +74,8 @@ interface HolidaysApi {
     @GET("v1/holidays")
     suspend fun retrieveAllHolidays(
         @Query("officeId") officeId: Long? = null,
-        @Query("fromDate") fromDate: Any? = null,
-        @Query("toDate") toDate: Any? = null,
+        @Query("fromDate") fromDate: String? = null,
+        @Query("toDate") toDate: String? = null,
         @Query("locale") locale: String? = null,
         @Query("dateFormat") dateFormat: String? = null
     ): List<GetHolidaysResponse>

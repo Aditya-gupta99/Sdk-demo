@@ -18,7 +18,6 @@ import io.ktor.http.decodeURLQueryComponent
 import io.ktor.http.encodeURLPath
 import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
-import kotlin.Any
 import kotlin.Int
 import kotlin.Long
 import kotlin.OptIn
@@ -75,8 +74,8 @@ public class _SMSApiImpl : SMSApi, KtorfitInterface {
   override suspend fun retrieveAllSmsByStatus(
     campaignId: Long,
     status: Long?,
-    fromDate: Any?,
-    toDate: Any?,
+    fromDate: String?,
+    toDate: String?,
     locale: String?,
     dateFormat: String?,
     offset: Int?,
@@ -89,8 +88,8 @@ public class _SMSApiImpl : SMSApi, KtorfitInterface {
         url{
         takeFrom(_converter.baseUrl + "v1/sms/${"$campaignId".encodeURLPath()}/messageByStatus")
         status?.let{ parameter("status", "$it") }
-        fromDate?.filterNotNull()?.forEach { parameter("fromDate", "$it") }
-        toDate?.filterNotNull()?.forEach { parameter("toDate", "$it") }
+        fromDate?.let{ parameter("fromDate", "$it") }
+        toDate?.let{ parameter("toDate", "$it") }
         locale?.let{ parameter("locale", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         offset?.let{ parameter("offset", "$it") }

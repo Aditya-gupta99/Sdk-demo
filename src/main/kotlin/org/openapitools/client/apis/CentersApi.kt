@@ -135,7 +135,7 @@ interface CentersApi {
         @Query("limit") limit: Int? = null,
         @Query("orderBy") orderBy: String? = null,
         @Query("sortOrder") sortOrder: String? = null,
-        @Query("meetingDate") meetingDate: Any? = null,
+        @Query("meetingDate") meetingDate: String? = null,
         @Query("dateFormat") dateFormat: String? = null,
         @Query("locale") locale: String? = null
     ): GetCentersResponse

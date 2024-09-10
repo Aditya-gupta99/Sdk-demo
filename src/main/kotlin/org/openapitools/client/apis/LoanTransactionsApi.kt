@@ -221,7 +221,7 @@ interface LoanTransactionsApi {
         @Path("loanId") loanId: Long,
         @Query("command") command: String? = null,
         @Query("dateFormat") dateFormat: String? = null,
-        @Query("transactionDate") transactionDate: Any? = null,
+        @Query("transactionDate") transactionDate: String? = null,
         @Query("locale") locale: String? = null
     ): GetLoansLoanIdTransactionsTemplateResponse
 
@@ -243,7 +243,7 @@ interface LoanTransactionsApi {
         @Path("loanExternalId") loanExternalId: String,
         @Query("command") command: String? = null,
         @Query("dateFormat") dateFormat: String? = null,
-        @Query("transactionDate") transactionDate: Any? = null,
+        @Query("transactionDate") transactionDate: String? = null,
         @Query("locale") locale: String? = null
     ): GetLoansLoanIdTransactionsTemplateResponse
 

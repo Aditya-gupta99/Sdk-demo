@@ -18,7 +18,6 @@ import io.ktor.http.decodeURLQueryComponent
 import io.ktor.http.encodeURLPath
 import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
-import kotlin.Any
 import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
@@ -266,7 +265,7 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     loanId: Long,
     command: String?,
     dateFormat: String?,
-    transactionDate: Any?,
+    transactionDate: String?,
     locale: String?,
   ): GetLoansLoanIdTransactionsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
@@ -275,7 +274,7 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
         takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/transactions/template")
         command?.let{ parameter("command", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
-        transactionDate?.filterNotNull()?.forEach { parameter("transactionDate", "$it") }
+        transactionDate?.let{ parameter("transactionDate", "$it") }
         locale?.let{ parameter("locale", "$it") }
         } 
         }
@@ -292,7 +291,7 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     loanExternalId: String,
     command: String?,
     dateFormat: String?,
-    transactionDate: Any?,
+    transactionDate: String?,
     locale: String?,
   ): GetLoansLoanIdTransactionsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
@@ -302,7 +301,7 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/template")
         command?.let{ parameter("command", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
-        transactionDate?.filterNotNull()?.forEach { parameter("transactionDate", "$it") }
+        transactionDate?.let{ parameter("transactionDate", "$it") }
         locale?.let{ parameter("locale", "$it") }
         } 
         }

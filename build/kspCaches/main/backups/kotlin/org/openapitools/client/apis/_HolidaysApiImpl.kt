@@ -91,8 +91,8 @@ public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
 
   override suspend fun retrieveAllHolidays(
     officeId: Long?,
-    fromDate: Any?,
-    toDate: Any?,
+    fromDate: String?,
+    toDate: String?,
     locale: String?,
     dateFormat: String?,
   ): List<GetHolidaysResponse> {
@@ -101,8 +101,8 @@ public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
         url{
         takeFrom(_converter.baseUrl + "v1/holidays")
         officeId?.let{ parameter("officeId", "$it") }
-        fromDate?.filterNotNull()?.forEach { parameter("fromDate", "$it") }
-        toDate?.filterNotNull()?.forEach { parameter("toDate", "$it") }
+        fromDate?.let{ parameter("fromDate", "$it") }
+        toDate?.let{ parameter("toDate", "$it") }
         locale?.let{ parameter("locale", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 

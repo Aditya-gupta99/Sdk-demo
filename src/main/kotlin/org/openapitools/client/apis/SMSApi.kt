@@ -67,8 +67,8 @@ interface SMSApi {
     suspend fun retrieveAllSmsByStatus(
         @Path("campaignId") campaignId: Long,
         @Query("status") status: Long? = null,
-        @Query("fromDate") fromDate: Any? = null,
-        @Query("toDate") toDate: Any? = null,
+        @Query("fromDate") fromDate: String? = null,
+        @Query("toDate") toDate: String? = null,
         @Query("locale") locale: String? = null,
         @Query("dateFormat") dateFormat: String? = null,
         @Query("offset") offset: Int? = null,

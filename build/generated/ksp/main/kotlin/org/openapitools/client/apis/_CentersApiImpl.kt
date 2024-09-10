@@ -22,7 +22,6 @@ import io.ktor.http.decodeURLQueryComponent
 import io.ktor.http.encodeURLPath
 import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -155,7 +154,7 @@ public class _CentersApiImpl : CentersApi, KtorfitInterface {
     limit: Int?,
     orderBy: String?,
     sortOrder: String?,
-    meetingDate: Any?,
+    meetingDate: String?,
     dateFormat: String?,
     locale: String?,
   ): GetCentersResponse {
@@ -173,7 +172,7 @@ public class _CentersApiImpl : CentersApi, KtorfitInterface {
         limit?.let{ parameter("limit", "$it") }
         orderBy?.let{ parameter("orderBy", "$it") }
         sortOrder?.let{ parameter("sortOrder", "$it") }
-        meetingDate?.filterNotNull()?.forEach { parameter("meetingDate", "$it") }
+        meetingDate?.let{ parameter("meetingDate", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         locale?.let{ parameter("locale", "$it") }
         } 

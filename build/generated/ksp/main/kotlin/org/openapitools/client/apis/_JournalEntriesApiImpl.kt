@@ -22,7 +22,6 @@ import io.ktor.http.decodeURLQueryComponent
 import io.ktor.http.encodeURLPath
 import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -125,10 +124,10 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
     officeId: Long?,
     glAccountId: Long?,
     manualEntriesOnly: Boolean?,
-    fromDate: Any?,
-    toDate: Any?,
-    submittedOnDateFrom: Any?,
-    submittedOnDateTo: Any?,
+    fromDate: String?,
+    toDate: String?,
+    submittedOnDateFrom: String?,
+    submittedOnDateTo: String?,
     transactionId: String?,
     entityType: Int?,
     offset: Int?,
@@ -149,10 +148,10 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
         officeId?.let{ parameter("officeId", "$it") }
         glAccountId?.let{ parameter("glAccountId", "$it") }
         manualEntriesOnly?.let{ parameter("manualEntriesOnly", "$it") }
-        fromDate?.filterNotNull()?.forEach { parameter("fromDate", "$it") }
-        toDate?.filterNotNull()?.forEach { parameter("toDate", "$it") }
-        submittedOnDateFrom?.filterNotNull()?.forEach { parameter("submittedOnDateFrom", "$it") }
-        submittedOnDateTo?.filterNotNull()?.forEach { parameter("submittedOnDateTo", "$it") }
+        fromDate?.let{ parameter("fromDate", "$it") }
+        toDate?.let{ parameter("toDate", "$it") }
+        submittedOnDateFrom?.let{ parameter("submittedOnDateFrom", "$it") }
+        submittedOnDateTo?.let{ parameter("submittedOnDateTo", "$it") }
         transactionId?.let{ parameter("transactionId", "$it") }
         entityType?.let{ parameter("entityType", "$it") }
         offset?.let{ parameter("offset", "$it") }

@@ -543,8 +543,8 @@ public class _DefaultApiImpl : DefaultApi, KtorfitInterface {
     status: Int?,
     orderBy: String?,
     sortOrder: String?,
-    fromDate: Any?,
-    toDate: Any?,
+    fromDate: String?,
+    toDate: String?,
     locale: String?,
     dateFormat: String?,
   ): String {
@@ -558,8 +558,8 @@ public class _DefaultApiImpl : DefaultApi, KtorfitInterface {
         status?.let{ parameter("status", "$it") }
         orderBy?.let{ parameter("orderBy", "$it") }
         sortOrder?.let{ parameter("sortOrder", "$it") }
-        fromDate?.filterNotNull()?.forEach { parameter("fromDate", "$it") }
-        toDate?.filterNotNull()?.forEach { parameter("toDate", "$it") }
+        fromDate?.let{ parameter("fromDate", "$it") }
+        toDate?.let{ parameter("toDate", "$it") }
         locale?.let{ parameter("locale", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 

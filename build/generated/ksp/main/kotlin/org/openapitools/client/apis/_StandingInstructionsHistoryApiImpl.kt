@@ -18,7 +18,6 @@ import io.ktor.http.decodeURLQueryComponent
 import io.ktor.http.encodeURLPath
 import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
-import kotlin.Any
 import kotlin.Int
 import kotlin.Long
 import kotlin.OptIn
@@ -44,8 +43,8 @@ public class _StandingInstructionsHistoryApiImpl : StandingInstructionsHistoryAp
     fromAccountType: Int?,
     locale: String?,
     dateFormat: String?,
-    fromDate: Any?,
-    toDate: Any?,
+    fromDate: String?,
+    toDate: String?,
   ): GetStandingInstructionRunHistoryResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
@@ -63,8 +62,8 @@ public class _StandingInstructionsHistoryApiImpl : StandingInstructionsHistoryAp
         fromAccountType?.let{ parameter("fromAccountType", "$it") }
         locale?.let{ parameter("locale", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
-        fromDate?.filterNotNull()?.forEach { parameter("fromDate", "$it") }
-        toDate?.filterNotNull()?.forEach { parameter("toDate", "$it") }
+        fromDate?.let{ parameter("fromDate", "$it") }
+        toDate?.let{ parameter("toDate", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
