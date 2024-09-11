@@ -1,0 +1,667 @@
+kotlin version: 2.0.0
+error message: org.jetbrains.kotlin.backend.common.BackendException: Backend Internal error: Exception during IR lowering
+File being compiled: C:/Users/Aditya/Sdk-demo/src/main/kotlin/org/openapitools/client/models/InteropTransactionRequestResponseData.kt
+The root cause org.jetbrains.kotlin.backend.common.CompilationException was thrown at: java.base/java.lang.invoke.DirectMethodHandle.allocateInstance(DirectMethodHandle.java:520)
+	at org.jetbrains.kotlin.backend.common.CodegenUtil.reportBackendException(CodegenUtil.kt:253)
+	at org.jetbrains.kotlin.backend.common.CodegenUtil.reportBackendException$default(CodegenUtil.kt:236)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invokeSequential(performByIrFile.kt:65)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:52)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:38)
+	at org.jetbrains.kotlin.backend.common.phaser.NamedCompilerPhase.phaseBody(CompilerPhase.kt:166)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:29)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:16)
+	at org.jetbrains.kotlin.backend.common.phaser.NamedCompilerPhase.phaseBody(CompilerPhase.kt:166)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:62)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.invokeLowerings(JvmIrCodegenFactory.kt:358)
+	at org.jetbrains.kotlin.codegen.CodegenFactory.generateModule(CodegenFactory.kt:46)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.generateModuleInFrontendIRMode(JvmIrCodegenFactory.kt:433)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.generateCodeFromIr(jvmCompilerPipeline.kt:241)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:140)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:155)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:50)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:104)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:48)
+	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:453)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:62)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:676)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1661)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.jetbrains.kotlin.backend.common.CompilationException: Back-end: Please report this problem https://kotl.in/issue
+C:/Users/Aditya/Sdk-demo/src/main/kotlin/org/openapitools/client/models/InteropTransactionRequestResponseData.kt:53:1
+Problem with `data class InteropTransactionRequestResponseData {
+  constructor(@Json(name = "requestCode") requestCode: String, @Json(name = "state") state: State, @Json(name = "transactionCode") transactionCode: String, @Json(name = "changes") changes: Map<String, Any>? = null, @Json(name = "clientId") clientId: Long? = null, @Json(name = "commandId") commandId: Long? = null, @Json(name = "creditBureauReportData") creditBureauReportData: Map<String, Any>? = null, @Json(name = "expiration") expiration: String? = null, @Json(name = "extensionList") extensionList: List<ExtensionData>? = null, @Json(name = "glimId") glimId: Long? = null, @Json(name = "groupId") groupId: Long? = null, @Json(name = "gsimId") gsimId: Long? = null, @Json(name = "loanId") loanId: Long? = null, @Json(name = "officeId") officeId: Long? = null, @Json(name = "productId") productId: Long? = null, @Json(name = "resourceExternalId") resourceExternalId: ExternalId? = null, @Json(name = "resourceId") resourceId: Long? = null, @Json(name = "resourceIdentifier") resourceIdentifier: String? = null, @Json(name = "rollbackTransaction") rollbackTransaction: Boolean? = null, @Json(name = "savingsId") savingsId: Long? = null, @Json(name = "subResourceExternalId") subResourceExternalId: ExternalId? = null, @Json(name = "subResourceId") subResourceId: Long? = null, @Json(name = "transactionId") transactionId: String? = null) /* primary */ {
+    super/*Any*/()
+    /* <init>() */
+
+  }
+
+  constructor(@Json(name = "requestCode") requestCode: String, @Json(name = "state") state: State, @Json(name = "transactionCode") transactionCode: String, @Json(name = "changes") /* var */ changes: Map<String, Any>? = error("") /* ErrorExpression */, @Json(name = "clientId") /* var */ clientId: Long? = error("") /* ErrorExpression */, @Json(name = "commandId") /* var */ commandId: Long? = error("") /* ErrorExpression */, @Json(name = "creditBureauReportData") /* var */ creditBureauReportData: Map<String, Any>? = error("") /* ErrorExpression */, @Json(name = "expiration") /* var */ expiration: String? = error("") /* ErrorExpression */, @Json(name = "extensionList") /* var */ extensionList: List<ExtensionData>? = error("") /* ErrorExpression */, @Json(name = "glimId") /* var */ glimId: Long? = error("") /* ErrorExpression */, @Json(name = "groupId") /* var */ groupId: Long? = error("") /* ErrorExpression */, @Json(name = "gsimId") /* var */ gsimId: Long? = error("") /* ErrorExpression */, @Json(name = "loanId") /* var */ loanId: Long? = error("") /* ErrorExpression */, @Json(name = "officeId") /* var */ officeId: Long? = error("") /* ErrorExpression */, @Json(name = "productId") /* var */ productId: Long? = error("") /* ErrorExpression */, @Json(name = "resourceExternalId") /* var */ resourceExternalId: ExternalId? = error("") /* ErrorExpression */, @Json(name = "resourceId") /* var */ resourceId: Long? = error("") /* ErrorExpression */, @Json(name = "resourceIdentifier") /* var */ resourceIdentifier: String? = error("") /* ErrorExpression */, @Json(name = "rollbackTransaction") /* var */ rollbackTransaction: Boolean? = error("") /* ErrorExpression */, @Json(name = "savingsId") /* var */ savingsId: Long? = error("") /* ErrorExpression */, @Json(name = "subResourceExternalId") /* var */ subResourceExternalId: ExternalId? = error("") /* ErrorExpression */, @Json(name = "subResourceId") /* var */ subResourceId: Long? = error("") /* ErrorExpression */, @Json(name = "transactionId") /* var */ transactionId: String? = error("") /* ErrorExpression */, $mask0: Int, $marker: DefaultConstructorMarker?) {
+    when {
+      EQEQ(arg0 = $mask0.and(other = 8), arg1 = 0).not() -> changes = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 16), arg1 = 0).not() -> clientId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 32), arg1 = 0).not() -> commandId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 64), arg1 = 0).not() -> creditBureauReportData = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 128), arg1 = 0).not() -> expiration = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 256), arg1 = 0).not() -> extensionList = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 512), arg1 = 0).not() -> glimId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 1024), arg1 = 0).not() -> groupId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 2048), arg1 = 0).not() -> gsimId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 4096), arg1 = 0).not() -> loanId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 8192), arg1 = 0).not() -> officeId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 16384), arg1 = 0).not() -> productId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 32768), arg1 = 0).not() -> resourceExternalId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 65536), arg1 = 0).not() -> resourceId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 131072), arg1 = 0).not() -> resourceIdentifier = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 262144), arg1 = 0).not() -> rollbackTransaction = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 524288), arg1 = 0).not() -> savingsId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 1048576), arg1 = 0).not() -> subResourceExternalId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 2097152), arg1 = 0).not() -> subResourceId = null
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 4194304), arg1 = 0).not() -> transactionId = null
+    }
+    this/*InteropTransactionRequestResponseData*/(requestCode = requestCode, state = state, transactionCode = transactionCode, changes = changes, clientId = clientId, commandId = commandId, creditBureauReportData = creditBureauReportData, expiration = expiration, extensionList = extensionList, glimId = glimId, groupId = groupId, gsimId = gsimId, loanId = loanId, officeId = officeId, productId = productId, resourceExternalId = resourceExternalId, resourceId = resourceId, resourceIdentifier = resourceIdentifier, rollbackTransaction = rollbackTransaction, savingsId = savingsId, subResourceExternalId = subResourceExternalId, subResourceId = subResourceId, transactionId = transactionId)
+  }
+
+  private /* final field */ val requestCode: String = requestCode
+  fun <get-requestCode>(): String {
+    return <this>.#requestCode
+  }
+
+  private /* final field */ val state: State = state
+  fun <get-state>(): State {
+    return <this>.#state
+  }
+
+  private /* final field */ val transactionCode: String = transactionCode
+  fun <get-transactionCode>(): String {
+    return <this>.#transactionCode
+  }
+
+  private /* final field */ val changes: Map<String, Any>? = changes
+  fun <get-changes>(): Map<String, Any>? {
+    return <this>.#changes
+  }
+
+  private /* final field */ val clientId: Long? = clientId
+  fun <get-clientId>(): Long? {
+    return <this>.#clientId
+  }
+
+  private /* final field */ val commandId: Long? = commandId
+  fun <get-commandId>(): Long? {
+    return <this>.#commandId
+  }
+
+  private /* final field */ val creditBureauReportData: Map<String, Any>? = creditBureauReportData
+  fun <get-creditBureauReportData>(): Map<String, Any>? {
+    return <this>.#creditBureauReportData
+  }
+
+  private /* final field */ val expiration: String? = expiration
+  fun <get-expiration>(): String? {
+    return <this>.#expiration
+  }
+
+  private /* final field */ val extensionList: List<ExtensionData>? = extensionList
+  fun <get-extensionList>(): List<ExtensionData>? {
+    return <this>.#extensionList
+  }
+
+  private /* final field */ val glimId: Long? = glimId
+  fun <get-glimId>(): Long? {
+    return <this>.#glimId
+  }
+
+  private /* final field */ val groupId: Long? = groupId
+  fun <get-groupId>(): Long? {
+    return <this>.#groupId
+  }
+
+  private /* final field */ val gsimId: Long? = gsimId
+  fun <get-gsimId>(): Long? {
+    return <this>.#gsimId
+  }
+
+  private /* final field */ val loanId: Long? = loanId
+  fun <get-loanId>(): Long? {
+    return <this>.#loanId
+  }
+
+  private /* final field */ val officeId: Long? = officeId
+  fun <get-officeId>(): Long? {
+    return <this>.#officeId
+  }
+
+  private /* final field */ val productId: Long? = productId
+  fun <get-productId>(): Long? {
+    return <this>.#productId
+  }
+
+  private /* final field */ val resourceExternalId: ExternalId? = resourceExternalId
+  fun <get-resourceExternalId>(): ExternalId? {
+    return <this>.#resourceExternalId
+  }
+
+  private /* final field */ val resourceId: Long? = resourceId
+  fun <get-resourceId>(): Long? {
+    return <this>.#resourceId
+  }
+
+  private /* final field */ val resourceIdentifier: String? = resourceIdentifier
+  fun <get-resourceIdentifier>(): String? {
+    return <this>.#resourceIdentifier
+  }
+
+  private /* final field */ val rollbackTransaction: Boolean? = rollbackTransaction
+  fun <get-rollbackTransaction>(): Boolean? {
+    return <this>.#rollbackTransaction
+  }
+
+  private /* final field */ val savingsId: Long? = savingsId
+  fun <get-savingsId>(): Long? {
+    return <this>.#savingsId
+  }
+
+  private /* final field */ val subResourceExternalId: ExternalId? = subResourceExternalId
+  fun <get-subResourceExternalId>(): ExternalId? {
+    return <this>.#subResourceExternalId
+  }
+
+  private /* final field */ val subResourceId: Long? = subResourceId
+  fun <get-subResourceId>(): Long? {
+    return <this>.#subResourceId
+  }
+
+  private /* final field */ val transactionId: String? = transactionId
+  fun <get-transactionId>(): String? {
+    return <this>.#transactionId
+  }
+
+  @JsonClass(generateAdapter = false)
+  enum class State : Enum<State> {
+    private constructor(value: String) /* primary */ {
+      super/*Enum*/<State>()
+      /* <init>() */
+
+    }
+
+    private /* final field */ val value: String = value
+    fun <get-value>(): String {
+      return <this>.#value
+    }
+
+    @Json(name = "ACCEPTED")
+    ACCEPTED = State(value = "ACCEPTED")
+
+    @Json(name = "REJECTED")
+    REJECTED = State(value = "REJECTED")
+
+    fun values(): Array<State> /* Synthetic body for ENUM_VALUES */
+
+    fun valueOf(value: String): State /* Synthetic body for ENUM_VALUEOF */
+
+    fun <get-entries>(): EnumEntries<State> /* Synthetic body for ENUM_ENTRIES */
+
+    protected /* fake */ override fun clone(): Any
+
+    /* fake */ override operator fun compareTo(other: State): Int
+
+    /* fake */ override operator fun equals(other: Any?): Boolean
+
+    /* fake */ override fun hashCode(): Int
+
+    /* fake */ override fun toString(): String
+
+    /* fake */ override fun <get-name>(): String
+
+    /* fake */ override fun <get-ordinal>(): Int
+
+    /* fake */ override fun getDeclaringClass(): @FlexibleNullability Class<@FlexibleNullability State?>?
+
+    /* fake */ override fun describeConstable(): @FlexibleNullability Optional<@FlexibleNullability EnumDesc<@FlexibleNullability State?>?>?
+
+    protected_and_package /* fake */ override fun finalize()
+
+  }
+
+  operator fun component1(): String {
+    return <this>.#requestCode
+  }
+
+  operator fun component2(): State {
+    return <this>.#state
+  }
+
+  operator fun component3(): String {
+    return <this>.#transactionCode
+  }
+
+  operator fun component4(): Map<String, Any>? {
+    return <this>.#changes
+  }
+
+  operator fun component5(): Long? {
+    return <this>.#clientId
+  }
+
+  operator fun component6(): Long? {
+    return <this>.#commandId
+  }
+
+  operator fun component7(): Map<String, Any>? {
+    return <this>.#creditBureauReportData
+  }
+
+  operator fun component8(): String? {
+    return <this>.#expiration
+  }
+
+  operator fun component9(): List<ExtensionData>? {
+    return <this>.#extensionList
+  }
+
+  operator fun component10(): Long? {
+    return <this>.#glimId
+  }
+
+  operator fun component11(): Long? {
+    return <this>.#groupId
+  }
+
+  operator fun component12(): Long? {
+    return <this>.#gsimId
+  }
+
+  operator fun component13(): Long? {
+    return <this>.#loanId
+  }
+
+  operator fun component14(): Long? {
+    return <this>.#officeId
+  }
+
+  operator fun component15(): Long? {
+    return <this>.#productId
+  }
+
+  operator fun component16(): ExternalId? {
+    return <this>.#resourceExternalId
+  }
+
+  operator fun component17(): Long? {
+    return <this>.#resourceId
+  }
+
+  operator fun component18(): String? {
+    return <this>.#resourceIdentifier
+  }
+
+  operator fun component19(): Boolean? {
+    return <this>.#rollbackTransaction
+  }
+
+  operator fun component20(): Long? {
+    return <this>.#savingsId
+  }
+
+  operator fun component21(): ExternalId? {
+    return <this>.#subResourceExternalId
+  }
+
+  operator fun component22(): Long? {
+    return <this>.#subResourceId
+  }
+
+  operator fun component23(): String? {
+    return <this>.#transactionId
+  }
+
+  fun copy(@Json(name = "requestCode") requestCode: String = <this>.#requestCode, @Json(name = "state") state: State = <this>.#state, @Json(name = "transactionCode") transactionCode: String = <this>.#transactionCode, @Json(name = "changes") changes: Map<String, Any>? = <this>.#changes, @Json(name = "clientId") clientId: Long? = <this>.#clientId, @Json(name = "commandId") commandId: Long? = <this>.#commandId, @Json(name = "creditBureauReportData") creditBureauReportData: Map<String, Any>? = <this>.#creditBureauReportData, @Json(name = "expiration") expiration: String? = <this>.#expiration, @Json(name = "extensionList") extensionList: List<ExtensionData>? = <this>.#extensionList, @Json(name = "glimId") glimId: Long? = <this>.#glimId, @Json(name = "groupId") groupId: Long? = <this>.#groupId, @Json(name = "gsimId") gsimId: Long? = <this>.#gsimId, @Json(name = "loanId") loanId: Long? = <this>.#loanId, @Json(name = "officeId") officeId: Long? = <this>.#officeId, @Json(name = "productId") productId: Long? = <this>.#productId, @Json(name = "resourceExternalId") resourceExternalId: ExternalId? = <this>.#resourceExternalId, @Json(name = "resourceId") resourceId: Long? = <this>.#resourceId, @Json(name = "resourceIdentifier") resourceIdentifier: String? = <this>.#resourceIdentifier, @Json(name = "rollbackTransaction") rollbackTransaction: Boolean? = <this>.#rollbackTransaction, @Json(name = "savingsId") savingsId: Long? = <this>.#savingsId, @Json(name = "subResourceExternalId") subResourceExternalId: ExternalId? = <this>.#subResourceExternalId, @Json(name = "subResourceId") subResourceId: Long? = <this>.#subResourceId, @Json(name = "transactionId") transactionId: String? = <this>.#transactionId): InteropTransactionRequestResponseData {
+    return InteropTransactionRequestResponseData(requestCode = requestCode, state = state, transactionCode = transactionCode, changes = changes, clientId = clientId, commandId = commandId, creditBureauReportData = creditBureauReportData, expiration = expiration, extensionList = extensionList, glimId = glimId, groupId = groupId, gsimId = gsimId, loanId = loanId, officeId = officeId, productId = productId, resourceExternalId = resourceExternalId, resourceId = resourceId, resourceIdentifier = resourceIdentifier, rollbackTransaction = rollbackTransaction, savingsId = savingsId, subResourceExternalId = subResourceExternalId, subResourceId = subResourceId, transactionId = transactionId)
+  }
+
+  fun copy$default(@Json(name = "requestCode") /* var */ requestCode: String? = error("") /* ErrorExpression */, @Json(name = "state") /* var */ state: State? = error("") /* ErrorExpression */, @Json(name = "transactionCode") /* var */ transactionCode: String? = error("") /* ErrorExpression */, @Json(name = "changes") /* var */ changes: Map<String, Any>? = error("") /* ErrorExpression */, @Json(name = "clientId") /* var */ clientId: Long? = error("") /* ErrorExpression */, @Json(name = "commandId") /* var */ commandId: Long? = error("") /* ErrorExpression */, @Json(name = "creditBureauReportData") /* var */ creditBureauReportData: Map<String, Any>? = error("") /* ErrorExpression */, @Json(name = "expiration") /* var */ expiration: String? = error("") /* ErrorExpression */, @Json(name = "extensionList") /* var */ extensionList: List<ExtensionData>? = error("") /* ErrorExpression */, @Json(name = "glimId") /* var */ glimId: Long? = error("") /* ErrorExpression */, @Json(name = "groupId") /* var */ groupId: Long? = error("") /* ErrorExpression */, @Json(name = "gsimId") /* var */ gsimId: Long? = error("") /* ErrorExpression */, @Json(name = "loanId") /* var */ loanId: Long? = error("") /* ErrorExpression */, @Json(name = "officeId") /* var */ officeId: Long? = error("") /* ErrorExpression */, @Json(name = "productId") /* var */ productId: Long? = error("") /* ErrorExpression */, @Json(name = "resourceExternalId") /* var */ resourceExternalId: ExternalId? = error("") /* ErrorExpression */, @Json(name = "resourceId") /* var */ resourceId: Long? = error("") /* ErrorExpression */, @Json(name = "resourceIdentifier") /* var */ resourceIdentifier: String? = error("") /* ErrorExpression */, @Json(name = "rollbackTransaction") /* var */ rollbackTransaction: Boolean? = error("") /* ErrorExpression */, @Json(name = "savingsId") /* var */ savingsId: Long? = error("") /* ErrorExpression */, @Json(name = "subResourceExternalId") /* var */ subResourceExternalId: ExternalId? = error("") /* ErrorExpression */, @Json(name = "subResourceId") /* var */ subResourceId: Long? = error("") /* ErrorExpression */, @Json(name = "transactionId") /* var */ transactionId: String? = error("") /* ErrorExpression */, $mask0: Int, $handler: Any?): InteropTransactionRequestResponseData {
+    when {
+      EQEQ(arg0 = $mask0.and(other = 1), arg1 = 0).not() -> requestCode = <this>.#requestCode
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 2), arg1 = 0).not() -> state = <this>.#state
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 4), arg1 = 0).not() -> transactionCode = <this>.#transactionCode
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 8), arg1 = 0).not() -> changes = <this>.#changes
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 16), arg1 = 0).not() -> clientId = <this>.#clientId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 32), arg1 = 0).not() -> commandId = <this>.#commandId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 64), arg1 = 0).not() -> creditBureauReportData = <this>.#creditBureauReportData
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 128), arg1 = 0).not() -> expiration = <this>.#expiration
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 256), arg1 = 0).not() -> extensionList = <this>.#extensionList
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 512), arg1 = 0).not() -> glimId = <this>.#glimId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 1024), arg1 = 0).not() -> groupId = <this>.#groupId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 2048), arg1 = 0).not() -> gsimId = <this>.#gsimId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 4096), arg1 = 0).not() -> loanId = <this>.#loanId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 8192), arg1 = 0).not() -> officeId = <this>.#officeId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 16384), arg1 = 0).not() -> productId = <this>.#productId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 32768), arg1 = 0).not() -> resourceExternalId = <this>.#resourceExternalId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 65536), arg1 = 0).not() -> resourceId = <this>.#resourceId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 131072), arg1 = 0).not() -> resourceIdentifier = <this>.#resourceIdentifier
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 262144), arg1 = 0).not() -> rollbackTransaction = <this>.#rollbackTransaction
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 524288), arg1 = 0).not() -> savingsId = <this>.#savingsId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 1048576), arg1 = 0).not() -> subResourceExternalId = <this>.#subResourceExternalId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 2097152), arg1 = 0).not() -> subResourceId = <this>.#subResourceId
+    }
+    when {
+      EQEQ(arg0 = $mask0.and(other = 4194304), arg1 = 0).not() -> transactionId = <this>.#transactionId
+    }
+    return <this>.copy(requestCode = requestCode /*as String */, state = state /*as State */, transactionCode = transactionCode /*as String */, changes = changes, clientId = clientId, commandId = commandId, creditBureauReportData = creditBureauReportData, expiration = expiration, extensionList = extensionList, glimId = glimId, groupId = groupId, gsimId = gsimId, loanId = loanId, officeId = officeId, productId = productId, resourceExternalId = resourceExternalId, resourceId = resourceId, resourceIdentifier = resourceIdentifier, rollbackTransaction = rollbackTransaction, savingsId = savingsId, subResourceExternalId = subResourceExternalId, subResourceId = subResourceId, transactionId = transactionId)
+  }
+
+  override fun toString(): String {
+    return "InteropTransactionRequestResponseData(requestCode=" + <this>.#requestCode + ", state=" + <this>.#state + ", transactionCode=" + <this>.#transactionCode + ", changes=" + <this>.#changes + ", clientId=" + <this>.#clientId + ", commandId=" + <this>.#commandId + ", creditBureauReportData=" + <this>.#creditBureauReportData + ", expiration=" + <this>.#expiration + ", extensionList=" + <this>.#extensionList + ", glimId=" + <this>.#glimId + ", groupId=" + <this>.#groupId + ", gsimId=" + <this>.#gsimId + ", loanId=" + <this>.#loanId + ", officeId=" + <this>.#officeId + ", productId=" + <this>.#productId + ", resourceExternalId=" + <this>.#resourceExternalId + ", resourceId=" + <this>.#resourceId + ", resourceIdentifier=" + <this>.#resourceIdentifier + ", rollbackTransaction=" + <this>.#rollbackTransaction + ", savingsId=" + <this>.#savingsId + ", subResourceExternalId=" + <this>.#subResourceExternalId + ", subResourceId=" + <this>.#subResourceId + ", transactionId=" + <this>.#transactionId + ")"
+  }
+
+  override fun hashCode(): Int {
+    var result: Int = <this>.#requestCode.hashCode()
+    result = result.times(other = 31).plus(other = <this>.#state.hashCode())
+    result = result.times(other = 31).plus(other = <this>.#transactionCode.hashCode())
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#changes, arg1 = null) -> 0
+      else -> <this>.#changes.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#clientId, arg1 = null) -> 0
+      else -> <this>.#clientId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#commandId, arg1 = null) -> 0
+      else -> <this>.#commandId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#creditBureauReportData, arg1 = null) -> 0
+      else -> <this>.#creditBureauReportData.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#expiration, arg1 = null) -> 0
+      else -> <this>.#expiration.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#extensionList, arg1 = null) -> 0
+      else -> <this>.#extensionList.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#glimId, arg1 = null) -> 0
+      else -> <this>.#glimId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#groupId, arg1 = null) -> 0
+      else -> <this>.#groupId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#gsimId, arg1 = null) -> 0
+      else -> <this>.#gsimId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#loanId, arg1 = null) -> 0
+      else -> <this>.#loanId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#officeId, arg1 = null) -> 0
+      else -> <this>.#officeId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#productId, arg1 = null) -> 0
+      else -> <this>.#productId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#resourceExternalId, arg1 = null) -> 0
+      else -> <this>.#resourceExternalId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#resourceId, arg1 = null) -> 0
+      else -> <this>.#resourceId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#resourceIdentifier, arg1 = null) -> 0
+      else -> <this>.#resourceIdentifier.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#rollbackTransaction, arg1 = null) -> 0
+      else -> <this>.#rollbackTransaction.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#savingsId, arg1 = null) -> 0
+      else -> <this>.#savingsId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#subResourceExternalId, arg1 = null) -> 0
+      else -> <this>.#subResourceExternalId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#subResourceId, arg1 = null) -> 0
+      else -> <this>.#subResourceId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#transactionId, arg1 = null) -> 0
+      else -> <this>.#transactionId.hashCode()
+    })
+    return result
+  }
+
+  override operator fun equals(other: Any?): Boolean {
+    when {
+      EQEQEQ(arg0 = <this>, arg1 = other) -> return true
+    }
+    when {
+      other !is InteropTransactionRequestResponseData -> return false
+    }
+    val tmp0_other_with_cast: InteropTransactionRequestResponseData = other as InteropTransactionRequestResponseData
+    when {
+      EQEQ(arg0 = <this>.#requestCode, arg1 = tmp0_other_with_cast.#requestCode).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#state, arg1 = tmp0_other_with_cast.#state).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#transactionCode, arg1 = tmp0_other_with_cast.#transactionCode).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#changes, arg1 = tmp0_other_with_cast.#changes).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#clientId, arg1 = tmp0_other_with_cast.#clientId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#commandId, arg1 = tmp0_other_with_cast.#commandId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#creditBureauReportData, arg1 = tmp0_other_with_cast.#creditBureauReportData).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#expiration, arg1 = tmp0_other_with_cast.#expiration).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#extensionList, arg1 = tmp0_other_with_cast.#extensionList).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#glimId, arg1 = tmp0_other_with_cast.#glimId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#groupId, arg1 = tmp0_other_with_cast.#groupId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#gsimId, arg1 = tmp0_other_with_cast.#gsimId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#loanId, arg1 = tmp0_other_with_cast.#loanId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#officeId, arg1 = tmp0_other_with_cast.#officeId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#productId, arg1 = tmp0_other_with_cast.#productId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#resourceExternalId, arg1 = tmp0_other_with_cast.#resourceExternalId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#resourceId, arg1 = tmp0_other_with_cast.#resourceId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#resourceIdentifier, arg1 = tmp0_other_with_cast.#resourceIdentifier).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#rollbackTransaction, arg1 = tmp0_other_with_cast.#rollbackTransaction).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#savingsId, arg1 = tmp0_other_with_cast.#savingsId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#subResourceExternalId, arg1 = tmp0_other_with_cast.#subResourceExternalId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#subResourceId, arg1 = tmp0_other_with_cast.#subResourceId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#transactionId, arg1 = tmp0_other_with_cast.#transactionId).not() -> return false
+    }
+    return true
+  }
+
+}
+
+`
+Details: Internal error in body lowering: java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at java.base/java.lang.invoke.DirectMethodHandle.allocateInstance(DirectMethodHandle.java:520)
+	at java.base/java.lang.invoke.LambdaForm$DMH/0x0000000100484000.newInvokeSpecial(LambdaForm$DMH)
+	at java.base/java.lang.invoke.Invokers$Holder.linkToTargetMethod(Invokers$Holder)
+	at org.jetbrains.kotlin.backend.common.lower.DefaultParameterInjector.visitCall(DefaultArgumentStubGenerator.kt:365)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitCall(IrElementTransformerVoid.kt:299)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitCall(IrElementTransformerVoid.kt:19)
+	at org.jetbrains.kotlin.ir.expressions.IrCall.accept(IrCall.kt:24)
+	at org.jetbrains.kotlin.ir.expressions.IrExpression.transform(IrExpression.kt:24)
+	at org.jetbrains.kotlin.ir.expressions.IrBranch.transformChildren(IrBranch.kt:36)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitBranch(IrElementTransformerVoid.kt:548)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitBranch(IrElementTransformerVoid.kt:553)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitBranch(IrElementTransformerVoid.kt:19)
+	at org.jetbrains.kotlin.ir.expressions.IrBranch.accept(IrBranch.kt:25)
+	at org.jetbrains.kotlin.ir.expressions.IrBranch.transform(IrBranch.kt:28)
+	at org.jetbrains.kotlin.ir.expressions.IrBranch.transform(IrBranch.kt:19)
+	at org.jetbrains.kotlin.ir.util.TransformKt.transformInPlace(transform.kt:35)
+	at org.jetbrains.kotlin.ir.expressions.IrWhen.transformChildren(IrWhen.kt:31)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitExpression(IrElementTransformerVoid.kt:166)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitWhen(IrElementTransformerVoid.kt:542)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitWhen(IrElementTransformerVoid.kt:545)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid.visitWhen(IrElementTransformerVoid.kt:19)
+	at org.jetbrains.kotlin.ir.expressions.IrWhen.accept(IrWhen.kt:24)
+	at org.jetbrains.kotlin.ir.expressions.IrExpression.transform(IrExpression.kt:24)
+	at org.jetbrains.kotlin.ir.expressions.IrExpression.transform(IrExpression.kt:20)
+	at org.jetbrains.kotlin.ir.util.TransformKt.transformInPlace(transform.kt:35)
+	at org.jetbrains.kotlin.ir.expressions.IrBlockBody.transformChildren(IrBlockBody.kt:27)
+	at org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoidKt.transformChildrenVoid(IrElementTransformerVoid.kt:565)
+	at org.jetbrains.kotlin.backend.common.lower.DefaultParameterInjector.lower(DefaultArgumentStubGenerator.kt:269)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitBody$lambda$2(Lower.kt:193)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor$$Lambda$1821/0x0000000100b73f38.invoke(Unknown Source)
+	at org.jetbrains.kotlin.ir.declarations.StageController.restrictTo(PersistentApi.kt:11)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitBody(Lower.kt:192)
+Caused by: java.lang.OutOfMemoryError: GC overhead limit exceeded
+	... 32 more
+
+

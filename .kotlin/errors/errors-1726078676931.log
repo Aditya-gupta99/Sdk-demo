@@ -1,0 +1,460 @@
+kotlin version: 2.0.0
+error message: org.jetbrains.kotlin.backend.common.BackendException: Backend Internal error: Exception during IR lowering
+File being compiled: C:/Users/Aditya/Sdk-demo/src/main/kotlin/org/openapitools/client/models/GetStandingInstructionsStandingInstructionIdResponse.kt
+The root cause org.jetbrains.kotlin.backend.common.CompilationException was thrown at: org.jetbrains.kotlin.backend.common.lower.LocalDeclarationsLowering$LocalDeclarationsTransformer.<init>(LocalDeclarationsLowering.kt:274)
+	at org.jetbrains.kotlin.backend.common.CodegenUtil.reportBackendException(CodegenUtil.kt:253)
+	at org.jetbrains.kotlin.backend.common.CodegenUtil.reportBackendException$default(CodegenUtil.kt:236)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invokeSequential(performByIrFile.kt:65)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:52)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:38)
+	at org.jetbrains.kotlin.backend.common.phaser.NamedCompilerPhase.phaseBody(CompilerPhase.kt:166)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:29)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:16)
+	at org.jetbrains.kotlin.backend.common.phaser.NamedCompilerPhase.phaseBody(CompilerPhase.kt:166)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:62)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.invokeLowerings(JvmIrCodegenFactory.kt:358)
+	at org.jetbrains.kotlin.codegen.CodegenFactory.generateModule(CodegenFactory.kt:46)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.generateModuleInFrontendIRMode(JvmIrCodegenFactory.kt:433)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.generateCodeFromIr(jvmCompilerPipeline.kt:241)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:140)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:155)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:50)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:104)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:48)
+	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:453)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:62)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:676)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1661)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.jetbrains.kotlin.backend.common.CompilationException: Back-end: Please report this problem https://kotl.in/issue
+C:/Users/Aditya/Sdk-demo/src/main/kotlin/org/openapitools/client/models/GetStandingInstructionsStandingInstructionIdResponse.kt:63:1
+Problem with `data class GetStandingInstructionsStandingInstructionIdResponse {
+  constructor(@Json(name = "accountDetailId") accountDetailId: Long? = null, @Json(name = "amount") amount: Float? = null, @Json(name = "fromAccount") fromAccount: GetFromAccountStandingInstructionSwagger? = null, @Json(name = "fromAccountType") fromAccountType: GetFromAccountTypeStandingInstructionSwagger? = null, @Json(name = "fromClient") fromClient: GetFromClientStandingInstructionSwagger? = null, @Json(name = "fromOffice") fromOffice: GetFromOfficeStandingInstructionSwagger? = null, @Json(name = "id") id: Long? = null, @Json(name = "instructionType") instructionType: GetInstructionTypeStandingInstructionSwagger? = null, @Json(name = "name") name: String? = null, @Json(name = "priority") priority: GetPriorityStandingInstructionSwagger? = null, @Json(name = "recurrenceFrequency") recurrenceFrequency: GetRecurrenceFrequencyStandingInstructionSwagger? = null, @Json(name = "recurrenceInterval") recurrenceInterval: Int? = null, @Json(name = "recurrenceOnMonthDay") recurrenceOnMonthDay: LocalDate? = null, @Json(name = "recurrenceType") recurrenceType: GetRecurrenceTypeStandingInstructionSwagger? = null, @Json(name = "status") status: GetStatusStandingInstructionSwagger? = null, @Json(name = "toAccount") toAccount: GetToAccountStandingInstructionSwagger? = null, @Json(name = "toAccountType") toAccountType: GetToAccountTypeStandingInstructionSwagger? = null, @Json(name = "toClient") toClient: GetToClientStandingInstructionSwagger? = null, @Json(name = "toOffice") toOffice: GetToOfficeStandingInstructionSwagger? = null, @Json(name = "transferType") transferType: GetTransferTypeStandingInstructionSwagger? = null, @Json(name = "validFrom") validFrom: LocalDate? = null) /* primary */ {
+    super/*Any*/()
+    /* <init>() */
+
+  }
+
+  private /* final field */ val accountDetailId: Long? = accountDetailId
+  fun <get-accountDetailId>(): Long? {
+    return <this>.#accountDetailId
+  }
+
+  private /* final field */ val amount: Float? = amount
+  fun <get-amount>(): Float? {
+    return <this>.#amount
+  }
+
+  private /* final field */ val fromAccount: GetFromAccountStandingInstructionSwagger? = fromAccount
+  fun <get-fromAccount>(): GetFromAccountStandingInstructionSwagger? {
+    return <this>.#fromAccount
+  }
+
+  private /* final field */ val fromAccountType: GetFromAccountTypeStandingInstructionSwagger? = fromAccountType
+  fun <get-fromAccountType>(): GetFromAccountTypeStandingInstructionSwagger? {
+    return <this>.#fromAccountType
+  }
+
+  private /* final field */ val fromClient: GetFromClientStandingInstructionSwagger? = fromClient
+  fun <get-fromClient>(): GetFromClientStandingInstructionSwagger? {
+    return <this>.#fromClient
+  }
+
+  private /* final field */ val fromOffice: GetFromOfficeStandingInstructionSwagger? = fromOffice
+  fun <get-fromOffice>(): GetFromOfficeStandingInstructionSwagger? {
+    return <this>.#fromOffice
+  }
+
+  private /* final field */ val id: Long? = id
+  fun <get-id>(): Long? {
+    return <this>.#id
+  }
+
+  private /* final field */ val instructionType: GetInstructionTypeStandingInstructionSwagger? = instructionType
+  fun <get-instructionType>(): GetInstructionTypeStandingInstructionSwagger? {
+    return <this>.#instructionType
+  }
+
+  private /* final field */ val name: String? = name
+  fun <get-name>(): String? {
+    return <this>.#name
+  }
+
+  private /* final field */ val priority: GetPriorityStandingInstructionSwagger? = priority
+  fun <get-priority>(): GetPriorityStandingInstructionSwagger? {
+    return <this>.#priority
+  }
+
+  private /* final field */ val recurrenceFrequency: GetRecurrenceFrequencyStandingInstructionSwagger? = recurrenceFrequency
+  fun <get-recurrenceFrequency>(): GetRecurrenceFrequencyStandingInstructionSwagger? {
+    return <this>.#recurrenceFrequency
+  }
+
+  private /* final field */ val recurrenceInterval: Int? = recurrenceInterval
+  fun <get-recurrenceInterval>(): Int? {
+    return <this>.#recurrenceInterval
+  }
+
+  private /* final field */ val recurrenceOnMonthDay: LocalDate? = recurrenceOnMonthDay
+  fun <get-recurrenceOnMonthDay>(): LocalDate? {
+    return <this>.#recurrenceOnMonthDay
+  }
+
+  private /* final field */ val recurrenceType: GetRecurrenceTypeStandingInstructionSwagger? = recurrenceType
+  fun <get-recurrenceType>(): GetRecurrenceTypeStandingInstructionSwagger? {
+    return <this>.#recurrenceType
+  }
+
+  private /* final field */ val status: GetStatusStandingInstructionSwagger? = status
+  fun <get-status>(): GetStatusStandingInstructionSwagger? {
+    return <this>.#status
+  }
+
+  private /* final field */ val toAccount: GetToAccountStandingInstructionSwagger? = toAccount
+  fun <get-toAccount>(): GetToAccountStandingInstructionSwagger? {
+    return <this>.#toAccount
+  }
+
+  private /* final field */ val toAccountType: GetToAccountTypeStandingInstructionSwagger? = toAccountType
+  fun <get-toAccountType>(): GetToAccountTypeStandingInstructionSwagger? {
+    return <this>.#toAccountType
+  }
+
+  private /* final field */ val toClient: GetToClientStandingInstructionSwagger? = toClient
+  fun <get-toClient>(): GetToClientStandingInstructionSwagger? {
+    return <this>.#toClient
+  }
+
+  private /* final field */ val toOffice: GetToOfficeStandingInstructionSwagger? = toOffice
+  fun <get-toOffice>(): GetToOfficeStandingInstructionSwagger? {
+    return <this>.#toOffice
+  }
+
+  private /* final field */ val transferType: GetTransferTypeStandingInstructionSwagger? = transferType
+  fun <get-transferType>(): GetTransferTypeStandingInstructionSwagger? {
+    return <this>.#transferType
+  }
+
+  private /* final field */ val validFrom: LocalDate? = validFrom
+  fun <get-validFrom>(): LocalDate? {
+    return <this>.#validFrom
+  }
+
+  operator fun component1(): Long? {
+    return <this>.#accountDetailId
+  }
+
+  operator fun component2(): Float? {
+    return <this>.#amount
+  }
+
+  operator fun component3(): GetFromAccountStandingInstructionSwagger? {
+    return <this>.#fromAccount
+  }
+
+  operator fun component4(): GetFromAccountTypeStandingInstructionSwagger? {
+    return <this>.#fromAccountType
+  }
+
+  operator fun component5(): GetFromClientStandingInstructionSwagger? {
+    return <this>.#fromClient
+  }
+
+  operator fun component6(): GetFromOfficeStandingInstructionSwagger? {
+    return <this>.#fromOffice
+  }
+
+  operator fun component7(): Long? {
+    return <this>.#id
+  }
+
+  operator fun component8(): GetInstructionTypeStandingInstructionSwagger? {
+    return <this>.#instructionType
+  }
+
+  operator fun component9(): String? {
+    return <this>.#name
+  }
+
+  operator fun component10(): GetPriorityStandingInstructionSwagger? {
+    return <this>.#priority
+  }
+
+  operator fun component11(): GetRecurrenceFrequencyStandingInstructionSwagger? {
+    return <this>.#recurrenceFrequency
+  }
+
+  operator fun component12(): Int? {
+    return <this>.#recurrenceInterval
+  }
+
+  operator fun component13(): LocalDate? {
+    return <this>.#recurrenceOnMonthDay
+  }
+
+  operator fun component14(): GetRecurrenceTypeStandingInstructionSwagger? {
+    return <this>.#recurrenceType
+  }
+
+  operator fun component15(): GetStatusStandingInstructionSwagger? {
+    return <this>.#status
+  }
+
+  operator fun component16(): GetToAccountStandingInstructionSwagger? {
+    return <this>.#toAccount
+  }
+
+  operator fun component17(): GetToAccountTypeStandingInstructionSwagger? {
+    return <this>.#toAccountType
+  }
+
+  operator fun component18(): GetToClientStandingInstructionSwagger? {
+    return <this>.#toClient
+  }
+
+  operator fun component19(): GetToOfficeStandingInstructionSwagger? {
+    return <this>.#toOffice
+  }
+
+  operator fun component20(): GetTransferTypeStandingInstructionSwagger? {
+    return <this>.#transferType
+  }
+
+  operator fun component21(): LocalDate? {
+    return <this>.#validFrom
+  }
+
+  fun copy(@Json(name = "accountDetailId") accountDetailId: Long? = <this>.#accountDetailId, @Json(name = "amount") amount: Float? = <this>.#amount, @Json(name = "fromAccount") fromAccount: GetFromAccountStandingInstructionSwagger? = <this>.#fromAccount, @Json(name = "fromAccountType") fromAccountType: GetFromAccountTypeStandingInstructionSwagger? = <this>.#fromAccountType, @Json(name = "fromClient") fromClient: GetFromClientStandingInstructionSwagger? = <this>.#fromClient, @Json(name = "fromOffice") fromOffice: GetFromOfficeStandingInstructionSwagger? = <this>.#fromOffice, @Json(name = "id") id: Long? = <this>.#id, @Json(name = "instructionType") instructionType: GetInstructionTypeStandingInstructionSwagger? = <this>.#instructionType, @Json(name = "name") name: String? = <this>.#name, @Json(name = "priority") priority: GetPriorityStandingInstructionSwagger? = <this>.#priority, @Json(name = "recurrenceFrequency") recurrenceFrequency: GetRecurrenceFrequencyStandingInstructionSwagger? = <this>.#recurrenceFrequency, @Json(name = "recurrenceInterval") recurrenceInterval: Int? = <this>.#recurrenceInterval, @Json(name = "recurrenceOnMonthDay") recurrenceOnMonthDay: LocalDate? = <this>.#recurrenceOnMonthDay, @Json(name = "recurrenceType") recurrenceType: GetRecurrenceTypeStandingInstructionSwagger? = <this>.#recurrenceType, @Json(name = "status") status: GetStatusStandingInstructionSwagger? = <this>.#status, @Json(name = "toAccount") toAccount: GetToAccountStandingInstructionSwagger? = <this>.#toAccount, @Json(name = "toAccountType") toAccountType: GetToAccountTypeStandingInstructionSwagger? = <this>.#toAccountType, @Json(name = "toClient") toClient: GetToClientStandingInstructionSwagger? = <this>.#toClient, @Json(name = "toOffice") toOffice: GetToOfficeStandingInstructionSwagger? = <this>.#toOffice, @Json(name = "transferType") transferType: GetTransferTypeStandingInstructionSwagger? = <this>.#transferType, @Json(name = "validFrom") validFrom: LocalDate? = <this>.#validFrom): GetStandingInstructionsStandingInstructionIdResponse {
+    return GetStandingInstructionsStandingInstructionIdResponse(accountDetailId = accountDetailId, amount = amount, fromAccount = fromAccount, fromAccountType = fromAccountType, fromClient = fromClient, fromOffice = fromOffice, id = id, instructionType = instructionType, name = name, priority = priority, recurrenceFrequency = recurrenceFrequency, recurrenceInterval = recurrenceInterval, recurrenceOnMonthDay = recurrenceOnMonthDay, recurrenceType = recurrenceType, status = status, toAccount = toAccount, toAccountType = toAccountType, toClient = toClient, toOffice = toOffice, transferType = transferType, validFrom = validFrom)
+  }
+
+  override fun toString(): String {
+    return "GetStandingInstructionsStandingInstructionIdResponse(accountDetailId=" + <this>.#accountDetailId + ", amount=" + <this>.#amount + ", fromAccount=" + <this>.#fromAccount + ", fromAccountType=" + <this>.#fromAccountType + ", fromClient=" + <this>.#fromClient + ", fromOffice=" + <this>.#fromOffice + ", id=" + <this>.#id + ", instructionType=" + <this>.#instructionType + ", name=" + <this>.#name + ", priority=" + <this>.#priority + ", recurrenceFrequency=" + <this>.#recurrenceFrequency + ", recurrenceInterval=" + <this>.#recurrenceInterval + ", recurrenceOnMonthDay=" + <this>.#recurrenceOnMonthDay + ", recurrenceType=" + <this>.#recurrenceType + ", status=" + <this>.#status + ", toAccount=" + <this>.#toAccount + ", toAccountType=" + <this>.#toAccountType + ", toClient=" + <this>.#toClient + ", toOffice=" + <this>.#toOffice + ", transferType=" + <this>.#transferType + ", validFrom=" + <this>.#validFrom + ")"
+  }
+
+  override fun hashCode(): Int {
+    var result: Int = when {
+      EQEQ(arg0 = <this>.#accountDetailId, arg1 = null) -> 0
+      else -> <this>.#accountDetailId.hashCode()
+    }
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#amount, arg1 = null) -> 0
+      else -> <this>.#amount.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#fromAccount, arg1 = null) -> 0
+      else -> <this>.#fromAccount.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#fromAccountType, arg1 = null) -> 0
+      else -> <this>.#fromAccountType.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#fromClient, arg1 = null) -> 0
+      else -> <this>.#fromClient.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#fromOffice, arg1 = null) -> 0
+      else -> <this>.#fromOffice.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#id, arg1 = null) -> 0
+      else -> <this>.#id.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#instructionType, arg1 = null) -> 0
+      else -> <this>.#instructionType.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#name, arg1 = null) -> 0
+      else -> <this>.#name.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#priority, arg1 = null) -> 0
+      else -> <this>.#priority.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#recurrenceFrequency, arg1 = null) -> 0
+      else -> <this>.#recurrenceFrequency.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#recurrenceInterval, arg1 = null) -> 0
+      else -> <this>.#recurrenceInterval.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#recurrenceOnMonthDay, arg1 = null) -> 0
+      else -> <this>.#recurrenceOnMonthDay.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#recurrenceType, arg1 = null) -> 0
+      else -> <this>.#recurrenceType.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#status, arg1 = null) -> 0
+      else -> <this>.#status.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#toAccount, arg1 = null) -> 0
+      else -> <this>.#toAccount.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#toAccountType, arg1 = null) -> 0
+      else -> <this>.#toAccountType.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#toClient, arg1 = null) -> 0
+      else -> <this>.#toClient.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#toOffice, arg1 = null) -> 0
+      else -> <this>.#toOffice.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#transferType, arg1 = null) -> 0
+      else -> <this>.#transferType.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#validFrom, arg1 = null) -> 0
+      else -> <this>.#validFrom.hashCode()
+    })
+    return result
+  }
+
+  override operator fun equals(other: Any?): Boolean {
+    when {
+      EQEQEQ(arg0 = <this>, arg1 = other) -> return true
+    }
+    when {
+      other !is GetStandingInstructionsStandingInstructionIdResponse -> return false
+    }
+    val tmp0_other_with_cast: GetStandingInstructionsStandingInstructionIdResponse = other as GetStandingInstructionsStandingInstructionIdResponse
+    when {
+      EQEQ(arg0 = <this>.#accountDetailId, arg1 = tmp0_other_with_cast.#accountDetailId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#amount, arg1 = tmp0_other_with_cast.#amount).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#fromAccount, arg1 = tmp0_other_with_cast.#fromAccount).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#fromAccountType, arg1 = tmp0_other_with_cast.#fromAccountType).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#fromClient, arg1 = tmp0_other_with_cast.#fromClient).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#fromOffice, arg1 = tmp0_other_with_cast.#fromOffice).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#id, arg1 = tmp0_other_with_cast.#id).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#instructionType, arg1 = tmp0_other_with_cast.#instructionType).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#name, arg1 = tmp0_other_with_cast.#name).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#priority, arg1 = tmp0_other_with_cast.#priority).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#recurrenceFrequency, arg1 = tmp0_other_with_cast.#recurrenceFrequency).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#recurrenceInterval, arg1 = tmp0_other_with_cast.#recurrenceInterval).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#recurrenceOnMonthDay, arg1 = tmp0_other_with_cast.#recurrenceOnMonthDay).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#recurrenceType, arg1 = tmp0_other_with_cast.#recurrenceType).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#status, arg1 = tmp0_other_with_cast.#status).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#toAccount, arg1 = tmp0_other_with_cast.#toAccount).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#toAccountType, arg1 = tmp0_other_with_cast.#toAccountType).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#toClient, arg1 = tmp0_other_with_cast.#toClient).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#toOffice, arg1 = tmp0_other_with_cast.#toOffice).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#transferType, arg1 = tmp0_other_with_cast.#transferType).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#validFrom, arg1 = tmp0_other_with_cast.#validFrom).not() -> return false
+    }
+    return true
+  }
+
+}
+
+`
+Details: Internal error in body lowering: java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at org.jetbrains.kotlin.backend.common.lower.LocalDeclarationsLowering$LocalDeclarationsTransformer.<init>(LocalDeclarationsLowering.kt:274)
+	at org.jetbrains.kotlin.backend.common.lower.LocalDeclarationsLowering$LocalDeclarationsTransformer.<init>(LocalDeclarationsLowering.kt:260)
+	at org.jetbrains.kotlin.backend.common.lower.LocalDeclarationsLowering.lower(LocalDeclarationsLowering.kt:92)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitBody$lambda$2(Lower.kt:193)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor$$Lambda$1821/0x0000000100b73f38.invoke(Unknown Source)
+	at org.jetbrains.kotlin.ir.declarations.StageController.restrictTo(PersistentApi.kt:11)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitBody(Lower.kt:192)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitBody(Lower.kt:171)
+	at org.jetbrains.kotlin.ir.visitors.IrElementVisitor$DefaultImpls.visitExpressionBody(IrElementVisitor.kt:89)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitExpressionBody(Lower.kt:171)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitExpressionBody(Lower.kt:171)
+	at org.jetbrains.kotlin.ir.expressions.IrExpressionBody.accept(IrExpressionBody.kt:21)
+	at org.jetbrains.kotlin.ir.declarations.IrField.acceptChildren(IrField.kt:43)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitDeclaration(Lower.kt:180)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitDeclaration(Lower.kt:171)
+	at org.jetbrains.kotlin.ir.visitors.IrElementVisitor$DefaultImpls.visitField(IrElementVisitor.kt:50)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitField(Lower.kt:171)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitField(Lower.kt:171)
+	at org.jetbrains.kotlin.ir.declarations.IrField.accept(IrField.kt:40)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitClass(Lower.kt:186)
+	at org.jetbrains.kotlin.backend.common.BodyLoweringVisitor.visitClass(Lower.kt:171)
+	at org.jetbrains.kotlin.ir.declarations.IrClass.accept(IrClass.kt:72)
+	at org.jetbrains.kotlin.backend.common.LowerKt.runOnFilePostfix(Lower.kt:150)
+	at org.jetbrains.kotlin.backend.common.LowerKt.runOnFilePostfix$default(Lower.kt:143)
+	at org.jetbrains.kotlin.backend.common.lower.LocalDeclarationsLowering.lower(LocalDeclarationsLowering.kt:80)
+	at org.jetbrains.kotlin.backend.common.phaser.PhaseBuildersKt.makeIrFilePhase$lambda$5(PhaseBuilders.kt:114)
+	at org.jetbrains.kotlin.backend.common.phaser.PhaseBuildersKt$$Lambda$175/0x000000010021a240.invoke(Unknown Source)
+	at org.jetbrains.kotlin.backend.common.phaser.PhaseBuildersKt$createSimpleNamedCompilerPhase$1.phaseBody(PhaseBuilders.kt:71)
+	at org.jetbrains.kotlin.backend.common.phaser.SimpleNamedCompilerPhase.phaseBody(CompilerPhase.kt:226)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invokeSequential(performByIrFile.kt:62)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:52)
+Caused by: java.lang.OutOfMemoryError: GC overhead limit exceeded
+	... 32 more
+
+
