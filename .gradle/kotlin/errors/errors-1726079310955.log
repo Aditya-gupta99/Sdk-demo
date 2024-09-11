@@ -1,0 +1,275 @@
+kotlin version: 2.0.0
+error message: org.jetbrains.kotlin.backend.common.BackendException: Backend Internal error: Exception during IR lowering
+File being compiled: C:/Users/Aditya/Sdk-demo/src/main/kotlin/org/openapitools/client/models/GetTellersResponse.kt
+The root cause org.jetbrains.kotlin.backend.common.CompilationException was thrown at: unknown
+	at org.jetbrains.kotlin.backend.common.CodegenUtil.reportBackendException(CodegenUtil.kt:253)
+	at org.jetbrains.kotlin.backend.common.CodegenUtil.reportBackendException$default(CodegenUtil.kt:236)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invokeSequential(performByIrFile.kt:65)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:52)
+	at org.jetbrains.kotlin.backend.common.phaser.PerformByIrFilePhase.invoke(performByIrFile.kt:38)
+	at org.jetbrains.kotlin.backend.common.phaser.NamedCompilerPhase.phaseBody(CompilerPhase.kt:166)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:29)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:16)
+	at org.jetbrains.kotlin.backend.common.phaser.NamedCompilerPhase.phaseBody(CompilerPhase.kt:166)
+	at org.jetbrains.kotlin.backend.common.phaser.AbstractNamedCompilerPhase.invoke(CompilerPhase.kt:113)
+	at org.jetbrains.kotlin.backend.common.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:62)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.invokeLowerings(JvmIrCodegenFactory.kt:358)
+	at org.jetbrains.kotlin.codegen.CodegenFactory.generateModule(CodegenFactory.kt:46)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.generateModuleInFrontendIRMode(JvmIrCodegenFactory.kt:433)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.generateCodeFromIr(jvmCompilerPipeline.kt:241)
+	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:140)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:155)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:50)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:104)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:48)
+	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:453)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:62)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:676)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1661)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.jetbrains.kotlin.backend.common.CompilationException: Back-end: Please report this problem https://kotl.in/issue
+C:/Users/Aditya/Sdk-demo/src/main/kotlin/org/openapitools/client/models/GetTellersResponse.kt:36:1
+Problem with `data class GetTellersResponse {
+  constructor(@Json(name = "creditAccountId") creditAccountId: Long? = null, @Json(name = "debitAccountId") debitAccountId: Long? = null, @Json(name = "id") id: Long? = null, @Json(name = "name") name: String? = null, @Json(name = "officeId") officeId: Long? = null, @Json(name = "officeName") officeName: String? = null, @Json(name = "startDate") startDate: LocalDate? = null, @Json(name = "status") status: Status? = null) /* primary */ {
+    super/*Any*/()
+    /* <init>() */
+
+  }
+
+  private /* final field */ val creditAccountId: Long? = creditAccountId
+  fun <get-creditAccountId>(): Long? {
+    return <this>.#creditAccountId
+  }
+
+  private /* final field */ val debitAccountId: Long? = debitAccountId
+  fun <get-debitAccountId>(): Long? {
+    return <this>.#debitAccountId
+  }
+
+  private /* final field */ val id: Long? = id
+  fun <get-id>(): Long? {
+    return <this>.#id
+  }
+
+  private /* final field */ val name: String? = name
+  fun <get-name>(): String? {
+    return <this>.#name
+  }
+
+  private /* final field */ val officeId: Long? = officeId
+  fun <get-officeId>(): Long? {
+    return <this>.#officeId
+  }
+
+  private /* final field */ val officeName: String? = officeName
+  fun <get-officeName>(): String? {
+    return <this>.#officeName
+  }
+
+  private /* final field */ val startDate: LocalDate? = startDate
+  fun <get-startDate>(): LocalDate? {
+    return <this>.#startDate
+  }
+
+  private /* final field */ val status: Status? = status
+  fun <get-status>(): Status? {
+    return <this>.#status
+  }
+
+  @JsonClass(generateAdapter = false)
+  enum class Status : Enum<Status> {
+    private constructor(value: String) /* primary */ {
+      super/*Enum*/<Status>()
+      /* <init>() */
+
+    }
+
+    private /* final field */ val value: String = value
+    fun <get-value>(): String {
+      return <this>.#value
+    }
+
+    @Json(name = "INVALID")
+    INVALID = Status(value = "INVALID")
+
+    @Json(name = "PENDING")
+    PENDING = Status(value = "PENDING")
+
+    @Json(name = "ACTIVE")
+    ACTIVE = Status(value = "ACTIVE")
+
+    @Json(name = "INACTIVE")
+    INACTIVE = Status(value = "INACTIVE")
+
+    @Json(name = "CLOSED")
+    CLOSED = Status(value = "CLOSED")
+
+    fun values(): Array<Status> /* Synthetic body for ENUM_VALUES */
+
+    fun valueOf(value: String): Status /* Synthetic body for ENUM_VALUEOF */
+
+    fun <get-entries>(): EnumEntries<Status> /* Synthetic body for ENUM_ENTRIES */
+
+    protected /* fake */ override fun clone(): Any
+
+    /* fake */ override operator fun compareTo(other: Status): Int
+
+    /* fake */ override operator fun equals(other: Any?): Boolean
+
+    /* fake */ override fun hashCode(): Int
+
+    /* fake */ override fun toString(): String
+
+    /* fake */ override fun <get-name>(): String
+
+    /* fake */ override fun <get-ordinal>(): Int
+
+    /* fake */ override fun getDeclaringClass(): @FlexibleNullability Class<@FlexibleNullability Status?>?
+
+    /* fake */ override fun describeConstable(): @FlexibleNullability Optional<@FlexibleNullability EnumDesc<@FlexibleNullability Status?>?>?
+
+    protected_and_package /* fake */ override fun finalize()
+
+  }
+
+  operator fun component1(): Long? {
+    return <this>.#creditAccountId
+  }
+
+  operator fun component2(): Long? {
+    return <this>.#debitAccountId
+  }
+
+  operator fun component3(): Long? {
+    return <this>.#id
+  }
+
+  operator fun component4(): String? {
+    return <this>.#name
+  }
+
+  operator fun component5(): Long? {
+    return <this>.#officeId
+  }
+
+  operator fun component6(): String? {
+    return <this>.#officeName
+  }
+
+  operator fun component7(): LocalDate? {
+    return <this>.#startDate
+  }
+
+  operator fun component8(): Status? {
+    return <this>.#status
+  }
+
+  fun copy(@Json(name = "creditAccountId") creditAccountId: Long? = <this>.#creditAccountId, @Json(name = "debitAccountId") debitAccountId: Long? = <this>.#debitAccountId, @Json(name = "id") id: Long? = <this>.#id, @Json(name = "name") name: String? = <this>.#name, @Json(name = "officeId") officeId: Long? = <this>.#officeId, @Json(name = "officeName") officeName: String? = <this>.#officeName, @Json(name = "startDate") startDate: LocalDate? = <this>.#startDate, @Json(name = "status") status: Status? = <this>.#status): GetTellersResponse {
+    return GetTellersResponse(creditAccountId = creditAccountId, debitAccountId = debitAccountId, id = id, name = name, officeId = officeId, officeName = officeName, startDate = startDate, status = status)
+  }
+
+  override fun toString(): String {
+    return "GetTellersResponse(creditAccountId=" + <this>.#creditAccountId + ", debitAccountId=" + <this>.#debitAccountId + ", id=" + <this>.#id + ", name=" + <this>.#name + ", officeId=" + <this>.#officeId + ", officeName=" + <this>.#officeName + ", startDate=" + <this>.#startDate + ", status=" + <this>.#status + ")"
+  }
+
+  override fun hashCode(): Int {
+    var result: Int = when {
+      EQEQ(arg0 = <this>.#creditAccountId, arg1 = null) -> 0
+      else -> <this>.#creditAccountId.hashCode()
+    }
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#debitAccountId, arg1 = null) -> 0
+      else -> <this>.#debitAccountId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#id, arg1 = null) -> 0
+      else -> <this>.#id.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#name, arg1 = null) -> 0
+      else -> <this>.#name.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#officeId, arg1 = null) -> 0
+      else -> <this>.#officeId.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#officeName, arg1 = null) -> 0
+      else -> <this>.#officeName.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#startDate, arg1 = null) -> 0
+      else -> <this>.#startDate.hashCode()
+    })
+    result = result.times(other = 31).plus(other = when {
+      EQEQ(arg0 = <this>.#status, arg1 = null) -> 0
+      else -> <this>.#status.hashCode()
+    })
+    return result
+  }
+
+  override operator fun equals(other: Any?): Boolean {
+    when {
+      EQEQEQ(arg0 = <this>, arg1 = other) -> return true
+    }
+    when {
+      other !is GetTellersResponse -> return false
+    }
+    val tmp0_other_with_cast: GetTellersResponse = other as GetTellersResponse
+    when {
+      EQEQ(arg0 = <this>.#creditAccountId, arg1 = tmp0_other_with_cast.#creditAccountId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#debitAccountId, arg1 = tmp0_other_with_cast.#debitAccountId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#id, arg1 = tmp0_other_with_cast.#id).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#name, arg1 = tmp0_other_with_cast.#name).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#officeId, arg1 = tmp0_other_with_cast.#officeId).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#officeName, arg1 = tmp0_other_with_cast.#officeName).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#startDate, arg1 = tmp0_other_with_cast.#startDate).not() -> return false
+    }
+    when {
+      EQEQ(arg0 = <this>.#status, arg1 = tmp0_other_with_cast.#status).not() -> return false
+    }
+    return true
+  }
+
+}
+
+`
+Details: Internal error in body lowering: java.lang.OutOfMemoryError: GC overhead limit exceeded
+Caused by: java.lang.OutOfMemoryError: GC overhead limit exceeded
+
+
