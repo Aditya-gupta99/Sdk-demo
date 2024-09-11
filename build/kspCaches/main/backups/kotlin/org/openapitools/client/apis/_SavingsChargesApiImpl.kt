@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -35,8 +35,10 @@ import org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesS
 import org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SavingsChargesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SavingsChargesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun addSavingsAccountCharge(savingsAccountId: Long,
       postSavingsAccountsSavingsAccountIdChargesRequest: PostSavingsAccountsSavingsAccountIdChargesRequest):
@@ -44,19 +46,15 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges")
         }
         setBody(postSavingsAccountsSavingsAccountIdChargesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesResponse,
-        org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSavingsAccountsSavingsAccountIdChargesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteSavingsAccountCharge(savingsAccountId: Long,
@@ -65,18 +63,15 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges/${"$savingsAccountChargeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse",
     typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse,
-        org.openapitools.client.models.DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(_typeData,_ext)!!
+        typeInfo<DeleteSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun payOrWaiveSavingsAccountCharge(
@@ -88,20 +83,16 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges/${"$savingsAccountChargeId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse,
-        org.openapitools.client.models.PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllSavingsAccountCharges(savingsAccountId: Long,
@@ -109,19 +100,15 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges")
         chargeStatus?.let{ parameter("chargeStatus", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesResponse>,
-        org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetSavingsAccountsSavingsAccountIdChargesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveSavingsAccountCharge(savingsAccountId: Long,
@@ -130,18 +117,14 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges/${"$savingsAccountChargeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse,
-        org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate18(savingsAccountId: Long):
@@ -149,18 +132,14 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesTemplateResponse,
-        org.openapitools.client.models.GetSavingsAccountsSavingsAccountIdChargesTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSavingsAccountsSavingsAccountIdChargesTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateSavingsAccountCharge(
@@ -171,22 +150,20 @@ public class _SavingsChargesApiImpl : SavingsChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsAccountId".encodeURLPath()}/charges/${"$savingsAccountChargeId".encodeURLPath()}")
         }
         setBody(putSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse,
-        org.openapitools.client.models.PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutSavingsAccountsSavingsAccountIdChargesSavingsAccountChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSavingsChargesApi(): SavingsChargesApi =
-    this.create(_SavingsChargesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSavingsChargesApi) })
+public class _SavingsChargesApiProvider : ClassProvider<SavingsChargesApi> {
+  override fun create(_ktorfit: Ktorfit): SavingsChargesApi = _SavingsChargesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSavingsChargesApi(): SavingsChargesApi = _SavingsChargesApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,8 +26,10 @@ import kotlin.Suppress
 import org.openapitools.client.models.PostLoansLoanIdScheduleResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanReschedulingApiImpl : LoanReschedulingApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanReschedulingApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanReschedulingApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun calculateLoanScheduleOrSubmitVariableSchedule(
     loanId: Long,
@@ -37,20 +39,20 @@ public class _LoanReschedulingApiImpl : LoanReschedulingApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/schedule")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/schedule")
         command?.let{ parameter("command", "$it") }
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdScheduleResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdScheduleResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdScheduleResponse,
-        org.openapitools.client.models.PostLoansLoanIdScheduleResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdScheduleResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createLoanReschedulingApi(): LoanReschedulingApi =
-    this.create(_LoanReschedulingApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanReschedulingApi) })
+public class _LoanReschedulingApiProvider : ClassProvider<LoanReschedulingApi> {
+  override fun create(_ktorfit: Ktorfit): LoanReschedulingApi = _LoanReschedulingApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createLoanReschedulingApi(): LoanReschedulingApi = _LoanReschedulingApiImpl(this)

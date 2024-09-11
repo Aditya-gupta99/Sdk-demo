@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,88 +31,78 @@ import org.openapitools.client.models.PutAccountNumberFormatsRequest
 import org.openapitools.client.models.PutAccountNumberFormatsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _AccountNumberFormatApiImpl : AccountNumberFormatApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _AccountNumberFormatApiImpl(
+  private val _ktorfit: Ktorfit,
+) : AccountNumberFormatApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create(postAccountNumberFormatsRequest: PostAccountNumberFormatsRequest?):
       PostAccountNumberFormatsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountnumberformats")
+        takeFrom(_ktorfit.baseUrl + "v1/accountnumberformats")
         }
         setBody(postAccountNumberFormatsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostAccountNumberFormatsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostAccountNumberFormatsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAccountNumberFormatsResponse,
-        org.openapitools.client.models.PostAccountNumberFormatsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAccountNumberFormatsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete(accountNumberFormatId: Long): DeleteAccountNumberFormatsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/accountnumberformats/${"$accountNumberFormatId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteAccountNumberFormatsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteAccountNumberFormatsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteAccountNumberFormatsResponse,
-        org.openapitools.client.models.DeleteAccountNumberFormatsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteAccountNumberFormatsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll3(): List<GetAccountNumberFormatsIdResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountnumberformats")
+        takeFrom(_ktorfit.baseUrl + "v1/accountnumberformats")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetAccountNumberFormatsIdResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetAccountNumberFormatsIdResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetAccountNumberFormatsIdResponse>,
-        org.openapitools.client.models.GetAccountNumberFormatsIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetAccountNumberFormatsIdResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne(accountNumberFormatId: Long): GetAccountNumberFormatsIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/accountnumberformats/${"$accountNumberFormatId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountNumberFormatsIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountNumberFormatsIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountNumberFormatsIdResponse,
-        org.openapitools.client.models.GetAccountNumberFormatsIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountNumberFormatsIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate2(): GetAccountNumberFormatsResponseTemplate {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountnumberformats/template")
+        takeFrom(_ktorfit.baseUrl + "v1/accountnumberformats/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountNumberFormatsResponseTemplate",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountNumberFormatsResponseTemplate>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountNumberFormatsResponseTemplate,
-        org.openapitools.client.models.GetAccountNumberFormatsResponseTemplate>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountNumberFormatsResponseTemplate>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update1(accountNumberFormatId: Long,
@@ -121,20 +111,22 @@ public class _AccountNumberFormatApiImpl : AccountNumberFormatApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/accountnumberformats/${"$accountNumberFormatId".encodeURLPath()}")
         }
         setBody(putAccountNumberFormatsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutAccountNumberFormatsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutAccountNumberFormatsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutAccountNumberFormatsResponse,
-        org.openapitools.client.models.PutAccountNumberFormatsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutAccountNumberFormatsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _AccountNumberFormatApiProvider : ClassProvider<AccountNumberFormatApi> {
+  override fun create(_ktorfit: Ktorfit): AccountNumberFormatApi =
+      _AccountNumberFormatApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createAccountNumberFormatApi(): AccountNumberFormatApi =
-    this.create(_AccountNumberFormatApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createAccountNumberFormatApi) })
+    _AccountNumberFormatApiImpl(this)

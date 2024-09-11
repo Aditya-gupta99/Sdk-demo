@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,70 +30,63 @@ import org.openapitools.client.models.PutTaxesGroupTaxGroupIdRequest
 import org.openapitools.client.models.PutTaxesGroupTaxGroupIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _TaxGroupApiImpl : TaxGroupApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _TaxGroupApiImpl(
+  private val _ktorfit: Ktorfit,
+) : TaxGroupApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createTaxGroup(postTaxesGroupRequest: PostTaxesGroupRequest):
       PostTaxesGroupResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/group")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/group")
         }
         setBody(postTaxesGroupRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostTaxesGroupResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostTaxesGroupResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTaxesGroupResponse,
-        org.openapitools.client.models.PostTaxesGroupResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTaxesGroupResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllTaxGroups(): List<GetTaxesGroupResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/group")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/group")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetTaxesGroupResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetTaxesGroupResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetTaxesGroupResponse>,
-        org.openapitools.client.models.GetTaxesGroupResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetTaxesGroupResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTaxGroup(taxGroupId: Long): GetTaxesGroupResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/group/${"$taxGroupId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/group/${"$taxGroupId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTaxesGroupResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTaxesGroupResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTaxesGroupResponse,
-        org.openapitools.client.models.GetTaxesGroupResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTaxesGroupResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate22(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/group/template")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/group/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateTaxGroup(taxGroupId: Long,
@@ -102,18 +95,19 @@ public class _TaxGroupApiImpl : TaxGroupApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/group/${"$taxGroupId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/group/${"$taxGroupId".encodeURLPath()}")
         }
         setBody(putTaxesGroupTaxGroupIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutTaxesGroupTaxGroupIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutTaxesGroupTaxGroupIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutTaxesGroupTaxGroupIdResponse,
-        org.openapitools.client.models.PutTaxesGroupTaxGroupIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutTaxesGroupTaxGroupIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createTaxGroupApi(): TaxGroupApi = this.create(_TaxGroupApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createTaxGroupApi) })
+public class _TaxGroupApiProvider : ClassProvider<TaxGroupApi> {
+  override fun create(_ktorfit: Ktorfit): TaxGroupApi = _TaxGroupApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createTaxGroupApi(): TaxGroupApi = _TaxGroupApiImpl(this)

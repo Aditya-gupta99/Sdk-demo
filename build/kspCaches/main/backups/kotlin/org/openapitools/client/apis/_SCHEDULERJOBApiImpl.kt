@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import org.openapitools.client.models.ExecuteJobRequest
 import org.openapitools.client.models.GetJobsJobIDJobRunHistoryResponse
@@ -30,8 +31,10 @@ import org.openapitools.client.models.GetJobsResponse
 import org.openapitools.client.models.PutJobsJobIDRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _SCHEDULERJOBApiImpl : SCHEDULERJOBApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SCHEDULERJOBApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SCHEDULERJOBApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun executeJob(
     jobId: Long,
@@ -41,31 +44,28 @@ public class _SCHEDULERJOBApiImpl : SCHEDULERJOBApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(executeJobRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll8(): List<GetJobsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetJobsResponse>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.GetJobsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetJobsResponse>,
-        org.openapitools.client.models.GetJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetJobsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveHistory(
@@ -78,7 +78,7 @@ public class _SCHEDULERJOBApiImpl : SCHEDULERJOBApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}/runhistory")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}/runhistory")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         orderBy?.let{ parameter("orderBy", "$it") }
@@ -86,44 +86,41 @@ public class _SCHEDULERJOBApiImpl : SCHEDULERJOBApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetJobsJobIDJobRunHistoryResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetJobsJobIDJobRunHistoryResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetJobsJobIDJobRunHistoryResponse,
-        org.openapitools.client.models.GetJobsJobIDJobRunHistoryResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetJobsJobIDJobRunHistoryResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne5(jobId: Long): GetJobsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetJobsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetJobsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetJobsResponse,
-        org.openapitools.client.models.GetJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetJobsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateJobDetail(jobId: Long, putJobsJobIDRequest: PutJobsJobIDRequest) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobId".encodeURLPath()}")
         }
         setBody(putJobsJobIDRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSCHEDULERJOBApi(): SCHEDULERJOBApi =
-    this.create(_SCHEDULERJOBApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSCHEDULERJOBApi) })
+public class _SCHEDULERJOBApiProvider : ClassProvider<SCHEDULERJOBApi> {
+  override fun create(_ktorfit: Ktorfit): SCHEDULERJOBApi = _SCHEDULERJOBApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSCHEDULERJOBApi(): SCHEDULERJOBApi = _SCHEDULERJOBApiImpl(this)

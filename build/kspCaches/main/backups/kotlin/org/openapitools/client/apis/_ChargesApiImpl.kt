@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,85 +31,75 @@ import org.openapitools.client.models.PutChargesChargeIdRequest
 import org.openapitools.client.models.PutChargesChargeIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ChargesApiImpl : ChargesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ChargesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ChargesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createCharge(postChargesRequest: PostChargesRequest): PostChargesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/charges")
+        takeFrom(_ktorfit.baseUrl + "v1/charges")
         }
         setBody(postChargesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostChargesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostChargesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostChargesResponse,
-        org.openapitools.client.models.PostChargesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostChargesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteCharge(chargeId: Long): DeleteChargesChargeIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/charges/${"$chargeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/charges/${"$chargeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteChargesChargeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteChargesChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteChargesChargeIdResponse,
-        org.openapitools.client.models.DeleteChargesChargeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteChargesChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllCharges(): List<GetChargesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/charges")
+        takeFrom(_ktorfit.baseUrl + "v1/charges")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetChargesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetChargesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetChargesResponse>,
-        org.openapitools.client.models.GetChargesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetChargesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveCharge(chargeId: Long): GetChargesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/charges/${"$chargeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/charges/${"$chargeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetChargesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetChargesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetChargesResponse,
-        org.openapitools.client.models.GetChargesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetChargesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveNewChargeDetails(): GetChargesTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/charges/template")
+        takeFrom(_ktorfit.baseUrl + "v1/charges/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetChargesTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetChargesTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetChargesTemplateResponse,
-        org.openapitools.client.models.GetChargesTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetChargesTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateCharge(chargeId: Long,
@@ -117,18 +107,19 @@ public class _ChargesApiImpl : ChargesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/charges/${"$chargeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/charges/${"$chargeId".encodeURLPath()}")
         }
         setBody(putChargesChargeIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutChargesChargeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutChargesChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutChargesChargeIdResponse,
-        org.openapitools.client.models.PutChargesChargeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutChargesChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createChargesApi(): ChargesApi = this.create(_ChargesApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createChargesApi) })
+public class _ChargesApiProvider : ClassProvider<ChargesApi> {
+  override fun create(_ktorfit: Ktorfit): ChargesApi = _ChargesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createChargesApi(): ChargesApi = _ChargesApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,8 +24,10 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _CashiersApiImpl : CashiersApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _CashiersApiImpl(
+  private val _ktorfit: Ktorfit,
+) : CashiersApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun getCashierData(
     officeId: Long?,
@@ -36,7 +38,7 @@ public class _CashiersApiImpl : CashiersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/cashiers")
+        takeFrom(_ktorfit.baseUrl + "v1/cashiers")
         officeId?.let{ parameter("officeId", "$it") }
         tellerId?.let{ parameter("tellerId", "$it") }
         staffId?.let{ parameter("staffId", "$it") }
@@ -44,12 +46,14 @@ public class _CashiersApiImpl : CashiersApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createCashiersApi(): CashiersApi = this.create(_CashiersApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createCashiersApi) })
+public class _CashiersApiProvider : ClassProvider<CashiersApi> {
+  override fun create(_ktorfit: Ktorfit): CashiersApi = _CashiersApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createCashiersApi(): CashiersApi = _CashiersApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,8 +32,10 @@ import org.openapitools.client.models.PutProvisioningEntriesRequest
 import org.openapitools.client.models.PutProvisioningEntriesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ProvisioningEntriesApiImpl : ProvisioningEntriesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ProvisioningEntriesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ProvisioningEntriesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createProvisioningEntries(postProvisioningEntriesRequest: PostProvisioningEntriesRequest?):
@@ -41,16 +43,14 @@ public class _ProvisioningEntriesApiImpl : ProvisioningEntriesApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/provisioningentries")
+        takeFrom(_ktorfit.baseUrl + "v1/provisioningentries")
         }
         setBody(postProvisioningEntriesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostProvisioningEntriesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostProvisioningEntriesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostProvisioningEntriesResponse,
-        org.openapitools.client.models.PostProvisioningEntriesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostProvisioningEntriesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun modifyProvisioningEntry(
@@ -61,17 +61,15 @@ public class _ProvisioningEntriesApiImpl : ProvisioningEntriesApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/provisioningentries/${"$entryId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/provisioningentries/${"$entryId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(putProvisioningEntriesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutProvisioningEntriesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutProvisioningEntriesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutProvisioningEntriesResponse,
-        org.openapitools.client.models.PutProvisioningEntriesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutProvisioningEntriesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllProvisioningEntries(offset: Int?, limit: Int?):
@@ -79,19 +77,15 @@ public class _ProvisioningEntriesApiImpl : ProvisioningEntriesApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/provisioningentries")
+        takeFrom(_ktorfit.baseUrl + "v1/provisioningentries")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.ProvisioningEntryData>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.ProvisioningEntryData>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.ProvisioningEntryData>,
-        org.openapitools.client.models.ProvisioningEntryData>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<ProvisioningEntryData>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveProviioningEntries(
@@ -105,7 +99,7 @@ public class _ProvisioningEntriesApiImpl : ProvisioningEntriesApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/provisioningentries/entries")
+        takeFrom(_ktorfit.baseUrl + "v1/provisioningentries/entries")
         entryId?.let{ parameter("entryId", "$it") }
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -115,29 +109,29 @@ public class _ProvisioningEntriesApiImpl : ProvisioningEntriesApi, KtorfitInterf
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.LoanProductProvisioningEntryData",
-    typeInfo = typeInfo<org.openapitools.client.models.LoanProductProvisioningEntryData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.LoanProductProvisioningEntryData,
-        org.openapitools.client.models.LoanProductProvisioningEntryData>(_typeData,_ext)!!
+    typeInfo = typeInfo<LoanProductProvisioningEntryData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveProvisioningEntry(entryId: Long): ProvisioningEntryData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/provisioningentries/${"$entryId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/provisioningentries/${"$entryId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.ProvisioningEntryData",
-    typeInfo = typeInfo<org.openapitools.client.models.ProvisioningEntryData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.ProvisioningEntryData,
-        org.openapitools.client.models.ProvisioningEntryData>(_typeData,_ext)!!
+    typeInfo = typeInfo<ProvisioningEntryData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _ProvisioningEntriesApiProvider : ClassProvider<ProvisioningEntriesApi> {
+  override fun create(_ktorfit: Ktorfit): ProvisioningEntriesApi =
+      _ProvisioningEntriesApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createProvisioningEntriesApi(): ProvisioningEntriesApi =
-    this.create(_ProvisioningEntriesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createProvisioningEntriesApi) })
+    _ProvisioningEntriesApiImpl(this)

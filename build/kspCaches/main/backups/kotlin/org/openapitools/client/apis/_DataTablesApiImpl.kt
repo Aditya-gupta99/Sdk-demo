@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -39,23 +39,24 @@ import org.openapitools.client.models.PutDataTablesRequest
 import org.openapitools.client.models.PutDataTablesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _DataTablesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : DataTablesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun advancedQuery(datatable: String,
       pagedLocalRequestAdvancedQueryData: PagedLocalRequestAdvancedQueryData?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables/${"$datatable".encodeURLPath()}/query")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables/${"$datatable".encodeURLPath()}/query")
         }
         setBody(pagedLocalRequestAdvancedQueryData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createDatatable(postDataTablesRequest: PostDataTablesRequest):
@@ -63,16 +64,14 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables")
         }
         setBody(postDataTablesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostDataTablesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostDataTablesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostDataTablesResponse,
-        org.openapitools.client.models.PostDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostDataTablesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createDatatableEntry(
@@ -83,32 +82,28 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostDataTablesAppTableIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostDataTablesAppTableIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostDataTablesAppTableIdResponse,
-        org.openapitools.client.models.PostDataTablesAppTableIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostDataTablesAppTableIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDatatable(datatableName: String): DeleteDataTablesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables/${"$datatableName".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables/${"$datatableName".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteDataTablesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteDataTablesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteDataTablesResponse,
-        org.openapitools.client.models.DeleteDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteDataTablesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDatatableEntries(datatable: String, apptableId: Long):
@@ -116,18 +111,14 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdResponse,
-        org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteDataTablesDatatableAppTableIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDatatableEntry(
@@ -138,48 +129,40 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}/${"$datatableId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdDatatableIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdDatatableIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdDatatableIdResponse,
-        org.openapitools.client.models.DeleteDataTablesDatatableAppTableIdDatatableIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteDataTablesDatatableAppTableIdDatatableIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deregisterDatatable(datatable: String): PutDataTablesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables/deregister/${"$datatable".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables/deregister/${"$datatable".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDataTablesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutDataTablesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDataTablesResponse,
-        org.openapitools.client.models.PutDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDataTablesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDatatable(datatable: String): GetDataTablesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables/${"$datatable".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables/${"$datatable".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetDataTablesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetDataTablesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetDataTablesResponse,
-        org.openapitools.client.models.GetDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetDataTablesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDatatable1(
@@ -190,16 +173,15 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}")
         order?.let{ parameter("order", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDatatableManyEntry(
@@ -212,35 +194,30 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}/${"$datatableId".encodeURLPath()}")
         order?.let{ parameter("order", "$it") }
         genericResultSet?.let{ parameter("genericResultSet", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDatatables(apptable: String?): List<GetDataTablesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables")
         apptable?.let{ parameter("apptable", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetDataTablesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetDataTablesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetDataTablesResponse>,
-        org.openapitools.client.models.GetDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetDataTablesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun queryValues(
@@ -252,17 +229,16 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables/${"$datatable".encodeURLPath()}/query")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables/${"$datatable".encodeURLPath()}/query")
         columnFilter?.let{ parameter("columnFilter", "$it") }
         valueFilter?.let{ parameter("valueFilter", "$it") }
         resultColumns?.let{ parameter("resultColumns", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun registerDatatable(
@@ -273,17 +249,15 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/register/${"$datatable".encodeURLPath()}/${"$apptable".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDataTablesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutDataTablesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDataTablesResponse,
-        org.openapitools.client.models.PutDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDataTablesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDatatable(datatableName: String,
@@ -291,16 +265,14 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/datatables/${"$datatableName".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/datatables/${"$datatableName".encodeURLPath()}")
         }
         setBody(putDataTablesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDataTablesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutDataTablesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDataTablesResponse,
-        org.openapitools.client.models.PutDataTablesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDataTablesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDatatableEntryOneToMany(
@@ -312,18 +284,15 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}/${"$datatableId".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDataTablesAppTableIdDatatableIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutDataTablesAppTableIdDatatableIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDataTablesAppTableIdDatatableIdResponse,
-        org.openapitools.client.models.PutDataTablesAppTableIdDatatableIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDataTablesAppTableIdDatatableIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDatatableEntryOnetoOne(
@@ -334,19 +303,20 @@ public class _DataTablesApiImpl : DataTablesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/datatables/${"$datatable".encodeURLPath()}/${"$apptableId".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDataTablesAppTableIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutDataTablesAppTableIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDataTablesAppTableIdResponse,
-        org.openapitools.client.models.PutDataTablesAppTableIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDataTablesAppTableIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createDataTablesApi(): DataTablesApi = this.create(_DataTablesApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createDataTablesApi) })
+public class _DataTablesApiProvider : ClassProvider<DataTablesApi> {
+  override fun create(_ktorfit: Ktorfit): DataTablesApi = _DataTablesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createDataTablesApi(): DataTablesApi = _DataTablesApiImpl(this)

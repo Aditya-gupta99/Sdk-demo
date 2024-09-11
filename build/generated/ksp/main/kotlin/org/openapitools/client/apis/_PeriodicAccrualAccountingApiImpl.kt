@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -20,29 +20,35 @@ import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.PostRunaccrualsRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _PeriodicAccrualAccountingApiImpl : PeriodicAccrualAccountingApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _PeriodicAccrualAccountingApiImpl(
+  private val _ktorfit: Ktorfit,
+) : PeriodicAccrualAccountingApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun executePeriodicAccrualAccounting(postRunaccrualsRequest: PostRunaccrualsRequest) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/runaccruals")
+        takeFrom(_ktorfit.baseUrl + "v1/runaccruals")
         }
         setBody(postRunaccrualsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _PeriodicAccrualAccountingApiProvider : ClassProvider<PeriodicAccrualAccountingApi> {
+  override fun create(_ktorfit: Ktorfit): PeriodicAccrualAccountingApi =
+      _PeriodicAccrualAccountingApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createPeriodicAccrualAccountingApi(): PeriodicAccrualAccountingApi =
-    this.create(_PeriodicAccrualAccountingApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createPeriodicAccrualAccountingApi) })
+    _PeriodicAccrualAccountingApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,27 +24,29 @@ import kotlin.Suppress
 import org.openapitools.client.models.GetLoanAccountLockResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanAccountLockApiImpl : LoanAccountLockApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanAccountLockApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanAccountLockApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveLockedAccounts(page: Int?, limit: Int?): GetLoanAccountLockResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/locked")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/locked")
         page?.let{ parameter("page", "$it") }
         limit?.let{ parameter("limit", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoanAccountLockResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoanAccountLockResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoanAccountLockResponse,
-        org.openapitools.client.models.GetLoanAccountLockResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoanAccountLockResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createLoanAccountLockApi(): LoanAccountLockApi =
-    this.create(_LoanAccountLockApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanAccountLockApi) })
+public class _LoanAccountLockApiProvider : ClassProvider<LoanAccountLockApi> {
+  override fun create(_ktorfit: Ktorfit): LoanAccountLockApi = _LoanAccountLockApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createLoanAccountLockApi(): LoanAccountLockApi = _LoanAccountLockApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,85 +31,75 @@ import org.openapitools.client.models.PutReportRequest
 import org.openapitools.client.models.PutReportResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ReportsApiImpl : ReportsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ReportsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ReportsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createReport(postRepostRequest: PostRepostRequest): PostReportsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/reports")
+        takeFrom(_ktorfit.baseUrl + "v1/reports")
         }
         setBody(postRepostRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostReportsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostReportsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostReportsResponse,
-        org.openapitools.client.models.PostReportsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostReportsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteReport(id: Long): DeleteReportsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/reports/${"$id".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/reports/${"$id".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteReportsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteReportsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteReportsResponse,
-        org.openapitools.client.models.DeleteReportsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteReportsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOfficeTemplate(): GetReportsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reports/template")
+        takeFrom(_ktorfit.baseUrl + "v1/reports/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetReportsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetReportsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetReportsTemplateResponse,
-        org.openapitools.client.models.GetReportsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetReportsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveReport(id: Long): GetReportsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reports/${"$id".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/reports/${"$id".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetReportsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetReportsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetReportsResponse,
-        org.openapitools.client.models.GetReportsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetReportsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveReportList(): List<GetReportsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reports")
+        takeFrom(_ktorfit.baseUrl + "v1/reports")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetReportsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetReportsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetReportsResponse>,
-        org.openapitools.client.models.GetReportsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetReportsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateReport(id: Long, putReportRequest: PutReportRequest):
@@ -117,18 +107,19 @@ public class _ReportsApiImpl : ReportsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/reports/${"$id".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/reports/${"$id".encodeURLPath()}")
         }
         setBody(putReportRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutReportResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutReportResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutReportResponse,
-        org.openapitools.client.models.PutReportResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutReportResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createReportsApi(): ReportsApi = this.create(_ReportsApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createReportsApi) })
+public class _ReportsApiProvider : ClassProvider<ReportsApi> {
+  override fun create(_ktorfit: Ktorfit): ReportsApi = _ReportsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createReportsApi(): ReportsApi = _ReportsApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,70 +30,63 @@ import org.openapitools.client.models.PutTaxesComponentsTaxComponentIdRequest
 import org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _TaxComponentsApiImpl : TaxComponentsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _TaxComponentsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : TaxComponentsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createTaxCompoent(postTaxesComponentsRequest: PostTaxesComponentsRequest):
       PostTaxesComponentsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/component")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/component")
         }
         setBody(postTaxesComponentsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostTaxesComponentsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostTaxesComponentsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTaxesComponentsResponse,
-        org.openapitools.client.models.PostTaxesComponentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTaxesComponentsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllTaxComponents(): List<GetTaxesComponentsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/component")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/component")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetTaxesComponentsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetTaxesComponentsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetTaxesComponentsResponse>,
-        org.openapitools.client.models.GetTaxesComponentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetTaxesComponentsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTaxComponent(taxComponentId: Long): GetTaxesComponentsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/component/${"$taxComponentId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/component/${"$taxComponentId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTaxesComponentsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTaxesComponentsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTaxesComponentsResponse,
-        org.openapitools.client.models.GetTaxesComponentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTaxesComponentsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate21(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/component/template")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/component/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateTaxCompoent(taxComponentId: Long,
@@ -102,19 +95,19 @@ public class _TaxComponentsApiImpl : TaxComponentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/taxes/component/${"$taxComponentId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/taxes/component/${"$taxComponentId".encodeURLPath()}")
         }
         setBody(putTaxesComponentsTaxComponentIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse,
-        org.openapitools.client.models.PutTaxesComponentsTaxComponentIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutTaxesComponentsTaxComponentIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createTaxComponentsApi(): TaxComponentsApi =
-    this.create(_TaxComponentsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createTaxComponentsApi) })
+public class _TaxComponentsApiProvider : ClassProvider<TaxComponentsApi> {
+  override fun create(_ktorfit: Ktorfit): TaxComponentsApi = _TaxComponentsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createTaxComponentsApi(): TaxComponentsApi = _TaxComponentsApiImpl(this)

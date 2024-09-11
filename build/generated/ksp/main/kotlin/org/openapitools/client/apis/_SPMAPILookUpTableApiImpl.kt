@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -22,60 +22,61 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import org.openapitools.client.models.LookupTableData
 
 @OptIn(InternalKtorfitApi::class)
-public class _SPMAPILookUpTableApiImpl : SPMAPILookUpTableApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SPMAPILookUpTableApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SPMAPILookUpTableApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createLookupTable(surveyId: Long, lookupTableData: LookupTableData?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/surveys/${"$surveyId".encodeURLPath()}/lookuptables")
+        takeFrom(_ktorfit.baseUrl + "v1/surveys/${"$surveyId".encodeURLPath()}/lookuptables")
         }
         setBody(lookupTableData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun fetchLookupTables(surveyId: Long): List<LookupTableData> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/surveys/${"$surveyId".encodeURLPath()}/lookuptables")
+        takeFrom(_ktorfit.baseUrl + "v1/surveys/${"$surveyId".encodeURLPath()}/lookuptables")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.LookupTableData>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.LookupTableData>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.LookupTableData>,
-        org.openapitools.client.models.LookupTableData>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<LookupTableData>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findLookupTable(surveyId: Long, key: String): LookupTableData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/surveys/${"$surveyId".encodeURLPath()}/lookuptables/${"$key".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.LookupTableData",
-    typeInfo = typeInfo<org.openapitools.client.models.LookupTableData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.LookupTableData,
-        org.openapitools.client.models.LookupTableData>(_typeData,_ext)!!
+    typeInfo = typeInfo<LookupTableData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SPMAPILookUpTableApiProvider : ClassProvider<SPMAPILookUpTableApi> {
+  override fun create(_ktorfit: Ktorfit): SPMAPILookUpTableApi = _SPMAPILookUpTableApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSPMAPILookUpTableApi(): SPMAPILookUpTableApi =
-    this.create(_SPMAPILookUpTableApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSPMAPILookUpTableApi) })
+    _SPMAPILookUpTableApiImpl(this)

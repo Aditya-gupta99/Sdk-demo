@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetOfficesResponse
@@ -37,38 +38,37 @@ import org.openapitools.client.models.PutOfficesOfficeIdRequest
 import org.openapitools.client.models.PutOfficesOfficeIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _OfficesApiImpl : OfficesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _OfficesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : OfficesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createOffice(postOfficesRequest: PostOfficesRequest): PostOfficesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices")
+        takeFrom(_ktorfit.baseUrl + "v1/offices")
         }
         setBody(postOfficesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostOfficesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostOfficesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostOfficesResponse,
-        org.openapitools.client.models.PostOfficesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostOfficesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getOfficeTemplate(dateFormat: String?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/downloadtemplate")
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postOfficeTemplate(
@@ -79,7 +79,7 @@ public class _OfficesApiImpl : OfficesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -90,55 +90,48 @@ public class _OfficesApiImpl : OfficesApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOffice(officeId: Long): GetOfficesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/${"$officeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/${"$officeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetOfficesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetOfficesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetOfficesResponse,
-        org.openapitools.client.models.GetOfficesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetOfficesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOfficeByExternalId(externalId: String): GetOfficesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/external-id/${"$externalId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/external-id/${"$externalId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetOfficesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetOfficesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetOfficesResponse,
-        org.openapitools.client.models.GetOfficesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetOfficesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOfficeTemplate1(): GetOfficesTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/template")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetOfficesTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetOfficesTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetOfficesTemplateResponse,
-        org.openapitools.client.models.GetOfficesTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetOfficesTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOffices(
@@ -149,20 +142,16 @@ public class _OfficesApiImpl : OfficesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices")
+        takeFrom(_ktorfit.baseUrl + "v1/offices")
         includeAllOffices?.let{ parameter("includeAllOffices", "$it") }
         orderBy?.let{ parameter("orderBy", "$it") }
         sortOrder?.let{ parameter("sortOrder", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetOfficesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetOfficesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetOfficesResponse>,
-        org.openapitools.client.models.GetOfficesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetOfficesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateOffice(officeId: Long,
@@ -170,16 +159,14 @@ public class _OfficesApiImpl : OfficesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/${"$officeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/${"$officeId".encodeURLPath()}")
         }
         setBody(putOfficesOfficeIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutOfficesOfficeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutOfficesOfficeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutOfficesOfficeIdResponse,
-        org.openapitools.client.models.PutOfficesOfficeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutOfficesOfficeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateOfficeWithExternalId(externalId: String,
@@ -187,18 +174,19 @@ public class _OfficesApiImpl : OfficesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/offices/external-id/${"$externalId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/offices/external-id/${"$externalId".encodeURLPath()}")
         }
         setBody(putOfficesOfficeIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutOfficesOfficeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutOfficesOfficeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutOfficesOfficeIdResponse,
-        org.openapitools.client.models.PutOfficesOfficeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutOfficesOfficeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createOfficesApi(): OfficesApi = this.create(_OfficesApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createOfficesApi) })
+public class _OfficesApiProvider : ClassProvider<OfficesApi> {
+  override fun create(_ktorfit: Ktorfit): OfficesApi = _OfficesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createOfficesApi(): OfficesApi = _OfficesApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -21,56 +21,59 @@ import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @OptIn(InternalKtorfitApi::class)
-public class _BulkImportApiImpl : BulkImportApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _BulkImportApiImpl(
+  private val _ktorfit: Ktorfit,
+) : BulkImportApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun getOutputTemplate(importDocumentId: String?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/imports/downloadOutputTemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/imports/downloadOutputTemplate")
         importDocumentId?.let{ parameter("importDocumentId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveImportDocuments(entityType: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/imports")
+        takeFrom(_ktorfit.baseUrl + "v1/imports")
         entityType?.let{ parameter("entityType", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retriveOutputTemplateLocation(importDocumentId: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/imports/getOutputTemplateLocation")
+        takeFrom(_ktorfit.baseUrl + "v1/imports/getOutputTemplateLocation")
         importDocumentId?.let{ parameter("importDocumentId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createBulkImportApi(): BulkImportApi = this.create(_BulkImportApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createBulkImportApi) })
+public class _BulkImportApiProvider : ClassProvider<BulkImportApi> {
+  override fun create(_ktorfit: Ktorfit): BulkImportApi = _BulkImportApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createBulkImportApi(): BulkImportApi = _BulkImportApiImpl(this)

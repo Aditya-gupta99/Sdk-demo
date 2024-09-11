@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,9 +30,10 @@ import org.openapitools.client.models.PostFinancialActivityAccountsResponse
 import org.openapitools.client.models.PutFinancialActivityAccountsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _MappingFinancialActivitiesToAccountsApiImpl : MappingFinancialActivitiesToAccountsApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _MappingFinancialActivitiesToAccountsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : MappingFinancialActivitiesToAccountsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createGLAccount(postFinancialActivityAccountsRequest: PostFinancialActivityAccountsRequest?):
@@ -40,79 +41,66 @@ public class _MappingFinancialActivitiesToAccountsApiImpl : MappingFinancialActi
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/financialactivityaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/financialactivityaccounts")
         }
         setBody(postFinancialActivityAccountsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostFinancialActivityAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostFinancialActivityAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostFinancialActivityAccountsResponse,
-        org.openapitools.client.models.PostFinancialActivityAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostFinancialActivityAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteGLAccount(mappingId: Long): DeleteFinancialActivityAccountsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/financialactivityaccounts/${"$mappingId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/financialactivityaccounts/${"$mappingId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteFinancialActivityAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteFinancialActivityAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteFinancialActivityAccountsResponse,
-        org.openapitools.client.models.DeleteFinancialActivityAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteFinancialActivityAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retreive(mappingId: Long): GetFinancialActivityAccountsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/financialactivityaccounts/${"$mappingId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/financialactivityaccounts/${"$mappingId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetFinancialActivityAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetFinancialActivityAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetFinancialActivityAccountsResponse,
-        org.openapitools.client.models.GetFinancialActivityAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetFinancialActivityAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll(): List<GetFinancialActivityAccountsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/financialactivityaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/financialactivityaccounts")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetFinancialActivityAccountsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetFinancialActivityAccountsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetFinancialActivityAccountsResponse>,
-        org.openapitools.client.models.GetFinancialActivityAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetFinancialActivityAccountsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/financialactivityaccounts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/financialactivityaccounts/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateGLAccount(mappingId: Long,
@@ -121,21 +109,22 @@ public class _MappingFinancialActivitiesToAccountsApiImpl : MappingFinancialActi
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/financialactivityaccounts/${"$mappingId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/financialactivityaccounts/${"$mappingId".encodeURLPath()}")
         }
         setBody(postFinancialActivityAccountsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutFinancialActivityAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutFinancialActivityAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutFinancialActivityAccountsResponse,
-        org.openapitools.client.models.PutFinancialActivityAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutFinancialActivityAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _MappingFinancialActivitiesToAccountsApiProvider :
+    ClassProvider<MappingFinancialActivitiesToAccountsApi> {
+  override fun create(_ktorfit: Ktorfit): MappingFinancialActivitiesToAccountsApi =
+      _MappingFinancialActivitiesToAccountsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createMappingFinancialActivitiesToAccountsApi():
-    MappingFinancialActivitiesToAccountsApi =
-    this.create(_MappingFinancialActivitiesToAccountsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createMappingFinancialActivitiesToAccountsApi) })
+    MappingFinancialActivitiesToAccountsApi = _MappingFinancialActivitiesToAccountsApiImpl(this)

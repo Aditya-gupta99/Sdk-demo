@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteUsersUserIdResponse
@@ -38,38 +39,36 @@ import org.openapitools.client.models.PutUsersUserIdRequest
 import org.openapitools.client.models.PutUsersUserIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _UsersApiImpl : UsersApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _UsersApiImpl(
+  private val _ktorfit: Ktorfit,
+) : UsersApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create15(postUsersRequest: PostUsersRequest): PostUsersResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/users")
+        takeFrom(_ktorfit.baseUrl + "v1/users")
         }
         setBody(postUsersRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostUsersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostUsersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostUsersResponse,
-        org.openapitools.client.models.PostUsersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostUsersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete23(userId: Long): DeleteUsersUserIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/users/${"$userId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/users/${"$userId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteUsersUserIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteUsersUserIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteUsersUserIdResponse,
-        org.openapitools.client.models.DeleteUsersUserIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteUsersUserIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getUserTemplate(
@@ -80,17 +79,16 @@ public class _UsersApiImpl : UsersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/users/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/users/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         staffId?.let{ parameter("staffId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postUsersTemplate(
@@ -101,7 +99,7 @@ public class _UsersApiImpl : UsersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/users/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/users/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -112,55 +110,48 @@ public class _UsersApiImpl : UsersApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll41(): List<GetUsersResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/users")
+        takeFrom(_ktorfit.baseUrl + "v1/users")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetUsersResponse>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.GetUsersResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetUsersResponse>,
-        org.openapitools.client.models.GetUsersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetUsersResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne31(userId: Long): GetUsersUserIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/users/${"$userId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/users/${"$userId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetUsersUserIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetUsersUserIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetUsersUserIdResponse,
-        org.openapitools.client.models.GetUsersUserIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetUsersUserIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template22(): GetUsersTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/users/template")
+        takeFrom(_ktorfit.baseUrl + "v1/users/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetUsersTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetUsersTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetUsersTemplateResponse,
-        org.openapitools.client.models.GetUsersTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetUsersTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update26(userId: Long, putUsersUserIdRequest: PutUsersUserIdRequest):
@@ -168,18 +159,19 @@ public class _UsersApiImpl : UsersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/users/${"$userId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/users/${"$userId".encodeURLPath()}")
         }
         setBody(putUsersUserIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutUsersUserIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutUsersUserIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutUsersUserIdResponse,
-        org.openapitools.client.models.PutUsersUserIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutUsersUserIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createUsersApi(): UsersApi = this.create(_UsersApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createUsersApi) })
+public class _UsersApiProvider : ClassProvider<UsersApi> {
+  override fun create(_ktorfit: Ktorfit): UsersApi = _UsersApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createUsersApi(): UsersApi = _UsersApiImpl(this)

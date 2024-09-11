@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,8 +31,10 @@ import org.openapitools.client.models.PostEntityDatatableChecksTemplateRequest
 import org.openapitools.client.models.PostEntityDatatableChecksTemplateResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _EntityDataTableApiImpl : EntityDataTableApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _EntityDataTableApiImpl(
+  private val _ktorfit: Ktorfit,
+) : EntityDataTableApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createEntityDatatableCheck(postEntityDatatableChecksTemplateRequest: PostEntityDatatableChecksTemplateRequest):
@@ -40,16 +42,14 @@ public class _EntityDataTableApiImpl : EntityDataTableApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/entityDatatableChecks")
+        takeFrom(_ktorfit.baseUrl + "v1/entityDatatableChecks")
         }
         setBody(postEntityDatatableChecksTemplateRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostEntityDatatableChecksTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostEntityDatatableChecksTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostEntityDatatableChecksTemplateResponse,
-        org.openapitools.client.models.PostEntityDatatableChecksTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostEntityDatatableChecksTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDatatable1(entityDatatableCheckId: Long, body: String?):
@@ -57,34 +57,28 @@ public class _EntityDataTableApiImpl : EntityDataTableApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/entityDatatableChecks/${"$entityDatatableCheckId".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteEntityDatatableChecksTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteEntityDatatableChecksTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteEntityDatatableChecksTemplateResponse,
-        org.openapitools.client.models.DeleteEntityDatatableChecksTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteEntityDatatableChecksTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTemplate(): GetEntityDatatableChecksTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/entityDatatableChecks/template")
+        takeFrom(_ktorfit.baseUrl + "v1/entityDatatableChecks/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetEntityDatatableChecksTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetEntityDatatableChecksTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetEntityDatatableChecksTemplateResponse,
-        org.openapitools.client.models.GetEntityDatatableChecksTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetEntityDatatableChecksTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll6(
@@ -97,7 +91,7 @@ public class _EntityDataTableApiImpl : EntityDataTableApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/entityDatatableChecks")
+        takeFrom(_ktorfit.baseUrl + "v1/entityDatatableChecks")
         status?.let{ parameter("status", "$it") }
         entity?.let{ parameter("entity", "$it") }
         productId?.let{ parameter("productId", "$it") }
@@ -106,16 +100,14 @@ public class _EntityDataTableApiImpl : EntityDataTableApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetEntityDatatableChecksResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetEntityDatatableChecksResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetEntityDatatableChecksResponse>,
-        org.openapitools.client.models.GetEntityDatatableChecksResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetEntityDatatableChecksResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createEntityDataTableApi(): EntityDataTableApi =
-    this.create(_EntityDataTableApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createEntityDataTableApi) })
+public class _EntityDataTableApiProvider : ClassProvider<EntityDataTableApi> {
+  override fun create(_ktorfit: Ktorfit): EntityDataTableApi = _EntityDataTableApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createEntityDataTableApi(): EntityDataTableApi = _EntityDataTableApiImpl(this)

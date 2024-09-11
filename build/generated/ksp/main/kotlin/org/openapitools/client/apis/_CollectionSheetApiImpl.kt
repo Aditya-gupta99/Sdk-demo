@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,8 +25,10 @@ import org.openapitools.client.models.PostCollectionSheetRequest
 import org.openapitools.client.models.PostCollectionSheetResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _CollectionSheetApiImpl : CollectionSheetApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _CollectionSheetApiImpl(
+  private val _ktorfit: Ktorfit,
+) : CollectionSheetApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun generateCollectionSheet(postCollectionSheetRequest: PostCollectionSheetRequest,
@@ -34,20 +36,20 @@ public class _CollectionSheetApiImpl : CollectionSheetApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/collectionsheet")
+        takeFrom(_ktorfit.baseUrl + "v1/collectionsheet")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postCollectionSheetRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostCollectionSheetResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostCollectionSheetResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostCollectionSheetResponse,
-        org.openapitools.client.models.PostCollectionSheetResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostCollectionSheetResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createCollectionSheetApi(): CollectionSheetApi =
-    this.create(_CollectionSheetApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createCollectionSheetApi) })
+public class _CollectionSheetApiProvider : ClassProvider<CollectionSheetApi> {
+  override fun create(_ktorfit: Ktorfit): CollectionSheetApi = _CollectionSheetApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createCollectionSheetApi(): CollectionSheetApi = _CollectionSheetApiImpl(this)

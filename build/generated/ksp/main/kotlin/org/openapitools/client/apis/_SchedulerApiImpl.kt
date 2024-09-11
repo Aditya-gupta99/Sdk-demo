@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -21,42 +21,45 @@ import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.GetSchedulerResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SchedulerApiImpl : SchedulerApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SchedulerApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SchedulerApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun changeSchedulerStatus(command: String?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/scheduler")
+        takeFrom(_ktorfit.baseUrl + "v1/scheduler")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveStatus(): GetSchedulerResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/scheduler")
+        takeFrom(_ktorfit.baseUrl + "v1/scheduler")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSchedulerResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSchedulerResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSchedulerResponse,
-        org.openapitools.client.models.GetSchedulerResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSchedulerResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSchedulerApi(): SchedulerApi = this.create(_SchedulerApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createSchedulerApi) })
+public class _SchedulerApiProvider : ClassProvider<SchedulerApi> {
+  override fun create(_ktorfit: Ktorfit): SchedulerApi = _SchedulerApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSchedulerApi(): SchedulerApi = _SchedulerApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,8 +31,10 @@ import org.openapitools.client.models.PutChargeTransactionChangesRequest
 import org.openapitools.client.models.PutChargeTransactionChangesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanTransactionsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanTransactionsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun adjustLoanTransaction(
     loanId: Long,
@@ -43,18 +45,16 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postLoansLoanIdTransactionsTransactionIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse,
-        org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun adjustLoanTransaction1(
@@ -66,18 +66,16 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/transactions/external-id/${"$externalTransactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postLoansLoanIdTransactionsTransactionIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse,
-        org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun adjustLoanTransaction2(
@@ -89,18 +87,16 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postLoansLoanIdTransactionsTransactionIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse,
-        org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun adjustLoanTransaction3(
@@ -112,18 +108,16 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/external-id/${"$externalTransactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postLoansLoanIdTransactionsTransactionIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse,
-        org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun executeLoanTransaction(
@@ -134,17 +128,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/transactions")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/transactions")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postLoansLoanIdTransactionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse,
-        org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun executeLoanTransaction1(
@@ -155,18 +147,16 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postLoansLoanIdTransactionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdTransactionsResponse,
-        org.openapitools.client.models.PostLoansLoanIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTransaction(
@@ -177,19 +167,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         fields?.let{ parameter("fields", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse,
-        org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdTransactionsTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTransactionByLoanExternalIdAndTransactionExternalId(
@@ -200,19 +186,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/external-id/${"$externalTransactionId".encodeURLPath()}")
         fields?.let{ parameter("fields", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse,
-        org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdTransactionsTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTransactionByLoanExternalIdAndTransactionId(
@@ -223,19 +205,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         fields?.let{ parameter("fields", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse,
-        org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdTransactionsTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTransactionByTransactionExternalId(
@@ -246,19 +224,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/transactions/external-id/${"$externalTransactionId".encodeURLPath()}")
         fields?.let{ parameter("fields", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse,
-        org.openapitools.client.models.GetLoansLoanIdTransactionsTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdTransactionsTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTransactionTemplate(
@@ -271,7 +245,7 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/transactions/template")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/transactions/template")
         command?.let{ parameter("command", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         transactionDate?.let{ parameter("transactionDate", "$it") }
@@ -279,12 +253,9 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse,
-        org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdTransactionsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTransactionTemplate1(
@@ -297,7 +268,7 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/template")
         command?.let{ parameter("command", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
@@ -306,12 +277,9 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse,
-        org.openapitools.client.models.GetLoansLoanIdTransactionsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdTransactionsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun undoWaiveCharge(
@@ -322,17 +290,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         }
         setBody(putChargeTransactionChangesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutChargeTransactionChangesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutChargeTransactionChangesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutChargeTransactionChangesResponse,
-        org.openapitools.client.models.PutChargeTransactionChangesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutChargeTransactionChangesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun undoWaiveCharge1(
@@ -343,17 +309,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/transactions/external-id/${"$transactionExternalId".encodeURLPath()}")
         }
         setBody(putChargeTransactionChangesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutChargeTransactionChangesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutChargeTransactionChangesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutChargeTransactionChangesResponse,
-        org.openapitools.client.models.PutChargeTransactionChangesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutChargeTransactionChangesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun undoWaiveCharge2(
@@ -364,17 +328,15 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         }
         setBody(putChargeTransactionChangesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutChargeTransactionChangesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutChargeTransactionChangesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutChargeTransactionChangesResponse,
-        org.openapitools.client.models.PutChargeTransactionChangesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutChargeTransactionChangesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun undoWaiveCharge3(
@@ -385,20 +347,20 @@ public class _LoanTransactionsApiImpl : LoanTransactionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/external-id/${"$loanExternalId".encodeURLPath()}/transactions/external-id/${"$transactionExternalId".encodeURLPath()}")
         }
         setBody(putChargeTransactionChangesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutChargeTransactionChangesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutChargeTransactionChangesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutChargeTransactionChangesResponse,
-        org.openapitools.client.models.PutChargeTransactionChangesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutChargeTransactionChangesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createLoanTransactionsApi(): LoanTransactionsApi =
-    this.create(_LoanTransactionsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanTransactionsApi) })
+public class _LoanTransactionsApiProvider : ClassProvider<LoanTransactionsApi> {
+  override fun create(_ktorfit: Ktorfit): LoanTransactionsApi = _LoanTransactionsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createLoanTransactionsApi(): LoanTransactionsApi = _LoanTransactionsApiImpl(this)

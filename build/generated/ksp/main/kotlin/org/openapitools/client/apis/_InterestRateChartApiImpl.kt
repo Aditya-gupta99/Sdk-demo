@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,87 +31,77 @@ import org.openapitools.client.models.PutInterestRateChartsChartIdRequest
 import org.openapitools.client.models.PutInterestRateChartsChartIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _InterestRateChartApiImpl : InterestRateChartApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _InterestRateChartApiImpl(
+  private val _ktorfit: Ktorfit,
+) : InterestRateChartApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create10(postInterestRateChartsRequest: PostInterestRateChartsRequest):
       PostInterestRateChartsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/interestratecharts")
+        takeFrom(_ktorfit.baseUrl + "v1/interestratecharts")
         }
         setBody(postInterestRateChartsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostInterestRateChartsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostInterestRateChartsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostInterestRateChartsResponse,
-        org.openapitools.client.models.PostInterestRateChartsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostInterestRateChartsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete14(chartId: Long): DeleteInterestRateChartsChartIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/interestratecharts/${"$chartId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/interestratecharts/${"$chartId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteInterestRateChartsChartIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteInterestRateChartsChartIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteInterestRateChartsChartIdResponse,
-        org.openapitools.client.models.DeleteInterestRateChartsChartIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteInterestRateChartsChartIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll26(productId: Long?): List<GetInterestRateChartsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/interestratecharts")
+        takeFrom(_ktorfit.baseUrl + "v1/interestratecharts")
         productId?.let{ parameter("productId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetInterestRateChartsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetInterestRateChartsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetInterestRateChartsResponse>,
-        org.openapitools.client.models.GetInterestRateChartsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetInterestRateChartsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne17(chartId: Long): GetInterestRateChartsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/interestratecharts/${"$chartId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/interestratecharts/${"$chartId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetInterestRateChartsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetInterestRateChartsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetInterestRateChartsResponse,
-        org.openapitools.client.models.GetInterestRateChartsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetInterestRateChartsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template9(): GetInterestRateChartsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/interestratecharts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/interestratecharts/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetInterestRateChartsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetInterestRateChartsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetInterestRateChartsTemplateResponse,
-        org.openapitools.client.models.GetInterestRateChartsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetInterestRateChartsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update15(chartId: Long,
@@ -120,19 +110,20 @@ public class _InterestRateChartApiImpl : InterestRateChartApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/interestratecharts/${"$chartId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/interestratecharts/${"$chartId".encodeURLPath()}")
         }
         setBody(putInterestRateChartsChartIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutInterestRateChartsChartIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutInterestRateChartsChartIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutInterestRateChartsChartIdResponse,
-        org.openapitools.client.models.PutInterestRateChartsChartIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutInterestRateChartsChartIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _InterestRateChartApiProvider : ClassProvider<InterestRateChartApi> {
+  override fun create(_ktorfit: Ktorfit): InterestRateChartApi = _InterestRateChartApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createInterestRateChartApi(): InterestRateChartApi =
-    this.create(_InterestRateChartApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createInterestRateChartApi) })
+    _InterestRateChartApiImpl(this)

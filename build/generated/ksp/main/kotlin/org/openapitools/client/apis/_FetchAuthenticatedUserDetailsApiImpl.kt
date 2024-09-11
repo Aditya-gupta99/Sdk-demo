@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,26 +23,30 @@ import kotlin.Suppress
 import org.openapitools.client.models.GetUserDetailsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _FetchAuthenticatedUserDetailsApiImpl : FetchAuthenticatedUserDetailsApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _FetchAuthenticatedUserDetailsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : FetchAuthenticatedUserDetailsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun fetchAuthenticatedUserData(): GetUserDetailsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/userdetails")
+        takeFrom(_ktorfit.baseUrl + "v1/userdetails")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetUserDetailsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetUserDetailsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetUserDetailsResponse,
-        org.openapitools.client.models.GetUserDetailsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetUserDetailsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _FetchAuthenticatedUserDetailsApiProvider :
+    ClassProvider<FetchAuthenticatedUserDetailsApi> {
+  override fun create(_ktorfit: Ktorfit): FetchAuthenticatedUserDetailsApi =
+      _FetchAuthenticatedUserDetailsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createFetchAuthenticatedUserDetailsApi(): FetchAuthenticatedUserDetailsApi =
-    this.create(_FetchAuthenticatedUserDetailsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createFetchAuthenticatedUserDetailsApi) })
+    _FetchAuthenticatedUserDetailsApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -34,9 +34,10 @@ import org.openapitools.client.models.PutDelinquencyBucketResponse
 import org.openapitools.client.models.PutDelinquencyRangeResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndBucketsManagementApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _DelinquencyRangeAndBucketsManagementApiImpl(
+  private val _ktorfit: Ktorfit,
+) : DelinquencyRangeAndBucketsManagementApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createDelinquencyBucket(postDelinquencyBucketRequest: PostDelinquencyBucketRequest):
@@ -44,16 +45,14 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/delinquency/buckets")
+        takeFrom(_ktorfit.baseUrl + "v1/delinquency/buckets")
         }
         setBody(postDelinquencyBucketRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostDelinquencyBucketResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostDelinquencyBucketResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostDelinquencyBucketResponse,
-        org.openapitools.client.models.PostDelinquencyBucketResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostDelinquencyBucketResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend
@@ -62,16 +61,14 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/delinquency/ranges")
+        takeFrom(_ktorfit.baseUrl + "v1/delinquency/ranges")
         }
         setBody(postDelinquencyRangeRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostDelinquencyRangeResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostDelinquencyRangeResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostDelinquencyRangeResponse,
-        org.openapitools.client.models.PostDelinquencyRangeResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostDelinquencyRangeResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDelinquencyBucket(delinquencyBucketId: Long,
@@ -79,17 +76,15 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/delinquency/buckets/${"$delinquencyBucketId".encodeURLPath()}")
         }
         setBody(postDelinquencyBucketRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteDelinquencyBucketResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteDelinquencyBucketResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteDelinquencyBucketResponse,
-        org.openapitools.client.models.DeleteDelinquencyBucketResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteDelinquencyBucketResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDelinquencyRange(delinquencyRangeId: Long,
@@ -97,17 +92,15 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/delinquency/ranges/${"$delinquencyRangeId".encodeURLPath()}")
         }
         setBody(postDelinquencyRangeRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteDelinquencyRangeResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteDelinquencyRangeResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteDelinquencyRangeResponse,
-        org.openapitools.client.models.DeleteDelinquencyRangeResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteDelinquencyRangeResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDelinquencyBucket(delinquencyBucketId: Long):
@@ -115,66 +108,54 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/delinquency/buckets/${"$delinquencyBucketId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetDelinquencyBucketsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetDelinquencyBucketsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetDelinquencyBucketsResponse,
-        org.openapitools.client.models.GetDelinquencyBucketsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetDelinquencyBucketsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDelinquencyBuckets(): List<GetDelinquencyBucketsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/delinquency/buckets")
+        takeFrom(_ktorfit.baseUrl + "v1/delinquency/buckets")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetDelinquencyBucketsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetDelinquencyBucketsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetDelinquencyBucketsResponse>,
-        org.openapitools.client.models.GetDelinquencyBucketsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetDelinquencyBucketsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDelinquencyRange(delinquencyRangeId: Long): GetDelinquencyRangesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/delinquency/ranges/${"$delinquencyRangeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetDelinquencyRangesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetDelinquencyRangesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetDelinquencyRangesResponse,
-        org.openapitools.client.models.GetDelinquencyRangesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetDelinquencyRangesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDelinquencyRanges(): List<GetDelinquencyRangesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/delinquency/ranges")
+        takeFrom(_ktorfit.baseUrl + "v1/delinquency/ranges")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetDelinquencyRangesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetDelinquencyRangesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetDelinquencyRangesResponse>,
-        org.openapitools.client.models.GetDelinquencyRangesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetDelinquencyRangesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDelinquencyBucket(delinquencyBucketId: Long,
@@ -182,17 +163,15 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/delinquency/buckets/${"$delinquencyBucketId".encodeURLPath()}")
         }
         setBody(postDelinquencyBucketRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDelinquencyBucketResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutDelinquencyBucketResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDelinquencyBucketResponse,
-        org.openapitools.client.models.PutDelinquencyBucketResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDelinquencyBucketResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDelinquencyRange(delinquencyRangeId: Long,
@@ -200,21 +179,23 @@ public class _DelinquencyRangeAndBucketsManagementApiImpl : DelinquencyRangeAndB
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/delinquency/ranges/${"$delinquencyRangeId".encodeURLPath()}")
         }
         setBody(postDelinquencyRangeRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutDelinquencyRangeResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutDelinquencyRangeResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutDelinquencyRangeResponse,
-        org.openapitools.client.models.PutDelinquencyRangeResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutDelinquencyRangeResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _DelinquencyRangeAndBucketsManagementApiProvider :
+    ClassProvider<DelinquencyRangeAndBucketsManagementApi> {
+  override fun create(_ktorfit: Ktorfit): DelinquencyRangeAndBucketsManagementApi =
+      _DelinquencyRangeAndBucketsManagementApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createDelinquencyRangeAndBucketsManagementApi():
-    DelinquencyRangeAndBucketsManagementApi =
-    this.create(_DelinquencyRangeAndBucketsManagementApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createDelinquencyRangeAndBucketsManagementApi) })
+    DelinquencyRangeAndBucketsManagementApi = _DelinquencyRangeAndBucketsManagementApiImpl(this)

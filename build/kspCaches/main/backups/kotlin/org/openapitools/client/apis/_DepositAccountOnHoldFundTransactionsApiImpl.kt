@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,9 +25,10 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _DepositAccountOnHoldFundTransactionsApiImpl : DepositAccountOnHoldFundTransactionsApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _DepositAccountOnHoldFundTransactionsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : DepositAccountOnHoldFundTransactionsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAll28(
     savingsId: Long,
@@ -40,7 +41,7 @@ public class _DepositAccountOnHoldFundTransactionsApiImpl : DepositAccountOnHold
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/onholdtransactions")
         guarantorFundingId?.let{ parameter("guarantorFundingId", "$it") }
         offset?.let{ parameter("offset", "$it") }
@@ -50,14 +51,17 @@ public class _DepositAccountOnHoldFundTransactionsApiImpl : DepositAccountOnHold
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _DepositAccountOnHoldFundTransactionsApiProvider :
+    ClassProvider<DepositAccountOnHoldFundTransactionsApi> {
+  override fun create(_ktorfit: Ktorfit): DepositAccountOnHoldFundTransactionsApi =
+      _DepositAccountOnHoldFundTransactionsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createDepositAccountOnHoldFundTransactionsApi():
-    DepositAccountOnHoldFundTransactionsApi =
-    this.create(_DepositAccountOnHoldFundTransactionsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createDepositAccountOnHoldFundTransactionsApi) })
+    DepositAccountOnHoldFundTransactionsApi = _DepositAccountOnHoldFundTransactionsApiImpl(this)

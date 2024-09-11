@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,40 +23,44 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfServiceRegistrationApiImpl : SelfServiceRegistrationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfServiceRegistrationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfServiceRegistrationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createSelfServiceRegistrationRequest(body: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/registration")
+        takeFrom(_ktorfit.baseUrl + "v1/self/registration")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createSelfServiceUser(body: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/registration/user")
+        takeFrom(_ktorfit.baseUrl + "v1/self/registration/user")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SelfServiceRegistrationApiProvider : ClassProvider<SelfServiceRegistrationApi> {
+  override fun create(_ktorfit: Ktorfit): SelfServiceRegistrationApi =
+      _SelfServiceRegistrationApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSelfServiceRegistrationApi(): SelfServiceRegistrationApi =
-    this.create(_SelfServiceRegistrationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfServiceRegistrationApi) })
+    _SelfServiceRegistrationApiImpl(this)

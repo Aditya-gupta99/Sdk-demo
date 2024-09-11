@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -33,8 +33,10 @@ import org.openapitools.client.models.PostSavingsAccountTransactionsResponse
 import org.openapitools.client.models.SavingsAccountTransactionsSearchResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SavingsAccountTransactionsApiImpl : SavingsAccountTransactionsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SavingsAccountTransactionsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SavingsAccountTransactionsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun adjustTransaction1(
     savingsId: Long,
@@ -45,20 +47,16 @@ public class _SavingsAccountTransactionsApiImpl : SavingsAccountTransactionsApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postSavingsAccountBulkReversalTransactionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.PostSavingsAccountBulkReversalTransactionsRequest>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.PostSavingsAccountBulkReversalTransactionsRequest>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.PostSavingsAccountBulkReversalTransactionsRequest>,
-        org.openapitools.client.models.PostSavingsAccountBulkReversalTransactionsRequest>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<PostSavingsAccountBulkReversalTransactionsRequest>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun advancedQuery1(savingsId: Long,
@@ -66,46 +64,43 @@ public class _SavingsAccountTransactionsApiImpl : SavingsAccountTransactionsApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/transactions/query")
         }
         setBody(pagedLocalRequestAdvancedQueryRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne24(savingsId: Long, transactionId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate19(savingsId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/transactions/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun searchTransactions(
@@ -129,7 +124,7 @@ public class _SavingsAccountTransactionsApiImpl : SavingsAccountTransactionsApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/transactions/search")
         fromDate?.let{ parameter("fromDate", "$it") }
         toDate?.let{ parameter("toDate", "$it") }
@@ -149,11 +144,9 @@ public class _SavingsAccountTransactionsApiImpl : SavingsAccountTransactionsApi,
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.SavingsAccountTransactionsSearchResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.SavingsAccountTransactionsSearchResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.SavingsAccountTransactionsSearchResponse,
-        org.openapitools.client.models.SavingsAccountTransactionsSearchResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<SavingsAccountTransactionsSearchResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun transaction2(
@@ -164,21 +157,23 @@ public class _SavingsAccountTransactionsApiImpl : SavingsAccountTransactionsApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/savingsaccounts/${"$savingsId".encodeURLPath()}/transactions")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postSavingsAccountTransactionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostSavingsAccountTransactionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostSavingsAccountTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSavingsAccountTransactionsResponse,
-        org.openapitools.client.models.PostSavingsAccountTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSavingsAccountTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SavingsAccountTransactionsApiProvider : ClassProvider<SavingsAccountTransactionsApi> {
+  override fun create(_ktorfit: Ktorfit): SavingsAccountTransactionsApi =
+      _SavingsAccountTransactionsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSavingsAccountTransactionsApi(): SavingsAccountTransactionsApi =
-    this.create(_SavingsAccountTransactionsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSavingsAccountTransactionsApi) })
+    _SavingsAccountTransactionsApiImpl(this)

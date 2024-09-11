@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,57 +32,51 @@ import org.openapitools.client.models.PutPaymentTypesPaymentTypeIdRequest
 import org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _PaymentTypeApiImpl : PaymentTypeApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _PaymentTypeApiImpl(
+  private val _ktorfit: Ktorfit,
+) : PaymentTypeApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createPaymentType(postPaymentTypesRequest: PostPaymentTypesRequest):
       PostPaymentTypesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/paymenttypes")
+        takeFrom(_ktorfit.baseUrl + "v1/paymenttypes")
         }
         setBody(postPaymentTypesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostPaymentTypesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostPaymentTypesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostPaymentTypesResponse,
-        org.openapitools.client.models.PostPaymentTypesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostPaymentTypesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteCode1(paymentTypeId: Long): DeletePaymentTypesPaymentTypeIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/paymenttypes/${"$paymentTypeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/paymenttypes/${"$paymentTypeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeletePaymentTypesPaymentTypeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeletePaymentTypesPaymentTypeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeletePaymentTypesPaymentTypeIdResponse,
-        org.openapitools.client.models.DeletePaymentTypesPaymentTypeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeletePaymentTypesPaymentTypeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getAllPaymentTypes(onlyWithCode: Boolean?): List<GetPaymentTypesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/paymenttypes")
+        takeFrom(_ktorfit.baseUrl + "v1/paymenttypes")
         onlyWithCode?.let{ parameter("onlyWithCode", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetPaymentTypesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetPaymentTypesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetPaymentTypesResponse>,
-        org.openapitools.client.models.GetPaymentTypesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetPaymentTypesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOnePaymentType(paymentTypeId: Long):
@@ -90,15 +84,13 @@ public class _PaymentTypeApiImpl : PaymentTypeApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/paymenttypes/${"$paymentTypeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/paymenttypes/${"$paymentTypeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetPaymentTypesPaymentTypeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetPaymentTypesPaymentTypeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetPaymentTypesPaymentTypeIdResponse,
-        org.openapitools.client.models.GetPaymentTypesPaymentTypeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetPaymentTypesPaymentTypeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updatePaymentType(paymentTypeId: Long,
@@ -107,18 +99,19 @@ public class _PaymentTypeApiImpl : PaymentTypeApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/paymenttypes/${"$paymentTypeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/paymenttypes/${"$paymentTypeId".encodeURLPath()}")
         }
         setBody(putPaymentTypesPaymentTypeIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse,
-        org.openapitools.client.models.PutPaymentTypesPaymentTypeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutPaymentTypesPaymentTypeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createPaymentTypeApi(): PaymentTypeApi = this.create(_PaymentTypeApiImpl().apply
-    { _converter= KtorfitConverterHelper(this@createPaymentTypeApi) })
+public class _PaymentTypeApiProvider : ClassProvider<PaymentTypeApi> {
+  override fun create(_ktorfit: Ktorfit): PaymentTypeApi = _PaymentTypeApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createPaymentTypeApi(): PaymentTypeApi = _PaymentTypeApiImpl(this)

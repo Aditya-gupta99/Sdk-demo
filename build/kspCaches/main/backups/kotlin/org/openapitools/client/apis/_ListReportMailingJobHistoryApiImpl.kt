@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,9 +26,10 @@ import kotlin.Suppress
 import org.openapitools.client.models.ReportMailingJobRunHistoryData
 
 @OptIn(InternalKtorfitApi::class)
-public class _ListReportMailingJobHistoryApiImpl : ListReportMailingJobHistoryApi, KtorfitInterface
-    {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ListReportMailingJobHistoryApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ListReportMailingJobHistoryApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAllByReportMailingJobId(
     reportMailingJobId: Long?,
@@ -40,7 +41,7 @@ public class _ListReportMailingJobHistoryApiImpl : ListReportMailingJobHistoryAp
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobrunhistory")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobrunhistory")
         reportMailingJobId?.let{ parameter("reportMailingJobId", "$it") }
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -49,14 +50,17 @@ public class _ListReportMailingJobHistoryApiImpl : ListReportMailingJobHistoryAp
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.ReportMailingJobRunHistoryData",
-    typeInfo = typeInfo<org.openapitools.client.models.ReportMailingJobRunHistoryData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.ReportMailingJobRunHistoryData,
-        org.openapitools.client.models.ReportMailingJobRunHistoryData>(_typeData,_ext)!!
+    typeInfo = typeInfo<ReportMailingJobRunHistoryData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _ListReportMailingJobHistoryApiProvider : ClassProvider<ListReportMailingJobHistoryApi>
+    {
+  override fun create(_ktorfit: Ktorfit): ListReportMailingJobHistoryApi =
+      _ListReportMailingJobHistoryApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createListReportMailingJobHistoryApi(): ListReportMailingJobHistoryApi =
-    this.create(_ListReportMailingJobHistoryApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createListReportMailingJobHistoryApi) })
+    _ListReportMailingJobHistoryApiImpl(this)

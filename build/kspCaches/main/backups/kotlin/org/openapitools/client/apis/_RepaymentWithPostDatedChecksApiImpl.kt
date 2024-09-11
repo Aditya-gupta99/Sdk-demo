@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,27 +30,24 @@ import org.openapitools.client.models.UpdatePostDatedCheckRequest
 import org.openapitools.client.models.UpdatePostDatedCheckResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _RepaymentWithPostDatedChecksApiImpl : RepaymentWithPostDatedChecksApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _RepaymentWithPostDatedChecksApiImpl(
+  private val _ktorfit: Ktorfit,
+) : RepaymentWithPostDatedChecksApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun deletePostDatedCheck(postDatedCheckId: Long, loanId: Long):
       List<DeletePostDatedCheck> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/postdatedchecks/${"$postDatedCheckId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.DeletePostDatedCheck>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.DeletePostDatedCheck>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.DeletePostDatedCheck>,
-        org.openapitools.client.models.DeletePostDatedCheck>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<DeletePostDatedCheck>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getPostDatedCheck(installmentId: Int, loanId: Long):
@@ -58,35 +55,27 @@ public class _RepaymentWithPostDatedChecksApiImpl : RepaymentWithPostDatedChecks
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/postdatedchecks/${"$installmentId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetPostDatedChecks>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetPostDatedChecks>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetPostDatedChecks>,
-        org.openapitools.client.models.GetPostDatedChecks>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetPostDatedChecks>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getPostDatedChecks(loanId: Long): List<GetPostDatedChecks> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/postdatedchecks")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/postdatedchecks")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetPostDatedChecks>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetPostDatedChecks>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetPostDatedChecks>,
-        org.openapitools.client.models.GetPostDatedChecks>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetPostDatedChecks>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updatePostDatedChecks(
@@ -98,23 +87,24 @@ public class _RepaymentWithPostDatedChecksApiImpl : RepaymentWithPostDatedChecks
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/postdatedchecks/${"$postDatedCheckId".encodeURLPath()}")
         editType?.let{ parameter("editType", "$it") }
         }
         setBody(updatePostDatedCheckRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.UpdatePostDatedCheckResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.UpdatePostDatedCheckResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.UpdatePostDatedCheckResponse>,
-        org.openapitools.client.models.UpdatePostDatedCheckResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<UpdatePostDatedCheckResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _RepaymentWithPostDatedChecksApiProvider :
+    ClassProvider<RepaymentWithPostDatedChecksApi> {
+  override fun create(_ktorfit: Ktorfit): RepaymentWithPostDatedChecksApi =
+      _RepaymentWithPostDatedChecksApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createRepaymentWithPostDatedChecksApi(): RepaymentWithPostDatedChecksApi =
-    this.create(_RepaymentWithPostDatedChecksApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createRepaymentWithPostDatedChecksApi) })
+    _RepaymentWithPostDatedChecksApiImpl(this)

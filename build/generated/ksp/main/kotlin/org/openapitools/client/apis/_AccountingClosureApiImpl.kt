@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,72 +30,64 @@ import org.openapitools.client.models.PutGlClosuresRequest
 import org.openapitools.client.models.PutGlClosuresResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _AccountingClosureApiImpl : AccountingClosureApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _AccountingClosureApiImpl(
+  private val _ktorfit: Ktorfit,
+) : AccountingClosureApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createGLClosure(postGlClosuresRequest: PostGlClosuresRequest):
       PostGlClosuresResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/glclosures")
+        takeFrom(_ktorfit.baseUrl + "v1/glclosures")
         }
         setBody(postGlClosuresRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostGlClosuresResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostGlClosuresResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostGlClosuresResponse,
-        org.openapitools.client.models.PostGlClosuresResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostGlClosuresResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteGLClosure(glClosureId: Long): DeleteGlClosuresResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/glclosures/${"$glClosureId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/glclosures/${"$glClosureId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteGlClosuresResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteGlClosuresResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteGlClosuresResponse,
-        org.openapitools.client.models.DeleteGlClosuresResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteGlClosuresResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retreiveClosure(glClosureId: Long): GetGlClosureResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/glclosures/${"$glClosureId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/glclosures/${"$glClosureId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGlClosureResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGlClosureResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGlClosureResponse,
-        org.openapitools.client.models.GetGlClosureResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGlClosureResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllClosures(officeId: Long?): List<GetGlClosureResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/glclosures")
+        takeFrom(_ktorfit.baseUrl + "v1/glclosures")
         officeId?.let{ parameter("officeId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetGlClosureResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetGlClosureResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetGlClosureResponse>,
-        org.openapitools.client.models.GetGlClosureResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetGlClosureResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateGLClosure(glClosureId: Long,
@@ -103,19 +95,20 @@ public class _AccountingClosureApiImpl : AccountingClosureApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/glclosures/${"$glClosureId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/glclosures/${"$glClosureId".encodeURLPath()}")
         }
         setBody(putGlClosuresRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutGlClosuresResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutGlClosuresResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutGlClosuresResponse,
-        org.openapitools.client.models.PutGlClosuresResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutGlClosuresResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _AccountingClosureApiProvider : ClassProvider<AccountingClosureApi> {
+  override fun create(_ktorfit: Ktorfit): AccountingClosureApi = _AccountingClosureApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createAccountingClosureApi(): AccountingClosureApi =
-    this.create(_AccountingClosureApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createAccountingClosureApi) })
+    _AccountingClosureApiImpl(this)

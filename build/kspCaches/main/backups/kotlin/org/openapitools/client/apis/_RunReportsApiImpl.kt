@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -27,25 +27,25 @@ import org.openapitools.client.models.ReportExportType
 import org.openapitools.client.models.RunReportsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _RunReportsApiImpl : RunReportsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _RunReportsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : RunReportsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAllAvailableExports(reportName: String,
       isSelfServiceUserReport: Boolean?): List<ReportExportType> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/runreports/availableExports/${"$reportName".encodeURLPath()}")
         isSelfServiceUserReport?.let{ parameter("isSelfServiceUserReport", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.ReportExportType>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.ReportExportType>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.ReportExportType>,
-        org.openapitools.client.models.ReportExportType>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<ReportExportType>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun runReport(reportName: String, isSelfServiceUserReport: Boolean?):
@@ -53,18 +53,19 @@ public class _RunReportsApiImpl : RunReportsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/runreports/${"$reportName".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/runreports/${"$reportName".encodeURLPath()}")
         isSelfServiceUserReport?.let{ parameter("isSelfServiceUserReport", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.RunReportsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.RunReportsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.RunReportsResponse,
-        org.openapitools.client.models.RunReportsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<RunReportsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createRunReportsApi(): RunReportsApi = this.create(_RunReportsApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createRunReportsApi) })
+public class _RunReportsApiProvider : ClassProvider<RunReportsApi> {
+  override fun create(_ktorfit: Ktorfit): RunReportsApi = _RunReportsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createRunReportsApi(): RunReportsApi = _RunReportsApiImpl(this)

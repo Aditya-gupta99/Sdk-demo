@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,9 +24,10 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _FixedDepositAccountTransactionsApiImpl : FixedDepositAccountTransactionsApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _FixedDepositAccountTransactionsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : FixedDepositAccountTransactionsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun adjustTransaction(
     fixedDepositAccountId: Long,
@@ -37,47 +38,44 @@ public class _FixedDepositAccountTransactionsApiImpl : FixedDepositAccountTransa
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/fixeddepositaccounts/${"$fixedDepositAccountId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne18(fixedDepositAccountId: Long, transactionId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/fixeddepositaccounts/${"$fixedDepositAccountId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate14(fixedDepositAccountId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/fixeddepositaccounts/${"$fixedDepositAccountId".encodeURLPath()}/transactions/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun transaction(
@@ -88,20 +86,24 @@ public class _FixedDepositAccountTransactionsApiImpl : FixedDepositAccountTransa
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/fixeddepositaccounts/${"$fixedDepositAccountId".encodeURLPath()}/transactions")
         command?.let{ parameter("command", "$it") }
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _FixedDepositAccountTransactionsApiProvider :
+    ClassProvider<FixedDepositAccountTransactionsApi> {
+  override fun create(_ktorfit: Ktorfit): FixedDepositAccountTransactionsApi =
+      _FixedDepositAccountTransactionsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createFixedDepositAccountTransactionsApi(): FixedDepositAccountTransactionsApi =
-    this.create(_FixedDepositAccountTransactionsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createFixedDepositAccountTransactionsApi) })
+    _FixedDepositAccountTransactionsApiImpl(this)

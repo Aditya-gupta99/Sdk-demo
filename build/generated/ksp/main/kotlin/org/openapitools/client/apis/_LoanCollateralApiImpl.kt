@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,8 +31,10 @@ import org.openapitools.client.models.PutLoansLoanIdCollateralsCollateralIdRespo
 import org.openapitools.client.models.PutLoansLoandIdCollateralsCollateralIdRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanCollateralApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanCollateralApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createCollateral(loanId: Long,
       postLoansLoanIdCollateralsRequest: PostLoansLoanIdCollateralsRequest):
@@ -40,16 +42,14 @@ public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/collaterals")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/collaterals")
         }
         setBody(postLoansLoanIdCollateralsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoansLoanIdCollateralsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoansLoanIdCollateralsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoansLoanIdCollateralsResponse,
-        org.openapitools.client.models.PostLoansLoanIdCollateralsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoansLoanIdCollateralsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteCollateral(loanId: Long, collateralId: Long):
@@ -57,18 +57,14 @@ public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/collaterals/${"$collateralId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteLoansLoanIdCollateralsCollateralIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteLoansLoanIdCollateralsCollateralIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteLoansLoanIdCollateralsCollateralIdResponse,
-        org.openapitools.client.models.DeleteLoansLoanIdCollateralsCollateralIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteLoansLoanIdCollateralsCollateralIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun newCollateralTemplate(loanId: Long):
@@ -76,15 +72,13 @@ public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/collaterals/template")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/collaterals/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoansLoanIdCollateralsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoansLoanIdCollateralsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdCollateralsTemplateResponse,
-        org.openapitools.client.models.GetLoansLoanIdCollateralsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdCollateralsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveCollateralDetails(loanId: Long):
@@ -92,17 +86,13 @@ public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/collaterals")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/${"$loanId".encodeURLPath()}/collaterals")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetLoansLoanIdCollateralsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetLoansLoanIdCollateralsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetLoansLoanIdCollateralsResponse>,
-        org.openapitools.client.models.GetLoansLoanIdCollateralsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetLoansLoanIdCollateralsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveCollateralDetails1(loanId: Long, collateralId: Long):
@@ -110,16 +100,14 @@ public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/collaterals/${"$collateralId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoansLoanIdCollateralsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoansLoanIdCollateralsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoansLoanIdCollateralsResponse,
-        org.openapitools.client.models.GetLoansLoanIdCollateralsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoansLoanIdCollateralsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateCollateral(
@@ -130,22 +118,20 @@ public class _LoanCollateralApiImpl : LoanCollateralApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loans/${"$loanId".encodeURLPath()}/collaterals/${"$collateralId".encodeURLPath()}")
         }
         setBody(putLoansLoandIdCollateralsCollateralIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutLoansLoanIdCollateralsCollateralIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutLoansLoanIdCollateralsCollateralIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutLoansLoanIdCollateralsCollateralIdResponse,
-        org.openapitools.client.models.PutLoansLoanIdCollateralsCollateralIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutLoansLoanIdCollateralsCollateralIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createLoanCollateralApi(): LoanCollateralApi =
-    this.create(_LoanCollateralApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanCollateralApi) })
+public class _LoanCollateralApiProvider : ClassProvider<LoanCollateralApi> {
+  override fun create(_ktorfit: Ktorfit): LoanCollateralApi = _LoanCollateralApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createLoanCollateralApi(): LoanCollateralApi = _LoanCollateralApiImpl(this)

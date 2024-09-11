@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,28 +25,32 @@ import org.openapitools.client.models.PostAuthenticationRequest
 import org.openapitools.client.models.PostAuthenticationResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _AuthenticationHTTPBasicApiImpl : AuthenticationHTTPBasicApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _AuthenticationHTTPBasicApiImpl(
+  private val _ktorfit: Ktorfit,
+) : AuthenticationHTTPBasicApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun authenticate(postAuthenticationRequest: PostAuthenticationRequest,
       returnClientList: Boolean?): PostAuthenticationResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/authentication")
+        takeFrom(_ktorfit.baseUrl + "v1/authentication")
         returnClientList?.let{ parameter("returnClientList", "$it") }
         }
         setBody(postAuthenticationRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostAuthenticationResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostAuthenticationResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAuthenticationResponse,
-        org.openapitools.client.models.PostAuthenticationResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAuthenticationResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _AuthenticationHTTPBasicApiProvider : ClassProvider<AuthenticationHTTPBasicApi> {
+  override fun create(_ktorfit: Ktorfit): AuthenticationHTTPBasicApi =
+      _AuthenticationHTTPBasicApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createAuthenticationHTTPBasicApi(): AuthenticationHTTPBasicApi =
-    this.create(_AuthenticationHTTPBasicApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createAuthenticationHTTPBasicApi) })
+    _AuthenticationHTTPBasicApiImpl(this)

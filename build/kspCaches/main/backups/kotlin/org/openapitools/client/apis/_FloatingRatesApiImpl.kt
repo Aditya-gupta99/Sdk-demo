@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,56 +30,50 @@ import org.openapitools.client.models.PutFloatingRatesFloatingRateIdRequest
 import org.openapitools.client.models.PutFloatingRatesFloatingRateIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _FloatingRatesApiImpl : FloatingRatesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _FloatingRatesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : FloatingRatesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createFloatingRate(postFloatingRatesRequest: PostFloatingRatesRequest):
       PostFloatingRatesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/floatingrates")
+        takeFrom(_ktorfit.baseUrl + "v1/floatingrates")
         }
         setBody(postFloatingRatesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostFloatingRatesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostFloatingRatesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostFloatingRatesResponse,
-        org.openapitools.client.models.PostFloatingRatesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostFloatingRatesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll22(): List<GetFloatingRatesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/floatingrates")
+        takeFrom(_ktorfit.baseUrl + "v1/floatingrates")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetFloatingRatesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetFloatingRatesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetFloatingRatesResponse>,
-        org.openapitools.client.models.GetFloatingRatesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetFloatingRatesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne13(floatingRateId: Long): GetFloatingRatesFloatingRateIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/floatingrates/${"$floatingRateId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/floatingrates/${"$floatingRateId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetFloatingRatesFloatingRateIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetFloatingRatesFloatingRateIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetFloatingRatesFloatingRateIdResponse,
-        org.openapitools.client.models.GetFloatingRatesFloatingRateIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetFloatingRatesFloatingRateIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateFloatingRate(floatingRateId: Long,
@@ -88,19 +82,19 @@ public class _FloatingRatesApiImpl : FloatingRatesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/floatingrates/${"$floatingRateId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/floatingrates/${"$floatingRateId".encodeURLPath()}")
         }
         setBody(putFloatingRatesFloatingRateIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutFloatingRatesFloatingRateIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutFloatingRatesFloatingRateIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutFloatingRatesFloatingRateIdResponse,
-        org.openapitools.client.models.PutFloatingRatesFloatingRateIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutFloatingRatesFloatingRateIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createFloatingRatesApi(): FloatingRatesApi =
-    this.create(_FloatingRatesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createFloatingRatesApi) })
+public class _FloatingRatesApiProvider : ClassProvider<FloatingRatesApi> {
+  override fun create(_ktorfit: Ktorfit): FloatingRatesApi = _FloatingRatesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createFloatingRatesApi(): FloatingRatesApi = _FloatingRatesApiImpl(this)

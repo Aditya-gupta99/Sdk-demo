@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteGroupsGroupIdResponse
 import org.openapitools.client.models.GetGroupsGroupIdAccountsResponse
@@ -44,8 +45,10 @@ import org.openapitools.client.models.PutGroupsGroupIdRequest
 import org.openapitools.client.models.PutGroupsGroupIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _GroupsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : GroupsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun activateOrGenerateCollectionSheet(
     groupId: Long,
@@ -56,49 +59,43 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         roleId?.let{ parameter("roleId", "$it") }
         }
         setBody(postGroupsGroupIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostGroupsGroupIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostGroupsGroupIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostGroupsGroupIdResponse,
-        org.openapitools.client.models.PostGroupsGroupIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostGroupsGroupIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun create8(postGroupsRequest: PostGroupsRequest): PostGroupsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups")
+        takeFrom(_ktorfit.baseUrl + "v1/groups")
         }
         setBody(postGroupsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostGroupsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostGroupsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostGroupsResponse,
-        org.openapitools.client.models.PostGroupsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostGroupsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete12(groupId: Long): DeleteGroupsGroupIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteGroupsGroupIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteGroupsGroupIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteGroupsGroupIdResponse,
-        org.openapitools.client.models.DeleteGroupsGroupIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteGroupsGroupIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getGroupsTemplate(
@@ -109,17 +106,16 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         staffId?.let{ parameter("staffId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postGroupTemplate(
@@ -130,7 +126,7 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -141,25 +137,22 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAccounts(groupId: Long): GetGroupsGroupIdAccountsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}/accounts")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}/accounts")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGroupsGroupIdAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGroupsGroupIdAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGroupsGroupIdAccountsResponse,
-        org.openapitools.client.models.GetGroupsGroupIdAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGroupsGroupIdAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll24(
@@ -178,7 +171,7 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups")
+        takeFrom(_ktorfit.baseUrl + "v1/groups")
         officeId?.let{ parameter("officeId", "$it") }
         staffId?.let{ parameter("staffId", "$it") }
         externalId?.let{ parameter("externalId", "$it") }
@@ -193,11 +186,9 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGroupsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGroupsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGroupsResponse,
-        org.openapitools.client.models.GetGroupsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGroupsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveGsimAccounts(
@@ -208,16 +199,15 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}/gsimaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}/gsimaccounts")
         parentGSIMAccountNo?.let{ parameter("parentGSIMAccountNo", "$it") }
         parentGSIMId?.let{ parameter("parentGSIMId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne15(
@@ -228,17 +218,15 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
         staffInSelectedOfficeOnly?.let{ parameter("staffInSelectedOfficeOnly", "$it") }
         roleId?.let{ parameter("roleId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGroupsGroupIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGroupsGroupIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGroupsGroupIdResponse,
-        org.openapitools.client.models.GetGroupsGroupIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGroupsGroupIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate7(
@@ -251,7 +239,7 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/template")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/template")
         officeId?.let{ parameter("officeId", "$it") }
         center?.let{ parameter("center", "$it") }
         centerId?.let{ parameter("centerId", "$it") }
@@ -260,26 +248,23 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGroupsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGroupsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGroupsTemplateResponse,
-        org.openapitools.client.models.GetGroupsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGroupsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveglimAccounts(groupId: Long, parentLoanAccountNo: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}/glimaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}/glimaccounts")
         parentLoanAccountNo?.let{ parameter("parentLoanAccountNo", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun unassignLoanOfficer(groupId: Long,
@@ -288,19 +273,15 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/groups/${"$groupId".encodeURLPath()}/command/unassign_staff")
         }
         setBody(postGroupsGroupIdCommandUnassignStaffRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostGroupsGroupIdCommandUnassignStaffResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostGroupsGroupIdCommandUnassignStaffResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostGroupsGroupIdCommandUnassignStaffResponse,
-        org.openapitools.client.models.PostGroupsGroupIdCommandUnassignStaffResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostGroupsGroupIdCommandUnassignStaffResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update13(groupId: Long, putGroupsGroupIdRequest: PutGroupsGroupIdRequest):
@@ -308,18 +289,19 @@ public class _GroupsApiImpl : GroupsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/groups/${"$groupId".encodeURLPath()}")
         }
         setBody(putGroupsGroupIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutGroupsGroupIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutGroupsGroupIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutGroupsGroupIdResponse,
-        org.openapitools.client.models.PutGroupsGroupIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutGroupsGroupIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createGroupsApi(): GroupsApi = this.create(_GroupsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createGroupsApi) })
+public class _GroupsApiProvider : ClassProvider<GroupsApi> {
+  override fun create(_ktorfit: Ktorfit): GroupsApi = _GroupsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createGroupsApi(): GroupsApi = _GroupsApiImpl(this)

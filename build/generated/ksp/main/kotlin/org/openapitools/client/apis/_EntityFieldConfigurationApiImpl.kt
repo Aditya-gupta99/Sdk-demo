@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,27 +25,29 @@ import kotlin.collections.List
 import org.openapitools.client.models.GetFieldConfigurationEntityResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _EntityFieldConfigurationApiImpl : EntityFieldConfigurationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _EntityFieldConfigurationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : EntityFieldConfigurationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun getAddresses(entity: String): List<GetFieldConfigurationEntityResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/fieldconfiguration/${"$entity".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/fieldconfiguration/${"$entity".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetFieldConfigurationEntityResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetFieldConfigurationEntityResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetFieldConfigurationEntityResponse>,
-        org.openapitools.client.models.GetFieldConfigurationEntityResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetFieldConfigurationEntityResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _EntityFieldConfigurationApiProvider : ClassProvider<EntityFieldConfigurationApi> {
+  override fun create(_ktorfit: Ktorfit): EntityFieldConfigurationApi =
+      _EntityFieldConfigurationApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createEntityFieldConfigurationApi(): EntityFieldConfigurationApi =
-    this.create(_EntityFieldConfigurationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createEntityFieldConfigurationApi) })
+    _EntityFieldConfigurationApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,23 +23,27 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _MixTaxonomyApiImpl : MixTaxonomyApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _MixTaxonomyApiImpl(
+  private val _ktorfit: Ktorfit,
+) : MixTaxonomyApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAll14(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/mixtaxonomy")
+        takeFrom(_ktorfit.baseUrl + "v1/mixtaxonomy")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createMixTaxonomyApi(): MixTaxonomyApi = this.create(_MixTaxonomyApiImpl().apply
-    { _converter= KtorfitConverterHelper(this@createMixTaxonomyApi) })
+public class _MixTaxonomyApiProvider : ClassProvider<MixTaxonomyApi> {
+  override fun create(_ktorfit: Ktorfit): MixTaxonomyApi = _MixTaxonomyApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createMixTaxonomyApi(): MixTaxonomyApi = _MixTaxonomyApiImpl(this)

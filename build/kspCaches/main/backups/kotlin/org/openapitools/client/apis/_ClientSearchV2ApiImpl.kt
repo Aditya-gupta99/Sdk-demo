@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,27 +24,29 @@ import org.openapitools.client.models.PageClientSearchData
 import org.openapitools.client.models.PagedRequestClientTextSearch
 
 @OptIn(InternalKtorfitApi::class)
-public class _ClientSearchV2ApiImpl : ClientSearchV2Api, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ClientSearchV2ApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ClientSearchV2Api {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun searchByText(pagedRequestClientTextSearch: PagedRequestClientTextSearch?):
       PageClientSearchData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v2/clients/search")
+        takeFrom(_ktorfit.baseUrl + "v2/clients/search")
         }
         setBody(pagedRequestClientTextSearch) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PageClientSearchData",
-    typeInfo = typeInfo<org.openapitools.client.models.PageClientSearchData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PageClientSearchData,
-        org.openapitools.client.models.PageClientSearchData>(_typeData,_ext)!!
+    typeInfo = typeInfo<PageClientSearchData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createClientSearchV2Api(): ClientSearchV2Api =
-    this.create(_ClientSearchV2ApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createClientSearchV2Api) })
+public class _ClientSearchV2ApiProvider : ClassProvider<ClientSearchV2Api> {
+  override fun create(_ktorfit: Ktorfit): ClientSearchV2Api = _ClientSearchV2ApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createClientSearchV2Api(): ClientSearchV2Api = _ClientSearchV2ApiImpl(this)

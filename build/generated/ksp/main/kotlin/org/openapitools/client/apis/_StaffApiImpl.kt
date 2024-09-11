@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import okhttp3.MultipartBody
 import org.openapitools.client.models.CreateStaffResponse
@@ -36,39 +37,38 @@ import org.openapitools.client.models.RetrieveOneResponse
 import org.openapitools.client.models.UpdateStaffResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _StaffApiImpl : StaffApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _StaffApiImpl(
+  private val _ktorfit: Ktorfit,
+) : StaffApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create3(postStaffRequest: PostStaffRequest): CreateStaffResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/staff")
+        takeFrom(_ktorfit.baseUrl + "v1/staff")
         }
         setBody(postStaffRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.CreateStaffResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.CreateStaffResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.CreateStaffResponse,
-        org.openapitools.client.models.CreateStaffResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<CreateStaffResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTemplate1(officeId: Long?, dateFormat: String?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/staff/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/staff/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postTemplate(
@@ -79,7 +79,7 @@ public class _StaffApiImpl : StaffApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/staff/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/staff/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -90,10 +90,9 @@ public class _StaffApiImpl : StaffApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll16(
@@ -105,7 +104,7 @@ public class _StaffApiImpl : StaffApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/staff")
+        takeFrom(_ktorfit.baseUrl + "v1/staff")
         officeId?.let{ parameter("officeId", "$it") }
         staffInOfficeHierarchy?.let{ parameter("staffInOfficeHierarchy", "$it") }
         loanOfficersOnly?.let{ parameter("loanOfficersOnly", "$it") }
@@ -113,28 +112,22 @@ public class _StaffApiImpl : StaffApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.RetrieveOneResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.RetrieveOneResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.RetrieveOneResponse>,
-        org.openapitools.client.models.RetrieveOneResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<RetrieveOneResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne8(staffId: Long): RetrieveOneResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/staff/${"$staffId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/staff/${"$staffId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.RetrieveOneResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.RetrieveOneResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.RetrieveOneResponse,
-        org.openapitools.client.models.RetrieveOneResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<RetrieveOneResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update7(staffId: Long, putStaffRequest: PutStaffRequest):
@@ -142,18 +135,19 @@ public class _StaffApiImpl : StaffApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/staff/${"$staffId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/staff/${"$staffId".encodeURLPath()}")
         }
         setBody(putStaffRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.UpdateStaffResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.UpdateStaffResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.UpdateStaffResponse,
-        org.openapitools.client.models.UpdateStaffResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<UpdateStaffResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createStaffApi(): StaffApi = this.create(_StaffApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createStaffApi) })
+public class _StaffApiProvider : ClassProvider<StaffApi> {
+  override fun create(_ktorfit: Ktorfit): StaffApi = _StaffApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createStaffApi(): StaffApi = _StaffApiImpl(this)

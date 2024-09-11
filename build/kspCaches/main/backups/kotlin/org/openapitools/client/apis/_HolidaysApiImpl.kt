@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -33,39 +33,37 @@ import org.openapitools.client.models.PutHolidaysHolidayIdRequest
 import org.openapitools.client.models.PutHolidaysHolidayIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _HolidaysApiImpl(
+  private val _ktorfit: Ktorfit,
+) : HolidaysApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createNewHoliday(postHolidaysRequest: PostHolidaysRequest):
       PostHolidaysResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays")
         }
         setBody(postHolidaysRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostHolidaysResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostHolidaysResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostHolidaysResponse,
-        org.openapitools.client.models.PostHolidaysResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostHolidaysResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete7(holidayId: Long): DeleteHolidaysHolidayIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteHolidaysHolidayIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteHolidaysHolidayIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteHolidaysHolidayIdResponse,
-        org.openapitools.client.models.DeleteHolidaysHolidayIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteHolidaysHolidayIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun handleCommands1(
@@ -76,17 +74,15 @@ public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostHolidaysHolidayIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostHolidaysHolidayIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostHolidaysHolidayIdResponse,
-        org.openapitools.client.models.PostHolidaysHolidayIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostHolidaysHolidayIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllHolidays(
@@ -99,7 +95,7 @@ public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays")
         officeId?.let{ parameter("officeId", "$it") }
         fromDate?.let{ parameter("fromDate", "$it") }
         toDate?.let{ parameter("toDate", "$it") }
@@ -108,42 +104,35 @@ public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetHolidaysResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetHolidaysResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetHolidaysResponse>,
-        org.openapitools.client.models.GetHolidaysResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetHolidaysResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne7(holidayId: Long): GetHolidaysResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetHolidaysResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetHolidaysResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetHolidaysResponse,
-        org.openapitools.client.models.GetHolidaysResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetHolidaysResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveRepaymentScheduleUpdationTyeOptions(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays/template")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update6(holidayId: Long,
@@ -151,18 +140,19 @@ public class _HolidaysApiImpl : HolidaysApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/holidays/${"$holidayId".encodeURLPath()}")
         }
         setBody(putHolidaysHolidayIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutHolidaysHolidayIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutHolidaysHolidayIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutHolidaysHolidayIdResponse,
-        org.openapitools.client.models.PutHolidaysHolidayIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutHolidaysHolidayIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createHolidaysApi(): HolidaysApi = this.create(_HolidaysApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createHolidaysApi) })
+public class _HolidaysApiProvider : ClassProvider<HolidaysApi> {
+  override fun create(_ktorfit: Ktorfit): HolidaysApi = _HolidaysApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createHolidaysApi(): HolidaysApi = _HolidaysApiImpl(this)

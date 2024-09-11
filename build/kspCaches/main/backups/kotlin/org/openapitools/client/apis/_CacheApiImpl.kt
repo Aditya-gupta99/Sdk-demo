@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,41 +26,41 @@ import org.openapitools.client.models.PutCachesRequest
 import org.openapitools.client.models.PutCachesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _CacheApiImpl : CacheApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _CacheApiImpl(
+  private val _ktorfit: Ktorfit,
+) : CacheApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAll4(): List<GetCachesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/caches")
+        takeFrom(_ktorfit.baseUrl + "v1/caches")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetCachesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetCachesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetCachesResponse>,
-        org.openapitools.client.models.GetCachesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetCachesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun switchCache(putCachesRequest: PutCachesRequest): PutCachesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/caches")
+        takeFrom(_ktorfit.baseUrl + "v1/caches")
         }
         setBody(putCachesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutCachesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutCachesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutCachesResponse,
-        org.openapitools.client.models.PutCachesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutCachesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createCacheApi(): CacheApi = this.create(_CacheApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createCacheApi) })
+public class _CacheApiProvider : ClassProvider<CacheApi> {
+  override fun create(_ktorfit: Ktorfit): CacheApi = _CacheApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createCacheApi(): CacheApi = _CacheApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,8 +32,10 @@ import org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdReques
 import org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _NotesApiImpl : NotesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _NotesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : NotesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun addNewNote(
     resourceType: String,
@@ -43,17 +45,15 @@ public class _NotesApiImpl : NotesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$resourceType".encodeURLPath()}/${"$resourceId".encodeURLPath()}/notes")
         }
         setBody(postResourceTypeResourceIdNotesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostResourceTypeResourceIdNotesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostResourceTypeResourceIdNotesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostResourceTypeResourceIdNotesResponse,
-        org.openapitools.client.models.PostResourceTypeResourceIdNotesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostResourceTypeResourceIdNotesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteNote(
@@ -64,18 +64,14 @@ public class _NotesApiImpl : NotesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$resourceType".encodeURLPath()}/${"$resourceId".encodeURLPath()}/notes/${"$noteId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteResourceTypeResourceIdNotesNoteIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteResourceTypeResourceIdNotesNoteIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteResourceTypeResourceIdNotesNoteIdResponse,
-        org.openapitools.client.models.DeleteResourceTypeResourceIdNotesNoteIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteResourceTypeResourceIdNotesNoteIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveNote(
@@ -86,18 +82,14 @@ public class _NotesApiImpl : NotesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$resourceType".encodeURLPath()}/${"$resourceId".encodeURLPath()}/notes/${"$noteId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetResourceTypeResourceIdNotesNoteIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetResourceTypeResourceIdNotesNoteIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetResourceTypeResourceIdNotesNoteIdResponse,
-        org.openapitools.client.models.GetResourceTypeResourceIdNotesNoteIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetResourceTypeResourceIdNotesNoteIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveNotesByResource(resourceType: String, resourceId: Long):
@@ -105,18 +97,14 @@ public class _NotesApiImpl : NotesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$resourceType".encodeURLPath()}/${"$resourceId".encodeURLPath()}/notes")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse>,
-        org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetResourceTypeResourceIdNotesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateNote(
@@ -128,21 +116,20 @@ public class _NotesApiImpl : NotesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$resourceType".encodeURLPath()}/${"$resourceId".encodeURLPath()}/notes/${"$noteId".encodeURLPath()}")
         }
         setBody(putResourceTypeResourceIdNotesNoteIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse,
-        org.openapitools.client.models.PutResourceTypeResourceIdNotesNoteIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutResourceTypeResourceIdNotesNoteIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createNotesApi(): NotesApi = this.create(_NotesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createNotesApi) })
+public class _NotesApiProvider : ClassProvider<NotesApi> {
+  override fun create(_ktorfit: Ktorfit): NotesApi = _NotesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createNotesApi(): NotesApi = _NotesApiImpl(this)

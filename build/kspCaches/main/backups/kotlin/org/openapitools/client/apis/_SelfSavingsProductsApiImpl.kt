@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,40 +24,44 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfSavingsProductsApiImpl : SelfSavingsProductsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfSavingsProductsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfSavingsProductsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAll38(clientId: Long?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/savingsproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/self/savingsproducts")
         clientId?.let{ parameter("clientId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne29(productId: Long, clientId: Long?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/savingsproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/self/savingsproducts/${"$productId".encodeURLPath()}")
         clientId?.let{ parameter("clientId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SelfSavingsProductsApiProvider : ClassProvider<SelfSavingsProductsApi> {
+  override fun create(_ktorfit: Ktorfit): SelfSavingsProductsApi =
+      _SelfSavingsProductsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSelfSavingsProductsApi(): SelfSavingsProductsApi =
-    this.create(_SelfSavingsProductsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfSavingsProductsApi) })
+    _SelfSavingsProductsApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse
 import org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse
@@ -38,8 +39,10 @@ import org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransact
 import org.openapitools.client.models.GetSelfClientsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfClientApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfClientApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun addNewClientImage2(
     clientId: Long,
@@ -51,7 +54,7 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/images")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/images")
         }
         headers{
         contentLength?.let{ append("Content-Length", "$contentLength") }
@@ -65,24 +68,22 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteClientImage1(clientId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/images")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/images")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll36(
@@ -98,7 +99,7 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients")
         displayName?.let{ parameter("displayName", "$it") }
         firstName?.let{ parameter("firstName", "$it") }
         lastName?.let{ parameter("lastName", "$it") }
@@ -110,11 +111,9 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfClientsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSelfClientsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsResponse,
-        org.openapitools.client.models.GetSelfClientsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllClientCharges1(
@@ -127,7 +126,7 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/charges")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/charges")
         chargeStatus?.let{ parameter("chargeStatus", "$it") }
         pendingPayment?.let{ parameter("pendingPayment", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -135,11 +134,9 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfClientsClientIdChargesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSelfClientsClientIdChargesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsClientIdChargesResponse,
-        org.openapitools.client.models.GetSelfClientsClientIdChargesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsClientIdChargesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllClientTransactions2(
@@ -150,18 +147,15 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/transactions")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/transactions")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfClientsClientIdTransactionsResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetSelfClientsClientIdTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsClientIdTransactionsResponse,
-        org.openapitools.client.models.GetSelfClientsClientIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsClientIdTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAssociatedAccounts2(clientId: Long):
@@ -169,15 +163,13 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/accounts")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/accounts")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse,
-        org.openapitools.client.models.GetSelfClientsClientIdAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsClientIdAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveClientCharge1(clientId: Long, chargeId: Long):
@@ -185,18 +177,14 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/self/clients/${"$clientId".encodeURLPath()}/charges/${"$chargeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse,
-        org.openapitools.client.models.GetSelfClientsClientIdChargesChargeIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsClientIdChargesChargeIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveClientTransaction4(clientId: Long, transactionId: Long):
@@ -204,18 +192,14 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/self/clients/${"$clientId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransactionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransactionIdResponse,
-        org.openapitools.client.models.GetSelfClientsClientIdTransactionsTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsClientIdTransactionsTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveImage1(
@@ -227,49 +211,47 @@ public class _SelfClientApiImpl : SelfClientApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/images")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/images")
         maxWidth?.let{ parameter("maxWidth", "$it") }
         maxHeight?.let{ parameter("maxHeight", "$it") }
         output?.let{ parameter("output", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveObligeeDetails2(clientId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/self/clients/${"$clientId".encodeURLPath()}/obligeedetails")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}/obligeedetails")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne28(clientId: Long): GetSelfClientsClientIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/self/clients/${"$clientId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfClientsClientIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSelfClientsClientIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfClientsClientIdResponse,
-        org.openapitools.client.models.GetSelfClientsClientIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfClientsClientIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSelfClientApi(): SelfClientApi = this.create(_SelfClientApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createSelfClientApi) })
+public class _SelfClientApiProvider : ClassProvider<SelfClientApi> {
+  override fun create(_ktorfit: Ktorfit): SelfClientApi = _SelfClientApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSelfClientApi(): SelfClientApi = _SelfClientApiImpl(this)

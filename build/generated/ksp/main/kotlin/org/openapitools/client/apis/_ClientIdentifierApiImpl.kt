@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,8 +31,10 @@ import org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdR
 import org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ClientIdentifierApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ClientIdentifierApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createClientIdentifier(clientId: Long,
       postClientsClientIdIdentifiersRequest: PostClientsClientIdIdentifiersRequest):
@@ -40,16 +42,14 @@ public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/identifiers")
+        takeFrom(_ktorfit.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/identifiers")
         }
         setBody(postClientsClientIdIdentifiersRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostClientsClientIdIdentifiersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostClientsClientIdIdentifiersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostClientsClientIdIdentifiersResponse,
-        org.openapitools.client.models.PostClientsClientIdIdentifiersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostClientsClientIdIdentifiersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteClientIdentifier(clientId: Long, identifierId: Long):
@@ -57,18 +57,14 @@ public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/identifiers/${"$identifierId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteClientsClientIdIdentifiersIdentifierIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteClientsClientIdIdentifiersIdentifierIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteClientsClientIdIdentifiersIdentifierIdResponse,
-        org.openapitools.client.models.DeleteClientsClientIdIdentifiersIdentifierIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteClientsClientIdIdentifiersIdentifierIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun newClientIdentifierDetails(clientId: Long):
@@ -76,18 +72,14 @@ public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/identifiers/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetClientsClientIdIdentifiersTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetClientsClientIdIdentifiersTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetClientsClientIdIdentifiersTemplateResponse,
-        org.openapitools.client.models.GetClientsClientIdIdentifiersTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetClientsClientIdIdentifiersTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllClientIdentifiers(clientId: Long):
@@ -95,17 +87,13 @@ public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/identifiers")
+        takeFrom(_ktorfit.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/identifiers")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetClientsClientIdIdentifiersResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetClientsClientIdIdentifiersResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetClientsClientIdIdentifiersResponse>,
-        org.openapitools.client.models.GetClientsClientIdIdentifiersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetClientsClientIdIdentifiersResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveClientIdentifiers(clientId: Long, identifierId: Long):
@@ -113,16 +101,14 @@ public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/identifiers/${"$identifierId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetClientsClientIdIdentifiersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetClientsClientIdIdentifiersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetClientsClientIdIdentifiersResponse,
-        org.openapitools.client.models.GetClientsClientIdIdentifiersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetClientsClientIdIdentifiersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateClientIdentifer(
@@ -133,22 +119,20 @@ public class _ClientIdentifierApiImpl : ClientIdentifierApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/identifiers/${"$identifierId".encodeURLPath()}")
         }
         setBody(putClientsClientIdIdentifiersIdentifierIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdResponse,
-        org.openapitools.client.models.PutClientsClientIdIdentifiersIdentifierIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutClientsClientIdIdentifiersIdentifierIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createClientIdentifierApi(): ClientIdentifierApi =
-    this.create(_ClientIdentifierApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createClientIdentifierApi) })
+public class _ClientIdentifierApiProvider : ClassProvider<ClientIdentifierApi> {
+  override fun create(_ktorfit: Ktorfit): ClientIdentifierApi = _ClientIdentifierApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createClientIdentifierApi(): ClientIdentifierApi = _ClientIdentifierApiImpl(this)

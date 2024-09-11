@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -33,100 +33,92 @@ import org.openapitools.client.models.PutTemplatesTemplateIdRequest
 import org.openapitools.client.models.PutTemplatesTemplateIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _UserGeneratedDocumentsApiImpl : UserGeneratedDocumentsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _UserGeneratedDocumentsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : UserGeneratedDocumentsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createTemplate(postTemplatesRequest: PostTemplatesRequest):
       PostTemplatesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates")
+        takeFrom(_ktorfit.baseUrl + "v1/templates")
         }
         setBody(postTemplatesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostTemplatesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostTemplatesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTemplatesResponse,
-        org.openapitools.client.models.PostTemplatesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTemplatesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteTemplate(templateId: Long): DeleteTemplatesTemplateIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteTemplatesTemplateIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteTemplatesTemplateIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteTemplatesTemplateIdResponse,
-        org.openapitools.client.models.DeleteTemplatesTemplateIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteTemplatesTemplateIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTemplateByTemplate(templateId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}/template")
+        takeFrom(_ktorfit.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun mergeTemplate(templateId: Long, body: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll40(typeId: Int?, entityId: Int?): GetTemplatesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates")
+        takeFrom(_ktorfit.baseUrl + "v1/templates")
         typeId?.let{ parameter("typeId", "$it") }
         entityId?.let{ parameter("entityId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTemplatesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTemplatesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTemplatesResponse,
-        org.openapitools.client.models.GetTemplatesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTemplatesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne30(templateId: Long): GetTemplatesTemplateIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTemplatesTemplateIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTemplatesTemplateIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTemplatesTemplateIdResponse,
-        org.openapitools.client.models.GetTemplatesTemplateIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTemplatesTemplateIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun saveTemplate(templateId: Long,
@@ -135,34 +127,34 @@ public class _UserGeneratedDocumentsApiImpl : UserGeneratedDocumentsApi, Ktorfit
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/templates/${"$templateId".encodeURLPath()}")
         }
         setBody(putTemplatesTemplateIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutTemplatesTemplateIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutTemplatesTemplateIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutTemplatesTemplateIdResponse,
-        org.openapitools.client.models.PutTemplatesTemplateIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutTemplatesTemplateIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template20(): GetTemplatesTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/templates/template")
+        takeFrom(_ktorfit.baseUrl + "v1/templates/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTemplatesTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTemplatesTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTemplatesTemplateResponse,
-        org.openapitools.client.models.GetTemplatesTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTemplatesTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _UserGeneratedDocumentsApiProvider : ClassProvider<UserGeneratedDocumentsApi> {
+  override fun create(_ktorfit: Ktorfit): UserGeneratedDocumentsApi =
+      _UserGeneratedDocumentsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createUserGeneratedDocumentsApi(): UserGeneratedDocumentsApi =
-    this.create(_UserGeneratedDocumentsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createUserGeneratedDocumentsApi) })
+    _UserGeneratedDocumentsApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -20,58 +20,58 @@ import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.GetOldestCOBProcessedLoanResponse
 import org.openapitools.client.models.IsCatchUpRunningResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanCOBCatchUpApiImpl : LoanCOBCatchUpApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanCOBCatchUpApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanCOBCatchUpApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun executeLoanCOBCatchUp() {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/catch-up")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/catch-up")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getOldestCOBProcessedLoan(): GetOldestCOBProcessedLoanResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/oldest-cob-closed")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/oldest-cob-closed")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetOldestCOBProcessedLoanResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetOldestCOBProcessedLoanResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetOldestCOBProcessedLoanResponse,
-        org.openapitools.client.models.GetOldestCOBProcessedLoanResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetOldestCOBProcessedLoanResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun isCatchUpRunning(): IsCatchUpRunningResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/is-catch-up-running")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/is-catch-up-running")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.IsCatchUpRunningResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.IsCatchUpRunningResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.IsCatchUpRunningResponse,
-        org.openapitools.client.models.IsCatchUpRunningResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<IsCatchUpRunningResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createLoanCOBCatchUpApi(): LoanCOBCatchUpApi =
-    this.create(_LoanCOBCatchUpApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanCOBCatchUpApi) })
+public class _LoanCOBCatchUpApiProvider : ClassProvider<LoanCOBCatchUpApi> {
+  override fun create(_ktorfit: Ktorfit): LoanCOBCatchUpApi = _LoanCOBCatchUpApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createLoanCOBCatchUpApi(): LoanCOBCatchUpApi = _LoanCOBCatchUpApiImpl(this)

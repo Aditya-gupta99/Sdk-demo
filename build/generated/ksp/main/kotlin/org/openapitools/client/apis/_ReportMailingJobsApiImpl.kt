@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -34,8 +34,10 @@ import org.openapitools.client.models.PutReportMailingJobsRequest
 import org.openapitools.client.models.PutReportMailingJobsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ReportMailingJobsApiImpl : ReportMailingJobsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ReportMailingJobsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ReportMailingJobsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createReportMailingJob(postReportMailingJobsRequest: PostReportMailingJobsRequest):
@@ -43,16 +45,14 @@ public class _ReportMailingJobsApiImpl : ReportMailingJobsApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobs")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobs")
         }
         setBody(postReportMailingJobsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostReportMailingJobsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostReportMailingJobsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostReportMailingJobsResponse,
-        org.openapitools.client.models.PostReportMailingJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostReportMailingJobsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteReportMailingJob(entityId: Long, body: Any):
@@ -60,16 +60,14 @@ public class _ReportMailingJobsApiImpl : ReportMailingJobsApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobs/${"$entityId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobs/${"$entityId".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteReportMailingJobsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteReportMailingJobsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteReportMailingJobsResponse,
-        org.openapitools.client.models.DeleteReportMailingJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteReportMailingJobsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllReportMailingJobs(
@@ -81,7 +79,7 @@ public class _ReportMailingJobsApiImpl : ReportMailingJobsApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobs")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobs")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         orderBy?.let{ parameter("orderBy", "$it") }
@@ -89,43 +87,35 @@ public class _ReportMailingJobsApiImpl : ReportMailingJobsApi, KtorfitInterface 
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetReportMailingJobsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetReportMailingJobsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetReportMailingJobsResponse>,
-        org.openapitools.client.models.GetReportMailingJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetReportMailingJobsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveReportMailingJob(entityId: Long): GetReportMailingJobsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobs/${"$entityId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobs/${"$entityId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetReportMailingJobsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetReportMailingJobsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetReportMailingJobsResponse,
-        org.openapitools.client.models.GetReportMailingJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetReportMailingJobsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveReportMailingJobTemplate(): GetReportMailingJobsTemplate {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobs/template")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobs/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetReportMailingJobsTemplate",
-    typeInfo = typeInfo<org.openapitools.client.models.GetReportMailingJobsTemplate>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetReportMailingJobsTemplate,
-        org.openapitools.client.models.GetReportMailingJobsTemplate>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetReportMailingJobsTemplate>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateReportMailingJob(entityId: Long,
@@ -133,19 +123,20 @@ public class _ReportMailingJobsApiImpl : ReportMailingJobsApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/reportmailingjobs/${"$entityId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/reportmailingjobs/${"$entityId".encodeURLPath()}")
         }
         setBody(putReportMailingJobsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutReportMailingJobsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutReportMailingJobsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutReportMailingJobsResponse,
-        org.openapitools.client.models.PutReportMailingJobsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutReportMailingJobsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _ReportMailingJobsApiProvider : ClassProvider<ReportMailingJobsApi> {
+  override fun create(_ktorfit: Ktorfit): ReportMailingJobsApi = _ReportMailingJobsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createReportMailingJobsApi(): ReportMailingJobsApi =
-    this.create(_ReportMailingJobsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createReportMailingJobsApi) })
+    _ReportMailingJobsApiImpl(this)

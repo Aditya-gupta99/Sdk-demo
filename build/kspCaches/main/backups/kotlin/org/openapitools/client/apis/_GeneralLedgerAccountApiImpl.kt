@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteGLAccountsRequest
@@ -39,54 +40,51 @@ import org.openapitools.client.models.PutGLAccountsRequest
 import org.openapitools.client.models.PutGLAccountsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _GeneralLedgerAccountApiImpl(
+  private val _ktorfit: Ktorfit,
+) : GeneralLedgerAccountApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createGLAccount1(postGLAccountsRequest: PostGLAccountsRequest?):
       PostGLAccountsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts")
         }
         setBody(postGLAccountsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostGLAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostGLAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostGLAccountsResponse,
-        org.openapitools.client.models.PostGLAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostGLAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteGLAccount1(glAccountId: Long): DeleteGLAccountsRequest {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts/${"$glAccountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts/${"$glAccountId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteGLAccountsRequest",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteGLAccountsRequest>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteGLAccountsRequest,
-        org.openapitools.client.models.DeleteGLAccountsRequest>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteGLAccountsRequest>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getGlAccountsTemplate(dateFormat: String?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts/downloadtemplate")
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postGlAccountsTemplate(
@@ -97,7 +95,7 @@ public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -108,10 +106,9 @@ public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInte
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retreiveAccount(glAccountId: Long, fetchRunningBalance: Boolean?):
@@ -119,16 +116,14 @@ public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts/${"$glAccountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts/${"$glAccountId".encodeURLPath()}")
         fetchRunningBalance?.let{ parameter("fetchRunningBalance", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGLAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGLAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGLAccountsResponse,
-        org.openapitools.client.models.GetGLAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGLAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllAccounts(
@@ -142,7 +137,7 @@ public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts")
         type?.let{ parameter("type", "$it") }
         searchParam?.let{ parameter("searchParam", "$it") }
         usage?.let{ parameter("usage", "$it") }
@@ -152,29 +147,23 @@ public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInte
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetGLAccountsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetGLAccountsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetGLAccountsResponse>,
-        org.openapitools.client.models.GetGLAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetGLAccountsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveNewAccountDetails(type: Int?): GetGLAccountsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts/template")
         type?.let{ parameter("type", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetGLAccountsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetGLAccountsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetGLAccountsTemplateResponse,
-        org.openapitools.client.models.GetGLAccountsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetGLAccountsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateGLAccount1(glAccountId: Long,
@@ -182,19 +171,21 @@ public class _GeneralLedgerAccountApiImpl : GeneralLedgerAccountApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/glaccounts/${"$glAccountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/glaccounts/${"$glAccountId".encodeURLPath()}")
         }
         setBody(putGLAccountsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutGLAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutGLAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutGLAccountsResponse,
-        org.openapitools.client.models.PutGLAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutGLAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _GeneralLedgerAccountApiProvider : ClassProvider<GeneralLedgerAccountApi> {
+  override fun create(_ktorfit: Ktorfit): GeneralLedgerAccountApi =
+      _GeneralLedgerAccountApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createGeneralLedgerAccountApi(): GeneralLedgerAccountApi =
-    this.create(_GeneralLedgerAccountApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createGeneralLedgerAccountApi) })
+    _GeneralLedgerAccountApiImpl(this)

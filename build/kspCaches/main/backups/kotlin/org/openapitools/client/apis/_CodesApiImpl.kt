@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -30,68 +30,62 @@ import org.openapitools.client.models.PutCodesRequest
 import org.openapitools.client.models.PutCodesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _CodesApiImpl : CodesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _CodesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : CodesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createCode(postCodesRequest: PostCodesRequest): PostCodesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/codes")
+        takeFrom(_ktorfit.baseUrl + "v1/codes")
         }
         setBody(postCodesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostCodesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostCodesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostCodesResponse,
-        org.openapitools.client.models.PostCodesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostCodesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteCode(codeId: Long): DeleteCodesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/codes/${"$codeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/codes/${"$codeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteCodesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteCodesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteCodesResponse,
-        org.openapitools.client.models.DeleteCodesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteCodesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveCode(codeId: Long): GetCodesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/codes/${"$codeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/codes/${"$codeId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetCodesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetCodesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetCodesResponse,
-        org.openapitools.client.models.GetCodesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetCodesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveCodes(): List<GetCodesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/codes")
+        takeFrom(_ktorfit.baseUrl + "v1/codes")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetCodesResponse>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.GetCodesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetCodesResponse>,
-        org.openapitools.client.models.GetCodesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetCodesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateCode(codeId: Long, putCodesRequest: PutCodesRequest):
@@ -99,18 +93,19 @@ public class _CodesApiImpl : CodesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/codes/${"$codeId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/codes/${"$codeId".encodeURLPath()}")
         }
         setBody(putCodesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutCodesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutCodesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutCodesResponse,
-        org.openapitools.client.models.PutCodesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutCodesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createCodesApi(): CodesApi = this.create(_CodesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createCodesApi) })
+public class _CodesApiProvider : ClassProvider<CodesApi> {
+  override fun create(_ktorfit: Ktorfit): CodesApi = _CodesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createCodesApi(): CodesApi = _CodesApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,25 +23,27 @@ import kotlin.Suppress
 import org.openapitools.client.models.GetSelfUserDetailsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfUserDetailsApiImpl : SelfUserDetailsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfUserDetailsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfUserDetailsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun fetchAuthenticatedUserData1(): GetSelfUserDetailsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/userdetails")
+        takeFrom(_ktorfit.baseUrl + "v1/self/userdetails")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfUserDetailsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSelfUserDetailsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfUserDetailsResponse,
-        org.openapitools.client.models.GetSelfUserDetailsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfUserDetailsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSelfUserDetailsApi(): SelfUserDetailsApi =
-    this.create(_SelfUserDetailsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfUserDetailsApi) })
+public class _SelfUserDetailsApiProvider : ClassProvider<SelfUserDetailsApi> {
+  override fun create(_ktorfit: Ktorfit): SelfUserDetailsApi = _SelfUserDetailsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSelfUserDetailsApi(): SelfUserDetailsApi = _SelfUserDetailsApiImpl(this)

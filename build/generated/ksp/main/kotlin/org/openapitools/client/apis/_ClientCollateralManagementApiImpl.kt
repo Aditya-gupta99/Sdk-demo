@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,24 +31,24 @@ import org.openapitools.client.models.PutClientCollateralRequest
 import org.openapitools.client.models.PutClientCollateralResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ClientCollateralManagementApiImpl : ClientCollateralManagementApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ClientCollateralManagementApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ClientCollateralManagementApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun addCollateral(clientId: Long,
       postClientCollateralRequest: PostClientCollateralRequest): PostClientCollateralResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/collaterals")
+        takeFrom(_ktorfit.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/collaterals")
         }
         setBody(postClientCollateralRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostClientCollateralResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostClientCollateralResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostClientCollateralResponse,
-        org.openapitools.client.models.PostClientCollateralResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostClientCollateralResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteCollateral1(clientId: Long, collateralId: Long):
@@ -56,47 +56,42 @@ public class _ClientCollateralManagementApiImpl : ClientCollateralManagementApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/collaterals/${"$collateralId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteClientCollateralResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteClientCollateralResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteClientCollateralResponse,
-        org.openapitools.client.models.DeleteClientCollateralResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteClientCollateralResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getClientCollateral(clientId: Long, prodId: Long?): List<Any> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/collaterals")
+        takeFrom(_ktorfit.baseUrl + "v1/clients/${"$clientId".encodeURLPath()}/collaterals")
         prodId?.let{ parameter("prodId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<kotlin.Any>",
-    typeInfo = typeInfo<kotlin.collections.List<kotlin.Any>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<kotlin.Any>,
-        kotlin.Any>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<Any>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getClientCollateralData(clientId: Long, clientCollateralId: Long): Any {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/collaterals/${"$clientCollateralId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Any",
-    typeInfo = typeInfo<kotlin.Any>())
-
-    return _converter.suspendRequest<kotlin.Any, kotlin.Any>(_typeData,_ext)!!
+    typeInfo = typeInfo<Any>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getClientCollateralTemplate(clientId: Long):
@@ -104,18 +99,14 @@ public class _ClientCollateralManagementApiImpl : ClientCollateralManagementApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/collaterals/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetLoanCollateralManagementTemplate>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetLoanCollateralManagementTemplate>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetLoanCollateralManagementTemplate>,
-        org.openapitools.client.models.GetLoanCollateralManagementTemplate>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetLoanCollateralManagementTemplate>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateCollateral1(
@@ -126,20 +117,22 @@ public class _ClientCollateralManagementApiImpl : ClientCollateralManagementApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/clients/${"$clientId".encodeURLPath()}/collaterals/${"$collateralId".encodeURLPath()}")
         }
         setBody(putClientCollateralRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutClientCollateralResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutClientCollateralResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutClientCollateralResponse,
-        org.openapitools.client.models.PutClientCollateralResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutClientCollateralResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _ClientCollateralManagementApiProvider : ClassProvider<ClientCollateralManagementApi> {
+  override fun create(_ktorfit: Ktorfit): ClientCollateralManagementApi =
+      _ClientCollateralManagementApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createClientCollateralManagementApi(): ClientCollateralManagementApi =
-    this.create(_ClientCollateralManagementApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createClientCollateralManagementApi) })
+    _ClientCollateralManagementApiImpl(this)

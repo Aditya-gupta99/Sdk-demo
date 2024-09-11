@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -28,8 +28,10 @@ import org.openapitools.client.models.PostSurveySurveyNameApptableIdRequest
 import org.openapitools.client.models.PostSurveySurveyNameApptableIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SurveyApiImpl : SurveyApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SurveyApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SurveyApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createDatatableEntry1(
     surveyName: String,
@@ -39,17 +41,15 @@ public class _SurveyApiImpl : SurveyApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/survey/${"$surveyName".encodeURLPath()}/${"$apptableId".encodeURLPath()}")
         }
         setBody(postSurveySurveyNameApptableIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostSurveySurveyNameApptableIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostSurveySurveyNameApptableIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSurveySurveyNameApptableIdResponse,
-        org.openapitools.client.models.PostSurveySurveyNameApptableIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSurveySurveyNameApptableIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDatatableEntries1(
@@ -60,30 +60,28 @@ public class _SurveyApiImpl : SurveyApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/survey/${"$surveyName".encodeURLPath()}/${"$clientId".encodeURLPath()}/${"$fulfilledId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getClientSurveyOverview(surveyName: String, clientId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/survey/${"$surveyName".encodeURLPath()}/${"$clientId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getSurveyEntry(
@@ -94,15 +92,14 @@ public class _SurveyApiImpl : SurveyApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/survey/${"$surveyName".encodeURLPath()}/${"$clientId".encodeURLPath()}/${"$entryId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun register(
@@ -113,49 +110,46 @@ public class _SurveyApiImpl : SurveyApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/survey/register/${"$surveyName".encodeURLPath()}/${"$apptable".encodeURLPath()}")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveSurvey(surveyName: String): GetSurveyResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/survey/${"$surveyName".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/survey/${"$surveyName".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSurveyResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSurveyResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSurveyResponse,
-        org.openapitools.client.models.GetSurveyResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSurveyResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveSurveys(): List<GetSurveyResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/survey")
+        takeFrom(_ktorfit.baseUrl + "v1/survey")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetSurveyResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetSurveyResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetSurveyResponse>,
-        org.openapitools.client.models.GetSurveyResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetSurveyResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSurveyApi(): SurveyApi = this.create(_SurveyApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSurveyApi) })
+public class _SurveyApiProvider : ClassProvider<SurveyApi> {
+  override fun create(_ktorfit: Ktorfit): SurveyApi = _SurveyApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSurveyApi(): SurveyApi = _SurveyApiImpl(this)

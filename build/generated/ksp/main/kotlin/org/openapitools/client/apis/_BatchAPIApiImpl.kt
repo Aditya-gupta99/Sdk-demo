@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,27 +26,30 @@ import org.openapitools.client.models.BatchRequest
 import org.openapitools.client.models.BatchResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _BatchAPIApiImpl : BatchAPIApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _BatchAPIApiImpl(
+  private val _ktorfit: Ktorfit,
+) : BatchAPIApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun handleBatchRequests(batchRequest: List<BatchRequest>,
       enclosingTransaction: Boolean?): List<BatchResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/batches")
+        takeFrom(_ktorfit.baseUrl + "v1/batches")
         enclosingTransaction?.let{ parameter("enclosingTransaction", "$it") }
         }
         setBody(batchRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.BatchResponse>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.BatchResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.BatchResponse>,
-        org.openapitools.client.models.BatchResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<BatchResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createBatchAPIApi(): BatchAPIApi = this.create(_BatchAPIApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createBatchAPIApi) })
+public class _BatchAPIApiProvider : ClassProvider<BatchAPIApi> {
+  override fun create(_ktorfit: Ktorfit): BatchAPIApi = _BatchAPIApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createBatchAPIApi(): BatchAPIApi = _BatchAPIApiImpl(this)

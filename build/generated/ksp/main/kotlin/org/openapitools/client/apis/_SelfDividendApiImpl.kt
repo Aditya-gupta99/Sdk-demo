@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,37 +25,37 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfDividendApiImpl : SelfDividendApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfDividendApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfDividendApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createDividendDetail(productId: Long, body: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/shareproduct/${"$productId".encodeURLPath()}/dividend")
+        takeFrom(_ktorfit.baseUrl + "v1/shareproduct/${"$productId".encodeURLPath()}/dividend")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDividendDetail(productId: Long, dividendId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/shareproduct/${"$productId".encodeURLPath()}/dividend/${"$dividendId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll39(
@@ -69,7 +69,7 @@ public class _SelfDividendApiImpl : SelfDividendApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/shareproduct/${"$productId".encodeURLPath()}/dividend")
+        takeFrom(_ktorfit.baseUrl + "v1/shareproduct/${"$productId".encodeURLPath()}/dividend")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         orderBy?.let{ parameter("orderBy", "$it") }
@@ -78,10 +78,9 @@ public class _SelfDividendApiImpl : SelfDividendApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveDividendDetails(
@@ -96,7 +95,7 @@ public class _SelfDividendApiImpl : SelfDividendApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/shareproduct/${"$productId".encodeURLPath()}/dividend/${"$dividendId".encodeURLPath()}")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -106,10 +105,9 @@ public class _SelfDividendApiImpl : SelfDividendApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDividendDetail(
@@ -121,20 +119,21 @@ public class _SelfDividendApiImpl : SelfDividendApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/shareproduct/${"$productId".encodeURLPath()}/dividend/${"$dividendId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSelfDividendApi(): SelfDividendApi =
-    this.create(_SelfDividendApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfDividendApi) })
+public class _SelfDividendApiProvider : ClassProvider<SelfDividendApi> {
+  override fun create(_ktorfit: Ktorfit): SelfDividendApi = _SelfDividendApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSelfDividendApi(): SelfDividendApi = _SelfDividendApiImpl(this)

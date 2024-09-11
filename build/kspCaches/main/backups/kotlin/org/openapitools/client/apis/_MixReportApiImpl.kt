@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,8 +24,10 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _MixReportApiImpl : MixReportApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _MixReportApiImpl(
+  private val _ktorfit: Ktorfit,
+) : MixReportApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveXBRLReport(
     startDate: OffsetDateTime?,
@@ -35,19 +37,21 @@ public class _MixReportApiImpl : MixReportApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/mixreport")
+        takeFrom(_ktorfit.baseUrl + "v1/mixreport")
         startDate?.let{ parameter("startDate", "$it") }
         endDate?.let{ parameter("endDate", "$it") }
         currency?.let{ parameter("currency", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createMixReportApi(): MixReportApi = this.create(_MixReportApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createMixReportApi) })
+public class _MixReportApiProvider : ClassProvider<MixReportApi> {
+  override fun create(_ktorfit: Ktorfit): MixReportApi = _MixReportApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createMixReportApi(): MixReportApi = _MixReportApiImpl(this)

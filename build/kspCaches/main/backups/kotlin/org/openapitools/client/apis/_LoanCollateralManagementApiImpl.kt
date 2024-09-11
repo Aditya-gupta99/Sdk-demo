@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,40 +24,44 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanCollateralManagementApiImpl : LoanCollateralManagementApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanCollateralManagementApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanCollateralManagementApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun deleteLoanCollateral(loanId: Long, id: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loan-collateral-management/${"$id".encodeURLPath()}/${"$loanId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getLoanCollateral(collateralId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loan-collateral-management/${"$collateralId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _LoanCollateralManagementApiProvider : ClassProvider<LoanCollateralManagementApi> {
+  override fun create(_ktorfit: Ktorfit): LoanCollateralManagementApi =
+      _LoanCollateralManagementApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createLoanCollateralManagementApi(): LoanCollateralManagementApi =
-    this.create(_LoanCollateralManagementApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanCollateralManagementApi) })
+    _LoanCollateralManagementApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,9 +26,10 @@ import kotlin.Suppress
 import org.openapitools.client.models.GetStandingInstructionRunHistoryResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _StandingInstructionsHistoryApiImpl : StandingInstructionsHistoryApi, KtorfitInterface
-    {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _StandingInstructionsHistoryApiImpl(
+  private val _ktorfit: Ktorfit,
+) : StandingInstructionsHistoryApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAll20(
     externalId: String?,
@@ -49,7 +50,7 @@ public class _StandingInstructionsHistoryApiImpl : StandingInstructionsHistoryAp
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/standinginstructionrunhistory")
+        takeFrom(_ktorfit.baseUrl + "v1/standinginstructionrunhistory")
         externalId?.let{ parameter("externalId", "$it") }
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -67,14 +68,17 @@ public class _StandingInstructionsHistoryApiImpl : StandingInstructionsHistoryAp
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetStandingInstructionRunHistoryResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetStandingInstructionRunHistoryResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetStandingInstructionRunHistoryResponse,
-        org.openapitools.client.models.GetStandingInstructionRunHistoryResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetStandingInstructionRunHistoryResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _StandingInstructionsHistoryApiProvider : ClassProvider<StandingInstructionsHistoryApi>
+    {
+  override fun create(_ktorfit: Ktorfit): StandingInstructionsHistoryApi =
+      _StandingInstructionsHistoryApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createStandingInstructionsHistoryApi(): StandingInstructionsHistoryApi =
-    this.create(_StandingInstructionsHistoryApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createStandingInstructionsHistoryApi) })
+    _StandingInstructionsHistoryApiImpl(this)

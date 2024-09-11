@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,22 +25,22 @@ import org.openapitools.client.models.PutCurrenciesRequest
 import org.openapitools.client.models.PutCurrenciesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _CurrencyApiImpl : CurrencyApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _CurrencyApiImpl(
+  private val _ktorfit: Ktorfit,
+) : CurrencyApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveCurrencies(): GetCurrenciesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/currencies")
+        takeFrom(_ktorfit.baseUrl + "v1/currencies")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetCurrenciesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetCurrenciesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetCurrenciesResponse,
-        org.openapitools.client.models.GetCurrenciesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetCurrenciesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateCurrencies(putCurrenciesRequest: PutCurrenciesRequest):
@@ -48,18 +48,19 @@ public class _CurrencyApiImpl : CurrencyApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/currencies")
+        takeFrom(_ktorfit.baseUrl + "v1/currencies")
         }
         setBody(putCurrenciesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutCurrenciesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutCurrenciesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutCurrenciesResponse,
-        org.openapitools.client.models.PutCurrenciesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutCurrenciesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createCurrencyApi(): CurrencyApi = this.create(_CurrencyApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createCurrencyApi) })
+public class _CurrencyApiProvider : ClassProvider<CurrencyApi> {
+  override fun create(_ktorfit: Ktorfit): CurrencyApi = _CurrencyApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createCurrencyApi(): CurrencyApi = _CurrencyApiImpl(this)

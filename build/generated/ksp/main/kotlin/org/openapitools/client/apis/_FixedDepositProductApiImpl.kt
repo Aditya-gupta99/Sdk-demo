@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,87 +32,76 @@ import org.openapitools.client.models.PutFixedDepositProductsProductIdRequest
 import org.openapitools.client.models.PutFixedDepositProductsProductIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _FixedDepositProductApiImpl : FixedDepositProductApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _FixedDepositProductApiImpl(
+  private val _ktorfit: Ktorfit,
+) : FixedDepositProductApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create11(postFixedDepositProductsRequest: PostFixedDepositProductsRequest):
       PostFixedDepositProductsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/fixeddepositproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/fixeddepositproducts")
         }
         setBody(postFixedDepositProductsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostFixedDepositProductsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostFixedDepositProductsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostFixedDepositProductsResponse,
-        org.openapitools.client.models.PostFixedDepositProductsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostFixedDepositProductsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete16(productId: Long): DeleteFixedDepositProductsProductIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/fixeddepositproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/fixeddepositproducts/${"$productId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteFixedDepositProductsProductIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteFixedDepositProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteFixedDepositProductsProductIdResponse,
-        org.openapitools.client.models.DeleteFixedDepositProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteFixedDepositProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll30(): List<GetFixedDepositProductsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/fixeddepositproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/fixeddepositproducts")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetFixedDepositProductsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetFixedDepositProductsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetFixedDepositProductsResponse>,
-        org.openapitools.client.models.GetFixedDepositProductsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetFixedDepositProductsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne20(productId: Long): GetFixedDepositProductsProductIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/fixeddepositproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/fixeddepositproducts/${"$productId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetFixedDepositProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetFixedDepositProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetFixedDepositProductsProductIdResponse,
-        org.openapitools.client.models.GetFixedDepositProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetFixedDepositProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate15(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/fixeddepositproducts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/fixeddepositproducts/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update17(productId: Long,
@@ -121,19 +110,21 @@ public class _FixedDepositProductApiImpl : FixedDepositProductApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/fixeddepositproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/fixeddepositproducts/${"$productId".encodeURLPath()}")
         }
         setBody(putFixedDepositProductsProductIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutFixedDepositProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutFixedDepositProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutFixedDepositProductsProductIdResponse,
-        org.openapitools.client.models.PutFixedDepositProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutFixedDepositProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _FixedDepositProductApiProvider : ClassProvider<FixedDepositProductApi> {
+  override fun create(_ktorfit: Ktorfit): FixedDepositProductApi =
+      _FixedDepositProductApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createFixedDepositProductApi(): FixedDepositProductApi =
-    this.create(_FixedDepositProductApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createFixedDepositProductApi) })
+    _FixedDepositProductApiImpl(this)

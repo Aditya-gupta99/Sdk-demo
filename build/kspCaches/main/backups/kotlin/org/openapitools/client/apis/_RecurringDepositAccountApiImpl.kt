@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteRecurringDepositAccountsResponse
@@ -42,38 +43,37 @@ import org.openapitools.client.models.PutRecurringDepositAccountsAccountIdReques
 import org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _RecurringDepositAccountApiImpl(
+  private val _ktorfit: Ktorfit,
+) : RecurringDepositAccountApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun accountClosureTemplate1(accountId: Long, command: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}/template")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete17(accountId: Long): DeleteRecurringDepositAccountsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteRecurringDepositAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteRecurringDepositAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteRecurringDepositAccountsResponse,
-        org.openapitools.client.models.DeleteRecurringDepositAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteRecurringDepositAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getRecurringDepositTemplate(
@@ -84,17 +84,16 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         staffId?.let{ parameter("staffId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getRecurringDepositTransactionTemplate(officeId: Long?,
@@ -102,16 +101,15 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/transactions/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/transactions/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun handleCommands5(
@@ -122,19 +120,15 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostRecurringDepositAccountsAccountIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostRecurringDepositAccountsAccountIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostRecurringDepositAccountsAccountIdResponse,
-        org.openapitools.client.models.PostRecurringDepositAccountsAccountIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostRecurringDepositAccountsAccountIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postRecurringDepositTemplate(
@@ -145,7 +139,7 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -156,10 +150,9 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postRecurringDepositTransactionsTemplate(
@@ -170,7 +163,7 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/transactions/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/transactions/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -181,10 +174,9 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll31(
@@ -197,7 +189,7 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts")
         paged?.let{ parameter("paged", "$it") }
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -206,13 +198,9 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetRecurringDepositAccountsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetRecurringDepositAccountsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetRecurringDepositAccountsResponse>,
-        org.openapitools.client.models.GetRecurringDepositAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetRecurringDepositAccountsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne22(
@@ -223,19 +211,15 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
         staffInSelectedOfficeOnly?.let{ parameter("staffInSelectedOfficeOnly", "$it") }
         chargeStatus?.let{ parameter("chargeStatus", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetRecurringDepositAccountsAccountIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetRecurringDepositAccountsAccountIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetRecurringDepositAccountsAccountIdResponse,
-        org.openapitools.client.models.GetRecurringDepositAccountsAccountIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetRecurringDepositAccountsAccountIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend
@@ -244,16 +228,14 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts")
         }
         setBody(postRecurringDepositAccountsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostRecurringDepositAccountsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostRecurringDepositAccountsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostRecurringDepositAccountsResponse,
-        org.openapitools.client.models.PostRecurringDepositAccountsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostRecurringDepositAccountsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template13(
@@ -265,7 +247,7 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/template")
         clientId?.let{ parameter("clientId", "$it") }
         groupId?.let{ parameter("groupId", "$it") }
         productId?.let{ parameter("productId", "$it") }
@@ -273,13 +255,9 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetRecurringDepositAccountsTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetRecurringDepositAccountsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetRecurringDepositAccountsTemplateResponse,
-        org.openapitools.client.models.GetRecurringDepositAccountsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetRecurringDepositAccountsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update18(accountId: Long,
@@ -288,21 +266,21 @@ public class _RecurringDepositAccountApiImpl : RecurringDepositAccountApi, Ktorf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/recurringdepositaccounts/${"$accountId".encodeURLPath()}")
         }
         setBody(putRecurringDepositAccountsAccountIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse,
-        org.openapitools.client.models.PutRecurringDepositAccountsAccountIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutRecurringDepositAccountsAccountIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _RecurringDepositAccountApiProvider : ClassProvider<RecurringDepositAccountApi> {
+  override fun create(_ktorfit: Ktorfit): RecurringDepositAccountApi =
+      _RecurringDepositAccountApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createRecurringDepositAccountApi(): RecurringDepositAccountApi =
-    this.create(_RecurringDepositAccountApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createRecurringDepositAccountApi) })
+    _RecurringDepositAccountApiImpl(this)

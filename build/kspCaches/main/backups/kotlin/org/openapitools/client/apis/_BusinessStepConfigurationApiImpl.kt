@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -21,43 +21,42 @@ import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.GetBusinessJobConfigResponse
 import org.openapitools.client.models.GetBusinessStepConfigResponse
 import org.openapitools.client.models.UpdateBusinessStepConfigRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _BusinessStepConfigurationApiImpl : BusinessStepConfigurationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _BusinessStepConfigurationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : BusinessStepConfigurationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAllAvailableBusinessStep(jobName: String):
       GetBusinessStepConfigResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/available-steps")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/available-steps")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetBusinessStepConfigResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetBusinessStepConfigResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetBusinessStepConfigResponse,
-        org.openapitools.client.models.GetBusinessStepConfigResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetBusinessStepConfigResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllConfiguredBusinessJobs(): GetBusinessJobConfigResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/names")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/names")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetBusinessJobConfigResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetBusinessJobConfigResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetBusinessJobConfigResponse,
-        org.openapitools.client.models.GetBusinessJobConfigResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetBusinessJobConfigResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllConfiguredBusinessStep(jobName: String):
@@ -65,15 +64,13 @@ public class _BusinessStepConfigurationApiImpl : BusinessStepConfigurationApi, K
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/steps")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/steps")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetBusinessStepConfigResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetBusinessStepConfigResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetBusinessStepConfigResponse,
-        org.openapitools.client.models.GetBusinessStepConfigResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetBusinessStepConfigResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateJobBusinessStepConfig(jobName: String,
@@ -81,18 +78,21 @@ public class _BusinessStepConfigurationApiImpl : BusinessStepConfigurationApi, K
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/steps")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/steps")
         }
         setBody(updateBusinessStepConfigRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _BusinessStepConfigurationApiProvider : ClassProvider<BusinessStepConfigurationApi> {
+  override fun create(_ktorfit: Ktorfit): BusinessStepConfigurationApi =
+      _BusinessStepConfigurationApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createBusinessStepConfigurationApi(): BusinessStepConfigurationApi =
-    this.create(_BusinessStepConfigurationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createBusinessStepConfigurationApi) })
+    _BusinessStepConfigurationApiImpl(this)

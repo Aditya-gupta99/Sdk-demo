@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,101 +31,94 @@ import org.openapitools.client.models.PutHookRequest
 import org.openapitools.client.models.PutHookResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _HooksApiImpl : HooksApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _HooksApiImpl(
+  private val _ktorfit: Ktorfit,
+) : HooksApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createHook(postHookRequest: PostHookRequest): PostHookResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/hooks")
+        takeFrom(_ktorfit.baseUrl + "v1/hooks")
         }
         setBody(postHookRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostHookResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostHookResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostHookResponse,
-        org.openapitools.client.models.PostHookResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostHookResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteHook(hookId: Long): DeleteHookResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/hooks/${"$hookId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/hooks/${"$hookId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteHookResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteHookResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteHookResponse,
-        org.openapitools.client.models.DeleteHookResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteHookResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveHook(hookId: Long): GetHookResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/hooks/${"$hookId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/hooks/${"$hookId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetHookResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetHookResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetHookResponse,
-        org.openapitools.client.models.GetHookResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetHookResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveHooks(): List<GetHookResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/hooks")
+        takeFrom(_ktorfit.baseUrl + "v1/hooks")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetHookResponse>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.GetHookResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetHookResponse>,
-        org.openapitools.client.models.GetHookResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetHookResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template3(): GetHookTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/hooks/template")
+        takeFrom(_ktorfit.baseUrl + "v1/hooks/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetHookTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetHookTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetHookTemplateResponse,
-        org.openapitools.client.models.GetHookTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetHookTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateHook(hookId: Long, putHookRequest: PutHookRequest): PutHookResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/hooks/${"$hookId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/hooks/${"$hookId".encodeURLPath()}")
         }
         setBody(putHookRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutHookResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutHookResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutHookResponse,
-        org.openapitools.client.models.PutHookResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutHookResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createHooksApi(): HooksApi = this.create(_HooksApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createHooksApi) })
+public class _HooksApiProvider : ClassProvider<HooksApi> {
+  override fun create(_ktorfit: Ktorfit): HooksApi = _HooksApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createHooksApi(): HooksApi = _HooksApiImpl(this)

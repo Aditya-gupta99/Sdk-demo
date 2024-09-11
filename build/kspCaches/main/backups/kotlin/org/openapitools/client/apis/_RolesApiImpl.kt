@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -36,99 +36,89 @@ import org.openapitools.client.models.PutRolesRoleIdRequest
 import org.openapitools.client.models.PutRolesRoleIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _RolesApiImpl : RolesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _RolesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : RolesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun actionsOnRoles(roleId: Long, command: String?): PostRolesRoleIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostRolesRoleIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostRolesRoleIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostRolesRoleIdResponse,
-        org.openapitools.client.models.PostRolesRoleIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostRolesRoleIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createRole(postRolesRequest: PostRolesRequest): PostRolesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles")
+        takeFrom(_ktorfit.baseUrl + "v1/roles")
         }
         setBody(postRolesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostRolesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostRolesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostRolesResponse,
-        org.openapitools.client.models.PostRolesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostRolesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteRole(roleId: Long): DeleteRolesRoleIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteRolesRoleIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteRolesRoleIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteRolesRoleIdResponse,
-        org.openapitools.client.models.DeleteRolesRoleIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteRolesRoleIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllRoles(): List<GetRolesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles")
+        takeFrom(_ktorfit.baseUrl + "v1/roles")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetRolesResponse>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.GetRolesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetRolesResponse>,
-        org.openapitools.client.models.GetRolesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetRolesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveRole(roleId: Long): GetRolesRoleIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetRolesRoleIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetRolesRoleIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetRolesRoleIdResponse,
-        org.openapitools.client.models.GetRolesRoleIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetRolesRoleIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveRolePermissions(roleId: Long): GetRolesRoleIdPermissionsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}/permissions")
+        takeFrom(_ktorfit.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}/permissions")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetRolesRoleIdPermissionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetRolesRoleIdPermissionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetRolesRoleIdPermissionsResponse,
-        org.openapitools.client.models.GetRolesRoleIdPermissionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetRolesRoleIdPermissionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateRole(roleId: Long, putRolesRoleIdRequest: PutRolesRoleIdRequest):
@@ -136,16 +126,14 @@ public class _RolesApiImpl : RolesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}")
         }
         setBody(putRolesRoleIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutRolesRoleIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutRolesRoleIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutRolesRoleIdResponse,
-        org.openapitools.client.models.PutRolesRoleIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutRolesRoleIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateRolePermissions(roleId: Long,
@@ -154,18 +142,19 @@ public class _RolesApiImpl : RolesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}/permissions")
+        takeFrom(_ktorfit.baseUrl + "v1/roles/${"$roleId".encodeURLPath()}/permissions")
         }
         setBody(putRolesRoleIdPermissionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutRolesRoleIdPermissionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutRolesRoleIdPermissionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutRolesRoleIdPermissionsResponse,
-        org.openapitools.client.models.PutRolesRoleIdPermissionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutRolesRoleIdPermissionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createRolesApi(): RolesApi = this.create(_RolesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createRolesApi) })
+public class _RolesApiProvider : ClassProvider<RolesApi> {
+  override fun create(_ktorfit: Ktorfit): RolesApi = _RolesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createRolesApi(): RolesApi = _RolesApiImpl(this)

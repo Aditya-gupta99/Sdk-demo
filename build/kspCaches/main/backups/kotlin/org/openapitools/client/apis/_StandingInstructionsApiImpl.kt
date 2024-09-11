@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,24 +32,24 @@ import org.openapitools.client.models.PutStandingInstructionsStandingInstruction
 import org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _StandingInstructionsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : StandingInstructionsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create5(postStandingInstructionsRequest: PostStandingInstructionsRequest):
       PostStandingInstructionsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/standinginstructions")
+        takeFrom(_ktorfit.baseUrl + "v1/standinginstructions")
         }
         setBody(postStandingInstructionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostStandingInstructionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostStandingInstructionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostStandingInstructionsResponse,
-        org.openapitools.client.models.PostStandingInstructionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostStandingInstructionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll19(
@@ -67,7 +67,7 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/standinginstructions")
+        takeFrom(_ktorfit.baseUrl + "v1/standinginstructions")
         externalId?.let{ parameter("externalId", "$it") }
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -81,11 +81,9 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetStandingInstructionsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetStandingInstructionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetStandingInstructionsResponse,
-        org.openapitools.client.models.GetStandingInstructionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetStandingInstructionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne10(
@@ -99,7 +97,7 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/standinginstructions/${"$standingInstructionId".encodeURLPath()}")
         externalId?.let{ parameter("externalId", "$it") }
         offset?.let{ parameter("offset", "$it") }
@@ -109,13 +107,9 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetStandingInstructionsStandingInstructionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetStandingInstructionsStandingInstructionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetStandingInstructionsStandingInstructionIdResponse,
-        org.openapitools.client.models.GetStandingInstructionsStandingInstructionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetStandingInstructionsStandingInstructionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template6(
@@ -132,7 +126,7 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/standinginstructions/template")
+        takeFrom(_ktorfit.baseUrl + "v1/standinginstructions/template")
         fromOfficeId?.let{ parameter("fromOfficeId", "$it") }
         fromClientId?.let{ parameter("fromClientId", "$it") }
         fromAccountId?.let{ parameter("fromAccountId", "$it") }
@@ -145,11 +139,9 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetStandingInstructionsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetStandingInstructionsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetStandingInstructionsTemplateResponse,
-        org.openapitools.client.models.GetStandingInstructionsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetStandingInstructionsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update9(
@@ -160,23 +152,23 @@ public class _StandingInstructionsApiImpl : StandingInstructionsApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/standinginstructions/${"$standingInstructionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(putStandingInstructionsStandingInstructionIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse,
-        org.openapitools.client.models.PutStandingInstructionsStandingInstructionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutStandingInstructionsStandingInstructionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _StandingInstructionsApiProvider : ClassProvider<StandingInstructionsApi> {
+  override fun create(_ktorfit: Ktorfit): StandingInstructionsApi =
+      _StandingInstructionsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createStandingInstructionsApi(): StandingInstructionsApi =
-    this.create(_StandingInstructionsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createStandingInstructionsApi) })
+    _StandingInstructionsApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import okhttp3.MultipartBody
 import org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse
@@ -34,8 +35,10 @@ import org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse
 import org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _DocumentsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : DocumentsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createDocument(
     entityType: String,
@@ -50,7 +53,7 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$entityType".encodeURLPath()}/${"$entityId".encodeURLPath()}/documents")
         }
         headers{
@@ -67,11 +70,9 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse,
-        org.openapitools.client.models.PostEntityTypeEntityIdDocumentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostEntityTypeEntityIdDocumentsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteDocument(
@@ -82,16 +83,14 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$entityType".encodeURLPath()}/${"$entityId".encodeURLPath()}/documents/${"$documentId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse,
-        org.openapitools.client.models.DeleteEntityTypeEntityIdDocumentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteEntityTypeEntityIdDocumentsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun downloadFile(
@@ -102,15 +101,14 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$entityType".encodeURLPath()}/${"$entityId".encodeURLPath()}/documents/${"$documentId".encodeURLPath()}/attachment")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getDocument(
@@ -121,16 +119,14 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$entityType".encodeURLPath()}/${"$entityId".encodeURLPath()}/documents/${"$documentId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse,
-        org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetEntityTypeEntityIdDocumentsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllDocuments(entityType: String, entityId: Long):
@@ -138,18 +134,14 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$entityType".encodeURLPath()}/${"$entityId".encodeURLPath()}/documents")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse>,
-        org.openapitools.client.models.GetEntityTypeEntityIdDocumentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetEntityTypeEntityIdDocumentsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateDocument(
@@ -166,7 +158,7 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/${"$entityType".encodeURLPath()}/${"$entityId".encodeURLPath()}/documents/${"$documentId".encodeURLPath()}")
         }
         headers{
@@ -183,13 +175,14 @@ public class _DocumentsApiImpl : DocumentsApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse,
-        org.openapitools.client.models.PutEntityTypeEntityIdDocumentsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutEntityTypeEntityIdDocumentsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createDocumentsApi(): DocumentsApi = this.create(_DocumentsApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createDocumentsApi) })
+public class _DocumentsApiProvider : ClassProvider<DocumentsApi> {
+  override fun create(_ktorfit: Ktorfit): DocumentsApi = _DocumentsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createDocumentsApi(): DocumentsApi = _DocumentsApiImpl(this)

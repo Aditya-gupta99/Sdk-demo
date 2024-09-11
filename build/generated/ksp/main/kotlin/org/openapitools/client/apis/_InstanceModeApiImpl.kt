@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -20,28 +20,32 @@ import io.ktor.http.takeFrom
 import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.ChangeInstanceModeRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _InstanceModeApiImpl : InstanceModeApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _InstanceModeApiImpl(
+  private val _ktorfit: Ktorfit,
+) : InstanceModeApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun changeMode(changeInstanceModeRequest: ChangeInstanceModeRequest) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/instance-mode")
+        takeFrom(_ktorfit.baseUrl + "v1/instance-mode")
         }
         setBody(changeInstanceModeRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createInstanceModeApi(): InstanceModeApi =
-    this.create(_InstanceModeApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createInstanceModeApi) })
+public class _InstanceModeApiProvider : ClassProvider<InstanceModeApi> {
+  override fun create(_ktorfit: Ktorfit): InstanceModeApi = _InstanceModeApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createInstanceModeApi(): InstanceModeApi = _InstanceModeApiImpl(this)

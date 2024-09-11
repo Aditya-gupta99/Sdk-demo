@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,23 +25,23 @@ import org.openapitools.client.models.GetExternalEventConfigurationsResponse
 import org.openapitools.client.models.PutExternalEventConfigurationsRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _ExternalEventConfigurationApiImpl : ExternalEventConfigurationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ExternalEventConfigurationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ExternalEventConfigurationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveExternalEventConfiguration():
       GetExternalEventConfigurationsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/externalevents/configuration")
+        takeFrom(_ktorfit.baseUrl + "v1/externalevents/configuration")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetExternalEventConfigurationsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetExternalEventConfigurationsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetExternalEventConfigurationsResponse,
-        org.openapitools.client.models.GetExternalEventConfigurationsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetExternalEventConfigurationsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend
@@ -50,19 +50,21 @@ public class _ExternalEventConfigurationApiImpl : ExternalEventConfigurationApi,
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/externalevents/configuration")
+        takeFrom(_ktorfit.baseUrl + "v1/externalevents/configuration")
         }
         setBody(putExternalEventConfigurationsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.CommandProcessingResult",
-    typeInfo = typeInfo<org.openapitools.client.models.CommandProcessingResult>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.CommandProcessingResult,
-        org.openapitools.client.models.CommandProcessingResult>(_typeData,_ext)!!
+    typeInfo = typeInfo<CommandProcessingResult>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _ExternalEventConfigurationApiProvider : ClassProvider<ExternalEventConfigurationApi> {
+  override fun create(_ktorfit: Ktorfit): ExternalEventConfigurationApi =
+      _ExternalEventConfigurationApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createExternalEventConfigurationApi(): ExternalEventConfigurationApi =
-    this.create(_ExternalEventConfigurationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createExternalEventConfigurationApi) })
+    _ExternalEventConfigurationApiImpl(this)

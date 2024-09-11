@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -33,41 +33,37 @@ import org.openapitools.client.models.PutLoanProductsProductIdRequest
 import org.openapitools.client.models.PutLoanProductsProductIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _LoanProductsApiImpl : LoanProductsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _LoanProductsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : LoanProductsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createLoanProduct(postLoanProductsRequest: PostLoanProductsRequest):
       PostLoanProductsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/loanproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/loanproducts")
         }
         setBody(postLoanProductsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostLoanProductsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostLoanProductsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostLoanProductsResponse,
-        org.openapitools.client.models.PostLoanProductsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostLoanProductsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllLoanProducts(): List<GetLoanProductsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loanproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/loanproducts")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetLoanProductsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetLoanProductsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetLoanProductsResponse>,
-        org.openapitools.client.models.GetLoanProductsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetLoanProductsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveLoanProductDetails(productId: Long):
@@ -75,15 +71,13 @@ public class _LoanProductsApiImpl : LoanProductsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loanproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/loanproducts/${"$productId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoanProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoanProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoanProductsProductIdResponse,
-        org.openapitools.client.models.GetLoanProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoanProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveLoanProductDetails1(externalProductId: String):
@@ -91,16 +85,14 @@ public class _LoanProductsApiImpl : LoanProductsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loanproducts/external-id/${"$externalProductId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoanProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoanProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoanProductsProductIdResponse,
-        org.openapitools.client.models.GetLoanProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoanProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate11(isProductMixTemplate: Boolean?):
@@ -108,16 +100,14 @@ public class _LoanProductsApiImpl : LoanProductsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loanproducts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/loanproducts/template")
         isProductMixTemplate?.let{ parameter("isProductMixTemplate", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoanProductsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoanProductsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoanProductsTemplateResponse,
-        org.openapitools.client.models.GetLoanProductsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoanProductsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateLoanProduct(productId: Long,
@@ -126,16 +116,14 @@ public class _LoanProductsApiImpl : LoanProductsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/loanproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/loanproducts/${"$productId".encodeURLPath()}")
         }
         setBody(putLoanProductsProductIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutLoanProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutLoanProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutLoanProductsProductIdResponse,
-        org.openapitools.client.models.PutLoanProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutLoanProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateLoanProduct1(externalProductId: String,
@@ -144,20 +132,20 @@ public class _LoanProductsApiImpl : LoanProductsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/loanproducts/external-id/${"$externalProductId".encodeURLPath()}")
         }
         setBody(putLoanProductsProductIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutLoanProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutLoanProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutLoanProductsProductIdResponse,
-        org.openapitools.client.models.PutLoanProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutLoanProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createLoanProductsApi(): LoanProductsApi =
-    this.create(_LoanProductsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createLoanProductsApi) })
+public class _LoanProductsApiProvider : ClassProvider<LoanProductsApi> {
+  override fun create(_ktorfit: Ktorfit): LoanProductsApi = _LoanProductsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createLoanProductsApi(): LoanProductsApi = _LoanProductsApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -27,39 +27,36 @@ import org.openapitools.client.models.GetShareAccountsClientIdProductIdResponse
 import org.openapitools.client.models.PostNewShareApplicationResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfShareAccountsApiImpl : SelfShareAccountsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfShareAccountsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfShareAccountsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createAccount1(body: String?): List<PostNewShareApplicationResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/shareaccounts")
+        takeFrom(_ktorfit.baseUrl + "v1/self/shareaccounts")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.PostNewShareApplicationResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.PostNewShareApplicationResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.PostNewShareApplicationResponse>,
-        org.openapitools.client.models.PostNewShareApplicationResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<PostNewShareApplicationResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveShareAccount(accountId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/shareaccounts/${"$accountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/self/shareaccounts/${"$accountId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template19(clientId: Long?, productId: Long?):
@@ -67,22 +64,21 @@ public class _SelfShareAccountsApiImpl : SelfShareAccountsApi, KtorfitInterface 
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/shareaccounts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/self/shareaccounts/template")
         clientId?.let{ parameter("clientId", "$it") }
         productId?.let{ parameter("productId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetShareAccountsClientIdProductIdResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetShareAccountsClientIdProductIdResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetShareAccountsClientIdProductIdResponse>,
-        org.openapitools.client.models.GetShareAccountsClientIdProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetShareAccountsClientIdProductIdResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SelfShareAccountsApiProvider : ClassProvider<SelfShareAccountsApi> {
+  override fun create(_ktorfit: Ktorfit): SelfShareAccountsApi = _SelfShareAccountsApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSelfShareAccountsApi(): SelfShareAccountsApi =
-    this.create(_SelfShareAccountsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfShareAccountsApi) })
+    _SelfShareAccountsApiImpl(this)

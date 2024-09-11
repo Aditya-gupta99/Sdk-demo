@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -21,76 +21,74 @@ import io.ktor.util.reflect.typeInfo
 import kotlin.Long
 import kotlin.OptIn
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.collections.List
 import org.openapitools.client.models.Scorecard
 import org.openapitools.client.models.ScorecardData
 
 @OptIn(InternalKtorfitApi::class)
-public class _ScoreCardApiImpl : ScoreCardApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ScoreCardApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ScoreCardApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createScorecard1(surveyId: Long, scorecardData: ScorecardData?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/surveys/scorecards/${"$surveyId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/surveys/scorecards/${"$surveyId".encodeURLPath()}")
         }
         setBody(scorecardData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findByClient1(clientId: Long): List<ScorecardData> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/surveys/scorecards/clients/${"$clientId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/surveys/scorecards/clients/${"$clientId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.ScorecardData>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.ScorecardData>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.ScorecardData>,
-        org.openapitools.client.models.ScorecardData>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<ScorecardData>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findBySurvey(surveyId: Long): List<Scorecard> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/surveys/scorecards/${"$surveyId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/surveys/scorecards/${"$surveyId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.Scorecard>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.Scorecard>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.Scorecard>,
-        org.openapitools.client.models.Scorecard>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<Scorecard>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findBySurveyAndClient(surveyId: Long, clientId: Long): List<ScorecardData> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/surveys/scorecards/${"$surveyId".encodeURLPath()}/clients/${"$clientId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.ScorecardData>",
-    typeInfo = typeInfo<kotlin.collections.List<org.openapitools.client.models.ScorecardData>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.ScorecardData>,
-        org.openapitools.client.models.ScorecardData>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<ScorecardData>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createScoreCardApi(): ScoreCardApi = this.create(_ScoreCardApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createScoreCardApi) })
+public class _ScoreCardApiProvider : ClassProvider<ScoreCardApi> {
+  override fun create(_ktorfit: Ktorfit): ScoreCardApi = _ScoreCardApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createScoreCardApi(): ScoreCardApi = _ScoreCardApiImpl(this)

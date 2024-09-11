@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,25 +24,27 @@ import kotlin.Suppress
 import org.openapitools.client.models.GetRunReportResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfRunReportApiImpl : SelfRunReportApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfRunReportApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfRunReportApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun runReport1(reportName: String): GetRunReportResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/runreports/${"$reportName".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/self/runreports/${"$reportName".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetRunReportResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetRunReportResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetRunReportResponse,
-        org.openapitools.client.models.GetRunReportResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetRunReportResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSelfRunReportApi(): SelfRunReportApi =
-    this.create(_SelfRunReportApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfRunReportApi) })
+public class _SelfRunReportApiProvider : ClassProvider<SelfRunReportApi> {
+  override fun create(_ktorfit: Ktorfit): SelfRunReportApi = _SelfRunReportApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSelfRunReportApi(): SelfRunReportApi = _SelfRunReportApiImpl(this)

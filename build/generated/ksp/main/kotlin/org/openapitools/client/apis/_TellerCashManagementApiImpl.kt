@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -46,8 +46,10 @@ import org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdRequest
 import org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _TellerCashManagementApiImpl(
+  private val _ktorfit: Ktorfit,
+) : TellerCashManagementApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun allocateCashToCashier(
     tellerId: Long,
@@ -57,19 +59,15 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}/allocate")
         }
         setBody(postTellersTellerIdCashiersCashierIdAllocateRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdAllocateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdAllocateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdAllocateResponse,
-        org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdAllocateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTellersTellerIdCashiersCashierIdAllocateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createCashier(tellerId: Long,
@@ -78,32 +76,28 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers")
         }
         setBody(postTellersTellerIdCashiersRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostTellersTellerIdCashiersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostTellersTellerIdCashiersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTellersTellerIdCashiersResponse,
-        org.openapitools.client.models.PostTellersTellerIdCashiersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTellersTellerIdCashiersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createTeller(postTellersRequest: PostTellersRequest): PostTellersResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers")
         }
         setBody(postTellersRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostTellersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostTellersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTellersResponse,
-        org.openapitools.client.models.PostTellersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTellersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteCashier(tellerId: Long, cashierId: Long):
@@ -111,32 +105,27 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteTellersTellerIdCashiersCashierIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteTellersTellerIdCashiersCashierIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteTellersTellerIdCashiersCashierIdResponse,
-        org.openapitools.client.models.DeleteTellersTellerIdCashiersCashierIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteTellersTellerIdCashiersCashierIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteTeller(tellerId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findCashierData(tellerId: Long, cashierId: Long):
@@ -144,48 +133,41 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetTellersTellerIdCashiersCashierIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetTellersTellerIdCashiersCashierIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTellersTellerIdCashiersCashierIdResponse,
-        org.openapitools.client.models.GetTellersTellerIdCashiersCashierIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTellersTellerIdCashiersCashierIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findTeller(tellerId: Long): GetTellersResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTellersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTellersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTellersResponse,
-        org.openapitools.client.models.GetTellersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTellersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun findTransactionData(tellerId: Long, transactionId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/transactions/${"$transactionId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getCashierData1(
@@ -196,17 +178,15 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers")
         fromdate?.let{ parameter("fromdate", "$it") }
         todate?.let{ parameter("todate", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTellersTellerIdCashiersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetTellersTellerIdCashiersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTellersTellerIdCashiersResponse,
-        org.openapitools.client.models.GetTellersTellerIdCashiersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTellersTellerIdCashiersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getCashierTemplate(tellerId: Long):
@@ -214,16 +194,13 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/template")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetTellersTellerIdCashiersTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetTellersTellerIdCashiersTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTellersTellerIdCashiersTemplateResponse,
-        org.openapitools.client.models.GetTellersTellerIdCashiersTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTellersTellerIdCashiersTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getCashierTxnTemplate(tellerId: Long, cashierId: Long):
@@ -231,18 +208,14 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}/transactions/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse,
-        org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getJournalData(
@@ -253,49 +226,43 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/journals")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/journals")
         cashierId?.let{ parameter("cashierId", "$it") }
         dateRange?.let{ parameter("dateRange", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTellerData(officeId: Long?): List<GetTellersResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers")
         officeId?.let{ parameter("officeId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetTellersResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetTellersResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetTellersResponse>,
-        org.openapitools.client.models.GetTellersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetTellersResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTransactionData(tellerId: Long, dateRange: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/transactions")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}/transactions")
         dateRange?.let{ parameter("dateRange", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTransactionsForCashier(
@@ -310,7 +277,7 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}/transactions")
         currencyCode?.let{ parameter("currencyCode", "$it") }
         offset?.let{ parameter("offset", "$it") }
@@ -320,13 +287,9 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsResponse>,
-        org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetTellersTellerIdCashiersCashiersIdTransactionsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTransactionsWtihSummaryForCashier(
@@ -341,7 +304,7 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}/summaryandtransactions")
         currencyCode?.let{ parameter("currencyCode", "$it") }
         offset?.let{ parameter("offset", "$it") }
@@ -351,13 +314,9 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse,
-        org.openapitools.client.models.GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun settleCashFromCashier(
@@ -368,19 +327,15 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}/settle")
         }
         setBody(postTellersTellerIdCashiersCashierIdSettleRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdSettleResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdSettleResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdSettleResponse,
-        org.openapitools.client.models.PostTellersTellerIdCashiersCashierIdSettleResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostTellersTellerIdCashiersCashierIdSettleResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateCashier(
@@ -391,19 +346,15 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/tellers/${"$tellerId".encodeURLPath()}/cashiers/${"$cashierId".encodeURLPath()}")
         }
         setBody(putTellersTellerIdCashiersCashierIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdResponse,
-        org.openapitools.client.models.PutTellersTellerIdCashiersCashierIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutTellersTellerIdCashiersCashierIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateTeller(tellerId: Long, putTellersRequest: PutTellersRequest):
@@ -411,19 +362,21 @@ public class _TellerCashManagementApiImpl : TellerCashManagementApi, KtorfitInte
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/tellers/${"$tellerId".encodeURLPath()}")
         }
         setBody(putTellersRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutTellersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutTellersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutTellersResponse,
-        org.openapitools.client.models.PutTellersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutTellersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _TellerCashManagementApiProvider : ClassProvider<TellerCashManagementApi> {
+  override fun create(_ktorfit: Ktorfit): TellerCashManagementApi =
+      _TellerCashManagementApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createTellerCashManagementApi(): TellerCashManagementApi =
-    this.create(_TellerCashManagementApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createTellerCashManagementApi) })
+    _TellerCashManagementApiImpl(this)

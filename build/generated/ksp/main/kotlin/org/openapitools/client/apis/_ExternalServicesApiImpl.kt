@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -21,26 +21,27 @@ import io.ktor.util.reflect.typeInfo
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.ExternalServicesPropertiesData
 import org.openapitools.client.models.PutExternalServiceRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _ExternalServicesApiImpl : ExternalServicesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ExternalServicesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ExternalServicesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveOne2(servicename: String): ExternalServicesPropertiesData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/externalservice/${"$servicename".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/externalservice/${"$servicename".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.ExternalServicesPropertiesData",
-    typeInfo = typeInfo<org.openapitools.client.models.ExternalServicesPropertiesData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.ExternalServicesPropertiesData,
-        org.openapitools.client.models.ExternalServicesPropertiesData>(_typeData,_ext)!!
+    typeInfo = typeInfo<ExternalServicesPropertiesData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateExternalServiceProperties(servicename: String,
@@ -48,18 +49,19 @@ public class _ExternalServicesApiImpl : ExternalServicesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/externalservice/${"$servicename".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/externalservice/${"$servicename".encodeURLPath()}")
         }
         setBody(putExternalServiceRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createExternalServicesApi(): ExternalServicesApi =
-    this.create(_ExternalServicesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createExternalServicesApi) })
+public class _ExternalServicesApiProvider : ClassProvider<ExternalServicesApi> {
+  override fun create(_ktorfit: Ktorfit): ExternalServicesApi = _ExternalServicesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createExternalServicesApi(): ExternalServicesApi = _ExternalServicesApiImpl(this)

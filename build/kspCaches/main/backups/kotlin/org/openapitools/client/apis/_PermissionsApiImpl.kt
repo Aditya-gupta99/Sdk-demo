@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,24 +26,22 @@ import org.openapitools.client.models.GetPermissionsResponse
 import org.openapitools.client.models.PutPermissionsRequest
 
 @OptIn(InternalKtorfitApi::class)
-public class _PermissionsApiImpl : PermissionsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _PermissionsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : PermissionsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAllPermissions(): List<GetPermissionsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/permissions")
+        takeFrom(_ktorfit.baseUrl + "v1/permissions")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetPermissionsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetPermissionsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetPermissionsResponse>,
-        org.openapitools.client.models.GetPermissionsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetPermissionsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updatePermissionsDetails(putPermissionsRequest: PutPermissionsRequest):
@@ -51,18 +49,19 @@ public class _PermissionsApiImpl : PermissionsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/permissions")
+        takeFrom(_ktorfit.baseUrl + "v1/permissions")
         }
         setBody(putPermissionsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.CommandProcessingResult",
-    typeInfo = typeInfo<org.openapitools.client.models.CommandProcessingResult>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.CommandProcessingResult,
-        org.openapitools.client.models.CommandProcessingResult>(_typeData,_ext)!!
+    typeInfo = typeInfo<CommandProcessingResult>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createPermissionsApi(): PermissionsApi = this.create(_PermissionsApiImpl().apply
-    { _converter= KtorfitConverterHelper(this@createPermissionsApi) })
+public class _PermissionsApiProvider : ClassProvider<PermissionsApi> {
+  override fun create(_ktorfit: Ktorfit): PermissionsApi = _PermissionsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createPermissionsApi(): PermissionsApi = _PermissionsApiImpl(this)

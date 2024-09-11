@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,24 +31,24 @@ import org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdReques
 import org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfThirdPartyTransferApiImpl : SelfThirdPartyTransferApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfThirdPartyTransferApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfThirdPartyTransferApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun add(postSelfBeneficiariesTPTRequest: PostSelfBeneficiariesTPTRequest):
       PostSelfBeneficiariesTPTResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/beneficiaries/tpt")
+        takeFrom(_ktorfit.baseUrl + "v1/self/beneficiaries/tpt")
         }
         setBody(postSelfBeneficiariesTPTRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostSelfBeneficiariesTPTResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostSelfBeneficiariesTPTResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSelfBeneficiariesTPTResponse,
-        org.openapitools.client.models.PostSelfBeneficiariesTPTResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSelfBeneficiariesTPTResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete22(beneficiaryId: Long):
@@ -56,50 +56,39 @@ public class _SelfThirdPartyTransferApiImpl : SelfThirdPartyTransferApi, Ktorfit
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/self/beneficiaries/tpt/${"$beneficiaryId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/self/beneficiaries/tpt/${"$beneficiaryId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.DeleteSelfBeneficiariesTPTBeneficiaryIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.DeleteSelfBeneficiariesTPTBeneficiaryIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteSelfBeneficiariesTPTBeneficiaryIdResponse,
-        org.openapitools.client.models.DeleteSelfBeneficiariesTPTBeneficiaryIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteSelfBeneficiariesTPTBeneficiaryIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll35(): List<GetSelfBeneficiariesTPTResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/beneficiaries/tpt")
+        takeFrom(_ktorfit.baseUrl + "v1/self/beneficiaries/tpt")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetSelfBeneficiariesTPTResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetSelfBeneficiariesTPTResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetSelfBeneficiariesTPTResponse>,
-        org.openapitools.client.models.GetSelfBeneficiariesTPTResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetSelfBeneficiariesTPTResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template16(): GetSelfBeneficiariesTPTTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/beneficiaries/tpt/template")
+        takeFrom(_ktorfit.baseUrl + "v1/self/beneficiaries/tpt/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSelfBeneficiariesTPTTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSelfBeneficiariesTPTTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSelfBeneficiariesTPTTemplateResponse,
-        org.openapitools.client.models.GetSelfBeneficiariesTPTTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSelfBeneficiariesTPTTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update23(beneficiaryId: Long,
@@ -108,22 +97,21 @@ public class _SelfThirdPartyTransferApiImpl : SelfThirdPartyTransferApi, Ktorfit
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
-            "v1/self/beneficiaries/tpt/${"$beneficiaryId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/self/beneficiaries/tpt/${"$beneficiaryId".encodeURLPath()}")
         }
         setBody(putSelfBeneficiariesTPTBeneficiaryIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdResponse,
-        org.openapitools.client.models.PutSelfBeneficiariesTPTBeneficiaryIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutSelfBeneficiariesTPTBeneficiaryIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SelfThirdPartyTransferApiProvider : ClassProvider<SelfThirdPartyTransferApi> {
+  override fun create(_ktorfit: Ktorfit): SelfThirdPartyTransferApi =
+      _SelfThirdPartyTransferApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSelfThirdPartyTransferApi(): SelfThirdPartyTransferApi =
-    this.create(_SelfThirdPartyTransferApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfThirdPartyTransferApi) })
+    _SelfThirdPartyTransferApiImpl(this)

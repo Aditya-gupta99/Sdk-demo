@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,27 +24,31 @@ import org.openapitools.client.models.PostAuthenticationRequest
 import org.openapitools.client.models.PostSelfAuthenticationResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SelfAuthenticationApiImpl : SelfAuthenticationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SelfAuthenticationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SelfAuthenticationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun authenticate1(postAuthenticationRequest: PostAuthenticationRequest):
       PostSelfAuthenticationResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/self/authentication")
+        takeFrom(_ktorfit.baseUrl + "v1/self/authentication")
         }
         setBody(postAuthenticationRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostSelfAuthenticationResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostSelfAuthenticationResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSelfAuthenticationResponse,
-        org.openapitools.client.models.PostSelfAuthenticationResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSelfAuthenticationResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _SelfAuthenticationApiProvider : ClassProvider<SelfAuthenticationApi> {
+  override fun create(_ktorfit: Ktorfit): SelfAuthenticationApi =
+      _SelfAuthenticationApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createSelfAuthenticationApi(): SelfAuthenticationApi =
-    this.create(_SelfAuthenticationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSelfAuthenticationApi) })
+    _SelfAuthenticationApiImpl(this)

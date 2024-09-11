@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.InteropAccountData
 import org.openapitools.client.models.InteropIdentifierAccountResponseData
 import org.openapitools.client.models.InteropIdentifierRequestData
@@ -36,24 +37,24 @@ import org.openapitools.client.models.InteropTransferRequestData
 import org.openapitools.client.models.InteropTransferResponseData
 
 @OptIn(InternalKtorfitApi::class)
-public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _InterOperationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : InterOperationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createQuote(interopQuoteRequestData: InteropQuoteRequestData):
       InteropQuoteResponseData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/interoperation/quotes")
+        takeFrom(_ktorfit.baseUrl + "v1/interoperation/quotes")
         }
         setBody(interopQuoteRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropQuoteResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropQuoteResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropQuoteResponseData,
-        org.openapitools.client.models.InteropQuoteResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropQuoteResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend
@@ -62,16 +63,14 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/interoperation/requests")
+        takeFrom(_ktorfit.baseUrl + "v1/interoperation/requests")
         }
         setBody(interopTransactionRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropTransactionRequestResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropTransactionRequestResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropTransactionRequestResponseData,
-        org.openapitools.client.models.InteropTransactionRequestResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropTransactionRequestResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteAccountIdentifier(
@@ -82,17 +81,15 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/parties/${"$idType".encodeURLPath()}/${"$idValue".encodeURLPath()}")
         }
         setBody(interopIdentifierRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifierAccountResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifierAccountResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifierAccountResponseData,
-        org.openapitools.client.models.InteropIdentifierAccountResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifierAccountResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteAccountIdentifier1(
@@ -104,32 +101,29 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/parties/${"$idType".encodeURLPath()}/${"$idValue".encodeURLPath()}/${"$subIdOrType".encodeURLPath()}")
         }
         setBody(interopIdentifierRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifierAccountResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifierAccountResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifierAccountResponseData,
-        org.openapitools.client.models.InteropIdentifierAccountResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifierAccountResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun disburseLoan(accountId: String): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/transactions/${"$accountId".encodeURLPath()}/disburse")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getAccountByIdentifier(idType: String, idValue: String):
@@ -137,16 +131,14 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/parties/${"$idType".encodeURLPath()}/${"$idValue".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifierAccountResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifierAccountResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifierAccountResponseData,
-        org.openapitools.client.models.InteropIdentifierAccountResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifierAccountResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getAccountByIdentifier1(
@@ -157,47 +149,41 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/parties/${"$idType".encodeURLPath()}/${"$idValue".encodeURLPath()}/${"$subIdOrType".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifierAccountResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifierAccountResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifierAccountResponseData,
-        org.openapitools.client.models.InteropIdentifierAccountResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifierAccountResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getAccountDetails(accountId: String): InteropAccountData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/interoperation/accounts/${"$accountId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/interoperation/accounts/${"$accountId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropAccountData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropAccountData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropAccountData,
-        org.openapitools.client.models.InteropAccountData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropAccountData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getAccountIdentifiers(accountId: String): InteropIdentifiersResponseData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/accounts/${"$accountId".encodeURLPath()}/identifiers")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifiersResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifiersResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifiersResponseData,
-        org.openapitools.client.models.InteropIdentifiersResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifiersResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getAccountTransactions(
@@ -210,7 +196,7 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/accounts/${"$accountId".encodeURLPath()}/transactions")
         debit?.let{ parameter("debit", "$it") }
         credit?.let{ parameter("credit", "$it") }
@@ -219,27 +205,23 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropTransactionsData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropTransactionsData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropTransactionsData,
-        org.openapitools.client.models.InteropTransactionsData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropTransactionsData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getClientKyc(accountId: String): InteropKycResponseData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/accounts/${"$accountId".encodeURLPath()}/kyc")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropKycResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropKycResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropKycResponseData,
-        org.openapitools.client.models.InteropKycResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropKycResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getQuote(transactionCode: String, quoteCode: String):
@@ -247,16 +229,14 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/transactions/${"$transactionCode".encodeURLPath()}/quotes/${"$quoteCode".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropQuoteResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropQuoteResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropQuoteResponseData,
-        org.openapitools.client.models.InteropQuoteResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropQuoteResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTransactionRequest(transactionCode: String, requestCode: String):
@@ -264,16 +244,14 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/transactions/${"$transactionCode".encodeURLPath()}/requests/${"$requestCode".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropTransactionRequestResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropTransactionRequestResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropTransactionRequestResponseData,
-        org.openapitools.client.models.InteropTransactionRequestResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropTransactionRequestResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTransfer(transactionCode: String, transferCode: String):
@@ -281,45 +259,41 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/transactions/${"$transactionCode".encodeURLPath()}/transfers/${"$transferCode".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropTransferResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropTransferResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropTransferResponseData,
-        org.openapitools.client.models.InteropTransferResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropTransferResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun health() {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/interoperation/health")
+        takeFrom(_ktorfit.baseUrl + "v1/interoperation/health")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun loanRepayment(accountId: String): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/transactions/${"$accountId".encodeURLPath()}/loanrepayment")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun performTransfer(interopTransferRequestData: InteropTransferRequestData,
@@ -327,17 +301,15 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/interoperation/transfers")
+        takeFrom(_ktorfit.baseUrl + "v1/interoperation/transfers")
         action?.let{ parameter("action", "$it") }
         }
         setBody(interopTransferRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropTransferResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropTransferResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropTransferResponseData,
-        org.openapitools.client.models.InteropTransferResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropTransferResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun registerAccountIdentifier(
@@ -348,17 +320,15 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/parties/${"$idType".encodeURLPath()}/${"$idValue".encodeURLPath()}")
         }
         setBody(interopIdentifierRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifierAccountResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifierAccountResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifierAccountResponseData,
-        org.openapitools.client.models.InteropIdentifierAccountResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifierAccountResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun registerAccountIdentifier1(
@@ -370,20 +340,20 @@ public class _InterOperationApiImpl : InterOperationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/interoperation/parties/${"$idType".encodeURLPath()}/${"$idValue".encodeURLPath()}/${"$subIdOrType".encodeURLPath()}")
         }
         setBody(interopIdentifierRequestData) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InteropIdentifierAccountResponseData",
-    typeInfo = typeInfo<org.openapitools.client.models.InteropIdentifierAccountResponseData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InteropIdentifierAccountResponseData,
-        org.openapitools.client.models.InteropIdentifierAccountResponseData>(_typeData,_ext)!!
+    typeInfo = typeInfo<InteropIdentifierAccountResponseData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createInterOperationApi(): InterOperationApi =
-    this.create(_InterOperationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createInterOperationApi) })
+public class _InterOperationApiProvider : ClassProvider<InterOperationApi> {
+  override fun create(_ktorfit: Ktorfit): InterOperationApi = _InterOperationApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createInterOperationApi(): InterOperationApi = _InterOperationApiImpl(this)

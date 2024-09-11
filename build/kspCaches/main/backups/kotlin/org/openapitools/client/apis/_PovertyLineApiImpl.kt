@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,38 +24,41 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _PovertyLineApiImpl : PovertyLineApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _PovertyLineApiImpl(
+  private val _ktorfit: Ktorfit,
+) : PovertyLineApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAll12(ppiName: String): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/povertyLine/${"$ppiName".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/povertyLine/${"$ppiName".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll13(ppiName: String, likelihoodId: Long): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/povertyLine/${"$ppiName".encodeURLPath()}/${"$likelihoodId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createPovertyLineApi(): PovertyLineApi = this.create(_PovertyLineApiImpl().apply
-    { _converter= KtorfitConverterHelper(this@createPovertyLineApi) })
+public class _PovertyLineApiProvider : ClassProvider<PovertyLineApi> {
+  override fun create(_ktorfit: Ktorfit): PovertyLineApi = _PovertyLineApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createPovertyLineApi(): PovertyLineApi = _PovertyLineApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -29,55 +29,50 @@ import org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse
 import org.openapitools.client.models.PostMakerCheckersResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _MakerCheckerOr4EyeFunctionalityApiImpl : MakerCheckerOr4EyeFunctionalityApi,
-    KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _MakerCheckerOr4EyeFunctionalityApiImpl(
+  private val _ktorfit: Ktorfit,
+) : MakerCheckerOr4EyeFunctionalityApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun approveMakerCheckerEntry(auditId: Long, command: String?):
       PostMakerCheckersResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/makercheckers/${"$auditId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/makercheckers/${"$auditId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostMakerCheckersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostMakerCheckersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostMakerCheckersResponse,
-        org.openapitools.client.models.PostMakerCheckersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostMakerCheckersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteMakerCheckerEntry(auditId: Long): PostMakerCheckersResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/makercheckers/${"$auditId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/makercheckers/${"$auditId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostMakerCheckersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostMakerCheckersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostMakerCheckersResponse,
-        org.openapitools.client.models.PostMakerCheckersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostMakerCheckersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAuditSearchTemplate1(): GetMakerCheckersSearchTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/makercheckers/searchtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/makercheckers/searchtemplate")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse,
-        org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetMakerCheckersSearchTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveCommands(
@@ -96,7 +91,7 @@ public class _MakerCheckerOr4EyeFunctionalityApiImpl : MakerCheckerOr4EyeFunctio
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/makercheckers")
+        takeFrom(_ktorfit.baseUrl + "v1/makercheckers")
         actionName?.let{ parameter("actionName", "$it") }
         entityName?.let{ parameter("entityName", "$it") }
         resourceId?.let{ parameter("resourceId", "$it") }
@@ -111,16 +106,17 @@ public class _MakerCheckerOr4EyeFunctionalityApiImpl : MakerCheckerOr4EyeFunctio
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetMakerCheckerResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetMakerCheckerResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetMakerCheckerResponse>,
-        org.openapitools.client.models.GetMakerCheckerResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetMakerCheckerResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _MakerCheckerOr4EyeFunctionalityApiProvider :
+    ClassProvider<MakerCheckerOr4EyeFunctionalityApi> {
+  override fun create(_ktorfit: Ktorfit): MakerCheckerOr4EyeFunctionalityApi =
+      _MakerCheckerOr4EyeFunctionalityApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createMakerCheckerOr4EyeFunctionalityApi(): MakerCheckerOr4EyeFunctionalityApi =
-    this.create(_MakerCheckerOr4EyeFunctionalityApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createMakerCheckerOr4EyeFunctionalityApi) })
+    _MakerCheckerOr4EyeFunctionalityApiImpl(this)

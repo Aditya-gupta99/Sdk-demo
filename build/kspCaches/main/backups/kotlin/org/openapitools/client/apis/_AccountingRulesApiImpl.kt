@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,8 +32,10 @@ import org.openapitools.client.models.PutAccountingRulesRequest
 import org.openapitools.client.models.PutAccountingRulesResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _AccountingRulesApiImpl : AccountingRulesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _AccountingRulesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : AccountingRulesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createAccountingRule(postAccountingRulesRequest: PostAccountingRulesRequest?):
@@ -41,78 +43,66 @@ public class _AccountingRulesApiImpl : AccountingRulesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountingrules")
+        takeFrom(_ktorfit.baseUrl + "v1/accountingrules")
         }
         setBody(postAccountingRulesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostAccountingRulesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostAccountingRulesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAccountingRulesResponse,
-        org.openapitools.client.models.PostAccountingRulesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAccountingRulesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun deleteAccountingRule(accountingRuleId: Long): DeleteAccountingRulesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountingrules/${"$accountingRuleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/accountingrules/${"$accountingRuleId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteAccountingRulesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteAccountingRulesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteAccountingRulesResponse,
-        org.openapitools.client.models.DeleteAccountingRulesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteAccountingRulesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retreiveAccountingRule(accountingRuleId: Long): AccountingRuleData {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountingrules/${"$accountingRuleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/accountingrules/${"$accountingRuleId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.AccountingRuleData",
-    typeInfo = typeInfo<org.openapitools.client.models.AccountingRuleData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.AccountingRuleData,
-        org.openapitools.client.models.AccountingRuleData>(_typeData,_ext)!!
+    typeInfo = typeInfo<AccountingRuleData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllAccountingRules(): List<GetAccountRulesResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountingrules")
+        takeFrom(_ktorfit.baseUrl + "v1/accountingrules")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetAccountRulesResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetAccountRulesResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetAccountRulesResponse>,
-        org.openapitools.client.models.GetAccountRulesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetAccountRulesResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate1(): GetAccountRulesTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountingrules/template")
+        takeFrom(_ktorfit.baseUrl + "v1/accountingrules/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountRulesTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountRulesTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountRulesTemplateResponse,
-        org.openapitools.client.models.GetAccountRulesTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountRulesTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateAccountingRule(accountingRuleId: Long,
@@ -120,19 +110,19 @@ public class _AccountingRulesApiImpl : AccountingRulesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/accountingrules/${"$accountingRuleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/accountingrules/${"$accountingRuleId".encodeURLPath()}")
         }
         setBody(putAccountingRulesRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutAccountingRulesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutAccountingRulesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutAccountingRulesResponse,
-        org.openapitools.client.models.PutAccountingRulesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutAccountingRulesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createAccountingRulesApi(): AccountingRulesApi =
-    this.create(_AccountingRulesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createAccountingRulesApi) })
+public class _AccountingRulesApiProvider : ClassProvider<AccountingRulesApi> {
+  override fun create(_ktorfit: Ktorfit): AccountingRulesApi = _AccountingRulesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createAccountingRulesApi(): AccountingRulesApi = _AccountingRulesApiImpl(this)

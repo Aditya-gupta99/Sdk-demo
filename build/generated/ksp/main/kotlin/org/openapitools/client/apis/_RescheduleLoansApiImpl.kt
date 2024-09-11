@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -31,8 +31,10 @@ import org.openapitools.client.models.PostUpdateRescheduleLoansRequest
 import org.openapitools.client.models.PostUpdateRescheduleLoansResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _RescheduleLoansApiImpl : RescheduleLoansApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _RescheduleLoansApiImpl(
+  private val _ktorfit: Ktorfit,
+) : RescheduleLoansApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend
       fun createLoanRescheduleRequest(postCreateRescheduleLoansRequest: PostCreateRescheduleLoansRequest):
@@ -40,16 +42,14 @@ public class _RescheduleLoansApiImpl : RescheduleLoansApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/rescheduleloans")
+        takeFrom(_ktorfit.baseUrl + "v1/rescheduleloans")
         }
         setBody(postCreateRescheduleLoansRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostCreateRescheduleLoansResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostCreateRescheduleLoansResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostCreateRescheduleLoansResponse,
-        org.openapitools.client.models.PostCreateRescheduleLoansResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostCreateRescheduleLoansResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun readLoanRescheduleRequest(scheduleId: Long, command: String?):
@@ -57,16 +57,14 @@ public class _RescheduleLoansApiImpl : RescheduleLoansApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/rescheduleloans/${"$scheduleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/rescheduleloans/${"$scheduleId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetLoanRescheduleRequestResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetLoanRescheduleRequestResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetLoanRescheduleRequestResponse,
-        org.openapitools.client.models.GetLoanRescheduleRequestResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetLoanRescheduleRequestResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllRescheduleRequest(command: String?, loanId: Long?):
@@ -74,34 +72,28 @@ public class _RescheduleLoansApiImpl : RescheduleLoansApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/rescheduleloans")
+        takeFrom(_ktorfit.baseUrl + "v1/rescheduleloans")
         command?.let{ parameter("command", "$it") }
         loanId?.let{ parameter("loanId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetLoanRescheduleRequestResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetLoanRescheduleRequestResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetLoanRescheduleRequestResponse>,
-        org.openapitools.client.models.GetLoanRescheduleRequestResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetLoanRescheduleRequestResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate10(): GetRescheduleReasonsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/rescheduleloans/template")
+        takeFrom(_ktorfit.baseUrl + "v1/rescheduleloans/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetRescheduleReasonsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetRescheduleReasonsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetRescheduleReasonsTemplateResponse,
-        org.openapitools.client.models.GetRescheduleReasonsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetRescheduleReasonsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateLoanRescheduleRequest(
@@ -112,20 +104,20 @@ public class _RescheduleLoansApiImpl : RescheduleLoansApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/rescheduleloans/${"$scheduleId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/rescheduleloans/${"$scheduleId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postUpdateRescheduleLoansRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostUpdateRescheduleLoansResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostUpdateRescheduleLoansResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostUpdateRescheduleLoansResponse,
-        org.openapitools.client.models.PostUpdateRescheduleLoansResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostUpdateRescheduleLoansResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createRescheduleLoansApi(): RescheduleLoansApi =
-    this.create(_RescheduleLoansApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createRescheduleLoansApi) })
+public class _RescheduleLoansApiProvider : ClassProvider<RescheduleLoansApi> {
+  override fun create(_ktorfit: Ktorfit): RescheduleLoansApi = _RescheduleLoansApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createRescheduleLoansApi(): RescheduleLoansApi = _RescheduleLoansApiImpl(this)

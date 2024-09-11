@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -25,26 +25,29 @@ import org.openapitools.client.models.InlineJobRequest
 import org.openapitools.client.models.InlineJobResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _InlineJobApiImpl : InlineJobApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _InlineJobApiImpl(
+  private val _ktorfit: Ktorfit,
+) : InlineJobApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun executeInlineJob(jobName: String, inlineJobRequest: InlineJobRequest?):
       InlineJobResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/inline")
+        takeFrom(_ktorfit.baseUrl + "v1/jobs/${"$jobName".encodeURLPath()}/inline")
         }
         setBody(inlineJobRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.InlineJobResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.InlineJobResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.InlineJobResponse,
-        org.openapitools.client.models.InlineJobResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<InlineJobResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createInlineJobApi(): InlineJobApi = this.create(_InlineJobApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createInlineJobApi) })
+public class _InlineJobApiProvider : ClassProvider<InlineJobApi> {
+  override fun create(_ktorfit: Ktorfit): InlineJobApi = _InlineJobApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createInlineJobApi(): InlineJobApi = _InlineJobApiImpl(this)

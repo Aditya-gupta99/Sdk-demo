@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -29,8 +29,10 @@ import org.openapitools.client.models.GetMakerCheckerResponse
 import org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _AuditsApiImpl : AuditsApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _AuditsApiImpl(
+  private val _ktorfit: Ktorfit,
+) : AuditsApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAuditEntries(
     actionName: String?,
@@ -57,7 +59,7 @@ public class _AuditsApiImpl : AuditsApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/audits")
+        takeFrom(_ktorfit.baseUrl + "v1/audits")
         actionName?.let{ parameter("actionName", "$it") }
         entityName?.let{ parameter("entityName", "$it") }
         resourceId?.let{ parameter("resourceId", "$it") }
@@ -81,45 +83,40 @@ public class _AuditsApiImpl : AuditsApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetMakerCheckerResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetMakerCheckerResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetMakerCheckerResponse>,
-        org.openapitools.client.models.GetMakerCheckerResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetMakerCheckerResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAuditEntry(auditId: Long): GetMakerCheckerResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/audits/${"$auditId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/audits/${"$auditId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetMakerCheckerResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetMakerCheckerResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetMakerCheckerResponse,
-        org.openapitools.client.models.GetMakerCheckerResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetMakerCheckerResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAuditSearchTemplate(): GetMakerCheckersSearchTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/audits/searchtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/audits/searchtemplate")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse,
-        org.openapitools.client.models.GetMakerCheckersSearchTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetMakerCheckersSearchTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createAuditsApi(): AuditsApi = this.create(_AuditsApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createAuditsApi) })
+public class _AuditsApiProvider : ClassProvider<AuditsApi> {
+  override fun create(_ktorfit: Ktorfit): AuditsApi = _AuditsApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createAuditsApi(): AuditsApi = _AuditsApiImpl(this)

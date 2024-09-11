@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,8 +32,10 @@ import org.openapitools.client.models.PostInitiateTransferRequest
 import org.openapitools.client.models.PostInitiateTransferResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ExternalAssetOwnersApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ExternalAssetOwnersApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun getActiveTransfer(
     transferExternalId: String?,
@@ -43,18 +45,16 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/external-asset-owners/transfers/active-transfer")
+        takeFrom(_ktorfit.baseUrl + "v1/external-asset-owners/transfers/active-transfer")
         transferExternalId?.let{ parameter("transferExternalId", "$it") }
         loanId?.let{ parameter("loanId", "$it") }
         loanExternalId?.let{ parameter("loanExternalId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.ExternalTransferData",
-    typeInfo = typeInfo<org.openapitools.client.models.ExternalTransferData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.ExternalTransferData,
-        org.openapitools.client.models.ExternalTransferData>(_typeData,_ext)!!
+    typeInfo = typeInfo<ExternalTransferData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getJournalEntriesOfOwner(
@@ -65,18 +65,16 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/external-asset-owners/owners/external-id/${"$ownerExternalId".encodeURLPath()}/journal-entries")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.ExternalOwnerJournalEntryData",
-    typeInfo = typeInfo<org.openapitools.client.models.ExternalOwnerJournalEntryData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.ExternalOwnerJournalEntryData,
-        org.openapitools.client.models.ExternalOwnerJournalEntryData>(_typeData,_ext)!!
+    typeInfo = typeInfo<ExternalOwnerJournalEntryData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getJournalEntriesOfTransfer(
@@ -87,18 +85,16 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/external-asset-owners/transfers/${"$transferId".encodeURLPath()}/journal-entries")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.ExternalOwnerTransferJournalEntryData",
-    typeInfo = typeInfo<org.openapitools.client.models.ExternalOwnerTransferJournalEntryData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.ExternalOwnerTransferJournalEntryData,
-        org.openapitools.client.models.ExternalOwnerTransferJournalEntryData>(_typeData,_ext)!!
+    typeInfo = typeInfo<ExternalOwnerTransferJournalEntryData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getTransfers(
@@ -111,7 +107,7 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/external-asset-owners/transfers")
+        takeFrom(_ktorfit.baseUrl + "v1/external-asset-owners/transfers")
         transferExternalId?.let{ parameter("transferExternalId", "$it") }
         loanId?.let{ parameter("loanId", "$it") }
         loanExternalId?.let{ parameter("loanExternalId", "$it") }
@@ -120,11 +116,9 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PageExternalTransferData",
-    typeInfo = typeInfo<org.openapitools.client.models.PageExternalTransferData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PageExternalTransferData,
-        org.openapitools.client.models.PageExternalTransferData>(_typeData,_ext)!!
+    typeInfo = typeInfo<PageExternalTransferData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend
@@ -133,16 +127,14 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/external-asset-owners/search")
+        takeFrom(_ktorfit.baseUrl + "v1/external-asset-owners/search")
         }
         setBody(pagedRequestExternalAssetOwnerSearchRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PageExternalTransferData",
-    typeInfo = typeInfo<org.openapitools.client.models.PageExternalTransferData>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PageExternalTransferData,
-        org.openapitools.client.models.PageExternalTransferData>(_typeData,_ext)!!
+    typeInfo = typeInfo<PageExternalTransferData>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun transferRequestWithId(id: Long, command: String?):
@@ -150,16 +142,14 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/external-asset-owners/transfers/${"$id".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/external-asset-owners/transfers/${"$id".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostInitiateTransferResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostInitiateTransferResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostInitiateTransferResponse,
-        org.openapitools.client.models.PostInitiateTransferResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostInitiateTransferResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun transferRequestWithId1(externalId: String, command: String?):
@@ -167,17 +157,15 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/external-asset-owners/transfers/external-id/${"$externalId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostInitiateTransferResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostInitiateTransferResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostInitiateTransferResponse,
-        org.openapitools.client.models.PostInitiateTransferResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostInitiateTransferResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun transferRequestWithLoanExternalId(
@@ -188,18 +176,16 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/external-asset-owners/transfers/loans/external-id/${"$loanExternalId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postInitiateTransferRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostInitiateTransferResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostInitiateTransferResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostInitiateTransferResponse,
-        org.openapitools.client.models.PostInitiateTransferResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostInitiateTransferResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun transferRequestWithLoanId(
@@ -210,21 +196,23 @@ public class _ExternalAssetOwnersApiImpl : ExternalAssetOwnersApi, KtorfitInterf
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/external-asset-owners/transfers/loans/${"$loanId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postInitiateTransferRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostInitiateTransferResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostInitiateTransferResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostInitiateTransferResponse,
-        org.openapitools.client.models.PostInitiateTransferResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostInitiateTransferResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _ExternalAssetOwnersApiProvider : ClassProvider<ExternalAssetOwnersApi> {
+  override fun create(_ktorfit: Ktorfit): ExternalAssetOwnersApi =
+      _ExternalAssetOwnersApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createExternalAssetOwnersApi(): ExternalAssetOwnersApi =
-    this.create(_ExternalAssetOwnersApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createExternalAssetOwnersApi) })
+    _ExternalAssetOwnersApiImpl(this)

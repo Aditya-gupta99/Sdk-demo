@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -33,24 +33,24 @@ import org.openapitools.client.models.PostAccountTransfersRequest
 import org.openapitools.client.models.PostAccountTransfersResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _AccountTransfersApiImpl(
+  private val _ktorfit: Ktorfit,
+) : AccountTransfersApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create4(postAccountTransfersRequest: PostAccountTransfersRequest):
       PostAccountTransfersResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounttransfers")
+        takeFrom(_ktorfit.baseUrl + "v1/accounttransfers")
         }
         setBody(postAccountTransfersRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostAccountTransfersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostAccountTransfersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAccountTransfersResponse,
-        org.openapitools.client.models.PostAccountTransfersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAccountTransfersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll18(
@@ -64,7 +64,7 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounttransfers")
+        takeFrom(_ktorfit.baseUrl + "v1/accounttransfers")
         externalId?.let{ parameter("externalId", "$it") }
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
@@ -74,26 +74,22 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountTransfersResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountTransfersResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountTransfersResponse,
-        org.openapitools.client.models.GetAccountTransfersResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountTransfersResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne9(transferId: Long): GetAccountTransfersPageItems {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounttransfers/${"$transferId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/accounttransfers/${"$transferId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountTransfersPageItems",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountTransfersPageItems>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountTransfersPageItems,
-        org.openapitools.client.models.GetAccountTransfersPageItems>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountTransfersPageItems>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template5(
@@ -109,7 +105,7 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounttransfers/template")
+        takeFrom(_ktorfit.baseUrl + "v1/accounttransfers/template")
         fromOfficeId?.let{ parameter("fromOfficeId", "$it") }
         fromClientId?.let{ parameter("fromClientId", "$it") }
         fromAccountId?.let{ parameter("fromAccountId", "$it") }
@@ -121,11 +117,9 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountTransfersTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountTransfersTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountTransfersTemplateResponse,
-        org.openapitools.client.models.GetAccountTransfersTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountTransfersTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun templateRefundByTransfer(
@@ -141,7 +135,7 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounttransfers/templateRefundByTransfer")
+        takeFrom(_ktorfit.baseUrl + "v1/accounttransfers/templateRefundByTransfer")
         fromOfficeId?.let{ parameter("fromOfficeId", "$it") }
         fromClientId?.let{ parameter("fromClientId", "$it") }
         fromAccountId?.let{ parameter("fromAccountId", "$it") }
@@ -153,13 +147,9 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferResponse,
-        org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountTransfersTemplateRefundByTransferResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend
@@ -168,21 +158,19 @@ public class _AccountTransfersApiImpl : AccountTransfersApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounttransfers/refundByTransfer")
+        takeFrom(_ktorfit.baseUrl + "v1/accounttransfers/refundByTransfer")
         }
         setBody(postAccountTransfersRefundByTransferRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "org.openapitools.client.models.PostAccountTransfersRefundByTransferResponse",
-    typeInfo =
-        typeInfo<org.openapitools.client.models.PostAccountTransfersRefundByTransferResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAccountTransfersRefundByTransferResponse,
-        org.openapitools.client.models.PostAccountTransfersRefundByTransferResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAccountTransfersRefundByTransferResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createAccountTransfersApi(): AccountTransfersApi =
-    this.create(_AccountTransfersApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createAccountTransfersApi) })
+public class _AccountTransfersApiProvider : ClassProvider<AccountTransfersApi> {
+  override fun create(_ktorfit: Ktorfit): AccountTransfersApi = _AccountTransfersApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createAccountTransfersApi(): AccountTransfersApi = _AccountTransfersApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -26,39 +26,35 @@ import org.openapitools.client.models.BusinessDateRequest
 import org.openapitools.client.models.BusinessDateResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _BusinessDateManagementApiImpl : BusinessDateManagementApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _BusinessDateManagementApiImpl(
+  private val _ktorfit: Ktorfit,
+) : BusinessDateManagementApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun getBusinessDate(type: String): BusinessDateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/businessdate/${"$type".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/businessdate/${"$type".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.BusinessDateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.BusinessDateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.BusinessDateResponse,
-        org.openapitools.client.models.BusinessDateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<BusinessDateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getBusinessDates(): List<BusinessDateResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/businessdate")
+        takeFrom(_ktorfit.baseUrl + "v1/businessdate")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.BusinessDateResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.BusinessDateResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.BusinessDateResponse>,
-        org.openapitools.client.models.BusinessDateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<BusinessDateResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateBusinessDate(businessDateRequest: BusinessDateRequest):
@@ -66,19 +62,21 @@ public class _BusinessDateManagementApiImpl : BusinessDateManagementApi, Ktorfit
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/businessdate")
+        takeFrom(_ktorfit.baseUrl + "v1/businessdate")
         }
         setBody(businessDateRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.BusinessDateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.BusinessDateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.BusinessDateResponse,
-        org.openapitools.client.models.BusinessDateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<BusinessDateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
+public class _BusinessDateManagementApiProvider : ClassProvider<BusinessDateManagementApi> {
+  override fun create(_ktorfit: Ktorfit): BusinessDateManagementApi =
+      _BusinessDateManagementApiImpl(_ktorfit)
+}
+
 public fun Ktorfit.createBusinessDateManagementApi(): BusinessDateManagementApi =
-    this.create(_BusinessDateManagementApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createBusinessDateManagementApi) })
+    _BusinessDateManagementApiImpl(this)

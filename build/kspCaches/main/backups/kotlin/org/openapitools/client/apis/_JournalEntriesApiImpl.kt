@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetJournalEntriesTransactionIdResponse
 import org.openapitools.client.models.JournalEntryCommand
@@ -37,25 +38,25 @@ import org.openapitools.client.models.PostJournalEntriesTransactionIdRequest
 import org.openapitools.client.models.PostJournalEntriesTransactionIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _JournalEntriesApiImpl(
+  private val _ktorfit: Ktorfit,
+) : JournalEntriesApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createGLJournalEntry(command: String?,
       journalEntryCommand: JournalEntryCommand?): PostJournalEntriesResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries")
         command?.let{ parameter("command", "$it") }
         }
         setBody(journalEntryCommand) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostJournalEntriesResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostJournalEntriesResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostJournalEntriesResponse,
-        org.openapitools.client.models.PostJournalEntriesResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostJournalEntriesResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun createReversalJournalEntry(
@@ -66,33 +67,30 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries/${"$transactionId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries/${"$transactionId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postJournalEntriesTransactionIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostJournalEntriesTransactionIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostJournalEntriesTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostJournalEntriesTransactionIdResponse,
-        org.openapitools.client.models.PostJournalEntriesTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostJournalEntriesTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getJournalEntriesTemplate(officeId: Long?, dateFormat: String?) {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postJournalEntriesTemplate(
@@ -103,7 +101,7 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -114,10 +112,9 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll1(
@@ -144,7 +141,7 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries")
         officeId?.let{ parameter("officeId", "$it") }
         glAccountId?.let{ parameter("glAccountId", "$it") }
         manualEntriesOnly?.let{ parameter("manualEntriesOnly", "$it") }
@@ -167,11 +164,9 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetJournalEntriesTransactionIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetJournalEntriesTransactionIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetJournalEntriesTransactionIdResponse,
-        org.openapitools.client.models.GetJournalEntriesTransactionIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetJournalEntriesTransactionIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveJournalEntries(
@@ -182,17 +177,16 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries/provisioning")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries/provisioning")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         entryId?.let{ parameter("entryId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveJournalEntryById(
@@ -203,36 +197,35 @@ public class _JournalEntriesApiImpl : JournalEntriesApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries/${"$journalEntryId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries/${"$journalEntryId".encodeURLPath()}")
         runningBalance?.let{ parameter("runningBalance", "$it") }
         transactionDetails?.let{ parameter("transactionDetails", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.JournalEntryTransactionItem",
-    typeInfo = typeInfo<org.openapitools.client.models.JournalEntryTransactionItem>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.JournalEntryTransactionItem,
-        org.openapitools.client.models.JournalEntryTransactionItem>(_typeData,_ext)!!
+    typeInfo = typeInfo<JournalEntryTransactionItem>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOpeningBalance(officeId: Long?, currencyCode: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/journalentries/openingbalance")
+        takeFrom(_ktorfit.baseUrl + "v1/journalentries/openingbalance")
         officeId?.let{ parameter("officeId", "$it") }
         currencyCode?.let{ parameter("currencyCode", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createJournalEntriesApi(): JournalEntriesApi =
-    this.create(_JournalEntriesApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createJournalEntriesApi) })
+public class _JournalEntriesApiProvider : ClassProvider<JournalEntriesApi> {
+  override fun create(_ktorfit: Ktorfit): JournalEntriesApi = _JournalEntriesApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createJournalEntriesApi(): JournalEntriesApi = _JournalEntriesApiImpl(this)

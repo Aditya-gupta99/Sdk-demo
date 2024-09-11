@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,11 +23,14 @@ import kotlin.Int
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import org.openapitools.client.models.GetNotificationsResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _NotificationApiImpl : NotificationApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _NotificationApiImpl(
+  private val _ktorfit: Ktorfit,
+) : NotificationApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun getAllNotifications(
     orderBy: String?,
@@ -39,7 +42,7 @@ public class _NotificationApiImpl : NotificationApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/notifications")
+        takeFrom(_ktorfit.baseUrl + "v1/notifications")
         orderBy?.let{ parameter("orderBy", "$it") }
         limit?.let{ parameter("limit", "$it") }
         offset?.let{ parameter("offset", "$it") }
@@ -48,28 +51,27 @@ public class _NotificationApiImpl : NotificationApi, KtorfitInterface {
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetNotificationsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetNotificationsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetNotificationsResponse,
-        org.openapitools.client.models.GetNotificationsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetNotificationsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update5() {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/notifications")
+        takeFrom(_ktorfit.baseUrl + "v1/notifications")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createNotificationApi(): NotificationApi =
-    this.create(_NotificationApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createNotificationApi) })
+public class _NotificationApiProvider : ClassProvider<NotificationApi> {
+  override fun create(_ktorfit: Ktorfit): NotificationApi = _NotificationApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createNotificationApi(): NotificationApi = _NotificationApiImpl(this)

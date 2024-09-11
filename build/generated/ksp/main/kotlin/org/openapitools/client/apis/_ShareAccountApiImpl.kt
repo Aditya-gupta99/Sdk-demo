@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.forms.FormDataContent
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.OptIn
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import okhttp3.MultipartBody
 import org.openapitools.client.models.GetAccountsTypeAccountIdResponse
 import org.openapitools.client.models.GetAccountsTypeResponse
@@ -39,24 +40,24 @@ import org.openapitools.client.models.PutAccountsTypeAccountIdRequest
 import org.openapitools.client.models.PutAccountsTypeAccountIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _ShareAccountApiImpl(
+  private val _ktorfit: Ktorfit,
+) : ShareAccountApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun createAccount(type: String,
       postAccountsTypeRequest: PostAccountsTypeRequest): PostAccountsTypeResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounts/${"$type".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/accounts/${"$type".encodeURLPath()}")
         }
         setBody(postAccountsTypeRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostAccountsTypeResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostAccountsTypeResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAccountsTypeResponse,
-        org.openapitools.client.models.PostAccountsTypeResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAccountsTypeResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun getSharedAccountsTemplate(
@@ -67,16 +68,15 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounts/${"$type".encodeURLPath()}/downloadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/accounts/${"$type".encodeURLPath()}/downloadtemplate")
         officeId?.let{ parameter("officeId", "$it") }
         dateFormat?.let{ parameter("dateFormat", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.Unit",
-    typeInfo = typeInfo<kotlin.Unit>())
-
-    return _converter.suspendRequest<kotlin.Unit, kotlin.Unit>(_typeData,_ext)!!
+    typeInfo = typeInfo<Unit>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun handleCommands2(
@@ -88,18 +88,16 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/accounts/${"$type".encodeURLPath()}/${"$accountId".encodeURLPath()}")
         command?.let{ parameter("command", "$it") }
         }
         setBody(postAccountsTypeAccountIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostAccountsTypeAccountIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostAccountsTypeAccountIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostAccountsTypeAccountIdResponse,
-        org.openapitools.client.models.PostAccountsTypeAccountIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostAccountsTypeAccountIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun postSharedAccountsTemplate(
@@ -111,7 +109,7 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounts/${"$type".encodeURLPath()}/uploadtemplate")
+        takeFrom(_ktorfit.baseUrl + "v1/accounts/${"$type".encodeURLPath()}/uploadtemplate")
         }
         val __formData = formData {
         dateFormat?.let{ append("dateFormat", "${it}") }
@@ -122,10 +120,9 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
          
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAccount(accountId: Long, type: String):
@@ -133,16 +130,14 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/accounts/${"$type".encodeURLPath()}/${"$accountId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountsTypeAccountIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountsTypeAccountIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountsTypeAccountIdResponse,
-        org.openapitools.client.models.GetAccountsTypeAccountIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountsTypeAccountIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAllAccounts1(
@@ -153,17 +148,15 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounts/${"$type".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/accounts/${"$type".encodeURLPath()}")
         offset?.let{ parameter("offset", "$it") }
         limit?.let{ parameter("limit", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountsTypeResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountsTypeResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountsTypeResponse,
-        org.openapitools.client.models.GetAccountsTypeResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountsTypeResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun template7(
@@ -174,17 +167,15 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/accounts/${"$type".encodeURLPath()}/template")
+        takeFrom(_ktorfit.baseUrl + "v1/accounts/${"$type".encodeURLPath()}/template")
         clientId?.let{ parameter("clientId", "$it") }
         productId?.let{ parameter("productId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetAccountsTypeTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetAccountsTypeTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetAccountsTypeTemplateResponse,
-        org.openapitools.client.models.GetAccountsTypeTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetAccountsTypeTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun updateAccount(
@@ -195,20 +186,20 @@ public class _ShareAccountApiImpl : ShareAccountApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl +
+        takeFrom(_ktorfit.baseUrl +
             "v1/accounts/${"$type".encodeURLPath()}/${"$accountId".encodeURLPath()}")
         }
         setBody(putAccountsTypeAccountIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutAccountsTypeAccountIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutAccountsTypeAccountIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutAccountsTypeAccountIdResponse,
-        org.openapitools.client.models.PutAccountsTypeAccountIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutAccountsTypeAccountIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createShareAccountApi(): ShareAccountApi =
-    this.create(_ShareAccountApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createShareAccountApi) })
+public class _ShareAccountApiProvider : ClassProvider<ShareAccountApi> {
+  override fun create(_ktorfit: Ktorfit): ShareAccountApi = _ShareAccountApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createShareAccountApi(): ShareAccountApi = _ShareAccountApiImpl(this)

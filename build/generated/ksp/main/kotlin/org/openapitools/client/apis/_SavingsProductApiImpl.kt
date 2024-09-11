@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -32,86 +32,76 @@ import org.openapitools.client.models.PutSavingsProductsProductIdRequest
 import org.openapitools.client.models.PutSavingsProductsProductIdResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SavingsProductApiImpl : SavingsProductApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SavingsProductApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SavingsProductApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun create13(postSavingsProductsRequest: PostSavingsProductsRequest):
       PostSavingsProductsResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/savingsproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/savingsproducts")
         }
         setBody(postSavingsProductsRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PostSavingsProductsResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PostSavingsProductsResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PostSavingsProductsResponse,
-        org.openapitools.client.models.PostSavingsProductsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PostSavingsProductsResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun delete21(productId: Long): DeleteSavingsProductsProductIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("DELETE")
         url{
-        takeFrom(_converter.baseUrl + "v1/savingsproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/savingsproducts/${"$productId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.DeleteSavingsProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.DeleteSavingsProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.DeleteSavingsProductsProductIdResponse,
-        org.openapitools.client.models.DeleteSavingsProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<DeleteSavingsProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAll34(): List<GetSavingsProductsResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/savingsproducts")
+        takeFrom(_ktorfit.baseUrl + "v1/savingsproducts")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.GetSavingsProductsResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetSavingsProductsResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetSavingsProductsResponse>,
-        org.openapitools.client.models.GetSavingsProductsResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetSavingsProductsResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveOne27(productId: Long): GetSavingsProductsProductIdResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/savingsproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/savingsproducts/${"$productId".encodeURLPath()}")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSavingsProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSavingsProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSavingsProductsProductIdResponse,
-        org.openapitools.client.models.GetSavingsProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSavingsProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveTemplate20(): GetSavingsProductsTemplateResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/savingsproducts/template")
+        takeFrom(_ktorfit.baseUrl + "v1/savingsproducts/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSavingsProductsTemplateResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSavingsProductsTemplateResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSavingsProductsTemplateResponse,
-        org.openapitools.client.models.GetSavingsProductsTemplateResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSavingsProductsTemplateResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun update22(productId: Long,
@@ -120,19 +110,19 @@ public class _SavingsProductApiImpl : SavingsProductApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("PUT")
         url{
-        takeFrom(_converter.baseUrl + "v1/savingsproducts/${"$productId".encodeURLPath()}")
+        takeFrom(_ktorfit.baseUrl + "v1/savingsproducts/${"$productId".encodeURLPath()}")
         }
         setBody(putSavingsProductsProductIdRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.PutSavingsProductsProductIdResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.PutSavingsProductsProductIdResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.PutSavingsProductsProductIdResponse,
-        org.openapitools.client.models.PutSavingsProductsProductIdResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<PutSavingsProductsProductIdResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSavingsProductApi(): SavingsProductApi =
-    this.create(_SavingsProductApiImpl().apply { _converter=
-    KtorfitConverterHelper(this@createSavingsProductApi) })
+public class _SavingsProductApiProvider : ClassProvider<SavingsProductApi> {
+  override fun create(_ktorfit: Ktorfit): SavingsProductApi = _SavingsProductApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSavingsProductApi(): SavingsProductApi = _SavingsProductApiImpl(this)

@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -28,41 +28,37 @@ import org.openapitools.client.models.PostAdhocQuerySearchRequest
 import org.openapitools.client.models.PostAdhocQuerySearchResponse
 
 @OptIn(InternalKtorfitApi::class)
-public class _SearchAPIApiImpl : SearchAPIApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _SearchAPIApiImpl(
+  private val _ktorfit: Ktorfit,
+) : SearchAPIApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun advancedSearch(postAdhocQuerySearchRequest: PostAdhocQuerySearchRequest):
       List<PostAdhocQuerySearchResponse> {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/search/advance")
+        takeFrom(_ktorfit.baseUrl + "v1/search/advance")
         }
         setBody(postAdhocQuerySearchRequest) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename =
-        "kotlin.collections.List<org.openapitools.client.models.PostAdhocQuerySearchResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.PostAdhocQuerySearchResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.PostAdhocQuerySearchResponse>,
-        org.openapitools.client.models.PostAdhocQuerySearchResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<PostAdhocQuerySearchResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun retrieveAdHocSearchQueryTemplate(): GetSearchResponse {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/search/template")
+        takeFrom(_ktorfit.baseUrl + "v1/search/template")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "org.openapitools.client.models.GetSearchResponse",
-    typeInfo = typeInfo<org.openapitools.client.models.GetSearchResponse>())
-
-    return _converter.suspendRequest<org.openapitools.client.models.GetSearchResponse,
-        org.openapitools.client.models.GetSearchResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<GetSearchResponse>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun searchData(
@@ -73,21 +69,21 @@ public class _SearchAPIApiImpl : SearchAPIApi, KtorfitInterface {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/search")
+        takeFrom(_ktorfit.baseUrl + "v1/search")
         query?.let{ parameter("query", "$it") }
         resource?.let{ parameter("resource", "$it") }
         exactMatch?.let{ parameter("exactMatch", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.collections.List<org.openapitools.client.models.GetSearchResponse>",
-    typeInfo =
-        typeInfo<kotlin.collections.List<org.openapitools.client.models.GetSearchResponse>>())
-
-    return _converter.suspendRequest<kotlin.collections.List<org.openapitools.client.models.GetSearchResponse>,
-        org.openapitools.client.models.GetSearchResponse>(_typeData,_ext)!!
+    typeInfo = typeInfo<List<GetSearchResponse>>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createSearchAPIApi(): SearchAPIApi = this.create(_SearchAPIApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createSearchAPIApi) })
+public class _SearchAPIApiProvider : ClassProvider<SearchAPIApi> {
+  override fun create(_ktorfit: Ktorfit): SearchAPIApi = _SearchAPIApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createSearchAPIApi(): SearchAPIApi = _SearchAPIApiImpl(this)

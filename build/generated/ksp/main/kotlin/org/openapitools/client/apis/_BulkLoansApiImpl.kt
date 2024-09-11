@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -24,40 +24,43 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _BulkLoansApiImpl : BulkLoansApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _BulkLoansApiImpl(
+  private val _ktorfit: Ktorfit,
+) : BulkLoansApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun loanReassignment(body: String?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("POST")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/loanreassignment")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/loanreassignment")
         }
         setBody(body) 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 
   override suspend fun loanReassignmentTemplate(officeId: Long?, fromLoanOfficerId: Long?): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/loans/loanreassignment/template")
+        takeFrom(_ktorfit.baseUrl + "v1/loans/loanreassignment/template")
         officeId?.let{ parameter("officeId", "$it") }
         fromLoanOfficerId?.let{ parameter("fromLoanOfficerId", "$it") }
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createBulkLoansApi(): BulkLoansApi = this.create(_BulkLoansApiImpl().apply {
-    _converter= KtorfitConverterHelper(this@createBulkLoansApi) })
+public class _BulkLoansApiProvider : ClassProvider<BulkLoansApi> {
+  override fun create(_ktorfit: Ktorfit): BulkLoansApi = _BulkLoansApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createBulkLoansApi(): BulkLoansApi = _BulkLoansApiImpl(this)

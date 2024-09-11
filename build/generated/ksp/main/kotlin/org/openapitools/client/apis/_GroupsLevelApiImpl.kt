@@ -4,10 +4,10 @@
 package org.openapitools.client.apis
 
 import de.jensklingenberg.ktorfit.Ktorfit
+import de.jensklingenberg.ktorfit.`internal`.ClassProvider
 import de.jensklingenberg.ktorfit.`internal`.InternalKtorfitApi
 import de.jensklingenberg.ktorfit.`internal`.KtorfitConverterHelper
-import de.jensklingenberg.ktorfit.`internal`.KtorfitInterface
-import de.jensklingenberg.ktorfit.`internal`.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -23,23 +23,27 @@ import kotlin.String
 import kotlin.Suppress
 
 @OptIn(InternalKtorfitApi::class)
-public class _GroupsLevelApiImpl : GroupsLevelApi, KtorfitInterface {
-  override lateinit var _converter: KtorfitConverterHelper
+public class _GroupsLevelApiImpl(
+  private val _ktorfit: Ktorfit,
+) : GroupsLevelApi {
+  private val _helper: KtorfitConverterHelper = KtorfitConverterHelper(_ktorfit)
 
   override suspend fun retrieveAllGroups(): String {
     val _ext: HttpRequestBuilder.() -> Unit = {
         method = HttpMethod.parse("GET")
         url{
-        takeFrom(_converter.baseUrl + "v1/grouplevels")
+        takeFrom(_ktorfit.baseUrl + "v1/grouplevels")
         } 
         }
     val _typeData = TypeData.createTypeData(
-    qualifiedTypename = "kotlin.String",
-    typeInfo = typeInfo<kotlin.String>())
-
-    return _converter.suspendRequest<kotlin.String, kotlin.String>(_typeData,_ext)!!
+    typeInfo = typeInfo<String>(),
+    )
+    return _helper.suspendRequest(_typeData,_ext)!!
   }
 }
 
-public fun Ktorfit.createGroupsLevelApi(): GroupsLevelApi = this.create(_GroupsLevelApiImpl().apply
-    { _converter= KtorfitConverterHelper(this@createGroupsLevelApi) })
+public class _GroupsLevelApiProvider : ClassProvider<GroupsLevelApi> {
+  override fun create(_ktorfit: Ktorfit): GroupsLevelApi = _GroupsLevelApiImpl(_ktorfit)
+}
+
+public fun Ktorfit.createGroupsLevelApi(): GroupsLevelApi = _GroupsLevelApiImpl(this)
