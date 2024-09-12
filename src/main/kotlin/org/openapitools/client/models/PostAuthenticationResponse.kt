@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  * PostAuthenticationResponse
@@ -33,41 +33,29 @@ import com.squareup.moshi.Json
  * @param username
  */
 
-
+@Serializable
 data class PostAuthenticationResponse(
 
-    @Json(name = "authenticated")
-    val authenticated: kotlin.Boolean? = null,
+    val authenticated: Boolean? = null,
 
-    @Json(name = "base64EncodedAuthenticationKey")
-    val base64EncodedAuthenticationKey: kotlin.String? = null,
+    val base64EncodedAuthenticationKey: String? = null,
 
-    @Json(name = "officeId")
-    val officeId: kotlin.Long? = null,
+    val officeId: Long? = null,
 
-    @Json(name = "officeName")
-    val officeName: kotlin.String? = null,
+    val officeName: String? = null,
 
-    @Json(name = "organisationalRole")
     val organisationalRole: EnumOptionData? = null,
 
-    @Json(name = "permissions")
-    val permissions: kotlin.collections.List<kotlin.String>? = null,
+    val permissions: List<String>? = null,
 
-    @Json(name = "roles")
-    val roles: kotlin.collections.List<RoleData>? = null,
+    val roles: List<RoleData>? = null,
 
-    @Json(name = "staffDisplayName")
-    val staffDisplayName: kotlin.String? = null,
+    val staffDisplayName: String? = null,
 
-    @Json(name = "staffId")
-    val staffId: kotlin.Long? = null,
+    val staffId: Long? = null,
 
-    @Json(name = "userId")
-    val userId: kotlin.Long? = null,
+    val userId: Long? = null,
 
-    @Json(name = "username")
-    val username: kotlin.String? = null
-
+    val username: String? = null
 )
 

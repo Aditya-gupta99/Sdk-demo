@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAuthenticationRequest
  *
- * @param password 
- * @param username 
+ * @param password
+ * @param username
  */
 
+@Serializable
+data class PostAuthenticationRequest(
 
-data class PostAuthenticationRequest (
+    val password: String,
 
-    @Json(name = "password")
-    val password: kotlin.String,
+    val username: String
 
-    @Json(name = "username")
-    val username: kotlin.String
-
-) {
-
-
-}
+)
 

@@ -15,6 +15,8 @@ import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import io.ktor.http.headers
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
@@ -483,8 +485,8 @@ class FineractClient private constructor(
                 }
 
                 defaultRequest {
+                    contentType(ContentType.Application.Json)
                     headers {
-                        append("Content-Type", "application/json")
                         append("Accept", "application/json")
                         tenant?.let {
                             append("fineract-platform-tenantid", it)
