@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSelfBeneficiariesAccountOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetSelfBeneficiariesTPTResponse
  *
- * @param accountNumber 
- * @param accountType 
- * @param clientName 
- * @param id 
- * @param name 
- * @param officeName 
- * @param transferLimit 
+ * @param accountNumber
+ * @param accountType
+ * @param clientName
+ * @param id
+ * @param name
+ * @param officeName
+ * @param transferLimit
  */
 
+@Serializable
+data class GetSelfBeneficiariesTPTResponse(
 
-data class GetSelfBeneficiariesTPTResponse (
-
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.Long? = null,
 
-    @Json(name = "accountType")
     val accountType: GetSelfBeneficiariesAccountOptions? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "transferLimit")
     val transferLimit: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

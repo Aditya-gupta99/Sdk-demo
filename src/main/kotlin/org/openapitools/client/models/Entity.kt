@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param actions 
- * @param name 
+ *
+ * @param actions
+ * @param name
  */
 
+@Serializable
+data class Entity(
 
-data class Entity (
-
-    @Json(name = "actions")
     val actions: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

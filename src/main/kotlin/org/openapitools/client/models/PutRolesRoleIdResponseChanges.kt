@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param description 
+ *
+ * @param description
  */
 
+@Serializable
+data class PutRolesRoleIdResponseChanges(
 
-data class PutRolesRoleIdResponseChanges (
-
-    @Json(name = "description")
     val description: kotlin.String? = null
 
-) {
-
-
-}
+)
 

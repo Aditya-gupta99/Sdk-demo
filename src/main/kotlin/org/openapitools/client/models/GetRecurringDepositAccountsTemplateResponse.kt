@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetRecurringProductOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetRecurringDepositAccountsTemplateResponse
  *
- * @param clientId 
- * @param clientName 
- * @param productOptions 
+ * @param clientId
+ * @param clientName
+ * @param productOptions
  */
 
+@Serializable
+data class GetRecurringDepositAccountsTemplateResponse(
 
-data class GetRecurringDepositAccountsTemplateResponse (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "productOptions")
     val productOptions: kotlin.collections.Set<GetRecurringProductOptions>? = null
 
-) {
-
-
-}
+)
 

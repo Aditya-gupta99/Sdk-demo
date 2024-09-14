@@ -15,40 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsGroupIdAccountsLoanAccounts
-import org.openapitools.client.models.GetGroupsGroupIdAccountsMemberLoanAccounts
-import org.openapitools.client.models.GetGroupsGroupIdAccountsMemberSavingsAccounts
-import org.openapitools.client.models.GetGroupsGroupIdAccountsSavingAccounts
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGroupsGroupIdAccountsResponse
  *
- * @param loanAccounts 
- * @param memberLoanAccounts 
- * @param memberSavingsAccounts 
- * @param savingsAccounts 
+ * @param loanAccounts
+ * @param memberLoanAccounts
+ * @param memberSavingsAccounts
+ * @param savingsAccounts
  */
 
+@Serializable
+data class GetGroupsGroupIdAccountsResponse(
 
-data class GetGroupsGroupIdAccountsResponse (
-
-    @Json(name = "loanAccounts")
     val loanAccounts: kotlin.collections.Set<GetGroupsGroupIdAccountsLoanAccounts>? = null,
 
-    @Json(name = "memberLoanAccounts")
     val memberLoanAccounts: kotlin.collections.Set<GetGroupsGroupIdAccountsMemberLoanAccounts>? = null,
 
-    @Json(name = "memberSavingsAccounts")
     val memberSavingsAccounts: kotlin.collections.Set<GetGroupsGroupIdAccountsMemberSavingsAccounts>? = null,
 
-    @Json(name = "savingsAccounts")
     val savingsAccounts: kotlin.collections.Set<GetGroupsGroupIdAccountsSavingAccounts>? = null
 
-) {
-
-
-}
+)
 

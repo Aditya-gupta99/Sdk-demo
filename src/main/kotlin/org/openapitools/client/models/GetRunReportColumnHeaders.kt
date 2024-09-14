@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param columnName 
- * @param columnType 
- * @param columnValues 
- * @param isColumnNullable 
- * @param isColumnPrimaryKey 
+ *
+ * @param columnName
+ * @param columnType
+ * @param columnValues
+ * @param isColumnNullable
+ * @param isColumnPrimaryKey
  */
 
+@Serializable
+data class GetRunReportColumnHeaders(
 
-data class GetRunReportColumnHeaders (
-
-    @Json(name = "columnName")
     val columnName: kotlin.String? = null,
 
-    @Json(name = "columnType")
     val columnType: kotlin.String? = null,
 
-    @Json(name = "columnValues")
     val columnValues: kotlin.String? = null,
 
-    @Json(name = "isColumnNullable")
     val isColumnNullable: kotlin.Boolean? = null,
 
-    @Json(name = "isColumnPrimaryKey")
     val isColumnPrimaryKey: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

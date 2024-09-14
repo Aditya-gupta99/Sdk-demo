@@ -16,51 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param displayName 
- * @param firstname 
- * @param id 
- * @param isActive 
- * @param isLoanOfficer 
- * @param lastname 
- * @param officeId 
- * @param officeName 
+ *
+ * @param displayName
+ * @param firstname
+ * @param id
+ * @param isActive
+ * @param isLoanOfficer
+ * @param lastname
+ * @param officeId
+ * @param officeName
  */
 
+@Serializable
+data class GetClientsStaffOptions(
 
-data class GetClientsStaffOptions (
-
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "isLoanOfficer")
     val isLoanOfficer: kotlin.Boolean? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

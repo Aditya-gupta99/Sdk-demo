@@ -16,67 +16,51 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param action 
- * @param actorId 
- * @param content 
- * @param createdAt 
- * @param id 
- * @param isRead 
- * @param isSystemGenerated 
- * @param objectId 
- * @param objectType 
- * @param officeId 
- * @param tenantIdentifier 
- * @param userIds 
+ *
+ * @param action
+ * @param actorId
+ * @param content
+ * @param createdAt
+ * @param id
+ * @param isRead
+ * @param isSystemGenerated
+ * @param objectId
+ * @param objectType
+ * @param officeId
+ * @param tenantIdentifier
+ * @param userIds
  */
 
+@Serializable
+data class GetNotification(
 
-data class GetNotification (
-
-    @Json(name = "action")
     val action: kotlin.String? = null,
 
-    @Json(name = "actorId")
     val actorId: kotlin.Long? = null,
 
-    @Json(name = "content")
     val content: kotlin.String? = null,
 
-    @Json(name = "createdAt")
     val createdAt: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isRead")
     val isRead: kotlin.Boolean? = null,
 
-    @Json(name = "isSystemGenerated")
     val isSystemGenerated: kotlin.Boolean? = null,
 
-    @Json(name = "objectId")
     val objectId: kotlin.Long? = null,
 
-    @Json(name = "objectType")
     val objectType: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "tenantIdentifier")
     val tenantIdentifier: kotlin.String? = null,
 
-    @Json(name = "userIds")
     val userIds: kotlin.collections.List<kotlin.Long>? = null
 
-) {
-
-
-}
+)
 

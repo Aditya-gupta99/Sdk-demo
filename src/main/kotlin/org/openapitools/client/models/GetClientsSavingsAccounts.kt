@@ -15,55 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientsSavingsAccountsCurrency
-import org.openapitools.client.models.GetClientsSavingsAccountsDepositType
-import org.openapitools.client.models.GetClientsSavingsAccountsStatus
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param currency 
- * @param depositType 
- * @param id 
- * @param productId 
- * @param productName 
- * @param shortProductName 
- * @param status 
+ *
+ * @param accountNo
+ * @param currency
+ * @param depositType
+ * @param id
+ * @param productId
+ * @param productName
+ * @param shortProductName
+ * @param status
  */
 
+@Serializable
+data class GetClientsSavingsAccounts(
 
-data class GetClientsSavingsAccounts (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.String? = null,
 
-    @Json(name = "currency")
     val currency: GetClientsSavingsAccountsCurrency? = null,
 
-    @Json(name = "depositType")
     val depositType: GetClientsSavingsAccountsDepositType? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "shortProductName")
     val shortProductName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetClientsSavingsAccountsStatus? = null
 
-) {
-
-
-}
+)
 

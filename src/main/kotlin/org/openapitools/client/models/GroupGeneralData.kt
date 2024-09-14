@@ -27,6 +27,9 @@ import org.openapitools.client.models.StaffData
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 /**
  * 
@@ -68,113 +71,81 @@ import com.squareup.moshi.JsonClass
  * @param timeline 
  */
 
-
+@Serializable
 data class GroupGeneralData (
 
-    @Json(name = "accountNo")
     val accountNo: kotlin.String? = null,
 
-    @Json(name = "activationDate")
-    val activationDate: java.time.LocalDate? = null,
+    @Contextual
+    val activationDate: LocalDate? = null,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "activeClientMembers")
     val activeClientMembers: kotlin.collections.List<ClientData>? = null,
 
-    @Json(name = "availableRoles")
     val availableRoles: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "calendarsData")
     val calendarsData: kotlin.collections.List<CalendarData>? = null,
 
-    @Json(name = "centerId")
     val centerId: kotlin.Long? = null,
 
-    @Json(name = "centerName")
     val centerName: kotlin.String? = null,
 
-    @Json(name = "centerOptions")
     val centerOptions: kotlin.collections.List<CenterData>? = null,
 
-    @Json(name = "childGroup")
     val childGroup: kotlin.Boolean? = null,
 
-    @Json(name = "clientMembers")
     val clientMembers: kotlin.collections.List<ClientData>? = null,
 
-    @Json(name = "clientOptions")
     val clientOptions: kotlin.collections.List<ClientData>? = null,
 
-    @Json(name = "closureReasons")
     val closureReasons: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "collectionMeetingCalendar")
     val collectionMeetingCalendar: CalendarData? = null,
 
-    @Json(name = "datatables")
     val datatables: kotlin.collections.List<DatatableData>? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "groupLevel")
     val groupLevel: kotlin.String? = null,
 
-    @Json(name = "groupRoles")
     val groupRoles: kotlin.collections.List<GroupRoleData>? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "officeOptions")
     val officeOptions: kotlin.collections.List<OfficeData>? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null,
 
-    @Json(name = "rowIndex")
     val rowIndex: kotlin.Int? = null,
 
-    @Json(name = "selectedRole")
     val selectedRole: GroupRoleData? = null,
 
-    @Json(name = "staffId")
     val staffId: kotlin.Long? = null,
 
-    @Json(name = "staffName")
     val staffName: kotlin.String? = null,
 
-    @Json(name = "staffOptions")
     val staffOptions: kotlin.collections.List<StaffData>? = null,
 
-    @Json(name = "status")
     val status: EnumOptionData? = null,
 
-    @Json(name = "submittedOnDate")
-    val submittedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val submittedOnDate: LocalDate? = null,
 
-    @Json(name = "timeline")
-    val timeline: kotlin.Any? = null
+    @Contextual
+    val timeline: Any? = null
 
 ) {
 

@@ -16,27 +16,22 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * List of PostClientsDatatable
  *
- * @param `data` 
- * @param registeredTableName 
+ * @param `data`
+ * @param registeredTableName
  */
 
+@Serializable
+data class PostClientsDatatable(
 
-data class PostClientsDatatable (
+    val data: kotlin.collections.Map<kotlin.String, @Contextual kotlin.Any>? = null,
 
-    @Json(name = "data")
-    val `data`: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
-
-    @Json(name = "registeredTableName")
     val registeredTableName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

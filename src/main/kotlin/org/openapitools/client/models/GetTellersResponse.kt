@@ -18,61 +18,65 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetTellersResponse
  *
- * @param creditAccountId 
- * @param debitAccountId 
- * @param id 
- * @param name 
- * @param officeId 
- * @param officeName 
- * @param startDate 
- * @param status 
+ * @param creditAccountId
+ * @param debitAccountId
+ * @param id
+ * @param name
+ * @param officeId
+ * @param officeName
+ * @param startDate
+ * @param status
  */
 
+@Serializable
+data class GetTellersResponse(
 
-data class GetTellersResponse (
-
-    @Json(name = "creditAccountId")
     val creditAccountId: kotlin.Long? = null,
 
-    @Json(name = "debitAccountId")
     val debitAccountId: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: java.time.LocalDate? = null,
 
-    @Json(name = "status")
     val status: GetTellersResponse.Status? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: INVALID,PENDING,ACTIVE,INACTIVE,CLOSED
      */
     @JsonClass(generateAdapter = false)
     enum class Status(val value: kotlin.String) {
-        @Json(name = "INVALID") INVALID("INVALID"),
-        @Json(name = "PENDING") PENDING("PENDING"),
-        @Json(name = "ACTIVE") ACTIVE("ACTIVE"),
-        @Json(name = "INACTIVE") INACTIVE("INACTIVE"),
-        @Json(name = "CLOSED") CLOSED("CLOSED");
+        @Json(name = "INVALID")
+        INVALID("INVALID"),
+
+        @Json(name = "PENDING")
+        PENDING("PENDING"),
+
+        @Json(name = "ACTIVE")
+        ACTIVE("ACTIVE"),
+
+        @Json(name = "INACTIVE")
+        INACTIVE("INACTIVE"),
+
+        @Json(name = "CLOSED")
+        CLOSED("CLOSED");
     }
 
 }

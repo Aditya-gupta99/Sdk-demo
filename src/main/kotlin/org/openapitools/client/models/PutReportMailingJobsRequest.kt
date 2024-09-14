@@ -16,31 +16,26 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PutReportMailingJobsRequest
  *
- * @param dateFormat 
- * @param locale 
- * @param startDateTime 
+ * @param dateFormat
+ * @param locale
+ * @param startDateTime
  */
 
+@Serializable
+data class PutReportMailingJobsRequest(
 
-data class PutReportMailingJobsRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "startDateTime")
+    @Contextual
     val startDateTime: java.time.OffsetDateTime? = null
 
-) {
-
-
-}
+)
 

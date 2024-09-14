@@ -15,7 +15,8 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
 /**
@@ -49,85 +50,60 @@ import java.time.LocalDate
  * @param username
  */
 
-
+@Serializable
 data class AppUser(
 
-    @Json(name = "accountNonExpired")
     val accountNonExpired: kotlin.Boolean? = null,
 
-    @Json(name = "accountNonLocked")
     val accountNonLocked: kotlin.Boolean? = null,
 
-    @Json(name = "appUserClientMappings")
     val appUserClientMappings: kotlin.collections.Set<AppUserClientMapping>? = null,
 
-    @Json(name = "authorities")
     val authorities: kotlin.collections.List<GrantedAuthority>? = null,
 
-    @Json(name = "bypassUser")
     val bypassUser: kotlin.Boolean? = null,
 
-    @Json(name = "credentialsNonExpired")
     val credentialsNonExpired: kotlin.Boolean? = null,
 
-    @Json(name = "deleted")
     val deleted: kotlin.Boolean? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "email")
     val email: kotlin.String? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastTimePasswordUpdated")
+    @Contextual
     val lastTimePasswordUpdated: LocalDate? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "notEnabled")
     val notEnabled: kotlin.Boolean? = null,
 
-    @Json(name = "office")
     val office: Office? = null,
 
-    @Json(name = "password")
     val password: kotlin.String? = null,
 
-    @Json(name = "passwordNeverExpires")
     val passwordNeverExpires: kotlin.Boolean? = null,
 
-    @Json(name = "roles")
     val roles: kotlin.collections.Set<Role>? = null,
 
-    @Json(name = "selfServiceUser")
     val selfServiceUser: kotlin.Boolean? = null,
 
-    @Json(name = "staff")
     val staff: Staff? = null,
 
-    @Json(name = "staffDisplayName")
     val staffDisplayName: kotlin.String? = null,
 
-    @Json(name = "staffId")
     val staffId: kotlin.Long? = null,
 
-    @Json(name = "systemUser")
     val systemUser: kotlin.Boolean? = null,
 
-    @Json(name = "username")
     val username: kotlin.String? = null
 
 )

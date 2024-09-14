@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.JobDetailHistoryDataSwagger
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetJobsJobIDJobRunHistoryResponse
  *
- * @param pageItems 
- * @param totalFilteredRecords 
+ * @param pageItems
+ * @param totalFilteredRecords
  */
 
+@Serializable
+data class GetJobsJobIDJobRunHistoryResponse(
 
-data class GetJobsJobIDJobRunHistoryResponse (
-
-    @Json(name = "pageItems")
     val pageItems: kotlin.collections.List<JobDetailHistoryDataSwagger>? = null,
 
-    @Json(name = "totalFilteredRecords")
     val totalFilteredRecords: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

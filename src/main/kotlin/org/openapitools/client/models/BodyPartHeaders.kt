@@ -16,7 +16,7 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -24,10 +24,9 @@ import com.squareup.moshi.Json
  * @param empty
  */
 
-
+@Serializable
 data class BodyPartHeaders(
 
-    @Json(name = "empty")
     val empty: kotlin.Boolean? = null
 
 ) : HashMap<String, List<Any>>()

@@ -16,23 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.math.BigDecimal
 
 /**
- * 
  *
- * @param percentage 
+ *
+ * @param percentage
  */
 
+@Serializable
+data class TaxComponentHistoryData(
 
-data class TaxComponentHistoryData (
+    @Contextual
+    val percentage: BigDecimal? = null
 
-    @Json(name = "percentage")
-    val percentage: java.math.BigDecimal? = null
-
-) {
-
-
-}
+)
 

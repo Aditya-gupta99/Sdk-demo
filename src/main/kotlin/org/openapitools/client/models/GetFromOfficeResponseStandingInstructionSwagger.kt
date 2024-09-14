@@ -16,43 +16,35 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param decoratedName 
- * @param externalId 
- * @param hierarchy 
- * @param id 
- * @param name 
- * @param openingDate 
+ *
+ * @param decoratedName
+ * @param externalId
+ * @param hierarchy
+ * @param id
+ * @param name
+ * @param openingDate
  */
 
+@Serializable
+data class GetFromOfficeResponseStandingInstructionSwagger(
 
-data class GetFromOfficeResponseStandingInstructionSwagger (
-
-    @Json(name = "decoratedName")
     val decoratedName: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "openingDate")
+    @Contextual
     val openingDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

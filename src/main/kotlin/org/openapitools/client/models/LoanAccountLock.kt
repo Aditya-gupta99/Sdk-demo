@@ -18,68 +18,71 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param error 
- * @param loanId 
- * @param lockOwner 
- * @param lockPlacedOn 
- * @param lockPlacedOnCobBusinessDate 
- * @param newLockOwner 
- * @param stacktrace 
- * @param version 
+ *
+ * @param error
+ * @param loanId
+ * @param lockOwner
+ * @param lockPlacedOn
+ * @param lockPlacedOnCobBusinessDate
+ * @param newLockOwner
+ * @param stacktrace
+ * @param version
  */
 
+@Serializable
+data class LoanAccountLock(
 
-data class LoanAccountLock (
-
-    @Json(name = "error")
     val error: kotlin.String? = null,
 
-    @Json(name = "loanId")
     val loanId: kotlin.Long? = null,
 
-    @Json(name = "lockOwner")
     val lockOwner: LoanAccountLock.LockOwner? = null,
 
-    @Json(name = "lockPlacedOn")
+    @Contextual
     val lockPlacedOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "lockPlacedOnCobBusinessDate")
+    @Contextual
     val lockPlacedOnCobBusinessDate: java.time.LocalDate? = null,
 
-    @Json(name = "newLockOwner")
     val newLockOwner: LoanAccountLock.NewLockOwner? = null,
 
-    @Json(name = "stacktrace")
     val stacktrace: kotlin.String? = null,
 
-    @Json(name = "version")
     val version: kotlin.Long? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: COB_CHUNK_PROCESSING,INLINE_COB_PROCESSING
      */
     @JsonClass(generateAdapter = false)
     enum class LockOwner(val value: kotlin.String) {
-        @Json(name = "LOAN_COB_CHUNK_PROCESSING") COB_CHUNK_PROCESSING("LOAN_COB_CHUNK_PROCESSING"),
-        @Json(name = "LOAN_INLINE_COB_PROCESSING") INLINE_COB_PROCESSING("LOAN_INLINE_COB_PROCESSING");
+        @Json(name = "LOAN_COB_CHUNK_PROCESSING")
+        COB_CHUNK_PROCESSING("LOAN_COB_CHUNK_PROCESSING"),
+
+        @Json(name = "LOAN_INLINE_COB_PROCESSING")
+        INLINE_COB_PROCESSING("LOAN_INLINE_COB_PROCESSING");
     }
+
     /**
-     * 
+     *
      *
      * Values: COB_CHUNK_PROCESSING,INLINE_COB_PROCESSING
      */
     @JsonClass(generateAdapter = false)
     enum class NewLockOwner(val value: kotlin.String) {
-        @Json(name = "LOAN_COB_CHUNK_PROCESSING") COB_CHUNK_PROCESSING("LOAN_COB_CHUNK_PROCESSING"),
-        @Json(name = "LOAN_INLINE_COB_PROCESSING") INLINE_COB_PROCESSING("LOAN_INLINE_COB_PROCESSING");
+        @Json(name = "LOAN_COB_CHUNK_PROCESSING")
+        COB_CHUNK_PROCESSING("LOAN_COB_CHUNK_PROCESSING"),
+
+        @Json(name = "LOAN_INLINE_COB_PROCESSING")
+        INLINE_COB_PROCESSING("LOAN_INLINE_COB_PROCESSING");
     }
 
 }

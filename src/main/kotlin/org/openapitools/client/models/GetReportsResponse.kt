@@ -16,59 +16,46 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetReportsResponse
  *
- * @param coreReport 
- * @param description 
- * @param id 
- * @param reportCategory 
- * @param reportName 
- * @param reportParameters 
- * @param reportSql 
- * @param reportSubType 
- * @param reportType 
- * @param useReport 
+ * @param coreReport
+ * @param description
+ * @param id
+ * @param reportCategory
+ * @param reportName
+ * @param reportParameters
+ * @param reportSql
+ * @param reportSubType
+ * @param reportType
+ * @param useReport
  */
 
+@Serializable
+data class GetReportsResponse(
 
-data class GetReportsResponse (
-
-    @Json(name = "coreReport")
     val coreReport: kotlin.Boolean? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "reportCategory")
     val reportCategory: kotlin.String? = null,
 
-    @Json(name = "reportName")
     val reportName: kotlin.String? = null,
 
-    @Json(name = "reportParameters")
-    val reportParameters: kotlin.collections.List<kotlin.Any>? = null,
+    val reportParameters: kotlin.collections.List<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "reportSql")
     val reportSql: kotlin.String? = null,
 
-    @Json(name = "reportSubType")
     val reportSubType: kotlin.String? = null,
 
-    @Json(name = "reportType")
     val reportType: kotlin.String? = null,
 
-    @Json(name = "useReport")
     val useReport: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

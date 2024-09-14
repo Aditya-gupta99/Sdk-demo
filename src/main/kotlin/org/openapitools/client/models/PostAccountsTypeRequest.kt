@@ -15,81 +15,60 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostAccountsCharges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAccountsTypeRequest
  *
- * @param allowDividendCalculationForInactiveClients 
- * @param applicationDate 
- * @param charges 
- * @param clientId 
- * @param dateFormat 
- * @param externalId 
- * @param locale 
- * @param lockinPeriodFrequency 
- * @param lockinPeriodFrequencyType 
- * @param minimumActivePeriod 
- * @param minimumActivePeriodFrequencyType 
- * @param productId 
- * @param requestedShares 
- * @param savingsAccountId 
- * @param submittedDate 
+ * @param allowDividendCalculationForInactiveClients
+ * @param applicationDate
+ * @param charges
+ * @param clientId
+ * @param dateFormat
+ * @param externalId
+ * @param locale
+ * @param lockinPeriodFrequency
+ * @param lockinPeriodFrequencyType
+ * @param minimumActivePeriod
+ * @param minimumActivePeriodFrequencyType
+ * @param productId
+ * @param requestedShares
+ * @param savingsAccountId
+ * @param submittedDate
  */
 
+@Serializable
+data class PostAccountsTypeRequest(
 
-data class PostAccountsTypeRequest (
-
-    @Json(name = "allowDividendCalculationForInactiveClients")
     val allowDividendCalculationForInactiveClients: kotlin.Boolean? = null,
 
-    @Json(name = "applicationDate")
     val applicationDate: kotlin.String? = null,
 
-    @Json(name = "charges")
     val charges: kotlin.collections.Set<PostAccountsCharges>? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "lockinPeriodFrequency")
     val lockinPeriodFrequency: kotlin.Int? = null,
 
-    @Json(name = "lockinPeriodFrequencyType")
     val lockinPeriodFrequencyType: kotlin.Int? = null,
 
-    @Json(name = "minimumActivePeriod")
     val minimumActivePeriod: kotlin.Int? = null,
 
-    @Json(name = "minimumActivePeriodFrequencyType")
     val minimumActivePeriodFrequencyType: kotlin.Int? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "requestedShares")
     val requestedShares: kotlin.Int? = null,
 
-    @Json(name = "savingsAccountId")
     val savingsAccountId: kotlin.Long? = null,
 
-    @Json(name = "submittedDate")
     val submittedDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

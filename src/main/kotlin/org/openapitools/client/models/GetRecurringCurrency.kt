@@ -16,47 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
- * @param decimalPlaces 
- * @param displayLabel 
- * @param displaySymbol 
- * @param inMultiplesOf 
- * @param name 
- * @param nameCode 
+ *
+ * @param code
+ * @param decimalPlaces
+ * @param displayLabel
+ * @param displaySymbol
+ * @param inMultiplesOf
+ * @param name
+ * @param nameCode
  */
 
+@Serializable
+data class GetRecurringCurrency(
 
-data class GetRecurringCurrency (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "decimalPlaces")
     val decimalPlaces: kotlin.Int? = null,
 
-    @Json(name = "displayLabel")
     val displayLabel: kotlin.String? = null,
 
-    @Json(name = "displaySymbol")
     val displaySymbol: kotlin.String? = null,
 
-    @Json(name = "inMultiplesOf")
     val inMultiplesOf: kotlin.Int? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameCode")
     val nameCode: kotlin.String? = null
 
-) {
-
-
-}
+)
 

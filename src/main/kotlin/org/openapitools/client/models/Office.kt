@@ -15,57 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ExternalId
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param children 
- * @param externalId 
- * @param hierarchy 
- * @param id 
- * @param name 
- * @param new 
- * @param openingDate 
- * @param openingLocalDate 
- * @param parent 
+ *
+ * @param children
+ * @param externalId
+ * @param hierarchy
+ * @param id
+ * @param name
+ * @param new
+ * @param openingDate
+ * @param openingLocalDate
+ * @param parent
  */
 
+@Serializable
+data class Office(
 
-data class Office (
-
-    @Json(name = "children")
     val children: kotlin.collections.List<Office>? = null,
 
-    @Json(name = "externalId")
     val externalId: ExternalId? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "openingDate")
+    @Contextual
     val openingDate: java.time.LocalDate? = null,
 
-    @Json(name = "openingLocalDate")
+    @Contextual
     val openingLocalDate: java.time.LocalDate? = null,
 
-    @Json(name = "parent")
     val parent: Office? = null
 
-) {
-
-
-}
+)
 

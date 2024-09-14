@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutSelfUserRequest
  *
- * @param password 
- * @param repeatPassword 
+ * @param password
+ * @param repeatPassword
  */
 
+@Serializable
+data class PutSelfUserRequest(
 
-data class PutSelfUserRequest (
-
-    @Json(name = "password")
     val password: kotlin.String? = null,
 
-    @Json(name = "repeatPassword")
     val repeatPassword: kotlin.String? = null
 
-) {
-
-
-}
+)
 

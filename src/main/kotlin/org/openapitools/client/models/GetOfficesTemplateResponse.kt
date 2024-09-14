@@ -15,29 +15,23 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetOfficesResponse
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetOfficesTemplateResponse
  *
- * @param allowedParents 
- * @param openingDate 
+ * @param allowedParents
+ * @param openingDate
  */
 
+@Serializable
+data class GetOfficesTemplateResponse(
 
-data class GetOfficesTemplateResponse (
-
-    @Json(name = "allowedParents")
     val allowedParents: kotlin.collections.List<GetOfficesResponse>? = null,
 
-    @Json(name = "openingDate")
+    @Contextual
     val openingDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

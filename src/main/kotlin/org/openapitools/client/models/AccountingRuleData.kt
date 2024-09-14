@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -38,56 +38,39 @@ import com.squareup.moshi.Json
  * @param systemDefined
  */
 
-
+@Serializable
 data class AccountingRuleData(
 
-    @Json(name = "allowMultipleCreditEntries")
     val allowMultipleCreditEntries: kotlin.Boolean? = null,
 
-    @Json(name = "allowMultipleDebitEntries")
     val allowMultipleDebitEntries: kotlin.Boolean? = null,
 
-    @Json(name = "allowedAccounts")
     val allowedAccounts: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "allowedCreditTagOptions")
     val allowedCreditTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedDebitTagOptions")
     val allowedDebitTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedOffices")
     val allowedOffices: kotlin.collections.List<OfficeData>? = null,
 
-    @Json(name = "creditAccounts")
     val creditAccounts: kotlin.collections.List<GLAccountDataForLookup>? = null,
 
-    @Json(name = "creditTags")
     val creditTags: kotlin.collections.List<AccountingTagRuleData>? = null,
 
-    @Json(name = "debitAccounts")
     val debitAccounts: kotlin.collections.List<GLAccountDataForLookup>? = null,
 
-    @Json(name = "debitTags")
     val debitTags: kotlin.collections.List<AccountingTagRuleData>? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "systemDefined")
     val systemDefined: kotlin.Boolean? = null
-
 )
 

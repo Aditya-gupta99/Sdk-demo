@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param empty 
+ *
+ * @param empty
  */
 
+@Serializable
+data class MultivaluedMapStringParameterizedHeader(
 
-data class MultivaluedMapStringParameterizedHeader (
-
-    @Json(name = "empty")
     val empty: kotlin.Boolean? = null
 
-) : kotlin.collections.HashMap<String, kotlin.collections.List<Any>>() {
-
-
-}
+) : kotlin.collections.HashMap<String, kotlin.collections.List<Any>>()
 

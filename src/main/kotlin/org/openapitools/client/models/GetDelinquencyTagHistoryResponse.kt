@@ -15,41 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetDelinquencyRangesResponse
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetDelinquencyTagHistoryResponse
  *
- * @param addedOnDate 
- * @param delinquencyRange 
- * @param id 
- * @param liftedOnDate 
- * @param loanId 
+ * @param addedOnDate
+ * @param delinquencyRange
+ * @param id
+ * @param liftedOnDate
+ * @param loanId
  */
 
+@Serializable
+data class GetDelinquencyTagHistoryResponse(
 
-data class GetDelinquencyTagHistoryResponse (
-
-    @Json(name = "addedOnDate")
+    @Contextual
     val addedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "delinquencyRange")
     val delinquencyRange: GetDelinquencyRangesResponse? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "liftedOnDate")
+    @Contextual
     val liftedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "loanId")
     val loanId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

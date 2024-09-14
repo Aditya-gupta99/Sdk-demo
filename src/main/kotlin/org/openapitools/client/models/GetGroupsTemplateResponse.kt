@@ -15,44 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsTemplateClientOptions
-import org.openapitools.client.models.GetGroupsTemplateDatatables
-import org.openapitools.client.models.GetGroupsTemplateOfficeOptions
-import org.openapitools.client.models.GetGroupsTemplateStaffOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGroupsTemplateResponse
  *
- * @param clientOptions 
- * @param datatables 
- * @param officeId 
- * @param officeOptions 
- * @param staffOptions 
+ * @param clientOptions
+ * @param datatables
+ * @param officeId
+ * @param officeOptions
+ * @param staffOptions
  */
 
+@Serializable
+data class GetGroupsTemplateResponse(
 
-data class GetGroupsTemplateResponse (
-
-    @Json(name = "clientOptions")
     val clientOptions: kotlin.collections.Set<GetGroupsTemplateClientOptions>? = null,
 
-    @Json(name = "datatables")
     val datatables: kotlin.collections.Set<GetGroupsTemplateDatatables>? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeOptions")
     val officeOptions: kotlin.collections.Set<GetGroupsTemplateOfficeOptions>? = null,
 
-    @Json(name = "staffOptions")
     val staffOptions: kotlin.collections.Set<GetGroupsTemplateStaffOptions>? = null
 
-) {
-
-
-}
+)
 

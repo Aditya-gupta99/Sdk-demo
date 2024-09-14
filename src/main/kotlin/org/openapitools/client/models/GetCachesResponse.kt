@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetCachesResponse
  *
- * @param cacheType 
- * @param enabled 
+ * @param cacheType
+ * @param enabled
  */
 
+@Serializable
+data class GetCachesResponse(
 
-data class GetCachesResponse (
-
-    @Json(name = "cacheType")
     val cacheType: EnumOptionData? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

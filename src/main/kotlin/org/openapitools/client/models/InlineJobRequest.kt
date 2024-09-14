@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * InlineJobRequest
  *
- * @param loanIds 
+ * @param loanIds
  */
 
+@Serializable
+data class InlineJobRequest(
 
-data class InlineJobRequest (
-
-    @Json(name = "loanIds")
     val loanIds: kotlin.collections.List<kotlin.Long>? = null
 
-) {
-
-
-}
+)
 

@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutProvisioningEntriesRequest
  *
- * @param command 
+ * @param command
  */
 
+@Serializable
+data class PutProvisioningEntriesRequest(
 
-data class PutProvisioningEntriesRequest (
-
-    @Json(name = "command")
     val command: kotlin.String? = null
 
-) {
-
-
-}
+)
 

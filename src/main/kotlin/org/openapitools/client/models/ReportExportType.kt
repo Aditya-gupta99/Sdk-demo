@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param key 
- * @param queryParameter 
+ *
+ * @param key
+ * @param queryParameter
  */
 
+@Serializable
+data class ReportExportType(
 
-data class ReportExportType (
-
-    @Json(name = "key")
     val key: kotlin.String? = null,
 
-    @Json(name = "queryParameter")
     val queryParameter: kotlin.String? = null
 
-) {
-
-
-}
+)
 

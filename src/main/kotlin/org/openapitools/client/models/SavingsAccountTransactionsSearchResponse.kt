@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSavingsAccountTransactionsPageItem
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * SavingsAccountTransactionsSearchResponse
  *
- * @param content 
- * @param total 
+ * @param content
+ * @param total
  */
 
+@Serializable
+data class SavingsAccountTransactionsSearchResponse(
 
-data class SavingsAccountTransactionsSearchResponse (
-
-    @Json(name = "content")
     val content: kotlin.collections.Set<GetSavingsAccountTransactionsPageItem>? = null,
 
-    @Json(name = "total")
     val total: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

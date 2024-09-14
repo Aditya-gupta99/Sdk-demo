@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * ChangeInstanceModeRequest
  *
- * @param batchManagerEnabled 
- * @param batchWorkerEnabled 
- * @param readEnabled 
- * @param writeEnabled 
+ * @param batchManagerEnabled
+ * @param batchWorkerEnabled
+ * @param readEnabled
+ * @param writeEnabled
  */
 
+@Serializable
+data class ChangeInstanceModeRequest(
 
-data class ChangeInstanceModeRequest (
-
-    @Json(name = "batchManagerEnabled")
     val batchManagerEnabled: kotlin.Boolean,
 
-    @Json(name = "batchWorkerEnabled")
     val batchWorkerEnabled: kotlin.Boolean,
 
-    @Json(name = "readEnabled")
     val readEnabled: kotlin.Boolean,
 
-    @Json(name = "writeEnabled")
     val writeEnabled: kotlin.Boolean
 
-) {
-
-
-}
+)
 

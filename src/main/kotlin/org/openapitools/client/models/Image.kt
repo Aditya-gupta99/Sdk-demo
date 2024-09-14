@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param location 
- * @param new 
- * @param storageType 
+ *
+ * @param id
+ * @param location
+ * @param new
+ * @param storageType
  */
 
+@Serializable
+data class Image(
 
-data class Image (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "location")
     val location: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "storageType")
     val storageType: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

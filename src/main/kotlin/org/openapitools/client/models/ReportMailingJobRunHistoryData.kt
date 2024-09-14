@@ -16,47 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param endDateTime 
- * @param errorLog 
- * @param errorMessage 
- * @param id 
- * @param reportMailingJobId 
- * @param startDateTime 
- * @param status 
+ *
+ * @param endDateTime
+ * @param errorLog
+ * @param errorMessage
+ * @param id
+ * @param reportMailingJobId
+ * @param startDateTime
+ * @param status
  */
 
+@Serializable
+data class ReportMailingJobRunHistoryData(
 
-data class ReportMailingJobRunHistoryData (
-
-    @Json(name = "endDateTime")
+    @Contextual
     val endDateTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "errorLog")
     val errorLog: kotlin.String? = null,
 
-    @Json(name = "errorMessage")
     val errorMessage: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "reportMailingJobId")
     val reportMailingJobId: kotlin.Long? = null,
 
-    @Json(name = "startDateTime")
+    @Contextual
     val startDateTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "status")
     val status: kotlin.String? = null
 
-) {
-
-
-}
+)
 

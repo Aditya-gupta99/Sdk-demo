@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.UpdateChangesResponse
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * UpdatePostDatedCheckResponse
  *
- * @param changes 
- * @param resourceId 
+ * @param changes
+ * @param resourceId
  */
 
+@Serializable
+data class UpdatePostDatedCheckResponse(
 
-data class UpdatePostDatedCheckResponse (
-
-    @Json(name = "changes")
     val changes: UpdateChangesResponse? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

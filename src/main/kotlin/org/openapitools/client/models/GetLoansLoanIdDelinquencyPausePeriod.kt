@@ -16,31 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * List of GetLoansLoanIdDelinquencyPausePeriod
  *
- * @param active 
- * @param pausePeriodEnd 
- * @param pausePeriodStart 
+ * @param active
+ * @param pausePeriodEnd
+ * @param pausePeriodStart
  */
 
+@Serializable
+data class GetLoansLoanIdDelinquencyPausePeriod(
 
-data class GetLoansLoanIdDelinquencyPausePeriod (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "pausePeriodEnd")
+    @Contextual
     val pausePeriodEnd: java.time.LocalDate? = null,
 
-    @Json(name = "pausePeriodStart")
+    @Contextual
     val pausePeriodStart: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

@@ -15,58 +15,46 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TaxComponent
-import org.openapitools.client.models.TaxGroup
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdBy 
- * @param createdDate 
- * @param endDate 
- * @param id 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param new 
- * @param taxComponent 
- * @param taxGroup 
+ *
+ * @param createdBy
+ * @param createdDate
+ * @param endDate
+ * @param id
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param new
+ * @param taxComponent
+ * @param taxGroup
  */
 
+@Serializable
+data class TaxGroupMappings(
 
-data class TaxGroupMappings (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "taxComponent")
     val taxComponent: TaxComponent? = null,
 
-    @Json(name = "taxGroup")
     val taxGroup: TaxGroup? = null
 
-) {
-
-
-}
+)
 

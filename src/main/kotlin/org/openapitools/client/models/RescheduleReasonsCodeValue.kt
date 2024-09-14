@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param id 
- * @param mandatory 
- * @param name 
+ *
+ * @param active
+ * @param id
+ * @param mandatory
+ * @param name
  */
 
+@Serializable
+data class RescheduleReasonsCodeValue(
 
-data class RescheduleReasonsCodeValue (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "mandatory")
     val mandatory: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

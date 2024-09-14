@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param order 
- * @param paymentAllocationRule 
+ *
+ * @param order
+ * @param paymentAllocationRule
  */
 
+@Serializable
+data class PaymentAllocationOrder(
 
-data class PaymentAllocationOrder (
-
-    @Json(name = "order")
     val order: kotlin.Int? = null,
 
-    @Json(name = "paymentAllocationRule")
     val paymentAllocationRule: kotlin.String? = null
 
-) {
-
-
-}
+)
 

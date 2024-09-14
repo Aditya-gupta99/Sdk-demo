@@ -16,91 +16,71 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param age 
- * @param clientId 
- * @param dateOfBirth 
- * @param firstName 
- * @param gender 
- * @param genderId 
- * @param id 
- * @param isDependent 
- * @param lastName 
- * @param maritalStatus 
- * @param maritalStatusId 
- * @param middleName 
- * @param mobileNumber 
- * @param profession 
- * @param professionId 
- * @param qualification 
- * @param relationship 
- * @param relationshipId 
+ *
+ * @param age
+ * @param clientId
+ * @param dateOfBirth
+ * @param firstName
+ * @param gender
+ * @param genderId
+ * @param id
+ * @param isDependent
+ * @param lastName
+ * @param maritalStatus
+ * @param maritalStatusId
+ * @param middleName
+ * @param mobileNumber
+ * @param profession
+ * @param professionId
+ * @param qualification
+ * @param relationship
+ * @param relationshipId
  */
 
+@Serializable
+data class ClientFamilyMembersData(
 
-data class ClientFamilyMembersData (
-
-    @Json(name = "age")
     val age: kotlin.Long? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "dateOfBirth")
+    @Contextual
     val dateOfBirth: java.time.LocalDate? = null,
 
-    @Json(name = "firstName")
     val firstName: kotlin.String? = null,
 
-    @Json(name = "gender")
     val gender: kotlin.String? = null,
 
-    @Json(name = "genderId")
     val genderId: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isDependent")
     val isDependent: kotlin.Boolean? = null,
 
-    @Json(name = "lastName")
     val lastName: kotlin.String? = null,
 
-    @Json(name = "maritalStatus")
     val maritalStatus: kotlin.String? = null,
 
-    @Json(name = "maritalStatusId")
     val maritalStatusId: kotlin.Long? = null,
 
-    @Json(name = "middleName")
     val middleName: kotlin.String? = null,
 
-    @Json(name = "mobileNumber")
     val mobileNumber: kotlin.String? = null,
 
-    @Json(name = "profession")
     val profession: kotlin.String? = null,
 
-    @Json(name = "professionId")
     val professionId: kotlin.Long? = null,
 
-    @Json(name = "qualification")
     val qualification: kotlin.String? = null,
 
-    @Json(name = "relationship")
     val relationship: kotlin.String? = null,
 
-    @Json(name = "relationshipId")
     val relationshipId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

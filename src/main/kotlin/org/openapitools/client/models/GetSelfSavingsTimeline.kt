@@ -16,23 +16,20 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param submittedOnDate 
+ *
+ * @param submittedOnDate
  */
 
+@Serializable
+data class GetSelfSavingsTimeline(
 
-data class GetSelfSavingsTimeline (
-
-    @Json(name = "submittedOnDate")
+    @Contextual
     val submittedOnDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

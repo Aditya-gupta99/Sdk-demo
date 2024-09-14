@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
- * @param currencyInMultiplesOf 
- * @param digitsAfterDecimal 
+ *
+ * @param code
+ * @param currencyInMultiplesOf
+ * @param digitsAfterDecimal
  */
 
+@Serializable
+data class MonetaryCurrency(
 
-data class MonetaryCurrency (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "currencyInMultiplesOf")
     val currencyInMultiplesOf: kotlin.Int? = null,
 
-    @Json(name = "digitsAfterDecimal")
     val digitsAfterDecimal: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

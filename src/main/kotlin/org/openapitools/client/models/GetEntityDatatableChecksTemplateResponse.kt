@@ -15,54 +15,40 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LoanProductData
-import org.openapitools.client.models.SavingsProductData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetEntityDatatableChecksTemplateResponse
  *
- * @param datatables 
- * @param entities 
- * @param loanProductDatas 
- * @param savingsProductDatas 
- * @param statusClient 
- * @param statusGroup 
- * @param statusLoans 
- * @param statusSavings 
+ * @param datatables
+ * @param entities
+ * @param loanProductDatas
+ * @param savingsProductDatas
+ * @param statusClient
+ * @param statusGroup
+ * @param statusLoans
+ * @param statusSavings
  */
 
+@Serializable
+data class GetEntityDatatableChecksTemplateResponse(
 
-data class GetEntityDatatableChecksTemplateResponse (
+    val datatables: kotlin.collections.List<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "datatables")
-    val datatables: kotlin.collections.List<kotlin.Any>? = null,
-
-    @Json(name = "entities")
     val entities: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "loanProductDatas")
     val loanProductDatas: kotlin.collections.List<LoanProductData>? = null,
 
-    @Json(name = "savingsProductDatas")
     val savingsProductDatas: kotlin.collections.List<SavingsProductData>? = null,
 
-    @Json(name = "statusClient")
-    val statusClient: kotlin.collections.List<kotlin.Any>? = null,
+    val statusClient: kotlin.collections.List<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "statusGroup")
-    val statusGroup: kotlin.collections.List<kotlin.Any>? = null,
+    val statusGroup: kotlin.collections.List<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "statusLoans")
-    val statusLoans: kotlin.collections.List<kotlin.Any>? = null,
+    val statusLoans: kotlin.collections.List<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "statusSavings")
-    val statusSavings: kotlin.collections.List<kotlin.Any>? = null
+    val statusSavings: kotlin.collections.List<@Contextual kotlin.Any>? = null
 
-) {
-
-
-}
+)
 

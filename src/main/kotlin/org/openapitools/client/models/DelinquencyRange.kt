@@ -16,67 +16,56 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdBy 
- * @param createdDate 
- * @param createdDateTime 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param lastModifiedDateTime 
- * @param classification 
- * @param id 
- * @param maximumAgeDays 
- * @param minimumAgeDays 
- * @param new 
- * @param version 
+ *
+ * @param createdBy
+ * @param createdDate
+ * @param createdDateTime
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param lastModifiedDateTime
+ * @param classification
+ * @param id
+ * @param maximumAgeDays
+ * @param minimumAgeDays
+ * @param new
+ * @param version
  */
 
+@Serializable
+data class DelinquencyRange(
 
-data class DelinquencyRange (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime,
 
-    @Json(name = "createdDateTime")
+    @Contextual
     val createdDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedDateTime")
+    @Contextual
     val lastModifiedDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "classification")
     val classification: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "maximumAgeDays")
     val maximumAgeDays: kotlin.Int? = null,
 
-    @Json(name = "minimumAgeDays")
     val minimumAgeDays: kotlin.Int? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "version")
     val version: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

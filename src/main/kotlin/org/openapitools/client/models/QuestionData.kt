@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ResponseData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param componentKey 
- * @param description 
- * @param id 
- * @param key 
- * @param responseDatas 
- * @param sequenceNo 
- * @param text 
+ *
+ * @param componentKey
+ * @param description
+ * @param id
+ * @param key
+ * @param responseDatas
+ * @param sequenceNo
+ * @param text
  */
 
+@Serializable
+data class QuestionData(
 
-data class QuestionData (
-
-    @Json(name = "componentKey")
     val componentKey: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "key")
     val key: kotlin.String? = null,
 
-    @Json(name = "responseDatas")
     val responseDatas: kotlin.collections.List<ResponseData>? = null,
 
-    @Json(name = "sequenceNo")
     val sequenceNo: kotlin.Int? = null,
 
-    @Json(name = "text")
     val text: kotlin.String? = null
 
-) {
-
-
-}
+)
 

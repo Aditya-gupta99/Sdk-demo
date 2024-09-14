@@ -15,41 +15,32 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetInterestRateChartsChartSlabs
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetInterestRateChartsResponse
  *
- * @param chartSlabs 
- * @param fromDate 
- * @param id 
- * @param savingsProductId 
- * @param savingsProductName 
+ * @param chartSlabs
+ * @param fromDate
+ * @param id
+ * @param savingsProductId
+ * @param savingsProductName
  */
 
+@Serializable
+data class GetInterestRateChartsResponse(
 
-data class GetInterestRateChartsResponse (
-
-    @Json(name = "chartSlabs")
     val chartSlabs: kotlin.collections.Set<GetInterestRateChartsChartSlabs>? = null,
 
-    @Json(name = "fromDate")
+    @Contextual
     val fromDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "savingsProductId")
     val savingsProductId: kotlin.Long? = null,
 
-    @Json(name = "savingsProductName")
     val savingsProductName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

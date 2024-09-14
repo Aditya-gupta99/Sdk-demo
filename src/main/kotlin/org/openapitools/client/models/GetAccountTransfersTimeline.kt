@@ -16,51 +16,42 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param activatedByFirstname 
- * @param activatedByLastname 
- * @param activatedByUsername 
- * @param activatedOnDate 
- * @param submittedByFirstname 
- * @param submittedByLastname 
- * @param submittedByUsername 
- * @param submittedOnDate 
+ *
+ * @param activatedByFirstname
+ * @param activatedByLastname
+ * @param activatedByUsername
+ * @param activatedOnDate
+ * @param submittedByFirstname
+ * @param submittedByLastname
+ * @param submittedByUsername
+ * @param submittedOnDate
  */
 
+@Serializable
+data class GetAccountTransfersTimeline(
 
-data class GetAccountTransfersTimeline (
-
-    @Json(name = "activatedByFirstname")
     val activatedByFirstname: kotlin.String? = null,
 
-    @Json(name = "activatedByLastname")
     val activatedByLastname: kotlin.String? = null,
 
-    @Json(name = "activatedByUsername")
     val activatedByUsername: kotlin.String? = null,
 
-    @Json(name = "activatedOnDate")
+    @Contextual
     val activatedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "submittedByFirstname")
     val submittedByFirstname: kotlin.String? = null,
 
-    @Json(name = "submittedByLastname")
     val submittedByLastname: kotlin.String? = null,
 
-    @Json(name = "submittedByUsername")
     val submittedByUsername: kotlin.String? = null,
 
-    @Json(name = "submittedOnDate")
+    @Contextual
     val submittedOnDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

@@ -16,47 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostTaxesComponentsRequest
  *
- * @param creditAccountType 
- * @param creditAcountId 
- * @param dateFormat 
- * @param locale 
- * @param name 
- * @param percentage 
- * @param startDate 
+ * @param creditAccountType
+ * @param creditAcountId
+ * @param dateFormat
+ * @param locale
+ * @param name
+ * @param percentage
+ * @param startDate
  */
 
+@Serializable
+data class PostTaxesComponentsRequest(
 
-data class PostTaxesComponentsRequest (
-
-    @Json(name = "creditAccountType")
     val creditAccountType: kotlin.Int? = null,
 
-    @Json(name = "creditAcountId")
     val creditAcountId: kotlin.Int? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "percentage")
     val percentage: kotlin.Float? = null,
 
-    @Json(name = "startDate")
     val startDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

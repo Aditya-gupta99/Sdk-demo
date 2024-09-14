@@ -15,72 +15,56 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoansLoanIdDelinquencyPausePeriod
-import org.openapitools.client.models.GetLoansLoanIdLoanInstallmentLevelDelinquency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * Delinquent data
  *
- * @param availableDisbursementAmount 
+ * @param availableDisbursementAmount
  * @param delinquencyPausePeriods List of GetLoansLoanIdDelinquencyPausePeriod
- * @param delinquentAmount 
- * @param delinquentDate 
- * @param delinquentDays 
+ * @param delinquentAmount
+ * @param delinquentDate
+ * @param delinquentDays
  * @param installmentLevelDelinquency List of GetLoansLoanIdLoanInstallmentLevelDelinquency
- * @param lastPaymentAmount 
- * @param lastPaymentDate 
- * @param lastRepaymentAmount 
- * @param lastRepaymentDate 
- * @param nextPaymentDueDate 
- * @param pastDueDays 
+ * @param lastPaymentAmount
+ * @param lastPaymentDate
+ * @param lastRepaymentAmount
+ * @param lastRepaymentDate
+ * @param nextPaymentDueDate
+ * @param pastDueDays
  */
 
+@Serializable
+data class GetLoansLoanIdDelinquencySummary(
 
-data class GetLoansLoanIdDelinquencySummary (
-
-    @Json(name = "availableDisbursementAmount")
     val availableDisbursementAmount: kotlin.Double? = null,
 
-    /* List of GetLoansLoanIdDelinquencyPausePeriod */
-    @Json(name = "delinquencyPausePeriods")
     val delinquencyPausePeriods: kotlin.collections.List<GetLoansLoanIdDelinquencyPausePeriod>? = null,
 
-    @Json(name = "delinquentAmount")
     val delinquentAmount: kotlin.Double? = null,
 
-    @Json(name = "delinquentDate")
+    @Contextual
     val delinquentDate: java.time.LocalDate? = null,
 
-    @Json(name = "delinquentDays")
     val delinquentDays: kotlin.Int? = null,
 
-    /* List of GetLoansLoanIdLoanInstallmentLevelDelinquency */
-    @Json(name = "installmentLevelDelinquency")
     val installmentLevelDelinquency: kotlin.collections.List<GetLoansLoanIdLoanInstallmentLevelDelinquency>? = null,
 
-    @Json(name = "lastPaymentAmount")
     val lastPaymentAmount: kotlin.Double? = null,
 
-    @Json(name = "lastPaymentDate")
+    @Contextual
     val lastPaymentDate: java.time.LocalDate? = null,
 
-    @Json(name = "lastRepaymentAmount")
     val lastRepaymentAmount: kotlin.Double? = null,
 
-    @Json(name = "lastRepaymentDate")
+    @Contextual
     val lastRepaymentDate: java.time.LocalDate? = null,
 
-    @Json(name = "nextPaymentDueDate")
+    @Contextual
     val nextPaymentDueDate: java.time.LocalDate? = null,
 
-    @Json(name = "pastDueDays")
     val pastDueDays: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

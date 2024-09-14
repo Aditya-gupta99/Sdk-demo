@@ -15,81 +15,60 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CodeValue
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param children 
- * @param description 
- * @param detailAccount 
- * @param disabled 
- * @param glCode 
- * @param headerAccount 
- * @param hierarchy 
- * @param id 
- * @param manualEntriesAllowed 
- * @param name 
- * @param new 
- * @param parent 
- * @param tagId 
- * @param type 
- * @param usage 
+ *
+ * @param children
+ * @param description
+ * @param detailAccount
+ * @param disabled
+ * @param glCode
+ * @param headerAccount
+ * @param hierarchy
+ * @param id
+ * @param manualEntriesAllowed
+ * @param name
+ * @param new
+ * @param parent
+ * @param tagId
+ * @param type
+ * @param usage
  */
 
+@Serializable
+data class GLAccount(
 
-data class GLAccount (
-
-    @Json(name = "children")
     val children: kotlin.collections.List<GLAccount>? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "detailAccount")
     val detailAccount: kotlin.Boolean? = null,
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "glCode")
     val glCode: kotlin.String? = null,
 
-    @Json(name = "headerAccount")
     val headerAccount: kotlin.Boolean? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "manualEntriesAllowed")
     val manualEntriesAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "parent")
     val parent: GLAccount? = null,
 
-    @Json(name = "tagId")
     val tagId: CodeValue? = null,
 
-    @Json(name = "type")
     val type: kotlin.Int? = null,
 
-    @Json(name = "usage")
     val usage: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

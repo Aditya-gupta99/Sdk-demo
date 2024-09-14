@@ -15,68 +15,48 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoanProductsInterestRecalculationCompoundingFrequencyType
-import org.openapitools.client.models.GetLoanProductsInterestRecalculationCompoundingType
-import org.openapitools.client.models.GetLoanProductsPreClosureInterestCalculationStrategy
-import org.openapitools.client.models.GetLoanProductsRescheduleStrategyType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param interestRecalculationCompoundingFrequencyType 
- * @param interestRecalculationCompoundingType 
- * @param isArrearsBasedOnOriginalSchedule 
- * @param preClosureInterestCalculationStrategy 
- * @param productId 
- * @param recalculationCompoundingFrequencyInterval 
- * @param recalculationCompoundingFrequencyOnDayType 
- * @param recalculationRestFrequencyInterval 
- * @param recalculationRestFrequencyType 
- * @param rescheduleStrategyType 
+ *
+ * @param id
+ * @param interestRecalculationCompoundingFrequencyType
+ * @param interestRecalculationCompoundingType
+ * @param isArrearsBasedOnOriginalSchedule
+ * @param preClosureInterestCalculationStrategy
+ * @param productId
+ * @param recalculationCompoundingFrequencyInterval
+ * @param recalculationCompoundingFrequencyOnDayType
+ * @param recalculationRestFrequencyInterval
+ * @param recalculationRestFrequencyType
+ * @param rescheduleStrategyType
  */
 
+@Serializable
+data class GetLoanProductsInterestRecalculationData(
 
-data class GetLoanProductsInterestRecalculationData (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "interestRecalculationCompoundingFrequencyType")
     val interestRecalculationCompoundingFrequencyType: GetLoanProductsInterestRecalculationCompoundingFrequencyType? = null,
 
-    @Json(name = "interestRecalculationCompoundingType")
     val interestRecalculationCompoundingType: GetLoanProductsInterestRecalculationCompoundingType? = null,
 
-    @Json(name = "isArrearsBasedOnOriginalSchedule")
     val isArrearsBasedOnOriginalSchedule: kotlin.Boolean? = null,
 
-    @Json(name = "preClosureInterestCalculationStrategy")
     val preClosureInterestCalculationStrategy: GetLoanProductsPreClosureInterestCalculationStrategy? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "recalculationCompoundingFrequencyInterval")
     val recalculationCompoundingFrequencyInterval: kotlin.Int? = null,
 
-    @Json(name = "recalculationCompoundingFrequencyOnDayType")
     val recalculationCompoundingFrequencyOnDayType: kotlin.Int? = null,
 
-    @Json(name = "recalculationRestFrequencyInterval")
     val recalculationRestFrequencyInterval: kotlin.Int? = null,
 
-    @Json(name = "recalculationRestFrequencyType")
     val recalculationRestFrequencyType: GetLoanProductsInterestRecalculationCompoundingFrequencyType? = null,
 
-    @Json(name = "rescheduleStrategyType")
     val rescheduleStrategyType: GetLoanProductsRescheduleStrategyType? = null
 
-) {
-
-
-}
+)
 

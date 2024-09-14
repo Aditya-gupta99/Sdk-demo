@@ -15,62 +15,48 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.ExternalId
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNumber 
- * @param activationDate 
- * @param createdDate 
- * @param displayName 
- * @param externalId 
- * @param id 
- * @param mobileNo 
- * @param officeId 
- * @param officeName 
- * @param status 
+ *
+ * @param accountNumber
+ * @param activationDate
+ * @param createdDate
+ * @param displayName
+ * @param externalId
+ * @param id
+ * @param mobileNo
+ * @param officeId
+ * @param officeName
+ * @param status
  */
 
+@Serializable
+data class ClientSearchData(
 
-data class ClientSearchData (
-
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.String? = null,
 
-    @Json(name = "activationDate")
+    @Contextual
     val activationDate: java.time.LocalDate? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: ExternalId? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "mobileNo")
     val mobileNo: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: EnumOptionData? = null
 
-) {
-
-
-}
+)
 

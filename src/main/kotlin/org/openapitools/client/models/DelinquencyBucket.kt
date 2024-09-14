@@ -19,6 +19,8 @@ import org.openapitools.client.models.DelinquencyRange
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * 
@@ -36,40 +38,33 @@ import com.squareup.moshi.JsonClass
  * @param version 
  */
 
-
+@Serializable
 data class DelinquencyBucket (
 
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime,
 
-    @Json(name = "createdDateTime")
+    @Contextual
     val createdDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedDateTime")
+    @Contextual
     val lastModifiedDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "ranges")
     val ranges: kotlin.collections.List<DelinquencyRange>? = null,
 
-    @Json(name = "version")
     val version: kotlin.Long? = null
 
 ) {

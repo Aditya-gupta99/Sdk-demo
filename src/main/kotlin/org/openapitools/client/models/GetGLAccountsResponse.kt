@@ -15,70 +15,51 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CodeValueData
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGLAccountsResponse
  *
- * @param description 
- * @param disabled 
- * @param glCode 
- * @param id 
- * @param manualEntriesAllowed 
- * @param name 
- * @param nameDecorated 
- * @param organizationRunningBalance 
- * @param parentId 
- * @param tagId 
- * @param type 
- * @param usage 
+ * @param description
+ * @param disabled
+ * @param glCode
+ * @param id
+ * @param manualEntriesAllowed
+ * @param name
+ * @param nameDecorated
+ * @param organizationRunningBalance
+ * @param parentId
+ * @param tagId
+ * @param type
+ * @param usage
  */
 
+@Serializable
+data class GetGLAccountsResponse(
 
-data class GetGLAccountsResponse (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "glCode")
     val glCode: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "manualEntriesAllowed")
     val manualEntriesAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameDecorated")
     val nameDecorated: kotlin.String? = null,
 
-    @Json(name = "organizationRunningBalance")
     val organizationRunningBalance: kotlin.Long? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null,
 
-    @Json(name = "tagId")
     val tagId: CodeValueData? = null,
 
-    @Json(name = "type")
     val type: EnumOptionData? = null,
 
-    @Json(name = "usage")
     val usage: EnumOptionData? = null
 
-) {
-
-
-}
+)
 

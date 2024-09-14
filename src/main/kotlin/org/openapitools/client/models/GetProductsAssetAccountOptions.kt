@@ -15,63 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAssetType
-import org.openapitools.client.models.GetProductsLiabilityUsage
-import org.openapitools.client.models.GetProductsTagId
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param description 
- * @param disabled 
- * @param glCode 
- * @param id 
- * @param manualEntriesAllowed 
- * @param name 
- * @param nameDecorated 
- * @param tagId 
- * @param type 
- * @param usage 
+ *
+ * @param description
+ * @param disabled
+ * @param glCode
+ * @param id
+ * @param manualEntriesAllowed
+ * @param name
+ * @param nameDecorated
+ * @param tagId
+ * @param type
+ * @param usage
  */
 
+@Serializable
+data class GetProductsAssetAccountOptions(
 
-data class GetProductsAssetAccountOptions (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "glCode")
     val glCode: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "manualEntriesAllowed")
     val manualEntriesAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameDecorated")
     val nameDecorated: kotlin.String? = null,
 
-    @Json(name = "tagId")
     val tagId: GetProductsTagId? = null,
 
-    @Json(name = "type")
     val type: GetAssetType? = null,
 
-    @Json(name = "usage")
     val usage: GetProductsLiabilityUsage? = null
 
-) {
-
-
-}
+)
 

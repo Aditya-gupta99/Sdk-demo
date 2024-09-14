@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param note 
+ *
+ * @param note
  */
 
+@Serializable
+data class PutNotesChanges(
 
-data class PutNotesChanges (
-
-    @Json(name = "note")
     val note: kotlin.String? = null
 
-) {
-
-
-}
+)
 

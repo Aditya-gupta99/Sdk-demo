@@ -15,7 +15,8 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.OffsetDateTime
@@ -68,136 +69,99 @@ import java.time.OffsetDateTime
  * @param typeId
  */
 
-
+@Serializable
 data class CalendarData(
 
-    @Json(name = "calendarInstanceId")
     val calendarInstanceId: kotlin.Long? = null,
 
-    @Json(name = "calendarTypeOptions")
     val calendarTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "centerId")
     val centerId: kotlin.String? = null,
 
-    @Json(name = "createdByUserId")
     val createdByUserId: kotlin.Long? = null,
 
-    @Json(name = "createdByUsername")
     val createdByUsername: kotlin.String? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: OffsetDateTime? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "duration")
     val duration: kotlin.Int? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: LocalDate? = null,
 
-    @Json(name = "entityId")
     val entityId: kotlin.Long? = null,
 
-    @Json(name = "entityType")
     val entityType: EnumOptionData? = null,
 
-    @Json(name = "entityTypeOptions")
     val entityTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "firstReminder")
     val firstReminder: kotlin.Int? = null,
 
-    @Json(name = "frequency")
     val frequency: EnumOptionData? = null,
 
-    @Json(name = "frequencyNthDayTypeOptions")
     val frequencyNthDayTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "frequencyOptions")
     val frequencyOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "humanReadable")
     val humanReadable: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "interval")
     val interval: kotlin.Int? = null,
 
-    @Json(name = "lastUpdatedByUserId")
     val lastUpdatedByUserId: kotlin.Long? = null,
 
-    @Json(name = "lastUpdatedByUsername")
     val lastUpdatedByUsername: kotlin.String? = null,
 
-    @Json(name = "lastUpdatedDate")
+    @Contextual
     val lastUpdatedDate: OffsetDateTime? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "location")
     val location: kotlin.String? = null,
 
-    @Json(name = "meetingTime")
+    @Contextual
     val meetingTime: LocalTime? = null,
 
-    @Json(name = "nextTenRecurringDates")
-    val nextTenRecurringDates: kotlin.collections.List<LocalDate>? = null,
+    val nextTenRecurringDates: List<@Contextual LocalDate>? = null,
 
-    @Json(name = "recentEligibleMeetingDate")
+    @Contextual
     val recentEligibleMeetingDate: LocalDate? = null,
 
-    @Json(name = "recurrence")
     val recurrence: kotlin.String? = null,
 
-    @Json(name = "recurringDates")
-    val recurringDates: kotlin.collections.List<LocalDate>? = null,
+    val recurringDates: kotlin.collections.List<@Contextual LocalDate>? = null,
 
-    @Json(name = "remindBy")
     val remindBy: EnumOptionData? = null,
 
-    @Json(name = "remindByOptions")
     val remindByOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "repeating")
     val repeating: kotlin.Boolean? = null,
 
-    @Json(name = "repeatsOnDay")
     val repeatsOnDay: EnumOptionData? = null,
 
-    @Json(name = "repeatsOnDayOfMonth")
     val repeatsOnDayOfMonth: kotlin.Int? = null,
 
-    @Json(name = "repeatsOnDayOptions")
     val repeatsOnDayOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "repeatsOnNthDayOfMonth")
     val repeatsOnNthDayOfMonth: EnumOptionData? = null,
 
-    @Json(name = "rowIndex")
     val rowIndex: kotlin.Int? = null,
 
-    @Json(name = "secondReminder")
     val secondReminder: kotlin.Int? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: LocalDate? = null,
 
-    @Json(name = "title")
     val title: kotlin.String? = null,
 
-    @Json(name = "type")
     val type: EnumOptionData? = null,
 
-    @Json(name = "typeId")
     val typeId: kotlin.String? = null
 
 )

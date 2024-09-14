@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param fieldName 
- * @param fieldType 
- * @param fieldValue 
- * @param optional 
- * @param placeholder 
+ *
+ * @param fieldName
+ * @param fieldType
+ * @param fieldValue
+ * @param optional
+ * @param placeholder
  */
 
+@Serializable
+data class Field(
 
-data class Field (
-
-    @Json(name = "fieldName")
     val fieldName: kotlin.String? = null,
 
-    @Json(name = "fieldType")
     val fieldType: kotlin.String? = null,
 
-    @Json(name = "fieldValue")
     val fieldValue: kotlin.String? = null,
 
-    @Json(name = "optional")
     val optional: kotlin.Boolean? = null,
 
-    @Json(name = "placeholder")
     val placeholder: kotlin.String? = null
 
-) {
-
-
-}
+)
 

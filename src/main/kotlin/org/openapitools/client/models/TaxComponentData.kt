@@ -15,67 +15,53 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.GLAccountData
-import org.openapitools.client.models.TaxComponentHistoryData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.math.BigDecimal
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param creditAccount 
- * @param creditAccountType 
- * @param debitAccount 
- * @param debitAccountType 
- * @param glAccountOptions 
- * @param glAccountTypeOptions 
- * @param id 
- * @param name 
- * @param percentage 
- * @param startDate 
- * @param taxComponentHistories 
+ *
+ * @param creditAccount
+ * @param creditAccountType
+ * @param debitAccount
+ * @param debitAccountType
+ * @param glAccountOptions
+ * @param glAccountTypeOptions
+ * @param id
+ * @param name
+ * @param percentage
+ * @param startDate
+ * @param taxComponentHistories
  */
 
+@Serializable
+data class TaxComponentData(
 
-data class TaxComponentData (
-
-    @Json(name = "creditAccount")
     val creditAccount: GLAccountData? = null,
 
-    @Json(name = "creditAccountType")
     val creditAccountType: EnumOptionData? = null,
 
-    @Json(name = "debitAccount")
     val debitAccount: GLAccountData? = null,
 
-    @Json(name = "debitAccountType")
     val debitAccountType: EnumOptionData? = null,
 
-    @Json(name = "glAccountOptions")
     val glAccountOptions: kotlin.collections.Map<kotlin.String, kotlin.collections.List<GLAccountData>>? = null,
 
-    @Json(name = "glAccountTypeOptions")
     val glAccountTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "percentage")
-    val percentage: java.math.BigDecimal? = null,
+    @Contextual
+    val percentage: BigDecimal? = null,
 
-    @Json(name = "startDate")
-    val startDate: java.time.LocalDate? = null,
+    @Contextual
+    val startDate: LocalDate? = null,
 
-    @Json(name = "taxComponentHistories")
     val taxComponentHistories: kotlin.collections.List<TaxComponentHistoryData>? = null
 
-) {
-
-
-}
+)
 

@@ -16,47 +16,37 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param columnDisplayType 
- * @param columnLength 
- * @param columnName 
- * @param columnType 
- * @param columnValues 
- * @param isColumnNullable 
- * @param isColumnPrimaryKey 
+ *
+ * @param columnDisplayType
+ * @param columnLength
+ * @param columnName
+ * @param columnType
+ * @param columnValues
+ * @param isColumnNullable
+ * @param isColumnPrimaryKey
  */
 
+@Serializable
+data class GetGroupsTemplateColumnHeaderData(
 
-data class GetGroupsTemplateColumnHeaderData (
-
-    @Json(name = "columnDisplayType")
     val columnDisplayType: kotlin.String? = null,
 
-    @Json(name = "columnLength")
     val columnLength: kotlin.Int? = null,
 
-    @Json(name = "columnName")
     val columnName: kotlin.String? = null,
 
-    @Json(name = "columnType")
     val columnType: kotlin.String? = null,
 
-    @Json(name = "columnValues")
-    val columnValues: kotlin.collections.Set<kotlin.Any>? = null,
+    val columnValues: kotlin.collections.Set<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "isColumnNullable")
     val isColumnNullable: kotlin.Boolean? = null,
 
-    @Json(name = "isColumnPrimaryKey")
     val isColumnPrimaryKey: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

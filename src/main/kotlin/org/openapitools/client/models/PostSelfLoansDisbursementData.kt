@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param approvedPrincipal 
- * @param expectedDisbursementDate 
- * @param principal 
+ *
+ * @param approvedPrincipal
+ * @param expectedDisbursementDate
+ * @param principal
  */
 
+@Serializable
+data class PostSelfLoansDisbursementData(
 
-data class PostSelfLoansDisbursementData (
-
-    @Json(name = "approvedPrincipal")
     val approvedPrincipal: kotlin.Long? = null,
 
-    @Json(name = "expectedDisbursementDate")
     val expectedDisbursementDate: kotlin.String? = null,
 
-    @Json(name = "principal")
     val principal: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

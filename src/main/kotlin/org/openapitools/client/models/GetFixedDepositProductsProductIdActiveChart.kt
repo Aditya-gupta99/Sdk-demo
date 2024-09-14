@@ -15,46 +15,35 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetFixedDepositProductsProductIdChartSlabs
-import org.openapitools.client.models.GetFixedDepositProductsProductIdPeriodType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param chartSlabs 
- * @param fromDate 
- * @param id 
- * @param periodTypes 
- * @param savingsProductId 
- * @param savingsProductName 
+ *
+ * @param chartSlabs
+ * @param fromDate
+ * @param id
+ * @param periodTypes
+ * @param savingsProductId
+ * @param savingsProductName
  */
 
+@Serializable
+data class GetFixedDepositProductsProductIdActiveChart(
 
-data class GetFixedDepositProductsProductIdActiveChart (
-
-    @Json(name = "chartSlabs")
     val chartSlabs: kotlin.collections.Set<GetFixedDepositProductsProductIdChartSlabs>? = null,
 
-    @Json(name = "fromDate")
+    @Contextual
     val fromDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "periodTypes")
     val periodTypes: kotlin.collections.Set<GetFixedDepositProductsProductIdPeriodType>? = null,
 
-    @Json(name = "savingsProductId")
     val savingsProductId: kotlin.Long? = null,
 
-    @Json(name = "savingsProductName")
     val savingsProductName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

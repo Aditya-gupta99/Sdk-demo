@@ -15,42 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LoanProductData
-import org.openapitools.client.models.ProvisioningCriteriaDefinitionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetProvisioningCriteriaCriteriaIdResponse
  *
- * @param createdBy 
- * @param criteriaId 
- * @param criteriaName 
- * @param loanProducts 
- * @param provisioningcriteria 
+ * @param createdBy
+ * @param criteriaId
+ * @param criteriaName
+ * @param loanProducts
+ * @param provisioningcriteria
  */
 
+@Serializable
+data class GetProvisioningCriteriaCriteriaIdResponse(
 
-data class GetProvisioningCriteriaCriteriaIdResponse (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.String? = null,
 
-    @Json(name = "criteriaId")
     val criteriaId: kotlin.Long? = null,
 
-    @Json(name = "criteriaName")
     val criteriaName: kotlin.String? = null,
 
-    @Json(name = "loanProducts")
     val loanProducts: kotlin.collections.List<LoanProductData>? = null,
 
-    @Json(name = "provisioningcriteria")
     val provisioningcriteria: kotlin.collections.List<ProvisioningCriteriaDefinitionData>? = null
 
-) {
-
-
-}
+)
 

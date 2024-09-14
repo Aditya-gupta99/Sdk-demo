@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param score 
- * @param valueFrom 
- * @param valueTo 
+ *
+ * @param score
+ * @param valueFrom
+ * @param valueTo
  */
 
+@Serializable
+data class LookupTableEntry(
 
-data class LookupTableEntry (
-
-    @Json(name = "score")
     val score: kotlin.Double? = null,
 
-    @Json(name = "valueFrom")
     val valueFrom: kotlin.Int? = null,
 
-    @Json(name = "valueTo")
     val valueTo: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

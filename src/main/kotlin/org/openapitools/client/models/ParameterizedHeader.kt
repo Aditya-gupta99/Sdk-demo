@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param parameters 
- * @param `value` 
+ *
+ * @param parameters
+ * @param `value`
  */
 
+@Serializable
+data class ParameterizedHeader(
 
-data class ParameterizedHeader (
-
-    @Json(name = "parameters")
     val parameters: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null
+    val value: kotlin.String? = null
 
-) {
-
-
-}
+)
 

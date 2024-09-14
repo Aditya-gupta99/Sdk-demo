@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutPasswordPreferencesTemplateRequest
  *
- * @param validationPolicyId 
+ * @param validationPolicyId
  */
 
+@Serializable
+data class PutPasswordPreferencesTemplateRequest(
 
-data class PutPasswordPreferencesTemplateRequest (
-
-    @Json(name = "validationPolicyId")
     val validationPolicyId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

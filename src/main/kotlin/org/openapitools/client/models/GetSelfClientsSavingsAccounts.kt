@@ -15,46 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSelfClientsSavingsAccountsCurrency
-import org.openapitools.client.models.GetSelfClientsSavingsAccountsStatus
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param currency 
- * @param id 
- * @param productId 
- * @param productName 
- * @param status 
+ *
+ * @param accountNo
+ * @param currency
+ * @param id
+ * @param productId
+ * @param productName
+ * @param status
  */
 
+@Serializable
+data class GetSelfClientsSavingsAccounts(
 
-data class GetSelfClientsSavingsAccounts (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "currency")
     val currency: GetSelfClientsSavingsAccountsCurrency? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Int? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetSelfClientsSavingsAccountsStatus? = null
 
-) {
-
-
-}
+)
 

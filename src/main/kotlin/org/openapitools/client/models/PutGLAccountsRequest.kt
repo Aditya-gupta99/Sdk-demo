@@ -16,55 +16,42 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutGLAccountsRequest
  *
- * @param description 
- * @param disabled 
- * @param glCode 
- * @param manualEntriesAllowed 
- * @param name 
- * @param parentId 
- * @param tagId 
- * @param type 
- * @param usage 
+ * @param description
+ * @param disabled
+ * @param glCode
+ * @param manualEntriesAllowed
+ * @param name
+ * @param parentId
+ * @param tagId
+ * @param type
+ * @param usage
  */
 
+@Serializable
+data class PutGLAccountsRequest(
 
-data class PutGLAccountsRequest (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "glCode")
     val glCode: kotlin.String? = null,
 
-    @Json(name = "manualEntriesAllowed")
     val manualEntriesAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null,
 
-    @Json(name = "tagId")
     val tagId: kotlin.Long? = null,
 
-    @Json(name = "type")
     val type: kotlin.Int? = null,
 
-    @Json(name = "usage")
     val usage: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

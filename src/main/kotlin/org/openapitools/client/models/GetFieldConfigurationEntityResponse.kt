@@ -16,47 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetFieldConfigurationEntityResponse
  *
- * @param entity 
- * @param `field` 
- * @param fieldConfigurationId 
- * @param isEnabled 
- * @param isMandatory 
- * @param subentity 
- * @param validationRegex 
+ * @param entity
+ * @param `field`
+ * @param fieldConfigurationId
+ * @param isEnabled
+ * @param isMandatory
+ * @param subentity
+ * @param validationRegex
  */
 
+@Serializable
+data class GetFieldConfigurationEntityResponse(
 
-data class GetFieldConfigurationEntityResponse (
-
-    @Json(name = "entity")
     val entity: kotlin.String? = null,
 
-    @Json(name = "field")
-    val `field`: kotlin.String? = null,
+    val field: kotlin.String? = null,
 
-    @Json(name = "fieldConfigurationId")
     val fieldConfigurationId: kotlin.Long? = null,
 
-    @Json(name = "is_enabled")
-    val isEnabled: kotlin.String? = null,
+    val is_enabled: kotlin.String? = null,
 
-    @Json(name = "is_mandatory")
-    val isMandatory: kotlin.String? = null,
+    val is_mandatory: kotlin.String? = null,
 
-    @Json(name = "subentity")
     val subentity: kotlin.String? = null,
 
-    @Json(name = "validation_regex")
-    val validationRegex: kotlin.String? = null
+    val validation_regex: kotlin.String? = null
 
-) {
-
-
-}
+)
 

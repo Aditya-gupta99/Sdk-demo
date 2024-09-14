@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostDataTablesResponse
  *
- * @param resourceIdentifier 
+ * @param resourceIdentifier
  */
 
+@Serializable
+data class PostDataTablesResponse(
 
-data class PostDataTablesResponse (
-
-    @Json(name = "resourceIdentifier")
     val resourceIdentifier: kotlin.String? = null
 
-) {
-
-
-}
+)
 

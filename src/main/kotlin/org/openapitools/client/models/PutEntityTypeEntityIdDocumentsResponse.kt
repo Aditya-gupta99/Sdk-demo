@@ -16,31 +16,26 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PutEntityTypeEntityIdDocumentsResponse
  *
- * @param changes 
- * @param resourceId 
- * @param resourceIdentifier 
+ * @param changes
+ * @param resourceId
+ * @param resourceIdentifier
  */
 
+@Serializable
+data class PutEntityTypeEntityIdDocumentsResponse(
 
-data class PutEntityTypeEntityIdDocumentsResponse (
-
-    @Json(name = "changes")
+    @Contextual
     val changes: kotlin.Any? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null,
 
-    @Json(name = "resourceIdentifier")
     val resourceIdentifier: kotlin.String? = null
 
-) {
-
-
-}
+)
 

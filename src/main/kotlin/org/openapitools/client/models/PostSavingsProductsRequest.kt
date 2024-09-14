@@ -15,81 +15,60 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostSavingsCharges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostSavingsProductsRequest
  *
- * @param accountMappingForPayment 
- * @param accountingRule 
- * @param charges 
- * @param currencyCode 
- * @param description 
- * @param digitsAfterDecimal 
- * @param inMultiplesOf 
- * @param interestCalculationDaysInYearType 
- * @param interestCalculationType 
- * @param interestCompoundingPeriodType 
- * @param interestPostingPeriodType 
- * @param locale 
- * @param name 
- * @param nominalAnnualInterestRate 
- * @param shortName 
+ * @param accountMappingForPayment
+ * @param accountingRule
+ * @param charges
+ * @param currencyCode
+ * @param description
+ * @param digitsAfterDecimal
+ * @param inMultiplesOf
+ * @param interestCalculationDaysInYearType
+ * @param interestCalculationType
+ * @param interestCompoundingPeriodType
+ * @param interestPostingPeriodType
+ * @param locale
+ * @param name
+ * @param nominalAnnualInterestRate
+ * @param shortName
  */
 
+@Serializable
+data class PostSavingsProductsRequest(
 
-data class PostSavingsProductsRequest (
-
-    @Json(name = "accountMappingForPayment")
     val accountMappingForPayment: kotlin.String? = null,
 
-    @Json(name = "accountingRule")
     val accountingRule: kotlin.Int? = null,
 
-    @Json(name = "charges")
     val charges: kotlin.collections.Set<PostSavingsCharges>? = null,
 
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "digitsAfterDecimal")
     val digitsAfterDecimal: kotlin.Int? = null,
 
-    @Json(name = "inMultiplesOf")
     val inMultiplesOf: kotlin.Int? = null,
 
-    @Json(name = "interestCalculationDaysInYearType")
     val interestCalculationDaysInYearType: kotlin.Int? = null,
 
-    @Json(name = "interestCalculationType")
     val interestCalculationType: kotlin.Int? = null,
 
-    @Json(name = "interestCompoundingPeriodType")
     val interestCompoundingPeriodType: kotlin.Int? = null,
 
-    @Json(name = "interestPostingPeriodType")
     val interestPostingPeriodType: kotlin.Int? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nominalAnnualInterestRate")
     val nominalAnnualInterestRate: kotlin.Double? = null,
 
-    @Json(name = "shortName")
     val shortName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

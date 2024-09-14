@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostTaxesGroupTaxComponents
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostTaxesGroupRequest
  *
- * @param dateFormat 
- * @param locale 
- * @param name 
- * @param taxComponents 
+ * @param dateFormat
+ * @param locale
+ * @param name
+ * @param taxComponents
  */
 
+@Serializable
+data class PostTaxesGroupRequest(
 
-data class PostTaxesGroupRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "taxComponents")
     val taxComponents: kotlin.collections.Set<PostTaxesGroupTaxComponents>? = null
 
-) {
-
-
-}
+)
 

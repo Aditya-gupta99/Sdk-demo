@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetRecurringDepositAccountsCurrency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountBalance 
- * @param currency 
+ *
+ * @param accountBalance
+ * @param currency
  */
 
+@Serializable
+data class GetRecurringDepositAccountsSummary(
 
-data class GetRecurringDepositAccountsSummary (
-
-    @Json(name = "accountBalance")
     val accountBalance: kotlin.Float? = null,
 
-    @Json(name = "currency")
     val currency: GetRecurringDepositAccountsCurrency? = null
 
-) {
-
-
-}
+)
 

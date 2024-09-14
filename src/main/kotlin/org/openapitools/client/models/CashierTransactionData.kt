@@ -15,7 +15,8 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.OffsetDateTime
@@ -43,61 +44,48 @@ import java.time.OffsetDateTime
  * @param txnType
  */
 
-
+@Serializable
 data class CashierTransactionData(
 
-    @Json(name = "cashierData")
     val cashierData: CashierData? = null,
 
-    @Json(name = "cashierId")
     val cashierId: kotlin.Long? = null,
 
-    @Json(name = "cashierName")
     val cashierName: kotlin.String? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: OffsetDateTime? = null,
 
-    @Json(name = "currencyOptions")
     val currencyOptions: kotlin.collections.List<CurrencyData>? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: LocalDate? = null,
 
-    @Json(name = "entityId")
     val entityId: kotlin.Long? = null,
 
-    @Json(name = "entityType")
     val entityType: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: LocalDate? = null,
 
-    @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
 
-    @Json(name = "tellerName")
     val tellerName: kotlin.String? = null,
 
-    @Json(name = "txnAmount")
+    @Contextual
     val txnAmount: BigDecimal? = null,
 
-    @Json(name = "txnDate")
+    @Contextual
     val txnDate: LocalDate? = null,
 
-    @Json(name = "txnNote")
     val txnNote: kotlin.String? = null,
 
-    @Json(name = "txnType")
     val txnType: CashierTxnType? = null
 
 )

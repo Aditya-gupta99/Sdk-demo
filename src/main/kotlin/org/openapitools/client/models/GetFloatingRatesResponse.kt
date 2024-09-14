@@ -16,51 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetFloatingRatesResponse
  *
- * @param createdBy 
- * @param createdOn 
- * @param id 
- * @param isActive 
- * @param isBaseLendingRate 
- * @param modifiedBy 
- * @param modifiedOn 
- * @param name 
+ * @param createdBy
+ * @param createdOn
+ * @param id
+ * @param isActive
+ * @param isBaseLendingRate
+ * @param modifiedBy
+ * @param modifiedOn
+ * @param name
  */
 
+@Serializable
+data class GetFloatingRatesResponse(
 
-data class GetFloatingRatesResponse (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.String? = null,
 
-    @Json(name = "createdOn")
     val createdOn: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "isBaseLendingRate")
     val isBaseLendingRate: kotlin.Boolean? = null,
 
-    @Json(name = "modifiedBy")
     val modifiedBy: kotlin.String? = null,
 
-    @Json(name = "modifiedOn")
     val modifiedOn: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

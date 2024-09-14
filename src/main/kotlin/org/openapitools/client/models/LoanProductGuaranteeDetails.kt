@@ -16,39 +16,34 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param mandatoryGuarantee 
- * @param minimumGuaranteeFromGuarantor 
- * @param minimumGuaranteeFromOwnFunds 
- * @param new 
+ *
+ * @param id
+ * @param mandatoryGuarantee
+ * @param minimumGuaranteeFromGuarantor
+ * @param minimumGuaranteeFromOwnFunds
+ * @param new
  */
 
+@Serializable
+data class LoanProductGuaranteeDetails(
 
-data class LoanProductGuaranteeDetails (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "mandatoryGuarantee")
+    @Contextual
     val mandatoryGuarantee: java.math.BigDecimal? = null,
 
-    @Json(name = "minimumGuaranteeFromGuarantor")
+    @Contextual
     val minimumGuaranteeFromGuarantor: java.math.BigDecimal? = null,
 
-    @Json(name = "minimumGuaranteeFromOwnFunds")
+    @Contextual
     val minimumGuaranteeFromOwnFunds: java.math.BigDecimal? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

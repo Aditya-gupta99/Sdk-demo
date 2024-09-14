@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AdvancedQueryData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param query 
- * @param table 
+ *
+ * @param query
+ * @param table
  */
 
+@Serializable
+data class TableQueryData(
 
-data class TableQueryData (
-
-    @Json(name = "query")
     val query: AdvancedQueryData? = null,
 
-    @Json(name = "table")
     val table: kotlin.String? = null
 
-) {
-
-
-}
+)
 

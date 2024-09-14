@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param idNumber 
- * @param idType 
- * @param issuerCountry 
- * @param otherIdDescription 
+ *
+ * @param idNumber
+ * @param idType
+ * @param issuerCountry
+ * @param otherIdDescription
  */
 
+@Serializable
+data class IdDocument(
 
-data class IdDocument (
-
-    @Json(name = "idNumber")
     val idNumber: kotlin.String? = null,
 
-    @Json(name = "idType")
     val idType: kotlin.String? = null,
 
-    @Json(name = "issuerCountry")
     val issuerCountry: kotlin.String? = null,
 
-    @Json(name = "otherIdDescription")
     val otherIdDescription: kotlin.String? = null
 
-) {
-
-
-}
+)
 

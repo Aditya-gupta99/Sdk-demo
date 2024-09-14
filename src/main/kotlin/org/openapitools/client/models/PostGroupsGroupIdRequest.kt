@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostGroupsGroupIdClients
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostGroupsGroupIdRequest
  *
- * @param clients 
- * @param destinationGroupId 
+ * @param clients
+ * @param destinationGroupId
  */
 
+@Serializable
+data class PostGroupsGroupIdRequest(
 
-data class PostGroupsGroupIdRequest (
-
-    @Json(name = "clients")
     val clients: kotlin.collections.Set<PostGroupsGroupIdClients>? = null,
 
-    @Json(name = "destinationGroupId")
     val destinationGroupId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

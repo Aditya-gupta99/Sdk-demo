@@ -16,67 +16,54 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostAdhocQuerySearchRequest
  *
- * @param dateFormat 
- * @param includeOutStandingAmountPercentage 
- * @param includeOutstandingAmount 
- * @param loanDateOption 
- * @param loanFromDate 
- * @param loanToDate 
- * @param locale 
- * @param maxOutstandingAmount 
- * @param minOutstandingAmount 
- * @param outStandingAmountPercentage 
- * @param outStandingAmountPercentageCondition 
- * @param outstandingAmountCondition 
+ * @param dateFormat
+ * @param includeOutStandingAmountPercentage
+ * @param includeOutstandingAmount
+ * @param loanDateOption
+ * @param loanFromDate
+ * @param loanToDate
+ * @param locale
+ * @param maxOutstandingAmount
+ * @param minOutstandingAmount
+ * @param outStandingAmountPercentage
+ * @param outStandingAmountPercentageCondition
+ * @param outstandingAmountCondition
  */
 
+@Serializable
+data class PostAdhocQuerySearchRequest(
 
-data class PostAdhocQuerySearchRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "includeOutStandingAmountPercentage")
     val includeOutStandingAmountPercentage: kotlin.Boolean? = null,
 
-    @Json(name = "includeOutstandingAmount")
     val includeOutstandingAmount: kotlin.Boolean? = null,
 
-    @Json(name = "loanDateOption")
     val loanDateOption: kotlin.String? = null,
 
-    @Json(name = "loanFromDate")
+    @Contextual
     val loanFromDate: java.time.LocalDate? = null,
 
-    @Json(name = "loanToDate")
+    @Contextual
     val loanToDate: java.time.LocalDate? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "maxOutstandingAmount")
     val maxOutstandingAmount: kotlin.Long? = null,
 
-    @Json(name = "minOutstandingAmount")
     val minOutstandingAmount: kotlin.Long? = null,
 
-    @Json(name = "outStandingAmountPercentage")
     val outStandingAmountPercentage: kotlin.Long? = null,
 
-    @Json(name = "outStandingAmountPercentageCondition")
     val outStandingAmountPercentageCondition: kotlin.String? = null,
 
-    @Json(name = "outstandingAmountCondition")
     val outstandingAmountCondition: kotlin.String? = null
 
-) {
-
-
-}
+)
 

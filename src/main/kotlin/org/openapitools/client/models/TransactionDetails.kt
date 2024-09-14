@@ -15,39 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionType
-import org.openapitools.client.models.GetResourceTypeResourceIdNotesResponse
-import org.openapitools.client.models.PaymentDetailData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param noteData 
- * @param paymentDetails 
- * @param transactionId 
- * @param transactionType 
+ *
+ * @param noteData
+ * @param paymentDetails
+ * @param transactionId
+ * @param transactionType
  */
 
+@Serializable
+data class TransactionDetails(
 
-data class TransactionDetails (
-
-    @Json(name = "noteData")
     val noteData: GetResourceTypeResourceIdNotesResponse? = null,
 
-    @Json(name = "paymentDetails")
     val paymentDetails: PaymentDetailData? = null,
 
-    @Json(name = "transactionId")
     val transactionId: kotlin.Long? = null,
 
-    @Json(name = "transactionType")
     val transactionType: EnumOptionType? = null
 
-) {
-
-
-}
+)
 

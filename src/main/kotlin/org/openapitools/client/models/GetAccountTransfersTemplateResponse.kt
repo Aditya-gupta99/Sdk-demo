@@ -15,63 +15,44 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountTransfersFromAccountType
-import org.openapitools.client.models.GetAccountTransfersFromAccountTypeOptions
-import org.openapitools.client.models.GetAccountTransfersFromClientOptions
-import org.openapitools.client.models.GetAccountTransfersFromOffice
-import org.openapitools.client.models.GetAccountTransfersFromOfficeOptions
-import org.openapitools.client.models.GetAccountTransfersToAccountTypeOptions
-import org.openapitools.client.models.GetAccountTransfersToOfficeOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountTransfersTemplateResponse
  *
- * @param fromAccountType 
- * @param fromAccountTypeOptions 
- * @param fromClientOptions 
- * @param fromOffice 
- * @param fromOfficeOptions 
- * @param toAccountTypeOptions 
- * @param toOfficeOptions 
- * @param transferAmount 
- * @param transferDate 
+ * @param fromAccountType
+ * @param fromAccountTypeOptions
+ * @param fromClientOptions
+ * @param fromOffice
+ * @param fromOfficeOptions
+ * @param toAccountTypeOptions
+ * @param toOfficeOptions
+ * @param transferAmount
+ * @param transferDate
  */
 
+@Serializable
+data class GetAccountTransfersTemplateResponse(
 
-data class GetAccountTransfersTemplateResponse (
-
-    @Json(name = "fromAccountType")
     val fromAccountType: GetAccountTransfersFromAccountType? = null,
 
-    @Json(name = "fromAccountTypeOptions")
     val fromAccountTypeOptions: kotlin.collections.Set<GetAccountTransfersFromAccountTypeOptions>? = null,
 
-    @Json(name = "fromClientOptions")
     val fromClientOptions: kotlin.collections.Set<GetAccountTransfersFromClientOptions>? = null,
 
-    @Json(name = "fromOffice")
     val fromOffice: GetAccountTransfersFromOffice? = null,
 
-    @Json(name = "fromOfficeOptions")
     val fromOfficeOptions: kotlin.collections.Set<GetAccountTransfersFromOfficeOptions>? = null,
 
-    @Json(name = "toAccountTypeOptions")
     val toAccountTypeOptions: kotlin.collections.Set<GetAccountTransfersToAccountTypeOptions>? = null,
 
-    @Json(name = "toOfficeOptions")
     val toOfficeOptions: kotlin.collections.Set<GetAccountTransfersToOfficeOptions>? = null,
 
-    @Json(name = "transferAmount")
     val transferAmount: kotlin.Long? = null,
 
-    @Json(name = "transferDate")
+    @Contextual
     val transferDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

@@ -15,58 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetRecurringCurrency
-import org.openapitools.client.models.GetRecurringTransactionType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetRecurringDepositAccountsRecurringDepositAccountIdTransactionsTemplateResponse
  *
- * @param accountId 
- * @param accountNo 
- * @param amount 
- * @param currency 
- * @param date 
- * @param id 
- * @param paymentTypeOptions 
- * @param reversed 
- * @param transactionType 
+ * @param accountId
+ * @param accountNo
+ * @param amount
+ * @param currency
+ * @param date
+ * @param id
+ * @param paymentTypeOptions
+ * @param reversed
+ * @param transactionType
  */
 
+@Serializable
+data class GetRecurringDepositAccountsRecurringDepositAccountIdTransactionsTemplateResponse(
 
-data class GetRecurringDepositAccountsRecurringDepositAccountIdTransactionsTemplateResponse (
-
-    @Json(name = "accountId")
     val accountId: kotlin.Long? = null,
 
-    @Json(name = "accountNo")
     val accountNo: kotlin.String? = null,
 
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "currency")
     val currency: GetRecurringCurrency? = null,
 
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "paymentTypeOptions")
     val paymentTypeOptions: kotlin.collections.List<kotlin.Int>? = null,
 
-    @Json(name = "reversed")
     val reversed: kotlin.Boolean? = null,
 
-    @Json(name = "transactionType")
     val transactionType: GetRecurringTransactionType? = null
 
-) {
-
-
-}
+)
 

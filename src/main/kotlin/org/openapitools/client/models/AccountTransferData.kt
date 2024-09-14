@@ -15,7 +15,9 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.math.BigDecimal
 import java.time.LocalDate
 
 /**
@@ -45,73 +47,53 @@ import java.time.LocalDate
  * @param transferDescription
  */
 
-
+@Serializable
 data class AccountTransferData(
 
-    @Json(name = "currency")
     val currency: CurrencyData? = null,
 
-    @Json(name = "fromAccount")
     val fromAccount: PortfolioAccountData? = null,
 
-    @Json(name = "fromAccountOptions")
     val fromAccountOptions: kotlin.collections.List<PortfolioAccountData>? = null,
 
-    @Json(name = "fromAccountType")
     val fromAccountType: EnumOptionData? = null,
 
-    @Json(name = "fromAccountTypeOptions")
     val fromAccountTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "fromClient")
     val fromClient: ClientData? = null,
 
-    @Json(name = "fromClientOptions")
     val fromClientOptions: kotlin.collections.List<ClientData>? = null,
 
-    @Json(name = "fromOffice")
     val fromOffice: OfficeData? = null,
 
-    @Json(name = "fromOfficeOptions")
     val fromOfficeOptions: kotlin.collections.List<OfficeData>? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "reversed")
     val reversed: kotlin.Boolean? = null,
 
-    @Json(name = "toAccount")
     val toAccount: PortfolioAccountData? = null,
 
-    @Json(name = "toAccountOptions")
     val toAccountOptions: kotlin.collections.List<PortfolioAccountData>? = null,
 
-    @Json(name = "toAccountType")
     val toAccountType: EnumOptionData? = null,
 
-    @Json(name = "toAccountTypeOptions")
     val toAccountTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "toClient")
     val toClient: ClientData? = null,
 
-    @Json(name = "toClientOptions")
     val toClientOptions: kotlin.collections.List<ClientData>? = null,
 
-    @Json(name = "toOffice")
     val toOffice: OfficeData? = null,
 
-    @Json(name = "toOfficeOptions")
     val toOfficeOptions: kotlin.collections.List<OfficeData>? = null,
 
-    @Json(name = "transferAmount")
-    val transferAmount: java.math.BigDecimal? = null,
+    @Contextual
+    val transferAmount: BigDecimal? = null,
 
-    @Json(name = "transferDate")
+    @Contextual
     val transferDate: LocalDate? = null,
 
-    @Json(name = "transferDescription")
     val transferDescription: kotlin.String? = null
 
 )

@@ -16,31 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetOldestCOBProcessedLoanResponse
  *
- * @param cobBusinessDate 
- * @param cobProcessedDate 
- * @param loanIds 
+ * @param cobBusinessDate
+ * @param cobProcessedDate
+ * @param loanIds
  */
 
+@Serializable
+data class GetOldestCOBProcessedLoanResponse(
 
-data class GetOldestCOBProcessedLoanResponse (
-
-    @Json(name = "cobBusinessDate")
+    @Contextual
     val cobBusinessDate: java.time.LocalDate? = null,
 
-    @Json(name = "cobProcessedDate")
+    @Contextual
     val cobProcessedDate: java.time.LocalDate? = null,
 
-    @Json(name = "loanIds")
     val loanIds: kotlin.collections.List<kotlin.Long>? = null
 
-) {
-
-
-}
+)
 

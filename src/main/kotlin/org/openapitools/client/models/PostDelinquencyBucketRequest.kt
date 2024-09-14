@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostDelinquencyBucketRequest
  *
- * @param name 
- * @param ranges 
+ * @param name
+ * @param ranges
  */
 
+@Serializable
+data class PostDelinquencyBucketRequest(
 
-data class PostDelinquencyBucketRequest (
-
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "ranges")
     val ranges: kotlin.collections.List<kotlin.Long>? = null
 
-) {
-
-
-}
+)
 

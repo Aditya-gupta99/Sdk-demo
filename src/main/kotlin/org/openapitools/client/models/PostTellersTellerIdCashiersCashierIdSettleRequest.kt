@@ -16,43 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostTellersTellerIdCashiersCashierIdSettleRequest
  *
- * @param currencyCode 
- * @param dateFormat 
- * @param locale 
- * @param txnAmount 
- * @param txnDate 
- * @param txnNote 
+ * @param currencyCode
+ * @param dateFormat
+ * @param locale
+ * @param txnAmount
+ * @param txnDate
+ * @param txnNote
  */
 
+@Serializable
+data class PostTellersTellerIdCashiersCashierIdSettleRequest(
 
-data class PostTellersTellerIdCashiersCashierIdSettleRequest (
-
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "txnAmount")
+    @Contextual
     val txnAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "txnDate")
+    @Contextual
     val txnDate: java.time.LocalDate? = null,
 
-    @Json(name = "txnNote")
     val txnNote: kotlin.String? = null
 
-) {
-
-
-}
+)
 

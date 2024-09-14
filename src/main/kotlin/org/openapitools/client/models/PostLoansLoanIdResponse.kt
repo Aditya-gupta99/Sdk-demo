@@ -15,53 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostLoansLoanIdChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostLoansLoanIdResponse
  *
- * @param changes 
- * @param clientId 
- * @param loanId 
- * @param officeId 
- * @param resourceExternalId 
- * @param resourceId 
- * @param subResourceExternalId 
- * @param subResourceId 
+ * @param changes
+ * @param clientId
+ * @param loanId
+ * @param officeId
+ * @param resourceExternalId
+ * @param resourceId
+ * @param subResourceExternalId
+ * @param subResourceId
  */
 
+@Serializable
+data class PostLoansLoanIdResponse(
 
-data class PostLoansLoanIdResponse (
-
-    @Json(name = "changes")
     val changes: PostLoansLoanIdChanges? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "loanId")
     val loanId: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Int? = null,
 
-    @Json(name = "resourceExternalId")
     val resourceExternalId: kotlin.String? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null,
 
-    @Json(name = "subResourceExternalId")
     val subResourceExternalId: kotlin.String? = null,
 
-    @Json(name = "subResourceId")
     val subResourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

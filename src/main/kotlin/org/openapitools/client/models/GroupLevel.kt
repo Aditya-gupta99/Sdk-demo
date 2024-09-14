@@ -16,51 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param center 
- * @param group 
- * @param id 
- * @param levelName 
- * @param new 
- * @param parentId 
- * @param recursable 
- * @param superParent 
+ *
+ * @param center
+ * @param group
+ * @param id
+ * @param levelName
+ * @param new
+ * @param parentId
+ * @param recursable
+ * @param superParent
  */
 
+@Serializable
+data class GroupLevel(
 
-data class GroupLevel (
-
-    @Json(name = "center")
     val center: kotlin.Boolean? = null,
 
-    @Json(name = "group")
     val group: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "levelName")
     val levelName: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null,
 
-    @Json(name = "recursable")
     val recursable: kotlin.Boolean? = null,
 
-    @Json(name = "superParent")
     val superParent: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

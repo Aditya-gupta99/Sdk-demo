@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateValue 
- * @param enabled 
- * @param stringValue 
- * @param `value` 
+ *
+ * @param dateValue
+ * @param enabled
+ * @param stringValue
+ * @param `value`
  */
 
+@Serializable
+data class PutGlobalConfigurationsResponsechangesSwagger(
 
-data class PutGlobalConfigurationsResponsechangesSwagger (
-
-    @Json(name = "dateValue")
     val dateValue: kotlin.String? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
 
-    @Json(name = "stringValue")
     val stringValue: kotlin.String? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.Long? = null
+    val value: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

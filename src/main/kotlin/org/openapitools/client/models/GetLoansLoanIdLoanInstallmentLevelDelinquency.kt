@@ -16,39 +16,32 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * List of GetLoansLoanIdLoanInstallmentLevelDelinquency
  *
- * @param classification 
- * @param delinquentAmount 
- * @param maximumAgeDays 
- * @param minimumAgeDays 
- * @param rangeId 
+ * @param classification
+ * @param delinquentAmount
+ * @param maximumAgeDays
+ * @param minimumAgeDays
+ * @param rangeId
  */
 
+@Serializable
+data class GetLoansLoanIdLoanInstallmentLevelDelinquency(
 
-data class GetLoansLoanIdLoanInstallmentLevelDelinquency (
-
-    @Json(name = "classification")
     val classification: kotlin.String? = null,
 
-    @Json(name = "delinquentAmount")
+    @Contextual
     val delinquentAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "maximumAgeDays")
     val maximumAgeDays: kotlin.Int? = null,
 
-    @Json(name = "minimumAgeDays")
     val minimumAgeDays: kotlin.Int? = null,
 
-    @Json(name = "rangeId")
     val rangeId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

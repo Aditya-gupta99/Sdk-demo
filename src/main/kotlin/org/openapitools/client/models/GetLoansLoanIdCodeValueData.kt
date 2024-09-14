@@ -16,43 +16,33 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * List of GetLoansLoanIdCodeValueData
  *
- * @param active 
- * @param description 
- * @param id 
- * @param mandatory 
- * @param name 
- * @param position 
+ * @param active
+ * @param description
+ * @param id
+ * @param mandatory
+ * @param name
+ * @param position
  */
 
+@Serializable
+data class GetLoansLoanIdCodeValueData(
 
-data class GetLoansLoanIdCodeValueData (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "mandatory")
     val mandatory: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "position")
     val position: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

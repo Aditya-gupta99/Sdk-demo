@@ -15,40 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetShareAccountsIncomeFromFeeAccountId
-import org.openapitools.client.models.GetShareAccountsShareEquityId
-import org.openapitools.client.models.GetShareAccountsShareReferenceId
-import org.openapitools.client.models.GetShareAccountsShareSuspenseId
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param shareEquityId 
- * @param incomeFromFeeAccountId 
- * @param shareReferenceId 
- * @param shareSuspenseId 
+ *
+ * @param shareEquityId
+ * @param incomeFromFeeAccountId
+ * @param shareReferenceId
+ * @param shareSuspenseId
  */
 
+@Serializable
+data class GetClientIdProductIdAccountingMappings(
 
-data class GetClientIdProductIdAccountingMappings (
-
-    @Json(name = "ShareEquityId")
     val shareEquityId: GetShareAccountsShareEquityId? = null,
 
-    @Json(name = "incomeFromFeeAccountId")
     val incomeFromFeeAccountId: GetShareAccountsIncomeFromFeeAccountId? = null,
 
-    @Json(name = "shareReferenceId")
     val shareReferenceId: GetShareAccountsShareReferenceId? = null,
 
-    @Json(name = "shareSuspenseId")
     val shareSuspenseId: GetShareAccountsShareSuspenseId? = null
 
-) {
-
-
-}
+)
 

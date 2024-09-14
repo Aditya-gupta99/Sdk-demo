@@ -15,82 +15,62 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.BodyPartHeaders
-import org.openapitools.client.models.BodyPartParameterizedHeaders
-import org.openapitools.client.models.ContentDisposition
-import org.openapitools.client.models.FormDataContentDisposition
-import org.openapitools.client.models.MediaType
-import org.openapitools.client.models.MultiPart
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param content 
- * @param contentDisposition 
- * @param entity 
- * @param fileName 
- * @param formDataContentDisposition 
- * @param headers 
- * @param mediaType 
- * @param messageBodyWorkers 
- * @param name 
- * @param parameterizedHeaders 
- * @param parent 
- * @param providers 
- * @param simple 
- * @param `value` 
+ *
+ * @param content
+ * @param contentDisposition
+ * @param entity
+ * @param fileName
+ * @param formDataContentDisposition
+ * @param headers
+ * @param mediaType
+ * @param messageBodyWorkers
+ * @param name
+ * @param parameterizedHeaders
+ * @param parent
+ * @param providers
+ * @param simple
+ * @param `value`
  */
 
+@Serializable
+data class FormDataBodyPart(
 
-data class FormDataBodyPart (
-
-    @Json(name = "content")
+    @Contextual
     val content: kotlin.Any? = null,
 
-    @Json(name = "contentDisposition")
     val contentDisposition: ContentDisposition? = null,
 
-    @Json(name = "entity")
+    @Contextual
     val entity: kotlin.Any? = null,
 
-    @Json(name = "fileName")
     val fileName: kotlin.String? = null,
 
-    @Json(name = "formDataContentDisposition")
     val formDataContentDisposition: FormDataContentDisposition? = null,
 
-    @Json(name = "headers")
     val headers: BodyPartHeaders? = null,
 
-    @Json(name = "mediaType")
     val mediaType: MediaType? = null,
 
-    @Json(name = "messageBodyWorkers")
+    @Contextual
     val messageBodyWorkers: kotlin.Any? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "parameterizedHeaders")
     val parameterizedHeaders: BodyPartParameterizedHeaders? = null,
 
-    @Json(name = "parent")
     val parent: MultiPart? = null,
 
-    @Json(name = "providers")
+    @Contextual
     val providers: kotlin.Any? = null,
 
-    @Json(name = "simple")
     val simple: kotlin.Boolean? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null
+    val value: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostCollectionSheetBulkRepaymentTransactions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostCollectionSheetRequest
  *
- * @param actualDisbursementDate 
- * @param bulkDisbursementTransactions 
- * @param bulkRepaymentTransactions 
- * @param bulkSavingsDueTransactions 
- * @param dateFormat 
- * @param locale 
- * @param transactionDate 
+ * @param actualDisbursementDate
+ * @param bulkDisbursementTransactions
+ * @param bulkRepaymentTransactions
+ * @param bulkSavingsDueTransactions
+ * @param dateFormat
+ * @param locale
+ * @param transactionDate
  */
 
+@Serializable
+data class PostCollectionSheetRequest(
 
-data class PostCollectionSheetRequest (
-
-    @Json(name = "actualDisbursementDate")
     val actualDisbursementDate: kotlin.String? = null,
 
-    @Json(name = "bulkDisbursementTransactions")
     val bulkDisbursementTransactions: kotlin.collections.List<kotlin.Int>? = null,
 
-    @Json(name = "bulkRepaymentTransactions")
     val bulkRepaymentTransactions: PostCollectionSheetBulkRepaymentTransactions? = null,
 
-    @Json(name = "bulkSavingsDueTransactions")
     val bulkSavingsDueTransactions: kotlin.collections.List<kotlin.Int>? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "transactionDate")
     val transactionDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

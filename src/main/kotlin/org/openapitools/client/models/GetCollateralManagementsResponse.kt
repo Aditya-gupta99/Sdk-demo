@@ -15,45 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetCollateralCurrencyResponse
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetCollateralManagementsResponse
  *
- * @param basePrice 
- * @param currency 
- * @param id 
- * @param name 
- * @param pctToBase 
- * @param unitType 
+ * @param basePrice
+ * @param currency
+ * @param id
+ * @param name
+ * @param pctToBase
+ * @param unitType
  */
 
+@Serializable
+data class GetCollateralManagementsResponse(
 
-data class GetCollateralManagementsResponse (
-
-    @Json(name = "basePrice")
+    @Contextual
     val basePrice: java.math.BigDecimal? = null,
 
-    @Json(name = "currency")
     val currency: GetCollateralCurrencyResponse? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "pctToBase")
+    @Contextual
     val pctToBase: java.math.BigDecimal? = null,
 
-    @Json(name = "unitType")
     val unitType: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,6 +16,7 @@
 package org.openapitools.client.models
 
 import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -26,19 +27,15 @@ import com.squareup.moshi.Json
  * @param new
  */
 
-
+@Serializable
 data class AppUserClientMapping(
 
-    @Json(name = "appUser")
     val appUser: AppUser? = null,
 
-    @Json(name = "client")
     val client: Client? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null
 
 )

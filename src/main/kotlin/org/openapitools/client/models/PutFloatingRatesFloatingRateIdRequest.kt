@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostFloatingRatesRatePeriods
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutFloatingRatesFloatingRateIdRequest
  *
- * @param isActive 
- * @param isBaseLendingRate 
- * @param name 
- * @param ratePeriods 
+ * @param isActive
+ * @param isBaseLendingRate
+ * @param name
+ * @param ratePeriods
  */
 
+@Serializable
+data class PutFloatingRatesFloatingRateIdRequest(
 
-data class PutFloatingRatesFloatingRateIdRequest (
-
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "isBaseLendingRate")
     val isBaseLendingRate: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "ratePeriods")
     val ratePeriods: kotlin.collections.Set<PostFloatingRatesRatePeriods>? = null
 
-) {
-
-
-}
+)
 

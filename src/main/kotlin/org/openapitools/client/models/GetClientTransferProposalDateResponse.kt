@@ -16,23 +16,20 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientTransferProposalDateResponse
  *
- * @param proposedTransferDate 
+ * @param proposedTransferDate
  */
 
+@Serializable
+data class GetClientTransferProposalDateResponse(
 
-data class GetClientTransferProposalDateResponse (
-
-    @Json(name = "proposedTransferDate")
+    @Contextual
     val proposedTransferDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

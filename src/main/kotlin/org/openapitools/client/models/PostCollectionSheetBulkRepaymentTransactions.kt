@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param loanId 
- * @param paymentTypeId 
- * @param receiptNumber 
- * @param transactionAmount 
+ *
+ * @param loanId
+ * @param paymentTypeId
+ * @param receiptNumber
+ * @param transactionAmount
  */
 
+@Serializable
+data class PostCollectionSheetBulkRepaymentTransactions(
 
-data class PostCollectionSheetBulkRepaymentTransactions (
-
-    @Json(name = "loanId")
     val loanId: kotlin.Long? = null,
 
-    @Json(name = "paymentTypeId")
     val paymentTypeId: kotlin.Long? = null,
 
-    @Json(name = "receiptNumber")
     val receiptNumber: kotlin.Long? = null,
 
-    @Json(name = "transactionAmount")
     val transactionAmount: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

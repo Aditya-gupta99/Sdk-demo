@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ScorecardValue
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param clientId 
- * @param id 
- * @param scorecardValues 
- * @param surveyId 
- * @param surveyName 
- * @param userId 
- * @param username 
+ *
+ * @param clientId
+ * @param id
+ * @param scorecardValues
+ * @param surveyId
+ * @param surveyName
+ * @param userId
+ * @param username
  */
 
+@Serializable
+data class ScorecardData(
 
-data class ScorecardData (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "scorecardValues")
     val scorecardValues: kotlin.collections.List<ScorecardValue>? = null,
 
-    @Json(name = "surveyId")
     val surveyId: kotlin.Long? = null,
 
-    @Json(name = "surveyName")
     val surveyName: kotlin.String? = null,
 
-    @Json(name = "userId")
     val userId: kotlin.Long? = null,
 
-    @Json(name = "username")
     val username: kotlin.String? = null
 
-) {
-
-
-}
+)
 

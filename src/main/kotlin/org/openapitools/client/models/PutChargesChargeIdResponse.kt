@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutChargesChargeIdRequest
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutChargesChargeIdResponse
  *
- * @param changes 
- * @param resourceId 
+ * @param changes
+ * @param resourceId
  */
 
+@Serializable
+data class PutChargesChargeIdResponse(
 
-data class PutChargesChargeIdResponse (
-
-    @Json(name = "changes")
     val changes: PutChargesChargeIdRequest? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

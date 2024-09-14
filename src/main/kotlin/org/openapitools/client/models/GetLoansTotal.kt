@@ -16,59 +16,45 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param currencyCode 
- * @param defaultName 
- * @param digitsAfterDecimal 
- * @param displaySymbol 
- * @param displaySymbolValue 
- * @param greaterThanZero 
- * @param inMultiplesOf 
- * @param nameCode 
- * @param zero 
+ *
+ * @param amount
+ * @param currencyCode
+ * @param defaultName
+ * @param digitsAfterDecimal
+ * @param displaySymbol
+ * @param displaySymbolValue
+ * @param greaterThanZero
+ * @param inMultiplesOf
+ * @param nameCode
+ * @param zero
  */
 
+@Serializable
+data class GetLoansTotal(
 
-data class GetLoansTotal (
-
-    @Json(name = "amount")
     val amount: kotlin.Float? = null,
 
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "defaultName")
     val defaultName: kotlin.String? = null,
 
-    @Json(name = "digitsAfterDecimal")
     val digitsAfterDecimal: kotlin.Int? = null,
 
-    @Json(name = "displaySymbol")
     val displaySymbol: kotlin.String? = null,
 
-    @Json(name = "displaySymbolValue")
     val displaySymbolValue: kotlin.String? = null,
 
-    @Json(name = "greaterThanZero")
     val greaterThanZero: kotlin.Boolean? = null,
 
-    @Json(name = "inMultiplesOf")
     val inMultiplesOf: kotlin.Int? = null,
 
-    @Json(name = "nameCode")
     val nameCode: kotlin.String? = null,
 
-    @Json(name = "zero")
     val zero: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

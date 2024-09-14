@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountNumberFormatsIdResponse
  *
- * @param accountType 
- * @param id 
- * @param prefixType 
+ * @param accountType
+ * @param id
+ * @param prefixType
  */
 
+@Serializable
+data class GetAccountNumberFormatsIdResponse(
 
-data class GetAccountNumberFormatsIdResponse (
-
-    @Json(name = "accountType")
     val accountType: EnumOptionData? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "prefixType")
     val prefixType: EnumOptionData? = null
 
-) {
-
-
-}
+)
 

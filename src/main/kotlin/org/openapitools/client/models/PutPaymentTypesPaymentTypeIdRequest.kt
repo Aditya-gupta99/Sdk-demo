@@ -16,43 +16,33 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutPaymentTypesPaymentTypeIdRequest
  *
- * @param codeName 
- * @param description 
- * @param isCashPayment 
- * @param isSystemDefined 
- * @param name 
- * @param position 
+ * @param codeName
+ * @param description
+ * @param isCashPayment
+ * @param isSystemDefined
+ * @param name
+ * @param position
  */
 
+@Serializable
+data class PutPaymentTypesPaymentTypeIdRequest(
 
-data class PutPaymentTypesPaymentTypeIdRequest (
-
-    @Json(name = "codeName")
     val codeName: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "isCashPayment")
     val isCashPayment: kotlin.Boolean? = null,
 
-    @Json(name = "isSystemDefined")
     val isSystemDefined: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "position")
     val position: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

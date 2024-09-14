@@ -16,75 +16,60 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param chargeId 
- * @param date 
- * @param dueDate 
- * @param externalId 
- * @param feeChargesPortion 
- * @param id 
- * @param installmentNumber 
- * @param interestPortion 
- * @param locale 
- * @param outstandingLoanBalance 
- * @param penaltyChargesPortion 
- * @param principalPortion 
- * @param transactionDate 
+ *
+ * @param amount
+ * @param chargeId
+ * @param date
+ * @param dueDate
+ * @param externalId
+ * @param feeChargesPortion
+ * @param id
+ * @param installmentNumber
+ * @param interestPortion
+ * @param locale
+ * @param outstandingLoanBalance
+ * @param penaltyChargesPortion
+ * @param principalPortion
+ * @param transactionDate
  */
 
+@Serializable
+data class PostLoansLoanIdChargesChargeIdChanges(
 
-data class PostLoansLoanIdChargesChargeIdChanges (
-
-    @Json(name = "amount")
     val amount: kotlin.Double? = null,
 
-    @Json(name = "chargeId")
     val chargeId: kotlin.Long? = null,
 
-    @Json(name = "date")
     val date: kotlin.Double? = null,
 
-    @Json(name = "dueDate")
+    @Contextual
     val dueDate: java.time.LocalDate? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "feeChargesPortion")
     val feeChargesPortion: kotlin.Double? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "installmentNumber")
     val installmentNumber: kotlin.Long? = null,
 
-    @Json(name = "interestPortion")
     val interestPortion: kotlin.Double? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "outstandingLoanBalance")
     val outstandingLoanBalance: kotlin.Double? = null,
 
-    @Json(name = "penaltyChargesPortion")
     val penaltyChargesPortion: kotlin.Double? = null,
 
-    @Json(name = "principalPortion")
     val principalPortion: kotlin.Double? = null,
 
-    @Json(name = "transactionDate")
+    @Contextual
     val transactionDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

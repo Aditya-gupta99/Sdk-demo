@@ -16,59 +16,45 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * Address requests
  *
- * @param addressLine1 
- * @param addressLine2 
- * @param addressLine3 
- * @param addressTypeId 
- * @param city 
- * @param countryId 
- * @param isActive 
- * @param postalCode 
- * @param stateProvinceId 
- * @param street 
+ * @param addressLine1
+ * @param addressLine2
+ * @param addressLine3
+ * @param addressTypeId
+ * @param city
+ * @param countryId
+ * @param isActive
+ * @param postalCode
+ * @param stateProvinceId
+ * @param street
  */
 
+@Serializable
+data class PostClientsAddressRequest(
 
-data class PostClientsAddressRequest (
-
-    @Json(name = "addressLine1")
     val addressLine1: kotlin.String? = null,
 
-    @Json(name = "addressLine2")
     val addressLine2: kotlin.String? = null,
 
-    @Json(name = "addressLine3")
     val addressLine3: kotlin.String? = null,
 
-    @Json(name = "addressTypeId")
     val addressTypeId: kotlin.Long? = null,
 
-    @Json(name = "city")
     val city: kotlin.String? = null,
 
-    @Json(name = "countryId")
     val countryId: kotlin.Long? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "postalCode")
     val postalCode: kotlin.Long? = null,
 
-    @Json(name = "stateProvinceId")
     val stateProvinceId: kotlin.Long? = null,
 
-    @Json(name = "street")
     val street: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,63 +16,50 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dueDate 
- * @param feeChargesDue 
- * @param feeChargesOutstanding 
- * @param period 
- * @param principalDisbursed 
- * @param principalLoanBalanceOutstanding 
- * @param totalActualCostOfLoanForPeriod 
- * @param totalDueForPeriod 
- * @param totalOriginalDueForPeriod 
- * @param totalOutstandingForPeriod 
- * @param totalOverdue 
+ *
+ * @param dueDate
+ * @param feeChargesDue
+ * @param feeChargesOutstanding
+ * @param period
+ * @param principalDisbursed
+ * @param principalLoanBalanceOutstanding
+ * @param totalActualCostOfLoanForPeriod
+ * @param totalDueForPeriod
+ * @param totalOriginalDueForPeriod
+ * @param totalOutstandingForPeriod
+ * @param totalOverdue
  */
 
+@Serializable
+data class PostLoansRepaymentSchedulePeriods(
 
-data class PostLoansRepaymentSchedulePeriods (
-
-    @Json(name = "dueDate")
+    @Contextual
     val dueDate: java.time.LocalDate? = null,
 
-    @Json(name = "feeChargesDue")
     val feeChargesDue: kotlin.Long? = null,
 
-    @Json(name = "feeChargesOutstanding")
     val feeChargesOutstanding: kotlin.Long? = null,
 
-    @Json(name = "period")
     val period: kotlin.Int? = null,
 
-    @Json(name = "principalDisbursed")
     val principalDisbursed: kotlin.Long? = null,
 
-    @Json(name = "principalLoanBalanceOutstanding")
     val principalLoanBalanceOutstanding: kotlin.Long? = null,
 
-    @Json(name = "totalActualCostOfLoanForPeriod")
     val totalActualCostOfLoanForPeriod: kotlin.Long? = null,
 
-    @Json(name = "totalDueForPeriod")
     val totalDueForPeriod: kotlin.Long? = null,
 
-    @Json(name = "totalOriginalDueForPeriod")
     val totalOriginalDueForPeriod: kotlin.Long? = null,
 
-    @Json(name = "totalOutstandingForPeriod")
     val totalOutstandingForPeriod: kotlin.Long? = null,
 
-    @Json(name = "totalOverdue")
     val totalOverdue: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

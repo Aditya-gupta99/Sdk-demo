@@ -15,69 +15,56 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.FloatingRatePeriod
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdBy 
- * @param createdDate 
- * @param createdDateTime 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param lastModifiedDateTime 
- * @param active 
- * @param baseLendingRate 
- * @param floatingRatePeriods 
- * @param id 
- * @param name 
- * @param new 
+ *
+ * @param createdBy
+ * @param createdDate
+ * @param createdDateTime
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param lastModifiedDateTime
+ * @param active
+ * @param baseLendingRate
+ * @param floatingRatePeriods
+ * @param id
+ * @param name
+ * @param new
  */
 
+@Serializable
+data class FloatingRate(
 
-data class FloatingRate (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime,
 
-    @Json(name = "createdDateTime")
+    @Contextual
     val createdDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedDateTime")
+    @Contextual
     val lastModifiedDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "baseLendingRate")
     val baseLendingRate: kotlin.Boolean? = null,
 
-    @Json(name = "floatingRatePeriods")
     val floatingRatePeriods: kotlin.collections.List<FloatingRatePeriod>? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

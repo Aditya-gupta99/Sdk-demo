@@ -16,35 +16,29 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateFormat 
- * @param description 
- * @param endDate 
- * @param locale 
+ *
+ * @param dateFormat
+ * @param description
+ * @param endDate
+ * @param locale
  */
 
+@Serializable
+data class PutTellersTellerIdCashiersCashierIdResponseChanges(
 
-data class PutTellersTellerIdCashiersCashierIdResponseChanges (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: java.time.LocalDate? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null
 
-) {
-
-
-}
+)
 

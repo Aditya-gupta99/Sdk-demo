@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutCachechangesSwagger
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutCachesResponse
  *
- * @param cacheType 
+ * @param cacheType
  */
 
+@Serializable
+data class PutCachesResponse(
 
-data class PutCachesResponse (
-
-    @Json(name = "cacheType")
     val cacheType: PutCachechangesSwagger? = null
 
-) {
-
-
-}
+)
 

@@ -16,27 +16,22 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PutReportRequest
  *
- * @param reportName 
- * @param reportParameters 
+ * @param reportName
+ * @param reportParameters
  */
 
+@Serializable
+data class PutReportRequest(
 
-data class PutReportRequest (
-
-    @Json(name = "reportName")
     val reportName: kotlin.String? = null,
 
-    @Json(name = "reportParameters")
-    val reportParameters: kotlin.collections.List<kotlin.Any>? = null
+    val reportParameters: kotlin.collections.List<@Contextual kotlin.Any>? = null
 
-) {
-
-
-}
+)
 

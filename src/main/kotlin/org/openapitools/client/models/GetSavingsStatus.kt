@@ -16,55 +16,42 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param approved 
- * @param closed 
- * @param code 
- * @param id 
- * @param rejected 
- * @param submittedAndPendingApproval 
- * @param `value` 
- * @param withdrawnByApplicant 
+ *
+ * @param active
+ * @param approved
+ * @param closed
+ * @param code
+ * @param id
+ * @param rejected
+ * @param submittedAndPendingApproval
+ * @param `value`
+ * @param withdrawnByApplicant
  */
 
+@Serializable
+data class GetSavingsStatus(
 
-data class GetSavingsStatus (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "approved")
     val approved: kotlin.Boolean? = null,
 
-    @Json(name = "closed")
     val closed: kotlin.Boolean? = null,
 
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "rejected")
     val rejected: kotlin.Boolean? = null,
 
-    @Json(name = "submittedAndPendingApproval")
     val submittedAndPendingApproval: kotlin.Boolean? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null,
+    val value: kotlin.String? = null,
 
-    @Json(name = "withdrawnByApplicant")
     val withdrawnByApplicant: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

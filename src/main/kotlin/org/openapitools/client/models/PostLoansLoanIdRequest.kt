@@ -15,90 +15,69 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostLoansLoanIdDisbursementData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostLoansLoanIdRequest
  *
- * @param actualDisbursementDate 
- * @param approvedLoanAmount 
- * @param approvedOnDate 
- * @param assignmentDate 
- * @param dateFormat 
+ * @param actualDisbursementDate
+ * @param approvedLoanAmount
+ * @param approvedOnDate
+ * @param assignmentDate
+ * @param dateFormat
  * @param disbursementData List of PostLoansLoanIdDisbursementData
- * @param expectedDisbursementDate 
- * @param externalId 
- * @param fromLoanOfficerId 
- * @param locale 
- * @param note 
- * @param paymentTypeId 
- * @param rejectedOnDate 
- * @param toLoanOfficerId 
- * @param transactionAmount 
- * @param unassignedDate 
- * @param withdrawnOnDate 
+ * @param expectedDisbursementDate
+ * @param externalId
+ * @param fromLoanOfficerId
+ * @param locale
+ * @param note
+ * @param paymentTypeId
+ * @param rejectedOnDate
+ * @param toLoanOfficerId
+ * @param transactionAmount
+ * @param unassignedDate
+ * @param withdrawnOnDate
  */
 
+@Serializable
+data class PostLoansLoanIdRequest(
 
-data class PostLoansLoanIdRequest (
-
-    @Json(name = "actualDisbursementDate")
     val actualDisbursementDate: kotlin.String? = null,
 
-    @Json(name = "approvedLoanAmount")
+    @Contextual
     val approvedLoanAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "approvedOnDate")
     val approvedOnDate: kotlin.String? = null,
 
-    @Json(name = "assignmentDate")
     val assignmentDate: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    /* List of PostLoansLoanIdDisbursementData */
-    @Json(name = "disbursementData")
     val disbursementData: kotlin.collections.List<PostLoansLoanIdDisbursementData>? = null,
 
-    @Json(name = "expectedDisbursementDate")
     val expectedDisbursementDate: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "fromLoanOfficerId")
     val fromLoanOfficerId: kotlin.Int? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "note")
     val note: kotlin.String? = null,
 
-    @Json(name = "paymentTypeId")
     val paymentTypeId: kotlin.Int? = null,
 
-    @Json(name = "rejectedOnDate")
     val rejectedOnDate: kotlin.String? = null,
 
-    @Json(name = "toLoanOfficerId")
     val toLoanOfficerId: kotlin.Int? = null,
 
-    @Json(name = "transactionAmount")
+    @Contextual
     val transactionAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "unassignedDate")
     val unassignedDate: kotlin.String? = null,
 
-    @Json(name = "withdrawnOnDate")
     val withdrawnOnDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

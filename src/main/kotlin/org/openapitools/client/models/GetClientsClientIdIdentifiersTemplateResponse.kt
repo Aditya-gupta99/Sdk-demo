@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientsAllowedDocumentTypes
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientsClientIdIdentifiersTemplateResponse
  *
- * @param allowedDocumentTypes 
+ * @param allowedDocumentTypes
  */
 
+@Serializable
+data class GetClientsClientIdIdentifiersTemplateResponse(
 
-data class GetClientsClientIdIdentifiersTemplateResponse (
-
-    @Json(name = "allowedDocumentTypes")
     val allowedDocumentTypes: kotlin.collections.Set<GetClientsAllowedDocumentTypes>? = null
 
-) {
-
-
-}
+)
 

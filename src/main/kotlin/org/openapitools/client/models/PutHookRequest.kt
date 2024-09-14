@@ -20,41 +20,33 @@ import org.openapitools.client.models.Field
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutHookRequest
  *
- * @param config 
- * @param displayName 
- * @param events 
- * @param isActive 
- * @param name 
- * @param templateId 
+ * @param config
+ * @param displayName
+ * @param events
+ * @param isActive
+ * @param name
+ * @param templateId
  */
 
+@Serializable
+data class PutHookRequest(
 
-data class PutHookRequest (
-
-    @Json(name = "config")
     val config: kotlin.collections.List<Field>? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "events")
     val events: kotlin.collections.List<Event>? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "templateId")
     val templateId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetFixedDepositAccountsProductOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetFixedDepositAccountsTemplateResponse
  *
- * @param clientId 
- * @param clientName 
- * @param productOptions 
+ * @param clientId
+ * @param clientName
+ * @param productOptions
  */
 
+@Serializable
+data class GetFixedDepositAccountsTemplateResponse(
 
-data class GetFixedDepositAccountsTemplateResponse (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "productOptions")
     val productOptions: kotlin.collections.Set<GetFixedDepositAccountsProductOptions>? = null
 
-) {
-
-
-}
+)
 

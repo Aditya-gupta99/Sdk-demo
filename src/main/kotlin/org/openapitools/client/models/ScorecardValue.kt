@@ -16,35 +16,29 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdOn 
- * @param questionId 
- * @param responseId 
- * @param `value` 
+ *
+ * @param createdOn
+ * @param questionId
+ * @param responseId
+ * @param `value`
  */
 
+@Serializable
+data class ScorecardValue(
 
-data class ScorecardValue (
-
-    @Json(name = "createdOn")
+    @Contextual
     val createdOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "questionId")
     val questionId: kotlin.Long? = null,
 
-    @Json(name = "responseId")
     val responseId: kotlin.Long? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.Int? = null
+    val value: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

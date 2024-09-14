@@ -16,59 +16,45 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostRecurringDepositAccountsRecurringDepositAccountIdTransactionsRequest
  *
- * @param accountNumber 
- * @param bankNumber 
- * @param checkNumber 
- * @param dateFormat 
- * @param locale 
- * @param paymentTypeId 
- * @param receiptNumber 
- * @param routingCode 
- * @param transactionAmount 
- * @param transactionDate 
+ * @param accountNumber
+ * @param bankNumber
+ * @param checkNumber
+ * @param dateFormat
+ * @param locale
+ * @param paymentTypeId
+ * @param receiptNumber
+ * @param routingCode
+ * @param transactionAmount
+ * @param transactionDate
  */
 
+@Serializable
+data class PostRecurringDepositAccountsRecurringDepositAccountIdTransactionsRequest(
 
-data class PostRecurringDepositAccountsRecurringDepositAccountIdTransactionsRequest (
-
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.String? = null,
 
-    @Json(name = "bankNumber")
     val bankNumber: kotlin.String? = null,
 
-    @Json(name = "checkNumber")
     val checkNumber: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "paymentTypeId")
     val paymentTypeId: kotlin.Int? = null,
 
-    @Json(name = "receiptNumber")
     val receiptNumber: kotlin.String? = null,
 
-    @Json(name = "routingCode")
     val routingCode: kotlin.String? = null,
 
-    @Json(name = "transactionAmount")
     val transactionAmount: kotlin.Double? = null,
 
-    @Json(name = "transactionDate")
     val transactionDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

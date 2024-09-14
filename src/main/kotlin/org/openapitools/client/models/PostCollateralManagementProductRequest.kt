@@ -16,43 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostCollateralManagementProductRequest
  *
- * @param basePrice 
- * @param currency 
- * @param name 
- * @param pctToBase 
- * @param quality 
- * @param unitType 
+ * @param basePrice
+ * @param currency
+ * @param name
+ * @param pctToBase
+ * @param quality
+ * @param unitType
  */
 
+@Serializable
+data class PostCollateralManagementProductRequest(
 
-data class PostCollateralManagementProductRequest (
-
-    @Json(name = "basePrice")
+    @Contextual
     val basePrice: java.math.BigDecimal? = null,
 
-    @Json(name = "currency")
     val currency: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "pctToBase")
+    @Contextual
     val pctToBase: java.math.BigDecimal? = null,
 
-    @Json(name = "quality")
     val quality: kotlin.String? = null,
 
-    @Json(name = "unitType")
     val unitType: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -15,97 +15,72 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LoanProduct
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amortizationBoolean 
- * @param amortizationType 
- * @param arrearsToleranceBoolean 
- * @param graceOnArrearsAgeing 
- * @param graceOnArrearsAgingBoolean 
- * @param graceOnPrincipalAndInterestPayment 
- * @param graceOnPrincipalAndInterestPaymentBoolean 
- * @param id 
- * @param inArrearsTolerance 
- * @param interestCalcPeriodBoolean 
- * @param interestCalculationPeriodType 
- * @param interestMethodBoolean 
- * @param interestType 
- * @param loanProduct 
- * @param new 
- * @param repaymentEvery 
- * @param repaymentEveryBoolean 
- * @param transactionProcessingStrategyBoolean 
- * @param transactionProcessingStrategyCode 
+ *
+ * @param amortizationBoolean
+ * @param amortizationType
+ * @param arrearsToleranceBoolean
+ * @param graceOnArrearsAgeing
+ * @param graceOnArrearsAgingBoolean
+ * @param graceOnPrincipalAndInterestPayment
+ * @param graceOnPrincipalAndInterestPaymentBoolean
+ * @param id
+ * @param inArrearsTolerance
+ * @param interestCalcPeriodBoolean
+ * @param interestCalculationPeriodType
+ * @param interestMethodBoolean
+ * @param interestType
+ * @param loanProduct
+ * @param new
+ * @param repaymentEvery
+ * @param repaymentEveryBoolean
+ * @param transactionProcessingStrategyBoolean
+ * @param transactionProcessingStrategyCode
  */
 
+@Serializable
+data class LoanProductConfigurableAttributes(
 
-data class LoanProductConfigurableAttributes (
-
-    @Json(name = "amortizationBoolean")
     val amortizationBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "amortizationType")
     val amortizationType: kotlin.Boolean? = null,
 
-    @Json(name = "arrearsToleranceBoolean")
     val arrearsToleranceBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "graceOnArrearsAgeing")
     val graceOnArrearsAgeing: kotlin.Boolean? = null,
 
-    @Json(name = "graceOnArrearsAgingBoolean")
     val graceOnArrearsAgingBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "graceOnPrincipalAndInterestPayment")
     val graceOnPrincipalAndInterestPayment: kotlin.Boolean? = null,
 
-    @Json(name = "graceOnPrincipalAndInterestPaymentBoolean")
     val graceOnPrincipalAndInterestPaymentBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "inArrearsTolerance")
     val inArrearsTolerance: kotlin.Boolean? = null,
 
-    @Json(name = "interestCalcPeriodBoolean")
     val interestCalcPeriodBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "interestCalculationPeriodType")
     val interestCalculationPeriodType: kotlin.Boolean? = null,
 
-    @Json(name = "interestMethodBoolean")
     val interestMethodBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "interestType")
     val interestType: kotlin.Boolean? = null,
 
-    @Json(name = "loanProduct")
     val loanProduct: LoanProduct? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "repaymentEvery")
     val repaymentEvery: kotlin.Boolean? = null,
 
-    @Json(name = "repaymentEveryBoolean")
     val repaymentEveryBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "transactionProcessingStrategyBoolean")
     val transactionProcessingStrategyBoolean: kotlin.Boolean? = null,
 
-    @Json(name = "transactionProcessingStrategyCode")
     val transactionProcessingStrategyCode: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

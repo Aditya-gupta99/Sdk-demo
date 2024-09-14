@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsPageItems
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGroupsResponse
  *
- * @param pageItems 
- * @param totalFilteredRecords 
+ * @param pageItems
+ * @param totalFilteredRecords
  */
 
+@Serializable
+data class GetGroupsResponse(
 
-data class GetGroupsResponse (
-
-    @Json(name = "pageItems")
     val pageItems: kotlin.collections.Set<GetGroupsPageItems>? = null,
 
-    @Json(name = "totalFilteredRecords")
     val totalFilteredRecords: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

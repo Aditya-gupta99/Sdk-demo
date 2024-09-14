@@ -15,50 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetFixedDepositProductsProductIdIncomeFromFeeAccount
-import org.openapitools.client.models.GetFixedDepositProductsProductIdIncomeFromPenaltyAccount
-import org.openapitools.client.models.GetFixedDepositProductsProductIdInterestOnSavingsAccount
-import org.openapitools.client.models.GetFixedDepositProductsProductIdSavingsControlAccount
-import org.openapitools.client.models.GetFixedDepositProductsProductIdSavingsReferenceAccount
-import org.openapitools.client.models.GetFixedDepositProductsProductIdTransfersInSuspenseAccount
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param incomeFromFeeAccount 
- * @param incomeFromPenaltyAccount 
- * @param interestOnSavingsAccount 
- * @param savingsControlAccount 
- * @param savingsReferenceAccount 
- * @param transfersInSuspenseAccount 
+ *
+ * @param incomeFromFeeAccount
+ * @param incomeFromPenaltyAccount
+ * @param interestOnSavingsAccount
+ * @param savingsControlAccount
+ * @param savingsReferenceAccount
+ * @param transfersInSuspenseAccount
  */
 
+@Serializable
+data class GetFixedDepositProductsProductIdAccountingMappings(
 
-data class GetFixedDepositProductsProductIdAccountingMappings (
-
-    @Json(name = "incomeFromFeeAccount")
     val incomeFromFeeAccount: GetFixedDepositProductsProductIdIncomeFromFeeAccount? = null,
 
-    @Json(name = "incomeFromPenaltyAccount")
     val incomeFromPenaltyAccount: GetFixedDepositProductsProductIdIncomeFromPenaltyAccount? = null,
 
-    @Json(name = "interestOnSavingsAccount")
     val interestOnSavingsAccount: GetFixedDepositProductsProductIdInterestOnSavingsAccount? = null,
 
-    @Json(name = "savingsControlAccount")
     val savingsControlAccount: GetFixedDepositProductsProductIdSavingsControlAccount? = null,
 
-    @Json(name = "savingsReferenceAccount")
     val savingsReferenceAccount: GetFixedDepositProductsProductIdSavingsReferenceAccount? = null,
 
-    @Json(name = "transfersInSuspenseAccount")
     val transfersInSuspenseAccount: GetFixedDepositProductsProductIdTransfersInSuspenseAccount? = null
 
-) {
-
-
-}
+)
 

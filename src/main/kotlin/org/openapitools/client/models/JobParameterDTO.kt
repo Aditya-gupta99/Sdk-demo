@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param parameterName 
- * @param parameterValue 
+ *
+ * @param parameterName
+ * @param parameterValue
  */
 
+@Serializable
+data class JobParameterDTO(
 
-data class JobParameterDTO (
-
-    @Json(name = "parameterName")
     val parameterName: kotlin.String? = null,
 
-    @Json(name = "parameterValue")
     val parameterValue: kotlin.String? = null
 
-) {
-
-
-}
+)
 

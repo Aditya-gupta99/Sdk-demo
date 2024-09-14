@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetProvisioningCriteriaResponse
  *
- * @param createdBy 
- * @param criteriaId 
- * @param criteriaName 
+ * @param createdBy
+ * @param criteriaId
+ * @param criteriaName
  */
 
+@Serializable
+data class GetProvisioningCriteriaResponse(
 
-data class GetProvisioningCriteriaResponse (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.String? = null,
 
-    @Json(name = "criteriaId")
     val criteriaId: kotlin.Long? = null,
 
-    @Json(name = "criteriaName")
     val criteriaName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

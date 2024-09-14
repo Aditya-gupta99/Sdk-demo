@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param enabled 
- * @param type 
+ *
+ * @param enabled
+ * @param type
  */
 
+@Serializable
+data class ExternalEventConfigurationItemData(
 
-data class ExternalEventConfigurationItemData (
-
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
 
-    @Json(name = "type")
     val type: kotlin.String? = null
 
-) {
-
-
-}
+)
 

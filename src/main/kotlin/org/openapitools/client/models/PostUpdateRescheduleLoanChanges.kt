@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param approvedByUserId 
- * @param approvedOnDate 
- * @param dateFormat 
- * @param locale 
+ *
+ * @param approvedByUserId
+ * @param approvedOnDate
+ * @param dateFormat
+ * @param locale
  */
 
+@Serializable
+data class PostUpdateRescheduleLoanChanges(
 
-data class PostUpdateRescheduleLoanChanges (
-
-    @Json(name = "approvedByUserId")
     val approvedByUserId: kotlin.Long? = null,
 
-    @Json(name = "approvedOnDate")
     val approvedOnDate: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null
 
-) {
-
-
-}
+)
 

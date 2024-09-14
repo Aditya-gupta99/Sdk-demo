@@ -16,31 +16,26 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param name 
- * @param percentage 
- * @param startDate 
+ *
+ * @param name
+ * @param percentage
+ * @param startDate
  */
 
+@Serializable
+data class PutTaxesComponentsChanges(
 
-data class PutTaxesComponentsChanges (
-
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "percentage")
     val percentage: kotlin.Float? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSavingsProductsIncomeFromPenaltyAccount
-import org.openapitools.client.models.GetSavingsProductsPenaltyToIncomeAccountMappingsCharge
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param charge 
- * @param incomeAccount 
+ *
+ * @param charge
+ * @param incomeAccount
  */
 
+@Serializable
+data class GetSavingsProductsPenaltyToIncomeAccountMappings(
 
-data class GetSavingsProductsPenaltyToIncomeAccountMappings (
-
-    @Json(name = "charge")
     val charge: GetSavingsProductsPenaltyToIncomeAccountMappingsCharge? = null,
 
-    @Json(name = "incomeAccount")
     val incomeAccount: GetSavingsProductsIncomeFromPenaltyAccount? = null
 
-) {
-
-
-}
+)
 

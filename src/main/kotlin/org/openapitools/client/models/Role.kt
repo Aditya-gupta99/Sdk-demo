@@ -19,6 +19,7 @@ import org.openapitools.client.models.Permission
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * 
@@ -31,25 +32,19 @@ import com.squareup.moshi.JsonClass
  * @param permissions 
  */
 
-
+@Serializable
 data class Role (
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "permissions")
     val permissions: kotlin.collections.List<Permission>? = null
 
 ) {

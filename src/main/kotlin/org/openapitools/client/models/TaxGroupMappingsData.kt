@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TaxComponentData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param taxComponent 
+ *
+ * @param taxComponent
  */
 
+@Serializable
+data class TaxGroupMappingsData(
 
-data class TaxGroupMappingsData (
-
-    @Json(name = "taxComponent")
     val taxComponent: TaxComponentData? = null
 
-) {
-
-
-}
+)
 

@@ -15,42 +15,32 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetCentersOfficeOptions
-import org.openapitools.client.models.GetCentersStaffOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetCentersTemplateResponse
  *
- * @param activationDate 
- * @param active 
- * @param officeId 
- * @param officeOptions 
- * @param staffOptions 
+ * @param activationDate
+ * @param active
+ * @param officeId
+ * @param officeOptions
+ * @param staffOptions
  */
 
+@Serializable
+data class GetCentersTemplateResponse(
 
-data class GetCentersTemplateResponse (
-
-    @Json(name = "activationDate")
+    @Contextual
     val activationDate: java.time.LocalDate? = null,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeOptions")
     val officeOptions: kotlin.collections.Set<GetCentersOfficeOptions>? = null,
 
-    @Json(name = "staffOptions")
     val staffOptions: kotlin.collections.Set<GetCentersStaffOptions>? = null
 
-) {
-
-
-}
+)
 

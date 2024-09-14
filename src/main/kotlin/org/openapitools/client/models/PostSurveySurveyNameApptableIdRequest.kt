@@ -16,71 +16,57 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostSurveySurveyNameApptableIdRequest
  *
- * @param date 
- * @param dateFormat 
- * @param locale 
- * @param ppiBusinessoccupationCdQ3Businessoccupation 
- * @param ppiFloortypeCdQ5Floortype 
- * @param ppiFryingpansCdQ10Fryingpans 
- * @param ppiHabitableroomsCdQ4Habitablerooms 
- * @param ppiHighestschoolCdQ2Highestschool 
- * @param ppiHouseholdMembersCdQ1Householdmembers 
- * @param ppiIronsCdQ7Irons 
- * @param ppiLightingsourceCdQ6Lightingsource 
- * @param ppiMosquitonetsCdQ8Mosquitonets 
- * @param ppiTowelsCdQ9Towels 
+ * @param date
+ * @param dateFormat
+ * @param locale
+ * @param ppiBusinessoccupationCdQ3Businessoccupation
+ * @param ppiFloortypeCdQ5Floortype
+ * @param ppiFryingpansCdQ10Fryingpans
+ * @param ppiHabitableroomsCdQ4Habitablerooms
+ * @param ppiHighestschoolCdQ2Highestschool
+ * @param ppiHouseholdMembersCdQ1Householdmembers
+ * @param ppiIronsCdQ7Irons
+ * @param ppiLightingsourceCdQ6Lightingsource
+ * @param ppiMosquitonetsCdQ8Mosquitonets
+ * @param ppiTowelsCdQ9Towels
  */
 
+@Serializable
+data class PostSurveySurveyNameApptableIdRequest(
 
-data class PostSurveySurveyNameApptableIdRequest (
-
-    @Json(name = "Date")
+    @Contextual
     val date: java.time.OffsetDateTime? = null,
 
-    @Json(name = "dateFormat")
+    @Contextual
     val dateFormat: java.time.OffsetDateTime? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "ppi_businessoccupation_cd_q3_businessoccupation")
-    val ppiBusinessoccupationCdQ3Businessoccupation: kotlin.Long? = null,
+    val ppi_businessoccupation_cd_q3_businessoccupation: kotlin.Long? = null,
 
-    @Json(name = "ppi_floortype_cd_q5_floortype")
-    val ppiFloortypeCdQ5Floortype: kotlin.Long? = null,
+    val ppi_floortype_cd_q5_floortype: kotlin.Long? = null,
 
-    @Json(name = "ppi_fryingpans_cd_q10_fryingpans")
-    val ppiFryingpansCdQ10Fryingpans: kotlin.Long? = null,
+    val ppi_fryingpans_cd_q10_fryingpans: kotlin.Long? = null,
 
-    @Json(name = "ppi_habitablerooms_cd_q4_habitablerooms")
-    val ppiHabitableroomsCdQ4Habitablerooms: kotlin.Long? = null,
+    val ppi_habitablerooms_cd_q4_habitablerooms: kotlin.Long? = null,
 
-    @Json(name = "ppi_highestschool_cd_q2_highestschool")
-    val ppiHighestschoolCdQ2Highestschool: kotlin.Long? = null,
+    val ppi_highestschool_cd_q2_highestschool: kotlin.Long? = null,
 
-    @Json(name = "ppi_household_members_cd_q1_householdmembers")
-    val ppiHouseholdMembersCdQ1Householdmembers: kotlin.Long? = null,
+    val ppi_household_members_cd_q1_householdmembers: kotlin.Long? = null,
 
-    @Json(name = "ppi_irons_cd_q7_irons")
-    val ppiIronsCdQ7Irons: kotlin.Long? = null,
+    val ppi_irons_cd_q7_irons: kotlin.Long? = null,
 
-    @Json(name = "ppi_lightingsource_cd_q6_lightingsource")
-    val ppiLightingsourceCdQ6Lightingsource: kotlin.Long? = null,
+    val ppi_lightingsource_cd_q6_lightingsource: kotlin.Long? = null,
 
-    @Json(name = "ppi_mosquitonets_cd_q8_mosquitonets")
-    val ppiMosquitonetsCdQ8Mosquitonets: kotlin.Long? = null,
+    val ppi_mosquitonets_cd_q8_mosquitonets: kotlin.Long? = null,
 
-    @Json(name = "ppi_towels_cd_q9_towels")
-    val ppiTowelsCdQ9Towels: kotlin.Long? = null
+    val ppi_towels_cd_q9_towels: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

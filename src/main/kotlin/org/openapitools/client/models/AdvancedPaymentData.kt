@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -25,16 +25,13 @@ import com.squareup.moshi.Json
  * @param transactionType
  */
 
-
+@Serializable
 data class AdvancedPaymentData(
 
-    @Json(name = "futureInstallmentAllocationRule")
     val futureInstallmentAllocationRule: kotlin.String? = null,
 
-    @Json(name = "paymentAllocationOrder")
     val paymentAllocationOrder: kotlin.collections.List<PaymentAllocationOrder>? = null,
 
-    @Json(name = "transactionType")
     val transactionType: kotlin.String? = null
 
 )

@@ -15,82 +15,60 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoansLoanIdCurrency
-import org.openapitools.client.models.GetLoansLoanIdRepaymentPeriod
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param currency 
- * @param loanTermInDays 
- * @param periods 
- * @param totalFeeChargesCharged 
- * @param totalInterestCharged 
- * @param totalOutstanding 
- * @param totalPaidInAdvance 
- * @param totalPaidLate 
- * @param totalPenaltyChargesCharged 
- * @param totalPrincipalDisbursed 
- * @param totalPrincipalExpected 
- * @param totalPrincipalPaid 
- * @param totalRepaymentExpected 
- * @param totalWaived 
- * @param totalWrittenOff 
+ *
+ * @param currency
+ * @param loanTermInDays
+ * @param periods
+ * @param totalFeeChargesCharged
+ * @param totalInterestCharged
+ * @param totalOutstanding
+ * @param totalPaidInAdvance
+ * @param totalPaidLate
+ * @param totalPenaltyChargesCharged
+ * @param totalPrincipalDisbursed
+ * @param totalPrincipalExpected
+ * @param totalPrincipalPaid
+ * @param totalRepaymentExpected
+ * @param totalWaived
+ * @param totalWrittenOff
  */
 
+@Serializable
+data class GetLoansLoanIdRepaymentSchedule(
 
-data class GetLoansLoanIdRepaymentSchedule (
-
-    @Json(name = "currency")
     val currency: GetLoansLoanIdCurrency? = null,
 
-    @Json(name = "loanTermInDays")
     val loanTermInDays: kotlin.Long? = null,
 
-    @Json(name = "periods")
     val periods: kotlin.collections.List<GetLoansLoanIdRepaymentPeriod>? = null,
 
-    @Json(name = "totalFeeChargesCharged")
     val totalFeeChargesCharged: kotlin.Double? = null,
 
-    @Json(name = "totalInterestCharged")
     val totalInterestCharged: kotlin.Double? = null,
 
-    @Json(name = "totalOutstanding")
     val totalOutstanding: kotlin.Double? = null,
 
-    @Json(name = "totalPaidInAdvance")
     val totalPaidInAdvance: kotlin.Double? = null,
 
-    @Json(name = "totalPaidLate")
     val totalPaidLate: kotlin.Double? = null,
 
-    @Json(name = "totalPenaltyChargesCharged")
     val totalPenaltyChargesCharged: kotlin.Double? = null,
 
-    @Json(name = "totalPrincipalDisbursed")
     val totalPrincipalDisbursed: kotlin.Double? = null,
 
-    @Json(name = "totalPrincipalExpected")
     val totalPrincipalExpected: kotlin.Double? = null,
 
-    @Json(name = "totalPrincipalPaid")
     val totalPrincipalPaid: kotlin.Double? = null,
 
-    @Json(name = "totalRepaymentExpected")
     val totalRepaymentExpected: kotlin.Double? = null,
 
-    @Json(name = "totalWaived")
     val totalWaived: kotlin.Double? = null,
 
-    @Json(name = "totalWrittenOff")
     val totalWrittenOff: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

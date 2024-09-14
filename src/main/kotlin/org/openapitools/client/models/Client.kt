@@ -15,275 +15,218 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AppUser
-import org.openapitools.client.models.CodeValue
-import org.openapitools.client.models.ExternalId
-import org.openapitools.client.models.Group
-import org.openapitools.client.models.Image
-import org.openapitools.client.models.Office
-import org.openapitools.client.models.Staff
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param createdBy 
- * @param createdDate 
- * @param createdDateTime 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param lastModifiedDateTime 
- * @param accountNumber 
- * @param accountNumberRequiresAutoGeneration 
- * @param activatedBy 
- * @param activationDate 
- * @param active 
- * @param clientClassification 
- * @param clientType 
- * @param closed 
- * @param closedBy 
- * @param closureDate 
- * @param closureReason 
- * @param dateOfBirth 
- * @param displayName 
- * @param emailAddress 
- * @param externalId 
- * @param firstname 
- * @param fullname 
- * @param gender 
- * @param groups 
- * @param id 
- * @param image 
- * @param lastname 
- * @param legalForm 
- * @param middlename 
- * @param mobileNo 
- * @param new 
- * @param notActive 
- * @param notPending 
- * @param notStaff 
- * @param office 
- * @param officeJoiningDate 
- * @param pending 
- * @param proposedTransferDate 
- * @param reactivateDate 
- * @param reactivatedBy 
- * @param rejected 
- * @param rejectedBy 
- * @param rejectedDate 
- * @param rejectionDate 
- * @param rejectionReason 
- * @param reopenedBy 
- * @param reopenedDate 
- * @param savingsAccountId 
- * @param savingsProductId 
- * @param staff 
- * @param status 
- * @param subStatus 
- * @param submittedOnDate 
- * @param transferInProgress 
- * @param transferInProgressOrOnHold 
- * @param transferOnHold 
- * @param transferToOffice 
- * @param withdrawalDate 
- * @param withdrawalReason 
- * @param withdrawn 
- * @param withdrawnBy 
+ *
+ * @param createdBy
+ * @param createdDate
+ * @param createdDateTime
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param lastModifiedDateTime
+ * @param accountNumber
+ * @param accountNumberRequiresAutoGeneration
+ * @param activatedBy
+ * @param activationDate
+ * @param active
+ * @param clientClassification
+ * @param clientType
+ * @param closed
+ * @param closedBy
+ * @param closureDate
+ * @param closureReason
+ * @param dateOfBirth
+ * @param displayName
+ * @param emailAddress
+ * @param externalId
+ * @param firstname
+ * @param fullname
+ * @param gender
+ * @param groups
+ * @param id
+ * @param image
+ * @param lastname
+ * @param legalForm
+ * @param middlename
+ * @param mobileNo
+ * @param new
+ * @param notActive
+ * @param notPending
+ * @param notStaff
+ * @param office
+ * @param officeJoiningDate
+ * @param pending
+ * @param proposedTransferDate
+ * @param reactivateDate
+ * @param reactivatedBy
+ * @param rejected
+ * @param rejectedBy
+ * @param rejectedDate
+ * @param rejectionDate
+ * @param rejectionReason
+ * @param reopenedBy
+ * @param reopenedDate
+ * @param savingsAccountId
+ * @param savingsProductId
+ * @param staff
+ * @param status
+ * @param subStatus
+ * @param submittedOnDate
+ * @param transferInProgress
+ * @param transferInProgressOrOnHold
+ * @param transferOnHold
+ * @param transferToOffice
+ * @param withdrawalDate
+ * @param withdrawalReason
+ * @param withdrawn
+ * @param withdrawnBy
  */
 
+@Serializable
+data class Client(
 
-data class Client (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime,
 
-    @Json(name = "createdDateTime")
+    @Contextual
     val createdDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime,
 
-    @Json(name = "lastModifiedDateTime")
+    @Contextual
     val lastModifiedDateTime: java.time.OffsetDateTime,
 
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.String? = null,
 
-    @Json(name = "accountNumberRequiresAutoGeneration")
     val accountNumberRequiresAutoGeneration: kotlin.Boolean? = null,
 
-    @Json(name = "activatedBy")
     val activatedBy: AppUser? = null,
 
-    @Json(name = "activationDate")
+    @Contextual
     val activationDate: java.time.LocalDate? = null,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "clientClassification")
     val clientClassification: CodeValue? = null,
 
-    @Json(name = "clientType")
     val clientType: CodeValue? = null,
 
-    @Json(name = "closed")
     val closed: kotlin.Boolean? = null,
 
-    @Json(name = "closedBy")
     val closedBy: AppUser? = null,
 
-    @Json(name = "closureDate")
+    @Contextual
     val closureDate: java.time.LocalDate? = null,
 
-    @Json(name = "closureReason")
     val closureReason: CodeValue? = null,
 
-    @Json(name = "dateOfBirth")
+    @Contextual
     val dateOfBirth: java.time.LocalDate? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "emailAddress")
     val emailAddress: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: ExternalId? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "fullname")
     val fullname: kotlin.String? = null,
 
-    @Json(name = "gender")
     val gender: CodeValue? = null,
 
-    @Json(name = "groups")
     val groups: kotlin.collections.Set<Group>? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "image")
     val image: Image? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "legalForm")
     val legalForm: kotlin.Int? = null,
 
-    @Json(name = "middlename")
     val middlename: kotlin.String? = null,
 
-    @Json(name = "mobileNo")
     val mobileNo: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "notActive")
     val notActive: kotlin.Boolean? = null,
 
-    @Json(name = "notPending")
     val notPending: kotlin.Boolean? = null,
 
-    @Json(name = "notStaff")
     val notStaff: kotlin.Boolean? = null,
 
-    @Json(name = "office")
     val office: Office? = null,
 
-    @Json(name = "officeJoiningDate")
+    @Contextual
     val officeJoiningDate: java.time.LocalDate? = null,
 
-    @Json(name = "pending")
     val pending: kotlin.Boolean? = null,
 
-    @Json(name = "proposedTransferDate")
+    @Contextual
     val proposedTransferDate: java.time.LocalDate? = null,
 
-    @Json(name = "reactivateDate")
+    @Contextual
     val reactivateDate: java.time.LocalDate? = null,
 
-    @Json(name = "reactivatedBy")
     val reactivatedBy: AppUser? = null,
 
-    @Json(name = "rejected")
     val rejected: kotlin.Boolean? = null,
 
-    @Json(name = "rejectedBy")
     val rejectedBy: AppUser? = null,
 
-    @Json(name = "rejectedDate")
+    @Contextual
     val rejectedDate: java.time.LocalDate? = null,
 
-    @Json(name = "rejectionDate")
+    @Contextual
     val rejectionDate: java.time.LocalDate? = null,
 
-    @Json(name = "rejectionReason")
     val rejectionReason: CodeValue? = null,
 
-    @Json(name = "reopenedBy")
     val reopenedBy: AppUser? = null,
 
-    @Json(name = "reopenedDate")
-    val reopenedDate: java.time.LocalDate? = null,
+    @Contextual
+    val reopenedDate: LocalDate? = null,
 
-    @Json(name = "savingsAccountId")
     val savingsAccountId: kotlin.Long? = null,
 
-    @Json(name = "savingsProductId")
     val savingsProductId: kotlin.Long? = null,
 
-    @Json(name = "staff")
     val staff: Staff? = null,
 
-    @Json(name = "status")
     val status: kotlin.Int? = null,
 
-    @Json(name = "subStatus")
     val subStatus: CodeValue? = null,
 
-    @Json(name = "submittedOnDate")
-    val submittedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val submittedOnDate: LocalDate? = null,
 
-    @Json(name = "transferInProgress")
     val transferInProgress: kotlin.Boolean? = null,
 
-    @Json(name = "transferInProgressOrOnHold")
     val transferInProgressOrOnHold: kotlin.Boolean? = null,
 
-    @Json(name = "transferOnHold")
     val transferOnHold: kotlin.Boolean? = null,
 
-    @Json(name = "transferToOffice")
     val transferToOffice: Office? = null,
 
-    @Json(name = "withdrawalDate")
-    val withdrawalDate: java.time.LocalDate? = null,
+    @Contextual
+    val withdrawalDate: LocalDate? = null,
 
-    @Json(name = "withdrawalReason")
     val withdrawalReason: CodeValue? = null,
 
-    @Json(name = "withdrawn")
     val withdrawn: kotlin.Boolean? = null,
 
-    @Json(name = "withdrawnBy")
     val withdrawnBy: AppUser? = null
 
-) {
-
-
-}
+)
 

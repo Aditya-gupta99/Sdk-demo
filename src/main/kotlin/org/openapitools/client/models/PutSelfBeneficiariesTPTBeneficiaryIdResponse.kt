@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutSelfBeneficiariesChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutSelfBeneficiariesTPTBeneficiaryIdResponse
  *
- * @param changes 
- * @param resourceId 
+ * @param changes
+ * @param resourceId
  */
 
+@Serializable
+data class PutSelfBeneficiariesTPTBeneficiaryIdResponse(
 
-data class PutSelfBeneficiariesTPTBeneficiaryIdResponse (
-
-    @Json(name = "changes")
     val changes: PutSelfBeneficiariesChanges? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

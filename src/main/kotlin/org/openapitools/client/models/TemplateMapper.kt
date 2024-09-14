@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param mapperkey 
- * @param mapperorder 
- * @param mappervalue 
- * @param new 
+ *
+ * @param id
+ * @param mapperkey
+ * @param mapperorder
+ * @param mappervalue
+ * @param new
  */
 
+@Serializable
+data class TemplateMapper(
 
-data class TemplateMapper (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "mapperkey")
     val mapperkey: kotlin.String? = null,
 
-    @Json(name = "mapperorder")
     val mapperorder: kotlin.Int? = null,
 
-    @Json(name = "mappervalue")
     val mappervalue: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

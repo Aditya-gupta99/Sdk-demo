@@ -15,41 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSavingsChargesOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetSavingsAccountsSavingsAccountIdChargesTemplateResponse
  *
- * @param amountPaid 
- * @param amountWaived 
- * @param amountWrittenOff 
- * @param chargeOptions 
- * @param penalty 
+ * @param amountPaid
+ * @param amountWaived
+ * @param amountWrittenOff
+ * @param chargeOptions
+ * @param penalty
  */
 
+@Serializable
+data class GetSavingsAccountsSavingsAccountIdChargesTemplateResponse(
 
-data class GetSavingsAccountsSavingsAccountIdChargesTemplateResponse (
-
-    @Json(name = "amountPaid")
     val amountPaid: kotlin.Float? = null,
 
-    @Json(name = "amountWaived")
     val amountWaived: kotlin.Float? = null,
 
-    @Json(name = "amountWrittenOff")
     val amountWrittenOff: kotlin.Float? = null,
 
-    @Json(name = "chargeOptions")
     val chargeOptions: kotlin.collections.Set<GetSavingsChargesOptions>? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

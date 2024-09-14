@@ -15,38 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGlAccountMapping
-import org.openapitools.client.models.GetLoanCharge
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param charge 
- * @param chargeId 
- * @param incomeAccount 
- * @param incomeAccountId 
+ *
+ * @param charge
+ * @param chargeId
+ * @param incomeAccount
+ * @param incomeAccountId
  */
 
+@Serializable
+data class GetLoanFeeToIncomeAccountMappings(
 
-data class GetLoanFeeToIncomeAccountMappings (
-
-    @Json(name = "charge")
     val charge: GetLoanCharge? = null,
 
-    @Json(name = "chargeId")
     val chargeId: kotlin.Long? = null,
 
-    @Json(name = "incomeAccount")
     val incomeAccount: GetGlAccountMapping? = null,
 
-    @Json(name = "incomeAccountId")
     val incomeAccountId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

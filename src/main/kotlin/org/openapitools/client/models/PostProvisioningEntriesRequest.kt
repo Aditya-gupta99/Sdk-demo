@@ -16,43 +16,33 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostProvisioningEntriesRequest
  *
- * @param createjournalentries 
- * @param date 
- * @param dateFormat 
- * @param propertyEntries 
- * @param locale 
- * @param provisioningentry 
+ * @param createjournalentries
+ * @param date
+ * @param dateFormat
+ * @param propertyEntries
+ * @param locale
+ * @param provisioningentry
  */
 
+@Serializable
+data class PostProvisioningEntriesRequest(
 
-data class PostProvisioningEntriesRequest (
-
-    @Json(name = "createjournalentries")
     val createjournalentries: kotlin.String? = null,
 
-    @Json(name = "date")
     val date: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "entries")
     val propertyEntries: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "provisioningentry")
     val provisioningentry: kotlin.String? = null
 
-) {
-
-
-}
+)
 

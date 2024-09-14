@@ -16,23 +16,19 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param row 
+ *
+ * @param row
  */
 
+@Serializable
+data class ResultsetRowData(
 
-data class ResultsetRowData (
+    val row: kotlin.collections.List<@Contextual kotlin.Any>? = null
 
-    @Json(name = "row")
-    val row: kotlin.collections.List<kotlin.Any>? = null
-
-) {
-
-
-}
+)
 

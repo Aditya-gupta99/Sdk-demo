@@ -16,67 +16,55 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param activatedByFirstname 
- * @param activatedByLastname 
- * @param activatedByUsername 
- * @param activatedOnDate 
- * @param closedByFirstname 
- * @param closedByLastname 
- * @param closedByUsername 
- * @param closedOnDate 
- * @param submittedByFirstname 
- * @param submittedByLastname 
- * @param submittedByUsername 
- * @param submittedOnDate 
+ *
+ * @param activatedByFirstname
+ * @param activatedByLastname
+ * @param activatedByUsername
+ * @param activatedOnDate
+ * @param closedByFirstname
+ * @param closedByLastname
+ * @param closedByUsername
+ * @param closedOnDate
+ * @param submittedByFirstname
+ * @param submittedByLastname
+ * @param submittedByUsername
+ * @param submittedOnDate
  */
 
+@Serializable
+data class ClientTimelineData(
 
-data class ClientTimelineData (
-
-    @Json(name = "activatedByFirstname")
     val activatedByFirstname: kotlin.String? = null,
 
-    @Json(name = "activatedByLastname")
     val activatedByLastname: kotlin.String? = null,
 
-    @Json(name = "activatedByUsername")
     val activatedByUsername: kotlin.String? = null,
 
-    @Json(name = "activatedOnDate")
-    val activatedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val activatedOnDate: LocalDate? = null,
 
-    @Json(name = "closedByFirstname")
     val closedByFirstname: kotlin.String? = null,
 
-    @Json(name = "closedByLastname")
     val closedByLastname: kotlin.String? = null,
 
-    @Json(name = "closedByUsername")
     val closedByUsername: kotlin.String? = null,
 
-    @Json(name = "closedOnDate")
-    val closedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val closedOnDate: LocalDate? = null,
 
-    @Json(name = "submittedByFirstname")
     val submittedByFirstname: kotlin.String? = null,
 
-    @Json(name = "submittedByLastname")
     val submittedByLastname: kotlin.String? = null,
 
-    @Json(name = "submittedByUsername")
     val submittedByUsername: kotlin.String? = null,
 
-    @Json(name = "submittedOnDate")
-    val submittedOnDate: java.time.LocalDate? = null
-
-) {
-
-
-}
+    @Contextual
+    val submittedOnDate: LocalDate? = null
+)
 

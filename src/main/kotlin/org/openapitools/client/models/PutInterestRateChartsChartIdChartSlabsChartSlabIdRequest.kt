@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutInterestRateChartsChartIdChartSlabsChartSlabIdRequest
  *
- * @param annualInterestRate 
- * @param description 
+ * @param annualInterestRate
+ * @param description
  */
 
+@Serializable
+data class PutInterestRateChartsChartIdChartSlabsChartSlabIdRequest(
 
-data class PutInterestRateChartsChartIdChartSlabsChartSlabIdRequest (
-
-    @Json(name = "annualInterestRate")
     val annualInterestRate: kotlin.Double? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null
 
-) {
-
-
-}
+)
 

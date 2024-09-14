@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutClientClientIdAddressesRequest
  *
- * @param addressId 
- * @param street 
+ * @param addressId
+ * @param street
  */
 
+@Serializable
+data class PutClientClientIdAddressesRequest(
 
-data class PutClientClientIdAddressesRequest (
-
-    @Json(name = "addressId")
     val addressId: kotlin.Long? = null,
 
-    @Json(name = "street")
     val street: kotlin.String? = null
 
-) {
-
-
-}
+)
 

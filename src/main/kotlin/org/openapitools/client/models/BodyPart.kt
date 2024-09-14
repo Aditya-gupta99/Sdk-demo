@@ -15,7 +15,8 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -30,31 +31,26 @@ import com.squareup.moshi.Json
  * @param providers
  */
 
-
+@Serializable
 data class BodyPart(
 
-    @Json(name = "contentDisposition")
     val contentDisposition: ContentDisposition? = null,
 
-    @Json(name = "entity")
+    @Contextual
     val entity: kotlin.Any? = null,
 
-    @Json(name = "headers")
     val headers: BodyPartHeaders? = null,
 
-    @Json(name = "mediaType")
     val mediaType: MediaType? = null,
 
-    @Json(name = "messageBodyWorkers")
+    @Contextual
     val messageBodyWorkers: kotlin.Any? = null,
 
-    @Json(name = "parameterizedHeaders")
     val parameterizedHeaders: BodyPartParameterizedHeaders? = null,
 
-    @Json(name = "parent")
     val parent: MultiPart? = null,
 
-    @Json(name = "providers")
+    @Contextual
     val providers: kotlin.Any? = null
 
 )

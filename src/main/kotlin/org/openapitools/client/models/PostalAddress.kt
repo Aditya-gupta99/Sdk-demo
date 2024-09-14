@@ -16,43 +16,33 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param addressLine1 
- * @param addressLine2 
- * @param city 
- * @param country 
- * @param postalCode 
- * @param stateProvince 
+ *
+ * @param addressLine1
+ * @param addressLine2
+ * @param city
+ * @param country
+ * @param postalCode
+ * @param stateProvince
  */
 
+@Serializable
+data class PostalAddress(
 
-data class PostalAddress (
-
-    @Json(name = "addressLine1")
     val addressLine1: kotlin.String? = null,
 
-    @Json(name = "addressLine2")
     val addressLine2: kotlin.String? = null,
 
-    @Json(name = "city")
     val city: kotlin.String? = null,
 
-    @Json(name = "country")
     val country: kotlin.String? = null,
 
-    @Json(name = "postalCode")
     val postalCode: kotlin.String? = null,
 
-    @Json(name = "stateProvince")
     val stateProvince: kotlin.String? = null
 
-) {
-
-
-}
+)
 

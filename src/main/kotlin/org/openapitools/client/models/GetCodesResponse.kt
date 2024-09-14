@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetCodesResponse
  *
- * @param id 
- * @param name 
- * @param systemDefined 
+ * @param id
+ * @param name
+ * @param systemDefined
  */
 
+@Serializable
+data class GetCodesResponse(
 
-data class GetCodesResponse (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "systemDefined")
     val systemDefined: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

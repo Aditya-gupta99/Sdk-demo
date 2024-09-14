@@ -15,34 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Event
-import org.openapitools.client.models.Field
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param config 
- * @param displayName 
- * @param events 
+ *
+ * @param config
+ * @param displayName
+ * @param events
  */
 
+@Serializable
+data class PutHookResponseChangesSwagger(
 
-data class PutHookResponseChangesSwagger (
-
-    @Json(name = "config")
     val config: kotlin.collections.List<Field>? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "events")
     val events: kotlin.collections.List<Event>? = null
 
-) {
-
-
-}
+)
 

@@ -15,41 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutRecurringDepositAccountsChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutRecurringDepositAccountsAccountIdResponse
  *
- * @param changes 
- * @param clientId 
- * @param officeId 
- * @param resourceId 
- * @param savingsId 
+ * @param changes
+ * @param clientId
+ * @param officeId
+ * @param resourceId
+ * @param savingsId
  */
 
+@Serializable
+data class PutRecurringDepositAccountsAccountIdResponse(
 
-data class PutRecurringDepositAccountsAccountIdResponse (
-
-    @Json(name = "changes")
     val changes: PutRecurringDepositAccountsChanges? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null,
 
-    @Json(name = "savingsId")
     val savingsId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

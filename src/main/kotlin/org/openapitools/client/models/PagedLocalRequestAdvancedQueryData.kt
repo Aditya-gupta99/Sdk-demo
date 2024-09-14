@@ -15,55 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AdvancedQueryData
-import org.openapitools.client.models.PagedLocalRequestAdvancedQueryDataLocaleObject
-import org.openapitools.client.models.SortOrder
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateFormat 
- * @param dateTimeFormat 
- * @param locale 
- * @param localeObject 
- * @param page 
- * @param request 
- * @param propertySize 
- * @param sorts 
+ *
+ * @param dateFormat
+ * @param dateTimeFormat
+ * @param locale
+ * @param localeObject
+ * @param page
+ * @param request
+ * @param propertySize
+ * @param sorts
  */
 
+@Serializable
+data class PagedLocalRequestAdvancedQueryData(
 
-data class PagedLocalRequestAdvancedQueryData (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "dateTimeFormat")
     val dateTimeFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "localeObject")
     val localeObject: PagedLocalRequestAdvancedQueryDataLocaleObject? = null,
 
-    @Json(name = "page")
     val page: kotlin.Int? = null,
 
-    @Json(name = "request")
     val request: AdvancedQueryData? = null,
 
-    @Json(name = "size")
     val propertySize: kotlin.Int? = null,
 
-    @Json(name = "sorts")
     val sorts: kotlin.collections.List<SortOrder>? = null
 
-) {
-
-
-}
+)
 

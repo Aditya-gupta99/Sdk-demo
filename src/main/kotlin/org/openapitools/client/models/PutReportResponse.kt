@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutReportResponseChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutReportResponse
  *
- * @param changes 
- * @param resourceId 
+ * @param changes
+ * @param resourceId
  */
 
+@Serializable
+data class PutReportResponse(
 
-data class PutReportResponse (
-
-    @Json(name = "changes")
     val changes: PutReportResponseChanges? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

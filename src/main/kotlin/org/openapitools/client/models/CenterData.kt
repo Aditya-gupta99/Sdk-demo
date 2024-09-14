@@ -15,58 +15,42 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CalendarData
-import org.openapitools.client.models.DatatableData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param collectionMeetingCalendar 
- * @param datatables 
- * @param hierarchy 
- * @param id 
- * @param name 
- * @param officeName 
- * @param rowIndex 
- * @param staffName 
+ *
+ * @param accountNo
+ * @param collectionMeetingCalendar
+ * @param datatables
+ * @param hierarchy
+ * @param id
+ * @param name
+ * @param officeName
+ * @param rowIndex
+ * @param staffName
  */
 
+@Serializable
+data class CenterData(
 
-data class CenterData (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.String? = null,
 
-    @Json(name = "collectionMeetingCalendar")
     val collectionMeetingCalendar: CalendarData? = null,
 
-    @Json(name = "datatables")
     val datatables: kotlin.collections.List<DatatableData>? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "rowIndex")
     val rowIndex: kotlin.Int? = null,
 
-    @Json(name = "staffName")
     val staffName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

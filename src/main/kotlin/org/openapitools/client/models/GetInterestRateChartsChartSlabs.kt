@@ -15,42 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetInterestRateChartsCurrency
-import org.openapitools.client.models.GetInterestRateChartsTemplatePeriodTypes
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param annualInterestRate 
- * @param currency 
- * @param fromPeriod 
- * @param id 
- * @param periodTypes 
+ *
+ * @param annualInterestRate
+ * @param currency
+ * @param fromPeriod
+ * @param id
+ * @param periodTypes
  */
 
+@Serializable
+data class GetInterestRateChartsChartSlabs(
 
-data class GetInterestRateChartsChartSlabs (
-
-    @Json(name = "annualInterestRate")
     val annualInterestRate: kotlin.Int? = null,
 
-    @Json(name = "currency")
     val currency: GetInterestRateChartsCurrency? = null,
 
-    @Json(name = "fromPeriod")
     val fromPeriod: kotlin.Int? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "periodTypes")
     val periodTypes: GetInterestRateChartsTemplatePeriodTypes? = null
 
-) {
-
-
-}
+)
 

@@ -15,57 +15,42 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientStatus
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param active 
- * @param displayName 
- * @param emailAddress 
- * @param fullname 
- * @param id 
- * @param officeId 
- * @param officeName 
- * @param status 
+ *
+ * @param accountNo
+ * @param active
+ * @param displayName
+ * @param emailAddress
+ * @param fullname
+ * @param id
+ * @param officeId
+ * @param officeName
+ * @param status
  */
 
+@Serializable
+data class GetClientsPageItemsResponse(
 
-data class GetClientsPageItemsResponse (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.String? = null,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "emailAddress")
     val emailAddress: kotlin.String? = null,
 
-    @Json(name = "fullname")
     val fullname: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetClientStatus? = null
 
-) {
-
-
-}
+)
 

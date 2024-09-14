@@ -15,34 +15,25 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetPocketLoanAccounts
-import org.openapitools.client.models.GetPocketSavingAccounts
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountsLinkedToPocketResponse
  *
- * @param loanAccounts 
- * @param savingAccounts 
- * @param shareAccounts 
+ * @param loanAccounts
+ * @param savingAccounts
+ * @param shareAccounts
  */
 
+@Serializable
+data class GetAccountsLinkedToPocketResponse(
 
-data class GetAccountsLinkedToPocketResponse (
-
-    @Json(name = "loanAccounts")
     val loanAccounts: kotlin.collections.Set<GetPocketLoanAccounts>? = null,
 
-    @Json(name = "savingAccounts")
     val savingAccounts: kotlin.collections.Set<GetPocketSavingAccounts>? = null,
 
-    @Json(name = "shareAccounts")
-    val shareAccounts: kotlin.collections.Set<kotlin.Any>? = null
+    val shareAccounts: kotlin.collections.Set<@Contextual kotlin.Any>? = null
 
-) {
-
-
-}
+)
 

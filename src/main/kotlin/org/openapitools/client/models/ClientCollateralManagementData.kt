@@ -16,47 +16,42 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param name 
- * @param pctToBase 
- * @param quantity 
- * @param total 
- * @param totalCollateral 
- * @param unitPrice 
+ *
+ * @param id
+ * @param name
+ * @param pctToBase
+ * @param quantity
+ * @param total
+ * @param totalCollateral
+ * @param unitPrice
  */
 
+@Serializable
+data class ClientCollateralManagementData(
 
-data class ClientCollateralManagementData (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "pctToBase")
+    @Contextual
     val pctToBase: java.math.BigDecimal? = null,
 
-    @Json(name = "quantity")
+    @Contextual
     val quantity: java.math.BigDecimal? = null,
 
-    @Json(name = "total")
+    @Contextual
     val total: java.math.BigDecimal? = null,
 
-    @Json(name = "totalCollateral")
+    @Contextual
     val totalCollateral: java.math.BigDecimal? = null,
 
-    @Json(name = "unitPrice")
+    @Contextual
     val unitPrice: java.math.BigDecimal? = null
 
-) {
-
-
-}
+)
 

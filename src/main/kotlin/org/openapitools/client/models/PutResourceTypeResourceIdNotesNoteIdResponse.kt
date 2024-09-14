@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutNotesChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutResourceTypeResourceIdNotesNoteIdResponse
  *
- * @param changes 
- * @param clientId 
- * @param officeId 
- * @param resourceId 
+ * @param changes
+ * @param clientId
+ * @param officeId
+ * @param resourceId
  */
 
+@Serializable
+data class PutResourceTypeResourceIdNotesNoteIdResponse(
 
-data class PutResourceTypeResourceIdNotesNoteIdResponse (
-
-    @Json(name = "changes")
     val changes: PutNotesChanges? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

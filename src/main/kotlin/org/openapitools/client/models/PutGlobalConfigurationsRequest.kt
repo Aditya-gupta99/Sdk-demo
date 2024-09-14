@@ -16,43 +16,33 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutGlobalConfigurationsRequest
  *
- * @param dateFormat 
- * @param dateValue 
- * @param enabled 
- * @param locale 
- * @param stringValue 
- * @param `value` 
+ * @param dateFormat
+ * @param dateValue
+ * @param enabled
+ * @param locale
+ * @param stringValue
+ * @param `value`
  */
 
+@Serializable
+data class PutGlobalConfigurationsRequest(
 
-data class PutGlobalConfigurationsRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "dateValue")
     val dateValue: kotlin.String? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "stringValue")
     val stringValue: kotlin.String? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.Long? = null
+    val value: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

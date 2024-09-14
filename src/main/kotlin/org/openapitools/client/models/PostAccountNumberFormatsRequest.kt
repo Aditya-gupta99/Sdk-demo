@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAccountNumberFormatsRequest
  *
- * @param accountType 
- * @param prefixType 
+ * @param accountType
+ * @param prefixType
  */
 
+@Serializable
+data class PostAccountNumberFormatsRequest(
 
-data class PostAccountNumberFormatsRequest (
-
-    @Json(name = "accountType")
     val accountType: kotlin.Long? = null,
 
-    @Json(name = "prefixType")
     val prefixType: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

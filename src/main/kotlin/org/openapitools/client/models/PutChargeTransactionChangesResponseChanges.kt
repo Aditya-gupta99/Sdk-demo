@@ -16,55 +16,44 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param date 
- * @param externalId 
- * @param feeChargesPortion 
- * @param id 
- * @param interestPortion 
- * @param outstandingLoanBalance 
- * @param penaltyChargesPortion 
- * @param principalPortion 
+ *
+ * @param amount
+ * @param date
+ * @param externalId
+ * @param feeChargesPortion
+ * @param id
+ * @param interestPortion
+ * @param outstandingLoanBalance
+ * @param penaltyChargesPortion
+ * @param principalPortion
  */
 
+@Serializable
+data class PutChargeTransactionChangesResponseChanges(
 
-data class PutChargeTransactionChangesResponseChanges (
-
-    @Json(name = "amount")
     val amount: kotlin.Double? = null,
 
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "feeChargesPortion")
     val feeChargesPortion: kotlin.Double? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "interestPortion")
     val interestPortion: kotlin.Double? = null,
 
-    @Json(name = "outstandingLoanBalance")
     val outstandingLoanBalance: kotlin.Double? = null,
 
-    @Json(name = "penaltyChargesPortion")
     val penaltyChargesPortion: kotlin.Double? = null,
 
-    @Json(name = "principalPortion")
     val principalPortion: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

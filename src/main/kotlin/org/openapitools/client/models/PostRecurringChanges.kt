@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNumber 
- * @param bankNumber 
- * @param checkNumber 
- * @param receiptNumber 
- * @param routingCode 
+ *
+ * @param accountNumber
+ * @param bankNumber
+ * @param checkNumber
+ * @param receiptNumber
+ * @param routingCode
  */
 
+@Serializable
+data class PostRecurringChanges(
 
-data class PostRecurringChanges (
-
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.String? = null,
 
-    @Json(name = "bankNumber")
     val bankNumber: kotlin.String? = null,
 
-    @Json(name = "checkNumber")
     val checkNumber: kotlin.String? = null,
 
-    @Json(name = "receiptNumber")
     val receiptNumber: kotlin.String? = null,
 
-    @Json(name = "routingCode")
     val routingCode: kotlin.String? = null
 
-) {
-
-
-}
+)
 

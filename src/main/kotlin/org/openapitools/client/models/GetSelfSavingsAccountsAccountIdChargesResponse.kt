@@ -15,87 +15,63 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSelfSavingsChargeCalculationType
-import org.openapitools.client.models.GetSelfSavingsChargeTimeType
-import org.openapitools.client.models.GetSelfSavingsCurrency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetSelfSavingsAccountsAccountIdChargesResponse
  *
- * @param accountId 
- * @param amount 
- * @param amountOrPercentage 
- * @param amountOutstanding 
- * @param amountPaid 
- * @param amountPercentageAppliedTo 
- * @param amountWaived 
- * @param amountWrittenOff 
- * @param chargeCalculationType 
- * @param chargeId 
- * @param chargeTimeType 
- * @param currency 
- * @param id 
- * @param name 
- * @param penalty 
- * @param percentage 
+ * @param accountId
+ * @param amount
+ * @param amountOrPercentage
+ * @param amountOutstanding
+ * @param amountPaid
+ * @param amountPercentageAppliedTo
+ * @param amountWaived
+ * @param amountWrittenOff
+ * @param chargeCalculationType
+ * @param chargeId
+ * @param chargeTimeType
+ * @param currency
+ * @param id
+ * @param name
+ * @param penalty
+ * @param percentage
  */
 
+@Serializable
+data class GetSelfSavingsAccountsAccountIdChargesResponse(
 
-data class GetSelfSavingsAccountsAccountIdChargesResponse (
-
-    @Json(name = "accountId")
     val accountId: kotlin.Int? = null,
 
-    @Json(name = "amount")
     val amount: kotlin.Int? = null,
 
-    @Json(name = "amountOrPercentage")
     val amountOrPercentage: kotlin.Int? = null,
 
-    @Json(name = "amountOutstanding")
     val amountOutstanding: kotlin.Int? = null,
 
-    @Json(name = "amountPaid")
     val amountPaid: kotlin.Int? = null,
 
-    @Json(name = "amountPercentageAppliedTo")
     val amountPercentageAppliedTo: kotlin.Double? = null,
 
-    @Json(name = "amountWaived")
     val amountWaived: kotlin.Int? = null,
 
-    @Json(name = "amountWrittenOff")
     val amountWrittenOff: kotlin.Int? = null,
 
-    @Json(name = "chargeCalculationType")
     val chargeCalculationType: GetSelfSavingsChargeCalculationType? = null,
 
-    @Json(name = "chargeId")
     val chargeId: kotlin.Int? = null,
 
-    @Json(name = "chargeTimeType")
     val chargeTimeType: GetSelfSavingsChargeTimeType? = null,
 
-    @Json(name = "currency")
     val currency: GetSelfSavingsCurrency? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null,
 
-    @Json(name = "percentage")
     val percentage: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

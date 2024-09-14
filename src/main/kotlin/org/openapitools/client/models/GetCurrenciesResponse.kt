@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CurrencyData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetCurrenciesResponse
  *
- * @param currencyOptions 
- * @param selectedCurrencyOptions 
+ * @param currencyOptions
+ * @param selectedCurrencyOptions
  */
 
+@Serializable
+data class GetCurrenciesResponse(
 
-data class GetCurrenciesResponse (
-
-    @Json(name = "currencyOptions")
     val currencyOptions: kotlin.collections.List<CurrencyData>? = null,
 
-    @Json(name = "selectedCurrencyOptions")
     val selectedCurrencyOptions: kotlin.collections.List<CurrencyData>? = null
 
-) {
-
-
-}
+)
 

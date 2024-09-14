@@ -15,53 +15,42 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TaxGroupMappings
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdBy 
- * @param createdDate 
- * @param id 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param name 
- * @param new 
- * @param taxGroupMappings 
+ *
+ * @param createdBy
+ * @param createdDate
+ * @param id
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param name
+ * @param new
+ * @param taxGroupMappings
  */
 
+@Serializable
+data class TaxGroup(
 
-data class TaxGroup (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "taxGroupMappings")
     val taxGroupMappings: kotlin.collections.Set<TaxGroupMappings>? = null
 
-) {
-
-
-}
+)
 

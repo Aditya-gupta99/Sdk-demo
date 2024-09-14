@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountNumberFormatsResponseTemplate
  *
- * @param accountTypeOptions 
- * @param prefixTypeOptions 
+ * @param accountTypeOptions
+ * @param prefixTypeOptions
  */
 
+@Serializable
+data class GetAccountNumberFormatsResponseTemplate(
 
-data class GetAccountNumberFormatsResponseTemplate (
-
-    @Json(name = "accountTypeOptions")
     val accountTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "prefixTypeOptions")
     val prefixTypeOptions: kotlin.collections.Map<kotlin.String, kotlin.collections.List<EnumOptionData>>? = null
 
-) {
-
-
-}
+)
 

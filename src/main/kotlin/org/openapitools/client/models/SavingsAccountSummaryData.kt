@@ -15,7 +15,9 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 /**
  *
@@ -41,64 +43,48 @@ import com.squareup.moshi.Json
  * @param totalWithholdTax
  */
 
-
+@Serializable
 data class SavingsAccountSummaryData(
 
-    @Json(name = "accountBalance")
     val accountBalance: Double? = null,
 
-    @Json(name = "availableBalance")
     val availableBalance: Double? = null,
 
-    @Json(name = "currency")
     val currency: CurrencyData? = null,
 
-    @Json(name = "interestNotPosted")
     val interestNotPosted: Double? = null,
 
-    @Json(name = "interestPostedTillDate")
-    val interestPostedTillDate: java.time.LocalDate? = null,
+    @Contextual
+    val interestPostedTillDate: LocalDate? = null,
 
-    @Json(name = "lastInterestCalculationDate")
-    val lastInterestCalculationDate: java.time.LocalDate? = null,
+    @Contextual
+    val lastInterestCalculationDate: LocalDate? = null,
 
-    @Json(name = "prevInterestPostedTillDate")
-    val prevInterestPostedTillDate: java.time.LocalDate? = null,
+    @Contextual
+    val prevInterestPostedTillDate: LocalDate? = null,
 
-    @Json(name = "runningBalanceOnInterestPostingTillDate")
     val runningBalanceOnInterestPostingTillDate: Double? = null,
 
-    @Json(name = "runningBalanceOnPivotDate")
     val runningBalanceOnPivotDate: Double? = null,
 
-    @Json(name = "totalAnnualFees")
     val totalAnnualFees: Double? = null,
 
-    @Json(name = "totalDeposits")
     val totalDeposits: Double? = null,
 
-    @Json(name = "totalFeeCharge")
     val totalFeeCharge: Double? = null,
 
-    @Json(name = "totalInterestEarned")
     val totalInterestEarned: Double? = null,
 
-    @Json(name = "totalInterestPosted")
     val totalInterestPosted: Double? = null,
 
-    @Json(name = "totalOverdraftInterestDerived")
     val totalOverdraftInterestDerived: Double? = null,
 
-    @Json(name = "totalPenaltyCharge")
     val totalPenaltyCharge: Double? = null,
 
-    @Json(name = "totalWithdrawalFees")
     val totalWithdrawalFees: Double? = null,
 
-    @Json(name = "totalWithdrawals")
     val totalWithdrawals: Double? = null,
 
-    @Json(name = "totalWithholdTax")
     val totalWithholdTax: Double? = null
 
 )

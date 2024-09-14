@@ -16,47 +16,43 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param detailsId 
- * @param totalFeeChargesOutstanding 
- * @param totalInterestOutstanding 
- * @param totalOutstanding 
- * @param totalOverpaid 
- * @param totalPenaltyChargesOutstanding 
- * @param totalPrincipalOutstanding 
+ *
+ * @param detailsId
+ * @param totalFeeChargesOutstanding
+ * @param totalInterestOutstanding
+ * @param totalOutstanding
+ * @param totalOverpaid
+ * @param totalPenaltyChargesOutstanding
+ * @param totalPrincipalOutstanding
  */
 
+@Serializable
+data class ExternalTransferDataDetails(
 
-data class ExternalTransferDataDetails (
-
-    @Json(name = "detailsId")
     val detailsId: kotlin.Long? = null,
 
-    @Json(name = "totalFeeChargesOutstanding")
+    @Contextual
     val totalFeeChargesOutstanding: java.math.BigDecimal? = null,
 
-    @Json(name = "totalInterestOutstanding")
+    @Contextual
     val totalInterestOutstanding: java.math.BigDecimal? = null,
 
-    @Json(name = "totalOutstanding")
+    @Contextual
     val totalOutstanding: java.math.BigDecimal? = null,
 
-    @Json(name = "totalOverpaid")
+    @Contextual
     val totalOverpaid: java.math.BigDecimal? = null,
 
-    @Json(name = "totalPenaltyChargesOutstanding")
+    @Contextual
     val totalPenaltyChargesOutstanding: java.math.BigDecimal? = null,
 
-    @Json(name = "totalPrincipalOutstanding")
+    @Contextual
     val totalPrincipalOutstanding: java.math.BigDecimal? = null
 
-) {
-
-
-}
+)
 

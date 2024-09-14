@@ -15,35 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoanProductsInterestRecalculationCompoundingType
-import org.openapitools.client.models.GetLoanProductsPreClosureInterestCalculationStrategy
-import org.openapitools.client.models.GetLoanProductsRescheduleStrategyType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param interestRecalculationCompoundingType 
- * @param preClosureInterestCalculationStrategy 
- * @param rescheduleStrategyType 
+ *
+ * @param interestRecalculationCompoundingType
+ * @param preClosureInterestCalculationStrategy
+ * @param rescheduleStrategyType
  */
 
+@Serializable
+data class GetLoanProductsInterestRecalculationTemplateData(
 
-data class GetLoanProductsInterestRecalculationTemplateData (
-
-    @Json(name = "interestRecalculationCompoundingType")
     val interestRecalculationCompoundingType: GetLoanProductsInterestRecalculationCompoundingType? = null,
 
-    @Json(name = "preClosureInterestCalculationStrategy")
     val preClosureInterestCalculationStrategy: GetLoanProductsPreClosureInterestCalculationStrategy? = null,
 
-    @Json(name = "rescheduleStrategyType")
     val rescheduleStrategyType: GetLoanProductsRescheduleStrategyType? = null
 
-) {
-
-
-}
+)
 

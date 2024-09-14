@@ -15,53 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ExternalAssetOwnerTransferChangesData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostInitiateTransferResponse
  *
- * @param changes 
- * @param dateFormat 
- * @param locale 
+ * @param changes
+ * @param dateFormat
+ * @param locale
  * @param resourceExternalId transfer external ID
  * @param resourceId transfer ID
  * @param subResourceExternalId loan external ID
  * @param subResourceId loan ID
  */
 
+@Serializable
+data class PostInitiateTransferResponse(
 
-data class PostInitiateTransferResponse (
-
-    @Json(name = "changes")
     val changes: ExternalAssetOwnerTransferChangesData? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    /* transfer external ID */
-    @Json(name = "resourceExternalId")
     val resourceExternalId: kotlin.String? = null,
 
-    /* transfer ID */
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null,
 
-    /* loan external ID */
-    @Json(name = "subResourceExternalId")
     val subResourceExternalId: kotlin.String? = null,
 
-    /* loan ID */
-    @Json(name = "subResourceId")
     val subResourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -15,40 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetProductsAssetAccountOptions
-import org.openapitools.client.models.GetProductsEquityAccountOptions
-import org.openapitools.client.models.GetProductsIncomeAccountOptions
-import org.openapitools.client.models.GetProductsLiabilityAccountOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param assetAccountOptions 
- * @param equityAccountOptions 
- * @param incomeAccountOptions 
- * @param liabilityAccountOptions 
+ *
+ * @param assetAccountOptions
+ * @param equityAccountOptions
+ * @param incomeAccountOptions
+ * @param liabilityAccountOptions
  */
 
+@Serializable
+data class GetProductsAccountingMappingOptions(
 
-data class GetProductsAccountingMappingOptions (
-
-    @Json(name = "assetAccountOptions")
     val assetAccountOptions: kotlin.collections.Set<GetProductsAssetAccountOptions>? = null,
 
-    @Json(name = "equityAccountOptions")
     val equityAccountOptions: kotlin.collections.Set<GetProductsEquityAccountOptions>? = null,
 
-    @Json(name = "incomeAccountOptions")
     val incomeAccountOptions: kotlin.collections.Set<GetProductsIncomeAccountOptions>? = null,
 
-    @Json(name = "liabilityAccountOptions")
     val liabilityAccountOptions: kotlin.collections.Set<GetProductsLiabilityAccountOptions>? = null
 
-) {
-
-
-}
+)
 

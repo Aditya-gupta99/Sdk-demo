@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param multiDisburseLoan 
+ *
+ * @param multiDisburseLoan
  */
 
+@Serializable
+data class LoanProductTrancheDetails(
 
-data class LoanProductTrancheDetails (
-
-    @Json(name = "multiDisburseLoan")
     val multiDisburseLoan: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

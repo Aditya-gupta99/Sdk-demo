@@ -15,50 +15,38 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoanCurrency
-import org.openapitools.client.models.GetSelfLoansLoanIdTransactionsType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetSelfLoansLoanIdTransactionsTransactionIdResponse
  *
- * @param amount 
- * @param currency 
- * @param date 
- * @param id 
- * @param interestPortion 
- * @param manuallyReversed 
- * @param type 
+ * @param amount
+ * @param currency
+ * @param date
+ * @param id
+ * @param interestPortion
+ * @param manuallyReversed
+ * @param type
  */
 
+@Serializable
+data class GetSelfLoansLoanIdTransactionsTransactionIdResponse(
 
-data class GetSelfLoansLoanIdTransactionsTransactionIdResponse (
-
-    @Json(name = "amount")
     val amount: kotlin.Float? = null,
 
-    @Json(name = "currency")
     val currency: GetLoanCurrency? = null,
 
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "interestPortion")
     val interestPortion: kotlin.Float? = null,
 
-    @Json(name = "manuallyReversed")
     val manuallyReversed: kotlin.Boolean? = null,
 
-    @Json(name = "type")
     val type: GetSelfLoansLoanIdTransactionsType? = null
 
-) {
-
-
-}
+)
 

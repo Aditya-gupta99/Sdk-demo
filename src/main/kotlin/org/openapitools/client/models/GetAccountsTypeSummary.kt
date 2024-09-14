@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountsChargesCurrency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param currency 
+ *
+ * @param currency
  */
 
+@Serializable
+data class GetAccountsTypeSummary(
 
-data class GetAccountsTypeSummary (
-
-    @Json(name = "currency")
     val currency: GetAccountsChargesCurrency? = null
 
-) {
-
-
-}
+)
 

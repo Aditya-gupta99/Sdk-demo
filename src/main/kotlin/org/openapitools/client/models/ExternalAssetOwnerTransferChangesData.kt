@@ -16,35 +16,29 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * ExternalAssetOwnerTransferChangesData
  *
- * @param ownerExternalId 
- * @param purchasePriceRatio 
- * @param settlementDate 
- * @param transferExternalId 
+ * @param ownerExternalId
+ * @param purchasePriceRatio
+ * @param settlementDate
+ * @param transferExternalId
  */
 
+@Serializable
+data class ExternalAssetOwnerTransferChangesData(
 
-data class ExternalAssetOwnerTransferChangesData (
-
-    @Json(name = "ownerExternalId")
     val ownerExternalId: kotlin.String? = null,
 
-    @Json(name = "purchasePriceRatio")
     val purchasePriceRatio: kotlin.String? = null,
 
-    @Json(name = "settlementDate")
+    @Contextual
     val settlementDate: java.time.LocalDate? = null,
 
-    @Json(name = "transferExternalId")
     val transferExternalId: kotlin.String? = null
 
-) {
-
-
-}
+)
 

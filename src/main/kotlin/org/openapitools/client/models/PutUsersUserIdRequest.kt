@@ -16,63 +16,48 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutUsersUserIdRequest
  *
- * @param clients 
- * @param email 
- * @param firstname 
- * @param isSelfServiceUser 
- * @param lastname 
- * @param officeId 
- * @param password 
- * @param repeatPassword 
- * @param roles 
- * @param sendPasswordToEmail 
- * @param staffId 
+ * @param clients
+ * @param email
+ * @param firstname
+ * @param isSelfServiceUser
+ * @param lastname
+ * @param officeId
+ * @param password
+ * @param repeatPassword
+ * @param roles
+ * @param sendPasswordToEmail
+ * @param staffId
  */
 
+@Serializable
+data class PutUsersUserIdRequest(
 
-data class PutUsersUserIdRequest (
-
-    @Json(name = "clients")
     val clients: kotlin.collections.List<kotlin.Long>? = null,
 
-    @Json(name = "email")
     val email: kotlin.String? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "isSelfServiceUser")
     val isSelfServiceUser: kotlin.Boolean? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "password")
     val password: kotlin.String? = null,
 
-    @Json(name = "repeatPassword")
     val repeatPassword: kotlin.String? = null,
 
-    @Json(name = "roles")
     val roles: kotlin.collections.List<kotlin.Long>? = null,
 
-    @Json(name = "sendPasswordToEmail")
     val sendPasswordToEmail: kotlin.Boolean? = null,
 
-    @Json(name = "staffId")
     val staffId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

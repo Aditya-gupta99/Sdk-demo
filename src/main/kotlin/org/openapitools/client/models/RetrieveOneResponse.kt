@@ -16,59 +16,47 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetStaffResponse
  *
- * @param displayName 
- * @param externalId 
- * @param firstname 
- * @param id 
- * @param isActive 
- * @param isLoanOfficer 
- * @param joiningDate 
- * @param lastname 
- * @param officeId 
- * @param officeName 
+ * @param displayName
+ * @param externalId
+ * @param firstname
+ * @param id
+ * @param isActive
+ * @param isLoanOfficer
+ * @param joiningDate
+ * @param lastname
+ * @param officeId
+ * @param officeName
  */
 
+@Serializable
+data class RetrieveOneResponse(
 
-data class RetrieveOneResponse (
-
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "isLoanOfficer")
     val isLoanOfficer: kotlin.Boolean? = null,
 
-    @Json(name = "joiningDate")
+    @Contextual
     val joiningDate: java.time.LocalDate? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

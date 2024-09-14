@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param empty 
- * @param `value` 
+ *
+ * @param empty
+ * @param `value`
  */
 
+@Serializable
+data class ExternalId(
 
-data class ExternalId (
-
-    @Json(name = "empty")
     val empty: kotlin.Boolean? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null
+    val value: kotlin.String? = null
 
-) {
-
-
-}
+)
 

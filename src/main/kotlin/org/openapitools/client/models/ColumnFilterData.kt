@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.FilterData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param column 
- * @param filters 
+ *
+ * @param column
+ * @param filters
  */
 
+@Serializable
+data class ColumnFilterData(
 
-data class ColumnFilterData (
-
-    @Json(name = "column")
     val column: kotlin.String? = null,
 
-    @Json(name = "filters")
     val filters: kotlin.collections.List<FilterData>? = null
 
-) {
-
-
-}
+)
 

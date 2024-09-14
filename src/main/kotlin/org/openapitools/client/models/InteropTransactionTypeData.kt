@@ -18,67 +18,77 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param initiator 
- * @param initiatorType 
- * @param scenario 
- * @param subScenario 
+ *
+ * @param initiator
+ * @param initiatorType
+ * @param scenario
+ * @param subScenario
  */
 
+@Serializable
+data class InteropTransactionTypeData(
 
-data class InteropTransactionTypeData (
-
-    @Json(name = "initiator")
     val initiator: InteropTransactionTypeData.Initiator,
 
-    @Json(name = "initiatorType")
     val initiatorType: InteropTransactionTypeData.InitiatorType,
 
-    @Json(name = "scenario")
     val scenario: InteropTransactionTypeData.Scenario,
 
-    @Json(name = "subScenario")
     val subScenario: kotlin.String? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: PAYER,PAYEE
      */
     @JsonClass(generateAdapter = false)
     enum class Initiator(val value: kotlin.String) {
-        @Json(name = "PAYER") PAYER("PAYER"),
-        @Json(name = "PAYEE") PAYEE("PAYEE");
+        @Json(name = "PAYER")
+        PAYER("PAYER"),
+        @Json(name = "PAYEE")
+        PAYEE("PAYEE");
     }
+
     /**
-     * 
+     *
      *
      * Values: CONSUMER,AGENT,BUSINESS,DEVICE
      */
     @JsonClass(generateAdapter = false)
     enum class InitiatorType(val value: kotlin.String) {
-        @Json(name = "CONSUMER") CONSUMER("CONSUMER"),
-        @Json(name = "AGENT") AGENT("AGENT"),
-        @Json(name = "BUSINESS") BUSINESS("BUSINESS"),
-        @Json(name = "DEVICE") DEVICE("DEVICE");
+        @Json(name = "CONSUMER")
+        CONSUMER("CONSUMER"),
+        @Json(name = "AGENT")
+        AGENT("AGENT"),
+        @Json(name = "BUSINESS")
+        BUSINESS("BUSINESS"),
+        @Json(name = "DEVICE")
+        DEVICE("DEVICE");
     }
+
     /**
-     * 
+     *
      *
      * Values: DEPOSIT,WITHDRAWAL,TRANSFER,PAYMENT,REFUND
      */
     @JsonClass(generateAdapter = false)
     enum class Scenario(val value: kotlin.String) {
-        @Json(name = "DEPOSIT") DEPOSIT("DEPOSIT"),
-        @Json(name = "WITHDRAWAL") WITHDRAWAL("WITHDRAWAL"),
-        @Json(name = "TRANSFER") TRANSFER("TRANSFER"),
-        @Json(name = "PAYMENT") PAYMENT("PAYMENT"),
-        @Json(name = "REFUND") REFUND("REFUND");
+        @Json(name = "DEPOSIT")
+        DEPOSIT("DEPOSIT"),
+        @Json(name = "WITHDRAWAL")
+        WITHDRAWAL("WITHDRAWAL"),
+        @Json(name = "TRANSFER")
+        TRANSFER("TRANSFER"),
+        @Json(name = "PAYMENT")
+        PAYMENT("PAYMENT"),
+        @Json(name = "REFUND")
+        REFUND("REFUND");
     }
 
 }

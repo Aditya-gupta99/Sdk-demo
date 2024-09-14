@@ -16,43 +16,35 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param attributeName 
- * @param attributeValue 
- * @param conditionType 
- * @param entityType 
- * @param incentiveType 
+ *
+ * @param amount
+ * @param attributeName
+ * @param attributeValue
+ * @param conditionType
+ * @param entityType
+ * @param incentiveType
  */
 
+@Serializable
+data class PostInterestRateChartsChartIdChartSlabsIncentives(
 
-data class PostInterestRateChartsChartIdChartSlabsIncentives (
-
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "attributeName")
     val attributeName: kotlin.Int? = null,
 
-    @Json(name = "attributeValue")
     val attributeValue: kotlin.String? = null,
 
-    @Json(name = "conditionType")
     val conditionType: kotlin.Int? = null,
 
-    @Json(name = "entityType")
     val entityType: kotlin.Int? = null,
 
-    @Json(name = "incentiveType")
     val incentiveType: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

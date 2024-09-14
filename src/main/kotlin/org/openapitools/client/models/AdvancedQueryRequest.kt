@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -24,13 +24,11 @@ import com.squareup.moshi.Json
  * @param datatableQueries
  */
 
-
+@Serializable
 data class AdvancedQueryRequest(
 
-    @Json(name = "baseQuery")
     val baseQuery: AdvancedQueryData? = null,
 
-    @Json(name = "datatableQueries")
     val datatableQueries: kotlin.collections.List<TableQueryData>? = null
 
 )

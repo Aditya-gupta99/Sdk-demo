@@ -15,86 +15,67 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.ReportMailingJobTimelineData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetReportMailingJobsResponse
  *
- * @param description 
- * @param emailAttachmentFileFormat 
- * @param emailMessage 
- * @param emailRecipients 
- * @param emailSubject 
- * @param id 
- * @param isActive 
- * @param name 
- * @param nextRunDateTime 
- * @param numberOfRuns 
- * @param recurrence 
- * @param runAsUserId 
- * @param startDateTime 
- * @param stretchyReport 
- * @param stretchyReportParamMap 
- * @param timeline 
+ * @param description
+ * @param emailAttachmentFileFormat
+ * @param emailMessage
+ * @param emailRecipients
+ * @param emailSubject
+ * @param id
+ * @param isActive
+ * @param name
+ * @param nextRunDateTime
+ * @param numberOfRuns
+ * @param recurrence
+ * @param runAsUserId
+ * @param startDateTime
+ * @param stretchyReport
+ * @param stretchyReportParamMap
+ * @param timeline
  */
 
+@Serializable
+data class GetReportMailingJobsResponse(
 
-data class GetReportMailingJobsResponse (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "emailAttachmentFileFormat")
     val emailAttachmentFileFormat: EnumOptionData? = null,
 
-    @Json(name = "emailMessage")
     val emailMessage: kotlin.String? = null,
 
-    @Json(name = "emailRecipients")
     val emailRecipients: kotlin.String? = null,
 
-    @Json(name = "emailSubject")
     val emailSubject: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nextRunDateTime")
+    @Contextual
     val nextRunDateTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "numberOfRuns")
     val numberOfRuns: kotlin.Int? = null,
 
-    @Json(name = "recurrence")
     val recurrence: kotlin.String? = null,
 
-    @Json(name = "runAsUserId")
     val runAsUserId: kotlin.Long? = null,
 
-    @Json(name = "startDateTime")
+    @Contextual
     val startDateTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "stretchyReport")
+    @Contextual
     val stretchyReport: kotlin.Any? = null,
 
-    @Json(name = "stretchyReportParamMap")
     val stretchyReportParamMap: kotlin.String? = null,
 
-    @Json(name = "timeline")
     val timeline: ReportMailingJobTimelineData? = null
 
-) {
-
-
-}
+)
 

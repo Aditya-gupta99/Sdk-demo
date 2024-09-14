@@ -15,42 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostColumnHeaderData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostDataTablesRequest
  *
- * @param apptableName 
- * @param columns 
- * @param datatableName 
- * @param entitySubType 
+ * @param apptableName
+ * @param columns
+ * @param datatableName
+ * @param entitySubType
  * @param multiRow Allows to create multiple entries in the Data Table. Optional, defaults to false. If this property is not provided Data Table will allow only one entry.
  */
 
+@Serializable
+data class PostDataTablesRequest(
 
-data class PostDataTablesRequest (
-
-    @Json(name = "apptableName")
     val apptableName: kotlin.String,
 
-    @Json(name = "columns")
     val columns: kotlin.collections.List<PostColumnHeaderData>,
 
-    @Json(name = "datatableName")
     val datatableName: kotlin.String,
 
-    @Json(name = "entitySubType")
     val entitySubType: kotlin.String? = null,
 
-    /* Allows to create multiple entries in the Data Table. Optional, defaults to false. If this property is not provided Data Table will allow only one entry. */
-    @Json(name = "multiRow")
     val multiRow: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

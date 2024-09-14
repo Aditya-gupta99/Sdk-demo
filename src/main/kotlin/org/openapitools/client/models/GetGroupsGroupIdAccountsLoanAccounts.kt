@@ -15,46 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsGroupIdAccountsLoanType
-import org.openapitools.client.models.GetGroupsGroupIdAccountsStatus
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param id 
- * @param loanType 
- * @param productId 
- * @param productName 
- * @param status 
+ *
+ * @param accountNo
+ * @param id
+ * @param loanType
+ * @param productId
+ * @param productName
+ * @param status
  */
 
+@Serializable
+data class GetGroupsGroupIdAccountsLoanAccounts(
 
-data class GetGroupsGroupIdAccountsLoanAccounts (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "loanType")
     val loanType: GetGroupsGroupIdAccountsLoanType? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetGroupsGroupIdAccountsStatus? = null
 
-) {
-
-
-}
+)
 

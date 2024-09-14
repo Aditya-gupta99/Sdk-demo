@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutExternalEventConfigurationsRequest
  *
- * @param externalEventConfigurations 
+ * @param externalEventConfigurations
  */
 
+@Serializable
+data class PutExternalEventConfigurationsRequest(
 
-data class PutExternalEventConfigurationsRequest (
-
-    @Json(name = "externalEventConfigurations")
     val externalEventConfigurations: kotlin.collections.Map<kotlin.String, kotlin.Boolean>? = null
 
-) {
-
-
-}
+)
 

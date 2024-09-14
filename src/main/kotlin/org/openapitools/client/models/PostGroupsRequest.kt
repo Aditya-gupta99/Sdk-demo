@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostGroupsRequest
  *
- * @param active 
- * @param name 
- * @param officeId 
+ * @param active
+ * @param name
+ * @param officeId
  */
 
+@Serializable
+data class PostGroupsRequest(
 
-data class PostGroupsRequest (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostFixedDepositProductsResponse
  *
- * @param resourceId 
+ * @param resourceId
  */
 
+@Serializable
+data class PostFixedDepositProductsResponse(
 
-data class PostFixedDepositProductsResponse (
-
-    @Json(name = "resourceId")
     val resourceId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

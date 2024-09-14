@@ -16,67 +16,51 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostRecurringDepositAccountsRequest
  *
- * @param clientId 
- * @param dateFormat 
- * @param depositAmount 
- * @param depositPeriod 
- * @param depositPeriodFrequencyId 
- * @param isCalendarInherited 
- * @param locale 
- * @param mandatoryRecommendedDepositAmount 
- * @param productId 
- * @param recurringFrequency 
- * @param recurringFrequencyType 
- * @param submittedOnDate 
+ * @param clientId
+ * @param dateFormat
+ * @param depositAmount
+ * @param depositPeriod
+ * @param depositPeriodFrequencyId
+ * @param isCalendarInherited
+ * @param locale
+ * @param mandatoryRecommendedDepositAmount
+ * @param productId
+ * @param recurringFrequency
+ * @param recurringFrequencyType
+ * @param submittedOnDate
  */
 
+@Serializable
+data class PostRecurringDepositAccountsRequest(
 
-data class PostRecurringDepositAccountsRequest (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "depositAmount")
     val depositAmount: kotlin.Float? = null,
 
-    @Json(name = "depositPeriod")
     val depositPeriod: kotlin.Int? = null,
 
-    @Json(name = "depositPeriodFrequencyId")
     val depositPeriodFrequencyId: kotlin.Int? = null,
 
-    @Json(name = "isCalendarInherited")
     val isCalendarInherited: kotlin.Boolean? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "mandatoryRecommendedDepositAmount")
     val mandatoryRecommendedDepositAmount: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "recurringFrequency")
     val recurringFrequency: kotlin.Int? = null,
 
-    @Json(name = "recurringFrequencyType")
     val recurringFrequencyType: kotlin.Int? = null,
 
-    @Json(name = "submittedOnDate")
     val submittedOnDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * DeleteRolesRoleIdResponse
  *
- * @param resourceId 
+ * @param resourceId
  */
 
+@Serializable
+data class DeleteRolesRoleIdResponse(
 
-data class DeleteRolesRoleIdResponse (
-
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

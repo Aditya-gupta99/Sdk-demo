@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param processingResult 
+ *
+ * @param id
+ * @param processingResult
  */
 
+@Serializable
+data class ProcessingResultLookup(
 
-data class ProcessingResultLookup (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "processingResult")
     val processingResult: kotlin.String? = null
 
-) {
-
-
-}
+)
 

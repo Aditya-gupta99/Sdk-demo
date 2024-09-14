@@ -15,81 +15,63 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param clientId 
- * @param createdById 
- * @param createdByUsername 
- * @param createdOn 
- * @param depositAccountId 
- * @param groupId 
- * @param id 
- * @param loanId 
- * @param loanTransactionId 
- * @param note 
- * @param noteType 
- * @param savingAccountId 
- * @param updatedById 
- * @param updatedByUsername 
- * @param updatedOn 
+ *
+ * @param clientId
+ * @param createdById
+ * @param createdByUsername
+ * @param createdOn
+ * @param depositAccountId
+ * @param groupId
+ * @param id
+ * @param loanId
+ * @param loanTransactionId
+ * @param note
+ * @param noteType
+ * @param savingAccountId
+ * @param updatedById
+ * @param updatedByUsername
+ * @param updatedOn
  */
 
+@Serializable
+data class NoteData(
 
-data class NoteData (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "createdById")
     val createdById: kotlin.Long? = null,
 
-    @Json(name = "createdByUsername")
     val createdByUsername: kotlin.String? = null,
 
-    @Json(name = "createdOn")
+    @Contextual
     val createdOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "depositAccountId")
     val depositAccountId: kotlin.Long? = null,
 
-    @Json(name = "groupId")
     val groupId: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "loanId")
     val loanId: kotlin.Long? = null,
 
-    @Json(name = "loanTransactionId")
     val loanTransactionId: kotlin.Long? = null,
 
-    @Json(name = "note")
     val note: kotlin.String? = null,
 
-    @Json(name = "noteType")
     val noteType: EnumOptionData? = null,
 
-    @Json(name = "savingAccountId")
     val savingAccountId: kotlin.Long? = null,
 
-    @Json(name = "updatedById")
     val updatedById: kotlin.Long? = null,
 
-    @Json(name = "updatedByUsername")
     val updatedByUsername: kotlin.String? = null,
 
-    @Json(name = "updatedOn")
+    @Contextual
     val updatedOn: java.time.OffsetDateTime? = null
 
-) {
-
-
-}
+)
 

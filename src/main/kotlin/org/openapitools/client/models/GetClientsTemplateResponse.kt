@@ -15,48 +15,35 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientsDataTables
-import org.openapitools.client.models.GetClientsOfficeOptions
-import org.openapitools.client.models.GetClientsSavingProductOptions
-import org.openapitools.client.models.GetClientsStaffOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientsTemplateResponse
  *
- * @param activationDate 
- * @param datatables 
- * @param officeId 
- * @param officeOptions 
- * @param savingProductOptions 
- * @param staffOptions 
+ * @param activationDate
+ * @param datatables
+ * @param officeId
+ * @param officeOptions
+ * @param savingProductOptions
+ * @param staffOptions
  */
 
+@Serializable
+data class GetClientsTemplateResponse(
 
-data class GetClientsTemplateResponse (
-
-    @Json(name = "activationDate")
+    @Contextual
     val activationDate: java.time.LocalDate? = null,
 
-    @Json(name = "datatables")
     val datatables: kotlin.collections.Set<GetClientsDataTables>? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeOptions")
     val officeOptions: kotlin.collections.Set<GetClientsOfficeOptions>? = null,
 
-    @Json(name = "savingProductOptions")
     val savingProductOptions: kotlin.collections.Set<GetClientsSavingProductOptions>? = null,
 
-    @Json(name = "staffOptions")
     val staffOptions: kotlin.collections.Set<GetClientsStaffOptions>? = null
 
-) {
-
-
-}
+)
 

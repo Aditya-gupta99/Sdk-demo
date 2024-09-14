@@ -15,65 +15,52 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AppUser
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param approveUser 
- * @param createdBy 
- * @param createdDate 
- * @param id 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param name 
- * @param new 
- * @param percentage 
- * @param productApply 
+ *
+ * @param active
+ * @param approveUser
+ * @param createdBy
+ * @param createdDate
+ * @param id
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param name
+ * @param new
+ * @param percentage
+ * @param productApply
  */
 
+@Serializable
+data class Rate(
 
-data class Rate (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "approveUser")
     val approveUser: AppUser? = null,
 
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "percentage")
+    @Contextual
     val percentage: java.math.BigDecimal? = null,
 
-    @Json(name = "productApply")
     val productApply: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

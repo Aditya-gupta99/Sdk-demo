@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ChargeData
-import org.openapitools.client.models.GLAccountData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param charge 
- * @param incomeAccount 
+ *
+ * @param charge
+ * @param incomeAccount
  */
 
+@Serializable
+data class ChargeToGLAccountMapper(
 
-data class ChargeToGLAccountMapper (
-
-    @Json(name = "charge")
     val charge: ChargeData? = null,
 
-    @Json(name = "incomeAccount")
     val incomeAccount: GLAccountData? = null
 
-) {
-
-
-}
+)
 

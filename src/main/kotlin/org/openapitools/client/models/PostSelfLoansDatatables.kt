@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostSelfLoansData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param `data` 
- * @param registeredTableName 
+ *
+ * @param `data`
+ * @param registeredTableName
  */
 
+@Serializable
+data class PostSelfLoansDatatables(
 
-data class PostSelfLoansDatatables (
+    val data: PostSelfLoansData? = null,
 
-    @Json(name = "data")
-    val `data`: PostSelfLoansData? = null,
-
-    @Json(name = "registeredTableName")
     val registeredTableName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

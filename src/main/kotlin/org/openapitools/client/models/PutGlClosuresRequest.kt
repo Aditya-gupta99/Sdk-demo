@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutGlClosuresRequest
  *
- * @param comments 
+ * @param comments
  */
 
+@Serializable
+data class PutGlClosuresRequest(
 
-data class PutGlClosuresRequest (
-
-    @Json(name = "comments")
     val comments: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
- * @param id 
- * @param `value` 
+ *
+ * @param code
+ * @param id
+ * @param `value`
  */
 
+@Serializable
+data class LoanTermTypeOptions(
 
-data class LoanTermTypeOptions (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null
+    val value: kotlin.String? = null
 
-) {
-
-
-}
+)
 

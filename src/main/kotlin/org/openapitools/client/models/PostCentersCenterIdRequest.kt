@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostCentersCenterIdRequest
  *
- * @param closureDate 
- * @param closureReasonId 
- * @param dateFormat 
- * @param locale 
+ * @param closureDate
+ * @param closureReasonId
+ * @param dateFormat
+ * @param locale
  */
 
+@Serializable
+data class PostCentersCenterIdRequest(
 
-data class PostCentersCenterIdRequest (
-
-    @Json(name = "closureDate")
     val closureDate: kotlin.String? = null,
 
-    @Json(name = "closureReasonId")
     val closureReasonId: kotlin.Long? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,39 +16,35 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param effectiveFromDate 
- * @param effectiveToDate 
- * @param submittedFromDate 
- * @param submittedToDate 
- * @param text 
+ *
+ * @param effectiveFromDate
+ * @param effectiveToDate
+ * @param submittedFromDate
+ * @param submittedToDate
+ * @param text
  */
 
+@Serializable
+data class ExternalAssetOwnerSearchRequest(
 
-data class ExternalAssetOwnerSearchRequest (
-
-    @Json(name = "effectiveFromDate")
+    @Contextual
     val effectiveFromDate: java.time.LocalDate? = null,
 
-    @Json(name = "effectiveToDate")
+    @Contextual
     val effectiveToDate: java.time.LocalDate? = null,
 
-    @Json(name = "submittedFromDate")
+    @Contextual
     val submittedFromDate: java.time.LocalDate? = null,
 
-    @Json(name = "submittedToDate")
+    @Contextual
     val submittedToDate: java.time.LocalDate? = null,
 
-    @Json(name = "text")
     val text: kotlin.String? = null
 
-) {
-
-
-}
+)
 

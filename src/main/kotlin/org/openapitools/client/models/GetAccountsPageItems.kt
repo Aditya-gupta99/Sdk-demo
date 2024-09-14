@@ -23,6 +23,7 @@ import org.openapitools.client.models.GetAccountsTypeTimeline
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * 
@@ -40,40 +41,29 @@ import com.squareup.moshi.JsonClass
  * @param timeline 
  */
 
-
+@Serializable
 data class GetAccountsPageItems (
 
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "currency")
     val currency: GetAccountsChargesCurrency? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "purchasedShares")
     val purchasedShares: kotlin.collections.Set<GetAccountsTypePurchasedShares>? = null,
 
-    @Json(name = "status")
     val status: GetAccountsTypeStatus? = null,
 
-    @Json(name = "summary")
     val summary: GetAccountsTypeSummary? = null,
 
-    @Json(name = "timeline")
     val timeline: GetAccountsTypeTimeline? = null
 
 ) {

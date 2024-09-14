@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * DeleteDataTablesResponse
  *
- * @param resourceIdentifier 
+ * @param resourceIdentifier
  */
 
+@Serializable
+data class DeleteDataTablesResponse(
 
-data class DeleteDataTablesResponse (
-
-    @Json(name = "resourceIdentifier")
     val resourceIdentifier: kotlin.String? = null
 
-) {
-
-
-}
+)
 

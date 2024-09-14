@@ -15,75 +15,58 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GLAccount
-import org.openapitools.client.models.TaxComponentHistory
-import org.openapitools.client.models.TaxGroupMappings
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdBy 
- * @param createdDate 
- * @param creditAccountType 
- * @param creditAcount 
- * @param debitAccountType 
- * @param debitAcount 
- * @param id 
- * @param lastModifiedBy 
- * @param lastModifiedDate 
- * @param new 
- * @param percentage 
- * @param taxComponentHistories 
- * @param taxGroupMappings 
+ *
+ * @param createdBy
+ * @param createdDate
+ * @param creditAccountType
+ * @param creditAcount
+ * @param debitAccountType
+ * @param debitAcount
+ * @param id
+ * @param lastModifiedBy
+ * @param lastModifiedDate
+ * @param new
+ * @param percentage
+ * @param taxComponentHistories
+ * @param taxGroupMappings
  */
 
+@Serializable
+data class TaxComponent(
 
-data class TaxComponent (
-
-    @Json(name = "createdBy")
     val createdBy: kotlin.Long? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "creditAccountType")
     val creditAccountType: kotlin.Int? = null,
 
-    @Json(name = "creditAcount")
     val creditAcount: GLAccount? = null,
 
-    @Json(name = "debitAccountType")
     val debitAccountType: kotlin.Int? = null,
 
-    @Json(name = "debitAcount")
     val debitAcount: GLAccount? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedBy")
     val lastModifiedBy: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedDate")
+    @Contextual
     val lastModifiedDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "percentage")
+    @Contextual
     val percentage: java.math.BigDecimal? = null,
 
-    @Json(name = "taxComponentHistories")
     val taxComponentHistories: kotlin.collections.Set<TaxComponentHistory>? = null,
 
-    @Json(name = "taxGroupMappings")
     val taxGroupMappings: kotlin.collections.Set<TaxGroupMappings>? = null
 
-) {
-
-
-}
+)
 

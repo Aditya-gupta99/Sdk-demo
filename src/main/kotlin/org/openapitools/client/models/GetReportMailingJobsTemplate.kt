@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetReportMailingJobsTemplate
  *
- * @param emailAttachmentFileFormatOptions 
- * @param isActive 
- * @param stretchyReportParamDateOptions 
+ * @param emailAttachmentFileFormatOptions
+ * @param isActive
+ * @param stretchyReportParamDateOptions
  */
 
+@Serializable
+data class GetReportMailingJobsTemplate(
 
-data class GetReportMailingJobsTemplate (
-
-    @Json(name = "emailAttachmentFileFormatOptions")
     val emailAttachmentFileFormatOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "stretchyReportParamDateOptions")
     val stretchyReportParamDateOptions: kotlin.collections.List<EnumOptionData>? = null
 
-) {
-
-
-}
+)
 

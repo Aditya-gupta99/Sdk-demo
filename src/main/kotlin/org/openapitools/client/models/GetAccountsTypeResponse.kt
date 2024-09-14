@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountsPageItems
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountsTypeResponse
  *
- * @param pageItems 
- * @param totalFilteredRecords 
+ * @param pageItems
+ * @param totalFilteredRecords
  */
 
+@Serializable
+data class GetAccountsTypeResponse(
 
-data class GetAccountsTypeResponse (
-
-    @Json(name = "pageItems")
     val pageItems: kotlin.collections.Set<GetAccountsPageItems>? = null,
 
-    @Json(name = "totalFilteredRecords")
     val totalFilteredRecords: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

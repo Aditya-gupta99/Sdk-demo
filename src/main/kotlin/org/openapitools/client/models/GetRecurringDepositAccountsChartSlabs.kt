@@ -15,46 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetRecurringDepositAccountsAccountChartCurrency
-import org.openapitools.client.models.GetRecurringDepositAccountsPeriodType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param annualInterestRate 
- * @param currency 
- * @param fromPeriod 
- * @param id 
- * @param periodType 
- * @param toPeriod 
+ *
+ * @param annualInterestRate
+ * @param currency
+ * @param fromPeriod
+ * @param id
+ * @param periodType
+ * @param toPeriod
  */
 
+@Serializable
+data class GetRecurringDepositAccountsChartSlabs(
 
-data class GetRecurringDepositAccountsChartSlabs (
-
-    @Json(name = "annualInterestRate")
     val annualInterestRate: kotlin.Double? = null,
 
-    @Json(name = "currency")
     val currency: GetRecurringDepositAccountsAccountChartCurrency? = null,
 
-    @Json(name = "fromPeriod")
     val fromPeriod: kotlin.Int? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "periodType")
     val periodType: GetRecurringDepositAccountsPeriodType? = null,
 
-    @Json(name = "toPeriod")
     val toPeriod: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

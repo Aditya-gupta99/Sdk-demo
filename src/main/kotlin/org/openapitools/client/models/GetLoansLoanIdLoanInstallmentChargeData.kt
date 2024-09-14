@@ -16,55 +16,44 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * List of GetLoansLoanIdLoanInstallmentChargeData
  *
- * @param amount 
- * @param amountAccrued 
- * @param amountOutstanding 
- * @param amountUnrecognized 
- * @param amountWaived 
- * @param dueDate 
- * @param installmentNumber 
- * @param paid 
- * @param waived 
+ * @param amount
+ * @param amountAccrued
+ * @param amountOutstanding
+ * @param amountUnrecognized
+ * @param amountWaived
+ * @param dueDate
+ * @param installmentNumber
+ * @param paid
+ * @param waived
  */
 
+@Serializable
+data class GetLoansLoanIdLoanInstallmentChargeData(
 
-data class GetLoansLoanIdLoanInstallmentChargeData (
-
-    @Json(name = "amount")
     val amount: kotlin.Double? = null,
 
-    @Json(name = "amountAccrued")
     val amountAccrued: kotlin.Double? = null,
 
-    @Json(name = "amountOutstanding")
     val amountOutstanding: kotlin.Double? = null,
 
-    @Json(name = "amountUnrecognized")
     val amountUnrecognized: kotlin.Double? = null,
 
-    @Json(name = "amountWaived")
     val amountWaived: kotlin.Double? = null,
 
-    @Json(name = "dueDate")
+    @Contextual
     val dueDate: java.time.LocalDate? = null,
 
-    @Json(name = "installmentNumber")
     val installmentNumber: kotlin.Int? = null,
 
-    @Json(name = "paid")
     val paid: kotlin.Boolean? = null,
 
-    @Json(name = "waived")
     val waived: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

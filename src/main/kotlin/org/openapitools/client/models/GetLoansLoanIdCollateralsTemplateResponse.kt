@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetCollateralsTemplateAllowedTypes
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoansLoanIdCollateralsTemplateResponse
  *
- * @param allowedCollateralTypes 
+ * @param allowedCollateralTypes
  */
 
+@Serializable
+data class GetLoansLoanIdCollateralsTemplateResponse(
 
-data class GetLoansLoanIdCollateralsTemplateResponse (
-
-    @Json(name = "allowedCollateralTypes")
     val allowedCollateralTypes: kotlin.collections.Set<GetCollateralsTemplateAllowedTypes>? = null
 
-) {
-
-
-}
+)
 

@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param locale 
- * @param principal 
+ *
+ * @param locale
+ * @param principal
  */
 
+@Serializable
+data class PutLoanChanges(
 
-data class PutLoanChanges (
-
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "principal")
     val principal: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

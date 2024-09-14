@@ -16,67 +16,53 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostReportMailingJobsRequest
  *
- * @param dateFormat 
- * @param description 
- * @param emailMessage 
- * @param emailRecipients 
- * @param emailSubject 
- * @param isActive 
- * @param locale 
- * @param name 
- * @param recurrence 
- * @param startDateTime 
- * @param stretchyReportId 
- * @param stretchyReportParamMap 
+ * @param dateFormat
+ * @param description
+ * @param emailMessage
+ * @param emailRecipients
+ * @param emailSubject
+ * @param isActive
+ * @param locale
+ * @param name
+ * @param recurrence
+ * @param startDateTime
+ * @param stretchyReportId
+ * @param stretchyReportParamMap
  */
 
+@Serializable
+data class PostReportMailingJobsRequest(
 
-data class PostReportMailingJobsRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "emailMessage")
     val emailMessage: kotlin.String? = null,
 
-    @Json(name = "emailRecipients")
     val emailRecipients: kotlin.String? = null,
 
-    @Json(name = "emailSubject")
     val emailSubject: kotlin.String? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "recurrence")
     val recurrence: kotlin.String? = null,
 
-    @Json(name = "startDateTime")
+    @Contextual
     val startDateTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "stretchyReportId")
     val stretchyReportId: kotlin.Long? = null,
 
-    @Json(name = "stretchyReportParamMap")
     val stretchyReportParamMap: kotlin.String? = null
 
-) {
-
-
-}
+)
 

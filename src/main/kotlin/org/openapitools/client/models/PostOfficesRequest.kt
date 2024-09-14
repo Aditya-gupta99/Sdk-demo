@@ -16,43 +16,35 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostOfficesRequest
  *
- * @param dateFormat 
- * @param externalId 
- * @param locale 
- * @param name 
- * @param openingDate 
- * @param parentId 
+ * @param dateFormat
+ * @param externalId
+ * @param locale
+ * @param name
+ * @param openingDate
+ * @param parentId
  */
 
+@Serializable
+data class PostOfficesRequest(
 
-data class PostOfficesRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "openingDate")
+    @Contextual
     val openingDate: java.time.LocalDate? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

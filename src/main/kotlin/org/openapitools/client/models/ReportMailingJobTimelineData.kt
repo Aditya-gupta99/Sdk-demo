@@ -16,51 +16,42 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdByFirstname 
- * @param createdByLastname 
- * @param createdByUsername 
- * @param createdOnDate 
- * @param updatedByFirstname 
- * @param updatedByLastname 
- * @param updatedByUsername 
- * @param updatedOnDate 
+ *
+ * @param createdByFirstname
+ * @param createdByLastname
+ * @param createdByUsername
+ * @param createdOnDate
+ * @param updatedByFirstname
+ * @param updatedByLastname
+ * @param updatedByUsername
+ * @param updatedOnDate
  */
 
+@Serializable
+data class ReportMailingJobTimelineData(
 
-data class ReportMailingJobTimelineData (
-
-    @Json(name = "createdByFirstname")
     val createdByFirstname: kotlin.String? = null,
 
-    @Json(name = "createdByLastname")
     val createdByLastname: kotlin.String? = null,
 
-    @Json(name = "createdByUsername")
     val createdByUsername: kotlin.String? = null,
 
-    @Json(name = "createdOnDate")
+    @Contextual
     val createdOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "updatedByFirstname")
     val updatedByFirstname: kotlin.String? = null,
 
-    @Json(name = "updatedByLastname")
     val updatedByLastname: kotlin.String? = null,
 
-    @Json(name = "updatedByUsername")
     val updatedByUsername: kotlin.String? = null,
 
-    @Json(name = "updatedOnDate")
+    @Contextual
     val updatedOnDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

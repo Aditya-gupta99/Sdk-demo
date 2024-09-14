@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.JobParameterDTO
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * ExecuteJobRequest
  *
- * @param jobParameters 
+ * @param jobParameters
  */
 
+@Serializable
+data class ExecuteJobRequest(
 
-data class ExecuteJobRequest (
-
-    @Json(name = "jobParameters")
     val jobParameters: kotlin.collections.List<JobParameterDTO>? = null
 
-) {
-
-
-}
+)
 

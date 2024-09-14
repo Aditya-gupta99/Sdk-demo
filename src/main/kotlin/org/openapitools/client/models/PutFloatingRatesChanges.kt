@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostFloatingRatesRatePeriods
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param ratePeriods 
+ *
+ * @param ratePeriods
  */
 
+@Serializable
+data class PutFloatingRatesChanges(
 
-data class PutFloatingRatesChanges (
-
-    @Json(name = "ratePeriods")
     val ratePeriods: kotlin.collections.Set<PostFloatingRatesRatePeriods>? = null
 
-) {
-
-
-}
+)
 

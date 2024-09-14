@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutRecurringDepositAccountsAccountIdRequest
  *
- * @param depositAmount 
- * @param locale 
+ * @param depositAmount
+ * @param locale
  */
 
+@Serializable
+data class PutRecurringDepositAccountsAccountIdRequest(
 
-data class PutRecurringDepositAccountsAccountIdRequest (
-
-    @Json(name = "depositAmount")
     val depositAmount: kotlin.Int? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null
 
-) {
-
-
-}
+)
 

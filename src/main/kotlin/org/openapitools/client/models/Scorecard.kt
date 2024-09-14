@@ -15,61 +15,44 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AppUser
-import org.openapitools.client.models.Client
-import org.openapitools.client.models.Question
-import org.openapitools.client.models.Response
-import org.openapitools.client.models.Survey
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param appUser 
- * @param client 
- * @param createdOn 
- * @param id 
- * @param new 
- * @param question 
- * @param response 
- * @param survey 
- * @param `value` 
+ *
+ * @param appUser
+ * @param client
+ * @param createdOn
+ * @param id
+ * @param new
+ * @param question
+ * @param response
+ * @param survey
+ * @param `value`
  */
 
+@Serializable
+data class Scorecard(
 
-data class Scorecard (
-
-    @Json(name = "appUser")
     val appUser: AppUser? = null,
 
-    @Json(name = "client")
     val client: Client? = null,
 
-    @Json(name = "createdOn")
+    @Contextual
     val createdOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "question")
     val question: Question? = null,
 
-    @Json(name = "response")
     val response: Response? = null,
 
-    @Json(name = "survey")
     val survey: Survey? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.Int? = null
+    val value: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

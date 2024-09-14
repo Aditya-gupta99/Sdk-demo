@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LookupTableEntry
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param description 
- * @param propertyEntries 
- * @param key 
+ *
+ * @param description
+ * @param propertyEntries
+ * @param key
  */
 
+@Serializable
+data class LookupTableData(
 
-data class LookupTableData (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "entries")
     val propertyEntries: kotlin.collections.List<LookupTableEntry>? = null,
 
-    @Json(name = "key")
     val key: kotlin.String? = null
 
-) {
-
-
-}
+)
 

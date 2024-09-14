@@ -18,48 +18,69 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dayOfMonth 
- * @param month 
- * @param monthValue 
+ *
+ * @param dayOfMonth
+ * @param month
+ * @param monthValue
  */
 
+@Serializable
+data class ChargeFeeOnMonthDay(
 
-data class ChargeFeeOnMonthDay (
-
-    @Json(name = "dayOfMonth")
     val dayOfMonth: kotlin.Int? = null,
 
-    @Json(name = "month")
     val month: ChargeFeeOnMonthDay.Month? = null,
 
-    @Json(name = "monthValue")
     val monthValue: kotlin.Int? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER
      */
     @JsonClass(generateAdapter = false)
     enum class Month(val value: kotlin.String) {
-        @Json(name = "JANUARY") JANUARY("JANUARY"),
-        @Json(name = "FEBRUARY") FEBRUARY("FEBRUARY"),
-        @Json(name = "MARCH") MARCH("MARCH"),
-        @Json(name = "APRIL") APRIL("APRIL"),
-        @Json(name = "MAY") MAY("MAY"),
-        @Json(name = "JUNE") JUNE("JUNE"),
-        @Json(name = "JULY") JULY("JULY"),
-        @Json(name = "AUGUST") AUGUST("AUGUST"),
-        @Json(name = "SEPTEMBER") SEPTEMBER("SEPTEMBER"),
-        @Json(name = "OCTOBER") OCTOBER("OCTOBER"),
-        @Json(name = "NOVEMBER") NOVEMBER("NOVEMBER"),
-        @Json(name = "DECEMBER") DECEMBER("DECEMBER");
+        @Json(name = "JANUARY")
+        JANUARY("JANUARY"),
+
+        @Json(name = "FEBRUARY")
+        FEBRUARY("FEBRUARY"),
+
+        @Json(name = "MARCH")
+        MARCH("MARCH"),
+
+        @Json(name = "APRIL")
+        APRIL("APRIL"),
+
+        @Json(name = "MAY")
+        MAY("MAY"),
+
+        @Json(name = "JUNE")
+        JUNE("JUNE"),
+
+        @Json(name = "JULY")
+        JULY("JULY"),
+
+        @Json(name = "AUGUST")
+        AUGUST("AUGUST"),
+
+        @Json(name = "SEPTEMBER")
+        SEPTEMBER("SEPTEMBER"),
+
+        @Json(name = "OCTOBER")
+        OCTOBER("OCTOBER"),
+
+        @Json(name = "NOVEMBER")
+        NOVEMBER("NOVEMBER"),
+
+        @Json(name = "DECEMBER")
+        DECEMBER("DECEMBER");
     }
 
 }

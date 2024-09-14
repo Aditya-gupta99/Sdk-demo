@@ -16,27 +16,23 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * IsCatchUpRunningResponse
  *
- * @param isCatchUpRunning 
- * @param processingDate 
+ * @param isCatchUpRunning
+ * @param processingDate
  */
 
+@Serializable
+data class IsCatchUpRunningResponse(
 
-data class IsCatchUpRunningResponse (
-
-    @Json(name = "isCatchUpRunning")
     val isCatchUpRunning: kotlin.Boolean? = null,
 
-    @Json(name = "processingDate")
+    @Contextual
     val processingDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

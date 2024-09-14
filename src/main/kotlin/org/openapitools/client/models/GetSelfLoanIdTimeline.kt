@@ -16,79 +16,67 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param actualDisbursementDate 
- * @param approvedByFirstname 
- * @param approvedByLastname 
- * @param approvedByUsername 
- * @param approvedOnDate 
- * @param closedOnDate 
- * @param disbursedByFirstname 
- * @param disbursedByLastname 
- * @param disbursedByUsername 
- * @param expectedDisbursementDate 
- * @param expectedMaturityDate 
- * @param submittedByFirstname 
- * @param submittedByLastname 
- * @param submittedByUsername 
- * @param submittedOnDate 
+ *
+ * @param actualDisbursementDate
+ * @param approvedByFirstname
+ * @param approvedByLastname
+ * @param approvedByUsername
+ * @param approvedOnDate
+ * @param closedOnDate
+ * @param disbursedByFirstname
+ * @param disbursedByLastname
+ * @param disbursedByUsername
+ * @param expectedDisbursementDate
+ * @param expectedMaturityDate
+ * @param submittedByFirstname
+ * @param submittedByLastname
+ * @param submittedByUsername
+ * @param submittedOnDate
  */
 
+@Serializable
+data class GetSelfLoanIdTimeline(
 
-data class GetSelfLoanIdTimeline (
-
-    @Json(name = "actualDisbursementDate")
+    @Contextual
     val actualDisbursementDate: java.time.LocalDate? = null,
 
-    @Json(name = "approvedByFirstname")
     val approvedByFirstname: kotlin.String? = null,
 
-    @Json(name = "approvedByLastname")
     val approvedByLastname: kotlin.String? = null,
 
-    @Json(name = "approvedByUsername")
     val approvedByUsername: kotlin.String? = null,
 
-    @Json(name = "approvedOnDate")
+    @Contextual
     val approvedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "closedOnDate")
+    @Contextual
     val closedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "disbursedByFirstname")
     val disbursedByFirstname: kotlin.String? = null,
 
-    @Json(name = "disbursedByLastname")
     val disbursedByLastname: kotlin.String? = null,
 
-    @Json(name = "disbursedByUsername")
     val disbursedByUsername: kotlin.String? = null,
 
-    @Json(name = "expectedDisbursementDate")
+    @Contextual
     val expectedDisbursementDate: java.time.LocalDate? = null,
 
-    @Json(name = "expectedMaturityDate")
+    @Contextual
     val expectedMaturityDate: java.time.LocalDate? = null,
 
-    @Json(name = "submittedByFirstname")
     val submittedByFirstname: kotlin.String? = null,
 
-    @Json(name = "submittedByLastname")
     val submittedByLastname: kotlin.String? = null,
 
-    @Json(name = "submittedByUsername")
     val submittedByUsername: kotlin.String? = null,
 
-    @Json(name = "submittedOnDate")
+    @Contextual
     val submittedOnDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

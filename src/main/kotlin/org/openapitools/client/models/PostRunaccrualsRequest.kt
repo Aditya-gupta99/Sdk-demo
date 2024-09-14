@@ -16,32 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * runaccrualsRequest
  *
  * @param tillDate which specifies periodic accruals should happen till the given Date
- * @param dateFormat 
- * @param locale 
+ * @param dateFormat
+ * @param locale
  */
 
+@Serializable
+data class PostRunaccrualsRequest(
 
-data class PostRunaccrualsRequest (
-
-    /* which specifies periodic accruals should happen till the given Date */
-    @Json(name = "tillDate")
     val tillDate: kotlin.String,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null
 
-) {
-
-
-}
+)
 

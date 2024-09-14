@@ -21,6 +21,7 @@ import org.openapitools.client.models.GetAccountsTimeline
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * 
@@ -36,34 +37,25 @@ import com.squareup.moshi.JsonClass
  * @param totalPendingForApprovalShares 
  */
 
-
+@Serializable
 data class GetAccountsSummary (
 
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "currency")
     val currency: GetAccountsCurrency? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetAccountsStatus? = null,
 
-    @Json(name = "timeline")
     val timeline: GetAccountsTimeline? = null,
 
-    @Json(name = "totalApprovedShares")
     val totalApprovedShares: kotlin.Int? = null,
 
-    @Json(name = "totalPendingForApprovalShares")
     val totalPendingForApprovalShares: kotlin.Int? = null
 
 ) {

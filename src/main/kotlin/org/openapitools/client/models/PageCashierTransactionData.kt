@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CashierTransactionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param pageItems 
- * @param totalFilteredRecords 
+ *
+ * @param pageItems
+ * @param totalFilteredRecords
  */
 
+@Serializable
+data class PageCashierTransactionData(
 
-data class PageCashierTransactionData (
-
-    @Json(name = "pageItems")
     val pageItems: kotlin.collections.List<CashierTransactionData>? = null,
 
-    @Json(name = "totalFilteredRecords")
     val totalFilteredRecords: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

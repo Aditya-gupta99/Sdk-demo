@@ -15,42 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoansTemplateProductOptions
-import org.openapitools.client.models.GetLoansTemplateTimeline
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoansTemplateResponse
  *
- * @param clientId 
- * @param clientName 
- * @param clientOfficeId 
- * @param productOptions 
- * @param timeline 
+ * @param clientId
+ * @param clientName
+ * @param clientOfficeId
+ * @param productOptions
+ * @param timeline
  */
 
+@Serializable
+data class GetLoansTemplateResponse(
 
-data class GetLoansTemplateResponse (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "clientOfficeId")
     val clientOfficeId: kotlin.Long? = null,
 
-    @Json(name = "productOptions")
     val productOptions: kotlin.collections.Set<GetLoansTemplateProductOptions>? = null,
 
-    @Json(name = "timeline")
     val timeline: GetLoansTemplateTimeline? = null
 
-) {
-
-
-}
+)
 

@@ -15,45 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Sort
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param offset 
- * @param pageNumber 
- * @param pageSize 
- * @param paged 
- * @param sort 
- * @param unpaged 
+ *
+ * @param offset
+ * @param pageNumber
+ * @param pageSize
+ * @param paged
+ * @param sort
+ * @param unpaged
  */
 
+@Serializable
+data class Pageable(
 
-data class Pageable (
-
-    @Json(name = "offset")
     val offset: kotlin.Long? = null,
 
-    @Json(name = "pageNumber")
     val pageNumber: kotlin.Int? = null,
 
-    @Json(name = "pageSize")
     val pageSize: kotlin.Int? = null,
 
-    @Json(name = "paged")
     val paged: kotlin.Boolean? = null,
 
-    @Json(name = "sort")
     val sort: Sort? = null,
 
-    @Json(name = "unpaged")
     val unpaged: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

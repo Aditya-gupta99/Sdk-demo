@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetRescheduleReasonsAllowedTypes
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetRescheduleReasonsTemplateResponse
  *
- * @param rescheduleReasons 
+ * @param rescheduleReasons
  */
 
+@Serializable
+data class GetRescheduleReasonsTemplateResponse(
 
-data class GetRescheduleReasonsTemplateResponse (
-
-    @Json(name = "rescheduleReasons")
     val rescheduleReasons: kotlin.collections.Set<GetRescheduleReasonsAllowedTypes>? = null
 
-) {
-
-
-}
+)
 

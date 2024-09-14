@@ -15,99 +15,91 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ExtensionData
-import org.openapitools.client.models.GeoCodeData
-import org.openapitools.client.models.InteropTransactionTypeData
-import org.openapitools.client.models.MoneyData
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountId 
- * @param amount 
- * @param amountType 
- * @param quoteCode 
- * @param transactionCode 
- * @param transactionRole 
- * @param expiration 
- * @param expirationLocalDate 
- * @param extensionList 
- * @param fees 
- * @param geoCode 
- * @param note 
- * @param requestCode 
- * @param transactionType 
+ *
+ * @param accountId
+ * @param amount
+ * @param amountType
+ * @param quoteCode
+ * @param transactionCode
+ * @param transactionRole
+ * @param expiration
+ * @param expirationLocalDate
+ * @param extensionList
+ * @param fees
+ * @param geoCode
+ * @param note
+ * @param requestCode
+ * @param transactionType
  */
 
+@Serializable
+data class InteropQuoteRequestData(
 
-data class InteropQuoteRequestData (
-
-    @Json(name = "accountId")
     val accountId: kotlin.String,
 
-    @Json(name = "amount")
     val amount: MoneyData,
 
-    @Json(name = "amountType")
     val amountType: InteropQuoteRequestData.AmountType,
 
-    @Json(name = "quoteCode")
     val quoteCode: kotlin.String,
 
-    @Json(name = "transactionCode")
     val transactionCode: kotlin.String,
 
-    @Json(name = "transactionRole")
     val transactionRole: InteropQuoteRequestData.TransactionRole,
 
-    @Json(name = "expiration")
+    @Contextual
     val expiration: java.time.OffsetDateTime? = null,
 
-    @Json(name = "expirationLocalDate")
+    @Contextual
     val expirationLocalDate: java.time.LocalDate? = null,
 
-    @Json(name = "extensionList")
     val extensionList: kotlin.collections.List<ExtensionData>? = null,
 
-    @Json(name = "fees")
     val fees: MoneyData? = null,
 
-    @Json(name = "geoCode")
     val geoCode: GeoCodeData? = null,
 
-    @Json(name = "note")
     val note: kotlin.String? = null,
 
-    @Json(name = "requestCode")
     val requestCode: kotlin.String? = null,
 
-    @Json(name = "transactionType")
     val transactionType: InteropTransactionTypeData? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: SEND,RECEIVE
      */
     @JsonClass(generateAdapter = false)
     enum class AmountType(val value: kotlin.String) {
-        @Json(name = "SEND") SEND("SEND"),
-        @Json(name = "RECEIVE") RECEIVE("RECEIVE");
+        @Json(name = "SEND")
+        SEND("SEND"),
+
+        @Json(name = "RECEIVE")
+        RECEIVE("RECEIVE");
     }
+
     /**
-     * 
+     *
      *
      * Values: PAYER,PAYEE
      */
     @JsonClass(generateAdapter = false)
     enum class TransactionRole(val value: kotlin.String) {
-        @Json(name = "PAYER") PAYER("PAYER"),
-        @Json(name = "PAYEE") PAYEE("PAYEE");
+        @Json(name = "PAYER")
+        PAYER("PAYER"),
+
+        @Json(name = "PAYEE")
+        PAYEE("PAYEE");
     }
 
 }

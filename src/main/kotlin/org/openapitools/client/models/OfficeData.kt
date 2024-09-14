@@ -15,65 +15,51 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ExternalId
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param dateFormat 
- * @param externalId 
- * @param hierarchy 
- * @param id 
- * @param locale 
- * @param name 
- * @param nameDecorated 
- * @param openingDate 
- * @param parentId 
- * @param parentName 
- * @param rowIndex 
+ *
+ * @param dateFormat
+ * @param externalId
+ * @param hierarchy
+ * @param id
+ * @param locale
+ * @param name
+ * @param nameDecorated
+ * @param openingDate
+ * @param parentId
+ * @param parentName
+ * @param rowIndex
  */
 
+@Serializable
+data class OfficeData(
 
-data class OfficeData (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: ExternalId? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameDecorated")
     val nameDecorated: kotlin.String? = null,
 
-    @Json(name = "openingDate")
-    val openingDate: java.time.LocalDate? = null,
+    @Contextual
+    val openingDate: LocalDate? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null,
 
-    @Json(name = "parentName")
     val parentName: kotlin.String? = null,
 
-    @Json(name = "rowIndex")
     val rowIndex: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

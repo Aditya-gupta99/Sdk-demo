@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsGroupIdTimeline
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGroupsGroupIdResponse
  *
- * @param externalId 
- * @param hierarchy 
- * @param id 
- * @param name 
- * @param officeId 
- * @param officeName 
- * @param timeline 
+ * @param externalId
+ * @param hierarchy
+ * @param id
+ * @param name
+ * @param officeId
+ * @param officeName
+ * @param timeline
  */
 
+@Serializable
+data class GetGroupsGroupIdResponse(
 
-data class GetGroupsGroupIdResponse (
-
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "timeline")
     val timeline: GetGroupsGroupIdTimeline? = null
 
-) {
-
-
-}
+)
 

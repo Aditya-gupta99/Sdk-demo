@@ -15,49 +15,40 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LoanTermTypeOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateValue 
- * @param decimalValue 
- * @param id 
- * @param isProcessed 
- * @param isSpecificToInstallment 
- * @param termType 
- * @param termVariationApplicableFrom 
+ *
+ * @param dateValue
+ * @param decimalValue
+ * @param id
+ * @param isProcessed
+ * @param isSpecificToInstallment
+ * @param termType
+ * @param termVariationApplicableFrom
  */
 
+@Serializable
+data class LoanTermVariationsData(
 
-data class LoanTermVariationsData (
-
-    @Json(name = "dateValue")
+    @Contextual
     val dateValue: java.time.LocalDate? = null,
 
-    @Json(name = "decimalValue")
+    @Contextual
     val decimalValue: java.math.BigDecimal? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isProcessed")
     val isProcessed: kotlin.Boolean? = null,
 
-    @Json(name = "isSpecificToInstallment")
     val isSpecificToInstallment: kotlin.Boolean? = null,
 
-    @Json(name = "termType")
     val termType: LoanTermTypeOptions? = null,
 
-    @Json(name = "termVariationApplicableFrom")
+    @Contextual
     val termVariationApplicableFrom: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

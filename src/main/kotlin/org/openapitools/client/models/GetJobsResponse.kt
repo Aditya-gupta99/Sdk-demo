@@ -15,53 +15,41 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.JobDetailHistoryData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetJobsResponse
  *
- * @param active 
- * @param cronExpression 
- * @param currentlyRunning 
- * @param displayName 
- * @param initializingError 
- * @param jobId 
- * @param lastRunHistory 
- * @param nextRunTime 
+ * @param active
+ * @param cronExpression
+ * @param currentlyRunning
+ * @param displayName
+ * @param initializingError
+ * @param jobId
+ * @param lastRunHistory
+ * @param nextRunTime
  */
 
+@Serializable
+data class GetJobsResponse(
 
-data class GetJobsResponse (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "cronExpression")
     val cronExpression: kotlin.String? = null,
 
-    @Json(name = "currentlyRunning")
     val currentlyRunning: kotlin.Boolean? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "initializingError")
     val initializingError: kotlin.String? = null,
 
-    @Json(name = "jobId")
     val jobId: kotlin.Long? = null,
 
-    @Json(name = "lastRunHistory")
     val lastRunHistory: JobDetailHistoryData? = null,
 
-    @Json(name = "nextRunTime")
+    @Contextual
     val nextRunTime: java.time.OffsetDateTime? = null
 
-) {
-
-
-}
+)
 

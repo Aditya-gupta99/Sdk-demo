@@ -16,7 +16,7 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  * BusinessStep
@@ -25,13 +25,11 @@ import com.squareup.moshi.Json
  * @param stepName
  */
 
-
+@Serializable
 data class BusinessStep(
 
-    @Json(name = "order")
     val order: kotlin.Long? = null,
 
-    @Json(name = "stepName")
     val stepName: kotlin.String? = null
 
 )

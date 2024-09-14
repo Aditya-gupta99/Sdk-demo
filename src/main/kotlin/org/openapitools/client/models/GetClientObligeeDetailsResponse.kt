@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetObligeeData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientObligeeDetailsResponse
  *
- * @param obligees 
+ * @param obligees
  */
 
+@Serializable
+data class GetClientObligeeDetailsResponse(
 
-data class GetClientObligeeDetailsResponse (
-
-    @Json(name = "obligees")
     val obligees: kotlin.collections.Set<GetObligeeData>? = null
 
-) {
-
-
-}
+)
 

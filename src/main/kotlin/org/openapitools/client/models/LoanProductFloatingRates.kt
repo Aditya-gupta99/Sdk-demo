@@ -15,58 +15,47 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.FloatingRate
-import org.openapitools.client.models.LoanProduct
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param defaultDifferentialLendingRate 
- * @param floatingInterestRateCalculationAllowed 
- * @param floatingRate 
- * @param id 
- * @param interestRateDifferential 
- * @param loanProduct 
- * @param maxDifferentialLendingRate 
- * @param minDifferentialLendingRate 
- * @param new 
+ *
+ * @param defaultDifferentialLendingRate
+ * @param floatingInterestRateCalculationAllowed
+ * @param floatingRate
+ * @param id
+ * @param interestRateDifferential
+ * @param loanProduct
+ * @param maxDifferentialLendingRate
+ * @param minDifferentialLendingRate
+ * @param new
  */
 
+@Serializable
+data class LoanProductFloatingRates(
 
-data class LoanProductFloatingRates (
-
-    @Json(name = "defaultDifferentialLendingRate")
+    @Contextual
     val defaultDifferentialLendingRate: java.math.BigDecimal? = null,
 
-    @Json(name = "floatingInterestRateCalculationAllowed")
     val floatingInterestRateCalculationAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "floatingRate")
     val floatingRate: FloatingRate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "interestRateDifferential")
+    @Contextual
     val interestRateDifferential: java.math.BigDecimal? = null,
 
-    @Json(name = "loanProduct")
     val loanProduct: LoanProduct? = null,
 
-    @Json(name = "maxDifferentialLendingRate")
+    @Contextual
     val maxDifferentialLendingRate: java.math.BigDecimal? = null,
 
-    @Json(name = "minDifferentialLendingRate")
+    @Contextual
     val minDifferentialLendingRate: java.math.BigDecimal? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

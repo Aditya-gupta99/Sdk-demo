@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CodeValueData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param clientId 
- * @param clientName 
- * @param id 
- * @param role 
+ *
+ * @param clientId
+ * @param clientName
+ * @param id
+ * @param role
  */
 
+@Serializable
+data class GroupRoleData(
 
-data class GroupRoleData (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "role")
     val role: CodeValueData? = null
 
-) {
-
-
-}
+)
 

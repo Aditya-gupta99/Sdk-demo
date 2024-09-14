@@ -15,42 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetCollateralCurrencyResponse
-import org.openapitools.client.models.GetCollateralTypeResponse
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoansLoanIdCollateralsResponse
  *
- * @param currency 
- * @param description 
- * @param id 
- * @param type 
- * @param `value` 
+ * @param currency
+ * @param description
+ * @param id
+ * @param type
+ * @param `value`
  */
 
+@Serializable
+data class GetLoansLoanIdCollateralsResponse(
 
-data class GetLoansLoanIdCollateralsResponse (
-
-    @Json(name = "currency")
     val currency: GetCollateralCurrencyResponse? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "type")
     val type: GetCollateralTypeResponse? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.Long? = null
+    val value: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

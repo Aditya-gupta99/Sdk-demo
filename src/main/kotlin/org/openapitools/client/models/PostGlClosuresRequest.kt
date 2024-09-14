@@ -16,39 +16,32 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostGLCLosuresRequest
  *
- * @param closingDate 
- * @param comments 
- * @param dateFormat 
- * @param locale 
- * @param officeId 
+ * @param closingDate
+ * @param comments
+ * @param dateFormat
+ * @param locale
+ * @param officeId
  */
 
+@Serializable
+data class PostGlClosuresRequest(
 
-data class PostGlClosuresRequest (
-
-    @Json(name = "closingDate")
+    @Contextual
     val closingDate: java.time.LocalDate? = null,
 
-    @Json(name = "comments")
     val comments: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsTemplateColumnHeaderData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param applicationTableName 
- * @param columnHeaderData 
- * @param registeredTableName 
+ *
+ * @param applicationTableName
+ * @param columnHeaderData
+ * @param registeredTableName
  */
 
+@Serializable
+data class GetGroupsTemplateDatatables(
 
-data class GetGroupsTemplateDatatables (
-
-    @Json(name = "applicationTableName")
     val applicationTableName: kotlin.String? = null,
 
-    @Json(name = "columnHeaderData")
     val columnHeaderData: kotlin.collections.Set<GetGroupsTemplateColumnHeaderData>? = null,
 
-    @Json(name = "registeredTableName")
     val registeredTableName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

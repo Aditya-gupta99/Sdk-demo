@@ -16,47 +16,38 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param comments 
- * @param commentsChanged 
- * @param glAccountId 
- * @param glAccountIdChanged 
- * @param glAmountChanged 
- * @param parametersPassedInRequest 
+ *
+ * @param amount
+ * @param comments
+ * @param commentsChanged
+ * @param glAccountId
+ * @param glAccountIdChanged
+ * @param glAmountChanged
+ * @param parametersPassedInRequest
  */
 
+@Serializable
+data class SingleDebitOrCreditEntryCommand(
 
-data class SingleDebitOrCreditEntryCommand (
-
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "comments")
     val comments: kotlin.String? = null,
 
-    @Json(name = "commentsChanged")
     val commentsChanged: kotlin.Boolean? = null,
 
-    @Json(name = "glAccountId")
     val glAccountId: kotlin.Long? = null,
 
-    @Json(name = "glAccountIdChanged")
     val glAccountIdChanged: kotlin.Boolean? = null,
 
-    @Json(name = "glAmountChanged")
     val glAmountChanged: kotlin.Boolean? = null,
 
-    @Json(name = "parametersPassedInRequest")
     val parametersPassedInRequest: kotlin.collections.Set<kotlin.String>? = null
 
-) {
-
-
-}
+)
 

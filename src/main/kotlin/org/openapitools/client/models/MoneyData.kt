@@ -16,27 +16,23 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param currency 
+ *
+ * @param amount
+ * @param currency
  */
 
+@Serializable
+data class MoneyData(
 
-data class MoneyData (
-
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal,
 
-    @Json(name = "currency")
     val currency: kotlin.String
 
-) {
-
-
-}
+)
 

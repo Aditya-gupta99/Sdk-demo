@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostEntityDatatableChecksTemplateRequest
  *
- * @param datatableName 
- * @param entity 
- * @param productId 
- * @param status 
+ * @param datatableName
+ * @param entity
+ * @param productId
+ * @param status
  */
 
+@Serializable
+data class PostEntityDatatableChecksTemplateRequest(
 
-data class PostEntityDatatableChecksTemplateRequest (
-
-    @Json(name = "datatableName")
     val datatableName: kotlin.String? = null,
 
-    @Json(name = "entity")
     val entity: kotlin.String? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "status")
     val status: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

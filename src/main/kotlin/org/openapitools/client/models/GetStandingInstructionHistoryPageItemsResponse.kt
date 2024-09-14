@@ -15,84 +15,59 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetFromAccountTypeStandingInstructionSwagger
-import org.openapitools.client.models.GetFromOfficeStandingInstructionSwagger
-import org.openapitools.client.models.GetStandingInstructionHistoryFromAccount
-import org.openapitools.client.models.GetStandingInstructionHistoryPageItemsFromClient
-import org.openapitools.client.models.GetStandingInstructionHistoryToAccount
-import org.openapitools.client.models.GetStandingInstructionHistoryToClient
-import org.openapitools.client.models.GetToAccountTypeStandingInstructionSwagger
-import org.openapitools.client.models.GetToOfficeStandingInstructionSwagger
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param errorLog 
- * @param executionTime 
- * @param fromAccount 
- * @param fromAccountType 
- * @param fromClient 
- * @param fromOffice 
- * @param name 
- * @param standingInstructionId 
- * @param status 
- * @param toAccount 
- * @param toAccountType 
- * @param toClient 
- * @param toOffice 
+ *
+ * @param amount
+ * @param errorLog
+ * @param executionTime
+ * @param fromAccount
+ * @param fromAccountType
+ * @param fromClient
+ * @param fromOffice
+ * @param name
+ * @param standingInstructionId
+ * @param status
+ * @param toAccount
+ * @param toAccountType
+ * @param toClient
+ * @param toOffice
  */
 
+@Serializable
+data class GetStandingInstructionHistoryPageItemsResponse(
 
-data class GetStandingInstructionHistoryPageItemsResponse (
-
-    @Json(name = "amount")
     val amount: kotlin.Float? = null,
 
-    @Json(name = "errorLog")
     val errorLog: kotlin.String? = null,
 
-    @Json(name = "executionTime")
+    @Contextual
     val executionTime: java.time.LocalDate? = null,
 
-    @Json(name = "fromAccount")
     val fromAccount: GetStandingInstructionHistoryFromAccount? = null,
 
-    @Json(name = "fromAccountType")
     val fromAccountType: GetFromAccountTypeStandingInstructionSwagger? = null,
 
-    @Json(name = "fromClient")
     val fromClient: GetStandingInstructionHistoryPageItemsFromClient? = null,
 
-    @Json(name = "fromOffice")
     val fromOffice: GetFromOfficeStandingInstructionSwagger? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "standingInstructionId")
     val standingInstructionId: kotlin.Long? = null,
 
-    @Json(name = "status")
     val status: kotlin.String? = null,
 
-    @Json(name = "toAccount")
     val toAccount: GetStandingInstructionHistoryToAccount? = null,
 
-    @Json(name = "toAccountType")
     val toAccountType: GetToAccountTypeStandingInstructionSwagger? = null,
 
-    @Json(name = "toClient")
     val toClient: GetStandingInstructionHistoryToClient? = null,
 
-    @Json(name = "toOffice")
     val toOffice: GetToOfficeStandingInstructionSwagger? = null
 
-) {
-
-
-}
+)
 

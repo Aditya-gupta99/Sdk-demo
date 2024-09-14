@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutTaxesGroupTaxComponents
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutTaxesGroupTaxGroupIdRequest
  *
- * @param dateFormat 
- * @param locale 
- * @param name 
- * @param taxComponents 
+ * @param dateFormat
+ * @param locale
+ * @param name
+ * @param taxComponents
  */
 
+@Serializable
+data class PutTaxesGroupTaxGroupIdRequest(
 
-data class PutTaxesGroupTaxGroupIdRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "taxComponents")
     val taxComponents: kotlin.collections.Set<PutTaxesGroupTaxComponents>? = null
 
-) {
-
-
-}
+)
 

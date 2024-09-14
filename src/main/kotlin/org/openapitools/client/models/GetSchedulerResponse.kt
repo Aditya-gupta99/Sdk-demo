@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetSchedulerResponse
  *
- * @param active 
+ * @param active
  */
 
+@Serializable
+data class GetSchedulerResponse(
 
-data class GetSchedulerResponse (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

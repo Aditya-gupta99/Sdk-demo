@@ -15,62 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.RoleData
-import org.openapitools.client.models.StaffData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetUsersResponse
  *
- * @param email 
- * @param firstname 
- * @param id 
- * @param lastname 
- * @param officeId 
- * @param officeName 
- * @param passwordNeverExpires 
- * @param selectedRoles 
- * @param staff 
- * @param username 
+ * @param email
+ * @param firstname
+ * @param id
+ * @param lastname
+ * @param officeId
+ * @param officeName
+ * @param passwordNeverExpires
+ * @param selectedRoles
+ * @param staff
+ * @param username
  */
 
+@Serializable
+data class GetUsersResponse(
 
-data class GetUsersResponse (
-
-    @Json(name = "email")
     val email: kotlin.String? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "passwordNeverExpires")
     val passwordNeverExpires: kotlin.Boolean? = null,
 
-    @Json(name = "selectedRoles")
     val selectedRoles: kotlin.collections.List<RoleData>? = null,
 
-    @Json(name = "staff")
     val staff: StaffData? = null,
 
-    @Json(name = "username")
     val username: kotlin.String? = null
 
-) {
-
-
-}
+)
 

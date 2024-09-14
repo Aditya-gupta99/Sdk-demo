@@ -15,41 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoanChargeTemplateChargeOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoansLoanIdChargesTemplateResponse
  *
- * @param amountPaid 
- * @param amountWaived 
- * @param amountWrittenOff 
- * @param chargeOptions 
- * @param penalty 
+ * @param amountPaid
+ * @param amountWaived
+ * @param amountWrittenOff
+ * @param chargeOptions
+ * @param penalty
  */
 
+@Serializable
+data class GetLoansLoanIdChargesTemplateResponse(
 
-data class GetLoansLoanIdChargesTemplateResponse (
-
-    @Json(name = "amountPaid")
     val amountPaid: kotlin.Double? = null,
 
-    @Json(name = "amountWaived")
     val amountWaived: kotlin.Double? = null,
 
-    @Json(name = "amountWrittenOff")
     val amountWrittenOff: kotlin.Double? = null,
 
-    @Json(name = "chargeOptions")
     val chargeOptions: kotlin.collections.Set<GetLoanChargeTemplateChargeOptions>? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

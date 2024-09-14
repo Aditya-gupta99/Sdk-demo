@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutSelfBeneficiariesTPTBeneficiaryIdRequest
  *
- * @param name 
- * @param transferLimit 
+ * @param name
+ * @param transferLimit
  */
 
+@Serializable
+data class PutSelfBeneficiariesTPTBeneficiaryIdRequest(
 
-data class PutSelfBeneficiariesTPTBeneficiaryIdRequest (
-
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "transferLimit")
     val transferLimit: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Survey
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param description 
- * @param id 
- * @param key 
- * @param new 
- * @param sequenceNo 
- * @param survey 
- * @param text 
+ *
+ * @param description
+ * @param id
+ * @param key
+ * @param new
+ * @param sequenceNo
+ * @param survey
+ * @param text
  */
 
+@Serializable
+data class Component(
 
-data class Component (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "key")
     val key: kotlin.String? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "sequenceNo")
     val sequenceNo: kotlin.Int? = null,
 
-    @Json(name = "survey")
     val survey: Survey? = null,
 
-    @Json(name = "text")
     val text: kotlin.String? = null
 
-) {
-
-
-}
+)
 

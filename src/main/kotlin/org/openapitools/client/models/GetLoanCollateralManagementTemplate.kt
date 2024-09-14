@@ -16,39 +16,34 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoanCollateralManagementTemplate
  *
- * @param basePrice 
- * @param collateralId 
- * @param name 
- * @param pctToBase 
- * @param quantity 
+ * @param basePrice
+ * @param collateralId
+ * @param name
+ * @param pctToBase
+ * @param quantity
  */
 
+@Serializable
+data class GetLoanCollateralManagementTemplate(
 
-data class GetLoanCollateralManagementTemplate (
-
-    @Json(name = "basePrice")
+    @Contextual
     val basePrice: java.math.BigDecimal? = null,
 
-    @Json(name = "collateralId")
     val collateralId: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "pctToBase")
+    @Contextual
     val pctToBase: java.math.BigDecimal? = null,
 
-    @Json(name = "quantity")
+    @Contextual
     val quantity: java.math.BigDecimal? = null
 
-) {
-
-
-}
+)
 

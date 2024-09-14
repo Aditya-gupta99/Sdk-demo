@@ -16,43 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetPostDatedChecks
  *
- * @param accountNo 
- * @param amount 
- * @param date 
- * @param id 
- * @param installmentId 
- * @param name 
+ * @param accountNo
+ * @param amount
+ * @param date
+ * @param id
+ * @param installmentId
+ * @param name
  */
 
+@Serializable
+data class GetPostDatedChecks(
 
-data class GetPostDatedChecks (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "installmentId")
     val installmentId: kotlin.Int? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

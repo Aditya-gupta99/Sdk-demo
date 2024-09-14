@@ -15,73 +15,58 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param campaignName 
- * @param campaignStatus 
- * @param campaignType 
- * @param id 
- * @param lastTriggerDate 
- * @param message 
- * @param nextTriggerDate 
- * @param notification 
- * @param paramValue 
- * @param recurrence 
- * @param recurrenceStartDate 
- * @param reportName 
- * @param runReportId 
+ *
+ * @param campaignName
+ * @param campaignStatus
+ * @param campaignType
+ * @param id
+ * @param lastTriggerDate
+ * @param message
+ * @param nextTriggerDate
+ * @param notification
+ * @param paramValue
+ * @param recurrence
+ * @param recurrenceStartDate
+ * @param reportName
+ * @param runReportId
  */
 
+@Serializable
+data class SmsCampaignData(
 
-data class SmsCampaignData (
-
-    @Json(name = "campaignName")
     val campaignName: kotlin.String? = null,
 
-    @Json(name = "campaignStatus")
     val campaignStatus: EnumOptionData? = null,
 
-    @Json(name = "campaignType")
     val campaignType: EnumOptionData? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastTriggerDate")
+    @Contextual
     val lastTriggerDate: java.time.LocalDate? = null,
 
-    @Json(name = "message")
     val message: kotlin.String? = null,
 
-    @Json(name = "nextTriggerDate")
+    @Contextual
     val nextTriggerDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "notification")
     val notification: kotlin.Boolean? = null,
 
-    @Json(name = "paramValue")
     val paramValue: kotlin.String? = null,
 
-    @Json(name = "recurrence")
     val recurrence: kotlin.String? = null,
 
-    @Json(name = "recurrenceStartDate")
+    @Contextual
     val recurrenceStartDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "reportName")
     val reportName: kotlin.String? = null,
 
-    @Json(name = "runReportId")
     val runReportId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

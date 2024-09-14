@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutCodeValuechangesSwagger
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutCodeValueDataResponse
  *
- * @param changes 
- * @param resourceId 
+ * @param changes
+ * @param resourceId
  */
 
+@Serializable
+data class PutCodeValueDataResponse(
 
-data class PutCodeValueDataResponse (
-
-    @Json(name = "changes")
     val changes: PutCodeValuechangesSwagger? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

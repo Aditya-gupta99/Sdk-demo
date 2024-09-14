@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetWorkingDaysTemplateResponse
  *
- * @param repaymentRescheduleOptions 
+ * @param repaymentRescheduleOptions
  */
 
+@Serializable
+data class GetWorkingDaysTemplateResponse(
 
-data class GetWorkingDaysTemplateResponse (
-
-    @Json(name = "repaymentRescheduleOptions")
     val repaymentRescheduleOptions: kotlin.collections.List<EnumOptionData>? = null
 
-) {
-
-
-}
+)
 

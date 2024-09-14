@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -28,25 +28,19 @@ import com.squareup.moshi.Json
  * @param requestId
  */
 
-
+@Serializable
 data class BatchRequest(
 
-    @Json(name = "body")
     val body: kotlin.String? = null,
 
-    @Json(name = "headers")
     val headers: kotlin.collections.Set<Header>? = null,
 
-    @Json(name = "method")
     val method: kotlin.String? = null,
 
-    @Json(name = "reference")
     val reference: kotlin.Long? = null,
 
-    @Json(name = "relativeUrl")
     val relativeUrl: kotlin.String? = null,
 
-    @Json(name = "requestId")
     val requestId: kotlin.Long? = null
 
 )

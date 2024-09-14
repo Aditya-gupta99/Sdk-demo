@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.BusinessStep
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * UpdateBusinessStepConfigRequest
  *
- * @param businessSteps 
+ * @param businessSteps
  */
 
+@Serializable
+data class UpdateBusinessStepConfigRequest(
 
-data class UpdateBusinessStepConfigRequest (
-
-    @Json(name = "businessSteps")
     val businessSteps: kotlin.collections.List<BusinessStep>? = null
 
-) {
-
-
-}
+)
 

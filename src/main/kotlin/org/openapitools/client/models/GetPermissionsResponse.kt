@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetPermissionsResponse
  *
- * @param actionName 
- * @param code 
- * @param entityName 
- * @param grouping 
- * @param selected 
+ * @param actionName
+ * @param code
+ * @param entityName
+ * @param grouping
+ * @param selected
  */
 
+@Serializable
+data class GetPermissionsResponse(
 
-data class GetPermissionsResponse (
-
-    @Json(name = "actionName")
     val actionName: kotlin.String? = null,
 
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "entityName")
     val entityName: kotlin.String? = null,
 
-    @Json(name = "grouping")
     val grouping: kotlin.String? = null,
 
-    @Json(name = "selected")
     val selected: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

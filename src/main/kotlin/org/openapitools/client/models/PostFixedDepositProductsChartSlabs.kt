@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param annualInterestRate 
- * @param description 
- * @param fromPeriod 
- * @param periodType 
- * @param toPeriod 
+ *
+ * @param annualInterestRate
+ * @param description
+ * @param fromPeriod
+ * @param periodType
+ * @param toPeriod
  */
 
+@Serializable
+data class PostFixedDepositProductsChartSlabs(
 
-data class PostFixedDepositProductsChartSlabs (
-
-    @Json(name = "annualInterestRate")
     val annualInterestRate: kotlin.Double? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "fromPeriod")
     val fromPeriod: kotlin.Int? = null,
 
-    @Json(name = "periodType")
     val periodType: kotlin.Int? = null,
 
-    @Json(name = "toPeriod")
     val toPeriod: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

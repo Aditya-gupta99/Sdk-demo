@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -26,19 +26,15 @@ import com.squareup.moshi.Json
  * @param statusCode
  */
 
-
+@Serializable
 data class BatchResponse(
 
-    @Json(name = "body")
     val body: kotlin.String? = null,
 
-    @Json(name = "headers")
     val headers: kotlin.collections.Set<Header>? = null,
 
-    @Json(name = "requestId")
     val requestId: kotlin.Long? = null,
 
-    @Json(name = "statusCode")
     val statusCode: kotlin.Int? = null
 
 )

@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutJobsJobsIDRequest
  *
- * @param active 
- * @param cronExpression 
- * @param displayName 
+ * @param active
+ * @param cronExpression
+ * @param displayName
  */
 
+@Serializable
+data class PutJobsJobIDRequest(
 
-data class PutJobsJobIDRequest (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "cronExpression")
     val cronExpression: kotlin.String? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

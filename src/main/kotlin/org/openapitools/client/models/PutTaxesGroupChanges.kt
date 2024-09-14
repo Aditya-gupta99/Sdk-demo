@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutTaxesGroupModifiedComponents
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param addComponents 
- * @param modifiedComponents 
- * @param name 
+ *
+ * @param addComponents
+ * @param modifiedComponents
+ * @param name
  */
 
+@Serializable
+data class PutTaxesGroupChanges(
 
-data class PutTaxesGroupChanges (
-
-    @Json(name = "addComponents")
     val addComponents: kotlin.collections.List<kotlin.Int>? = null,
 
-    @Json(name = "modifiedComponents")
     val modifiedComponents: kotlin.collections.Set<PutTaxesGroupModifiedComponents>? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

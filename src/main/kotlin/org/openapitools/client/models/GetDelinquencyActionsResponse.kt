@@ -16,51 +16,44 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetDelinquencyActionsResponse
  *
- * @param action 
- * @param createdById 
- * @param createdOn 
- * @param endDate 
- * @param id 
- * @param lastModifiedOn 
- * @param startDate 
- * @param updatedById 
+ * @param action
+ * @param createdById
+ * @param createdOn
+ * @param endDate
+ * @param id
+ * @param lastModifiedOn
+ * @param startDate
+ * @param updatedById
  */
 
+@Serializable
+data class GetDelinquencyActionsResponse(
 
-data class GetDelinquencyActionsResponse (
-
-    @Json(name = "action")
     val action: kotlin.String? = null,
 
-    @Json(name = "createdById")
     val createdById: kotlin.Long? = null,
 
-    @Json(name = "createdOn")
+    @Contextual
     val createdOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastModifiedOn")
+    @Contextual
     val lastModifiedOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: java.time.LocalDate? = null,
 
-    @Json(name = "updatedById")
     val updatedById: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

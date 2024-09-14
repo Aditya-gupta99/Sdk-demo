@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
- * @param grouping 
- * @param id 
- * @param new 
+ *
+ * @param code
+ * @param grouping
+ * @param id
+ * @param new
  */
 
+@Serializable
+data class Permission(
 
-data class Permission (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "grouping")
     val grouping: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

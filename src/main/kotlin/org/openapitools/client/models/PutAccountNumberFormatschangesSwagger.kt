@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param prefixType 
+ *
+ * @param prefixType
  */
 
+@Serializable
+data class PutAccountNumberFormatschangesSwagger(
 
-data class PutAccountNumberFormatschangesSwagger (
-
-    @Json(name = "prefixType")
     val prefixType: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -16,75 +16,57 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param approveTransfer 
- * @param code 
- * @param deposit 
- * @param description 
- * @param feeDeduction 
- * @param id 
- * @param initiateTransfer 
- * @param interestPosting 
- * @param overdraftFee 
- * @param overdraftInterest 
- * @param rejectTransfer 
- * @param withdrawTransfer 
- * @param withdrawal 
- * @param writtenoff 
+ *
+ * @param approveTransfer
+ * @param code
+ * @param deposit
+ * @param description
+ * @param feeDeduction
+ * @param id
+ * @param initiateTransfer
+ * @param interestPosting
+ * @param overdraftFee
+ * @param overdraftInterest
+ * @param rejectTransfer
+ * @param withdrawTransfer
+ * @param withdrawal
+ * @param writtenoff
  */
 
+@Serializable
+data class GetRecurringTransactionType(
 
-data class GetRecurringTransactionType (
-
-    @Json(name = "approveTransfer")
     val approveTransfer: kotlin.Boolean? = null,
 
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "deposit")
     val deposit: kotlin.Boolean? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "feeDeduction")
     val feeDeduction: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "initiateTransfer")
     val initiateTransfer: kotlin.Boolean? = null,
 
-    @Json(name = "interestPosting")
     val interestPosting: kotlin.Boolean? = null,
 
-    @Json(name = "overdraftFee")
     val overdraftFee: kotlin.Boolean? = null,
 
-    @Json(name = "overdraftInterest")
     val overdraftInterest: kotlin.Boolean? = null,
 
-    @Json(name = "rejectTransfer")
     val rejectTransfer: kotlin.Boolean? = null,
 
-    @Json(name = "withdrawTransfer")
     val withdrawTransfer: kotlin.Boolean? = null,
 
-    @Json(name = "withdrawal")
     val withdrawal: kotlin.Boolean? = null,
 
-    @Json(name = "writtenoff")
     val writtenoff: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

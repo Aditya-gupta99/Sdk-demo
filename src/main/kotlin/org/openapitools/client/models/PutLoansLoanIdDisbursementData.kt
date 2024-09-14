@@ -16,47 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateFormat 
- * @param expectedDisbursementDate 
- * @param interestType 
- * @param isEqualAmortization 
- * @param locale 
- * @param netDisbursalAmount 
- * @param principal 
+ *
+ * @param dateFormat
+ * @param expectedDisbursementDate
+ * @param interestType
+ * @param isEqualAmortization
+ * @param locale
+ * @param netDisbursalAmount
+ * @param principal
  */
 
+@Serializable
+data class PutLoansLoanIdDisbursementData(
 
-data class PutLoansLoanIdDisbursementData (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "expectedDisbursementDate")
     val expectedDisbursementDate: kotlin.String? = null,
 
-    @Json(name = "interestType")
     val interestType: kotlin.Int? = null,
 
-    @Json(name = "isEqualAmortization")
     val isEqualAmortization: kotlin.Boolean? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "netDisbursalAmount")
+    @Contextual
     val netDisbursalAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "principal")
+    @Contextual
     val principal: java.math.BigDecimal? = null
 
-) {
-
-
-}
+)
 

@@ -16,7 +16,8 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
 /**
@@ -27,16 +28,14 @@ import java.time.LocalDate
  * @param type
  */
 
-
+@Serializable
 data class BusinessDateResponse(
 
-    @Json(name = "date")
+    @Contextual
     val date: LocalDate? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "type")
     val type: kotlin.String? = null
 
 )

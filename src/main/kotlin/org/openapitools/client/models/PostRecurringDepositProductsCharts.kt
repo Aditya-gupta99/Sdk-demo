@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostRecurringDepositProductsChartSlabs
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param chartSlabs 
- * @param dateFormat 
- * @param fromDate 
- * @param locale 
+ *
+ * @param chartSlabs
+ * @param dateFormat
+ * @param fromDate
+ * @param locale
  */
 
+@Serializable
+data class PostRecurringDepositProductsCharts(
 
-data class PostRecurringDepositProductsCharts (
-
-    @Json(name = "chartSlabs")
     val chartSlabs: kotlin.collections.Set<PostRecurringDepositProductsChartSlabs>? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "fromDate")
     val fromDate: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null
 
-) {
-
-
-}
+)
 

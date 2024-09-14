@@ -15,7 +15,8 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
 /**
@@ -37,49 +38,37 @@ import java.time.LocalDate
  * @param tellerName
  */
 
-
+@Serializable
 data class CashierData(
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: LocalDate? = null,
 
-    @Json(name = "endTime")
     val endTime: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isFullDay")
     val isFullDay: kotlin.Boolean? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "staffId")
     val staffId: kotlin.Long? = null,
 
-    @Json(name = "staffName")
     val staffName: kotlin.String? = null,
 
-    @Json(name = "staffOptions")
     val staffOptions: kotlin.collections.List<StaffData>? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: LocalDate? = null,
 
-    @Json(name = "startTime")
     val startTime: kotlin.String? = null,
 
-    @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
 
-    @Json(name = "tellerName")
     val tellerName: kotlin.String? = null
 
 )

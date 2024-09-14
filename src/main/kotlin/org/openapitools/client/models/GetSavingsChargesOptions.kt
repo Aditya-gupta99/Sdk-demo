@@ -15,60 +15,42 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetChargesAppliesTo
-import org.openapitools.client.models.GetChargesChargeCalculationType
-import org.openapitools.client.models.GetChargesCurrencyResponse
-import org.openapitools.client.models.GetSavingsChargesChargeTimeType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param amount 
- * @param chargeCalculationType 
- * @param chargeTimeType 
- * @param chargesAppliesTo 
- * @param currency 
- * @param id 
- * @param name 
- * @param penalty 
+ *
+ * @param active
+ * @param amount
+ * @param chargeCalculationType
+ * @param chargeTimeType
+ * @param chargesAppliesTo
+ * @param currency
+ * @param id
+ * @param name
+ * @param penalty
  */
 
+@Serializable
+data class GetSavingsChargesOptions(
 
-data class GetSavingsChargesOptions (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "amount")
     val amount: kotlin.Float? = null,
 
-    @Json(name = "chargeCalculationType")
     val chargeCalculationType: GetChargesChargeCalculationType? = null,
 
-    @Json(name = "chargeTimeType")
     val chargeTimeType: GetSavingsChargesChargeTimeType? = null,
 
-    @Json(name = "chargesAppliesTo")
     val chargesAppliesTo: GetChargesAppliesTo? = null,
 
-    @Json(name = "currency")
     val currency: GetChargesCurrencyResponse? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

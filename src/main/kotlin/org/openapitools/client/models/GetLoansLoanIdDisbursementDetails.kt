@@ -16,67 +16,54 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param actualDisbursementDate 
- * @param approvedPrincipal 
- * @param chargeAmount 
- * @param dateFormat 
- * @param expectedDisbursementDate 
- * @param id 
- * @param loanChargeId 
- * @param locale 
- * @param netDisbursalAmount 
- * @param note 
- * @param principal 
- * @param waivedChargeAmount 
+ *
+ * @param actualDisbursementDate
+ * @param approvedPrincipal
+ * @param chargeAmount
+ * @param dateFormat
+ * @param expectedDisbursementDate
+ * @param id
+ * @param loanChargeId
+ * @param locale
+ * @param netDisbursalAmount
+ * @param note
+ * @param principal
+ * @param waivedChargeAmount
  */
 
+@Serializable
+data class GetLoansLoanIdDisbursementDetails(
 
-data class GetLoansLoanIdDisbursementDetails (
-
-    @Json(name = "actualDisbursementDate")
+    @Contextual
     val actualDisbursementDate: java.time.LocalDate? = null,
 
-    @Json(name = "approvedPrincipal")
     val approvedPrincipal: kotlin.Float? = null,
 
-    @Json(name = "chargeAmount")
     val chargeAmount: kotlin.Double? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "expectedDisbursementDate")
+    @Contextual
     val expectedDisbursementDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "loanChargeId")
     val loanChargeId: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "netDisbursalAmount")
     val netDisbursalAmount: kotlin.Double? = null,
 
-    @Json(name = "note")
     val note: kotlin.String? = null,
 
-    @Json(name = "principal")
     val principal: kotlin.Double? = null,
 
-    @Json(name = "waivedChargeAmount")
     val waivedChargeAmount: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

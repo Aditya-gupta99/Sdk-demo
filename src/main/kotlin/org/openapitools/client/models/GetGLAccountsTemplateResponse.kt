@@ -15,83 +15,60 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CodeValueData
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.GLAccountData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGLAccountsTemplateResponse
  *
- * @param accountTypeOptions 
- * @param allowedAssetsTagOptions 
- * @param allowedEquityTagOptions 
- * @param allowedExpensesTagOptions 
- * @param allowedIncomeTagOptions 
- * @param allowedLiabilitiesTagOptions 
- * @param assetHeaderAccountOptions 
- * @param disabled 
- * @param equityHeaderAccountOptions 
- * @param expenseHeaderAccountOptions 
- * @param liabilityHeaderAccountOptions 
- * @param manualEntriesAllowed 
- * @param type 
- * @param usage 
- * @param usageOptions 
+ * @param accountTypeOptions
+ * @param allowedAssetsTagOptions
+ * @param allowedEquityTagOptions
+ * @param allowedExpensesTagOptions
+ * @param allowedIncomeTagOptions
+ * @param allowedLiabilitiesTagOptions
+ * @param assetHeaderAccountOptions
+ * @param disabled
+ * @param equityHeaderAccountOptions
+ * @param expenseHeaderAccountOptions
+ * @param liabilityHeaderAccountOptions
+ * @param manualEntriesAllowed
+ * @param type
+ * @param usage
+ * @param usageOptions
  */
 
+@Serializable
+data class GetGLAccountsTemplateResponse(
 
-data class GetGLAccountsTemplateResponse (
-
-    @Json(name = "accountTypeOptions")
     val accountTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "allowedAssetsTagOptions")
     val allowedAssetsTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedEquityTagOptions")
     val allowedEquityTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedExpensesTagOptions")
     val allowedExpensesTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedIncomeTagOptions")
     val allowedIncomeTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedLiabilitiesTagOptions")
     val allowedLiabilitiesTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "assetHeaderAccountOptions")
     val assetHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "equityHeaderAccountOptions")
     val equityHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "expenseHeaderAccountOptions")
     val expenseHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "liabilityHeaderAccountOptions")
     val liabilityHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "manualEntriesAllowed")
     val manualEntriesAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "type")
     val type: EnumOptionData? = null,
 
-    @Json(name = "usage")
     val usage: EnumOptionData? = null,
 
-    @Json(name = "usageOptions")
     val usageOptions: kotlin.collections.List<EnumOptionData>? = null
 
-) {
-
-
-}
+)
 

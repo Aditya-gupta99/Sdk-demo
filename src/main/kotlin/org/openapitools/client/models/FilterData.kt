@@ -18,46 +18,59 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param `operator` 
- * @param propertyValues 
+ *
+ * @param `operator`
+ * @param propertyValues
  */
 
+@Serializable
+data class FilterData(
 
-data class FilterData (
-
-    @Json(name = "operator")
     val `operator`: FilterData.`Operator`? = null,
 
-    @Json(name = "values")
     val propertyValues: kotlin.collections.List<kotlin.String>? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: EQ,NEQ,GTE,LTE,GT,LT,LIKE,NLIKE,BTW,NBTW,IN,NIN,NULL,NNULL
      */
     @JsonClass(generateAdapter = false)
     enum class `Operator`(val value: kotlin.String) {
-        @Json(name = "EQ") EQ("EQ"),
-        @Json(name = "NEQ") NEQ("NEQ"),
-        @Json(name = "GTE") GTE("GTE"),
-        @Json(name = "LTE") LTE("LTE"),
-        @Json(name = "GT") GT("GT"),
-        @Json(name = "LT") LT("LT"),
-        @Json(name = "LIKE") LIKE("LIKE"),
-        @Json(name = "NLIKE") NLIKE("NLIKE"),
-        @Json(name = "BTW") BTW("BTW"),
-        @Json(name = "NBTW") NBTW("NBTW"),
-        @Json(name = "IN") IN("IN"),
-        @Json(name = "NIN") NIN("NIN"),
-        @Json(name = "NULL") NULL("NULL"),
-        @Json(name = "NNULL") NNULL("NNULL");
+        @Json(name = "EQ")
+        EQ("EQ"),
+        @Json(name = "NEQ")
+        NEQ("NEQ"),
+        @Json(name = "GTE")
+        GTE("GTE"),
+        @Json(name = "LTE")
+        LTE("LTE"),
+        @Json(name = "GT")
+        GT("GT"),
+        @Json(name = "LT")
+        LT("LT"),
+        @Json(name = "LIKE")
+        LIKE("LIKE"),
+        @Json(name = "NLIKE")
+        NLIKE("NLIKE"),
+        @Json(name = "BTW")
+        BTW("BTW"),
+        @Json(name = "NBTW")
+        NBTW("NBTW"),
+        @Json(name = "IN")
+        IN("IN"),
+        @Json(name = "NIN")
+        NIN("NIN"),
+        @Json(name = "NULL")
+        NULL("NULL"),
+        @Json(name = "NNULL")
+        NNULL("NNULL");
     }
 
 }

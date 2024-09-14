@@ -15,53 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Code
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param code 
- * @param description 
- * @param id 
- * @param label 
- * @param mandatory 
- * @param new 
- * @param position 
+ *
+ * @param active
+ * @param code
+ * @param description
+ * @param id
+ * @param label
+ * @param mandatory
+ * @param new
+ * @param position
  */
 
+@Serializable
+data class CodeValue(
 
-data class CodeValue (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "code")
     val code: Code? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "label")
     val label: kotlin.String? = null,
 
-    @Json(name = "mandatory")
     val mandatory: kotlin.Boolean? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "position")
     val position: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

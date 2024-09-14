@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutStandingInstructionsStandingInstructionIdRequest
  *
- * @param recurrenceInterval 
+ * @param recurrenceInterval
  */
 
+@Serializable
+data class PutStandingInstructionsStandingInstructionIdRequest(
 
-data class PutStandingInstructionsStandingInstructionIdRequest (
-
-    @Json(name = "recurrenceInterval")
     val recurrenceInterval: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

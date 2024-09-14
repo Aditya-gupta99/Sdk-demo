@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostLoansDelinquencyActionRequest
  *
- * @param action 
- * @param dateFormat 
- * @param endDate 
- * @param locale 
- * @param startDate 
+ * @param action
+ * @param dateFormat
+ * @param endDate
+ * @param locale
+ * @param startDate
  */
 
+@Serializable
+data class PostLoansDelinquencyActionRequest(
 
-data class PostLoansDelinquencyActionRequest (
-
-    @Json(name = "action")
     val action: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "endDate")
     val endDate: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "startDate")
     val startDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

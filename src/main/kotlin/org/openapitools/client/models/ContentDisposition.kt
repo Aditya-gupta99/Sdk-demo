@@ -16,47 +16,40 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param creationDate 
- * @param fileName 
- * @param modificationDate 
- * @param parameters 
- * @param readDate 
- * @param propertySize 
- * @param type 
+ *
+ * @param creationDate
+ * @param fileName
+ * @param modificationDate
+ * @param parameters
+ * @param readDate
+ * @param propertySize
+ * @param type
  */
 
+@Serializable
+data class ContentDisposition(
 
-data class ContentDisposition (
-
-    @Json(name = "creationDate")
+    @Contextual
     val creationDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "fileName")
     val fileName: kotlin.String? = null,
 
-    @Json(name = "modificationDate")
+    @Contextual
     val modificationDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "parameters")
     val parameters: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
 
-    @Json(name = "readDate")
+    @Contextual
     val readDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "size")
     val propertySize: kotlin.Long? = null,
 
-    @Json(name = "type")
     val type: kotlin.String? = null
 
-) {
-
-
-}
+)
 

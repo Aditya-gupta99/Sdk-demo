@@ -16,43 +16,33 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param approved 
- * @param code 
- * @param id 
- * @param pendingApproval 
- * @param rejected 
- * @param `value` 
+ *
+ * @param approved
+ * @param code
+ * @param id
+ * @param pendingApproval
+ * @param rejected
+ * @param `value`
  */
 
+@Serializable
+data class GetLoanRescheduleRequestStatus(
 
-data class GetLoanRescheduleRequestStatus (
-
-    @Json(name = "approved")
     val approved: kotlin.Boolean? = null,
 
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "pendingApproval")
     val pendingApproval: kotlin.Boolean? = null,
 
-    @Json(name = "rejected")
     val rejected: kotlin.Boolean? = null,
 
-    @Json(name = "value")
     val `value`: kotlin.String? = null
 
-) {
-
-
-}
+)
 

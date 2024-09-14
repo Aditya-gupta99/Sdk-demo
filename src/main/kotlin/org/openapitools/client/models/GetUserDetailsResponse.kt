@@ -15,66 +15,48 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-import org.openapitools.client.models.RoleData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetUserDetailsResponse
  *
- * @param accessToken 
- * @param authenticated 
- * @param officeId 
- * @param officeName 
- * @param organisationalRole 
- * @param permissions 
- * @param roles 
- * @param staffDisplayName 
- * @param staffId 
- * @param userId 
- * @param username 
+ * @param accessToken
+ * @param authenticated
+ * @param officeId
+ * @param officeName
+ * @param organisationalRole
+ * @param permissions
+ * @param roles
+ * @param staffDisplayName
+ * @param staffId
+ * @param userId
+ * @param username
  */
 
+@Serializable
+data class GetUserDetailsResponse(
 
-data class GetUserDetailsResponse (
-
-    @Json(name = "accessToken")
     val accessToken: kotlin.String? = null,
 
-    @Json(name = "authenticated")
     val authenticated: kotlin.Boolean? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "organisationalRole")
     val organisationalRole: EnumOptionData? = null,
 
-    @Json(name = "permissions")
     val permissions: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "roles")
     val roles: kotlin.collections.List<RoleData>? = null,
 
-    @Json(name = "staffDisplayName")
     val staffDisplayName: kotlin.String? = null,
 
-    @Json(name = "staffId")
     val staffId: kotlin.Long? = null,
 
-    @Json(name = "userId")
     val userId: kotlin.Long? = null,
 
-    @Json(name = "username")
     val username: kotlin.String? = null
 
-) {
-
-
-}
+)
 

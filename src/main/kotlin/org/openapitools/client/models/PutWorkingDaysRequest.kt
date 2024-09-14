@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutWorkingDaysRequest
  *
- * @param extendTermForDailyRepayments 
- * @param locale 
- * @param recurrence 
- * @param repaymentRescheduleType 
+ * @param extendTermForDailyRepayments
+ * @param locale
+ * @param recurrence
+ * @param repaymentRescheduleType
  */
 
+@Serializable
+data class PutWorkingDaysRequest(
 
-data class PutWorkingDaysRequest (
-
-    @Json(name = "extendTermForDailyRepayments")
     val extendTermForDailyRepayments: kotlin.Boolean? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "recurrence")
     val recurrence: kotlin.String? = null,
 
-    @Json(name = "repaymentRescheduleType")
     val repaymentRescheduleType: EnumOptionData? = null
 
-) {
-
-
-}
+)
 

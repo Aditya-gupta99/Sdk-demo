@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAdhocQuerySearchResponse
  *
- * @param loanOutStanding 
- * @param loanProductName 
- * @param officeName 
- * @param percentage 
+ * @param loanOutStanding
+ * @param loanProductName
+ * @param officeName
+ * @param percentage
  */
 
+@Serializable
+data class PostAdhocQuerySearchResponse(
 
-data class PostAdhocQuerySearchResponse (
-
-    @Json(name = "loanOutStanding")
     val loanOutStanding: kotlin.Long? = null,
 
-    @Json(name = "loanProductName")
     val loanProductName: kotlin.String? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "percentage")
     val percentage: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

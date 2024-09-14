@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutExternalServiceRequest
  *
- * @param password 
- * @param username 
+ * @param password
+ * @param username
  */
 
+@Serializable
+data class PutExternalServiceRequest(
 
-data class PutExternalServiceRequest (
-
-    @Json(name = "password")
     val password: kotlin.String? = null,
 
-    @Json(name = "username")
     val username: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param endDate 
- * @param taxComponentId 
+ *
+ * @param endDate
+ * @param taxComponentId
  */
 
+@Serializable
+data class PutTaxesGroupModifiedComponents(
 
-data class PutTaxesGroupModifiedComponents (
-
-    @Json(name = "endDate")
     val endDate: kotlin.String? = null,
 
-    @Json(name = "taxComponentId")
     val taxComponentId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

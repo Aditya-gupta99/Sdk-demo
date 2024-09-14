@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -25,16 +25,13 @@ import com.squareup.moshi.Json
  * @param transactionType
  */
 
-
+@Serializable
 data class AccountingTagRuleData(
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "tag")
     val tag: CodeValueData? = null,
 
-    @Json(name = "transactionType")
     val transactionType: EnumOptionData? = null
 
 )

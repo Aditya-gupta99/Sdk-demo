@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateFormat 
- * @param fromDate 
- * @param locale 
- * @param shareValue 
+ *
+ * @param dateFormat
+ * @param fromDate
+ * @param locale
+ * @param shareValue
  */
 
+@Serializable
+data class PostProductsMarketPricePeriods(
 
-data class PostProductsMarketPricePeriods (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "fromDate")
     val fromDate: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "shareValue")
     val shareValue: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

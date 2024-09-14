@@ -16,59 +16,51 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param createdBy 
- * @param createdOn 
- * @param differentialToBaseLendingRate 
- * @param fromDate 
- * @param fromDateAsLocalDate 
- * @param id 
- * @param interestRate 
- * @param modifiedBy 
- * @param modifiedOn 
+ *
+ * @param active
+ * @param createdBy
+ * @param createdOn
+ * @param differentialToBaseLendingRate
+ * @param fromDate
+ * @param fromDateAsLocalDate
+ * @param id
+ * @param interestRate
+ * @param modifiedBy
+ * @param modifiedOn
  */
 
+@Serializable
+data class FloatingRatePeriodData(
 
-data class FloatingRatePeriodData (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "createdBy")
     val createdBy: kotlin.String? = null,
 
-    @Json(name = "createdOn")
+    @Contextual
     val createdOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "differentialToBaseLendingRate")
     val differentialToBaseLendingRate: kotlin.Boolean? = null,
 
-    @Json(name = "fromDate")
+    @Contextual
     val fromDate: java.time.LocalDate? = null,
 
-    @Json(name = "fromDateAsLocalDate")
+    @Contextual
     val fromDateAsLocalDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "interestRate")
+    @Contextual
     val interestRate: java.math.BigDecimal? = null,
 
-    @Json(name = "modifiedBy")
     val modifiedBy: kotlin.String? = null,
 
-    @Json(name = "modifiedOn")
+    @Contextual
     val modifiedOn: java.time.OffsetDateTime? = null
 
-) {
-
-
-}
+)
 

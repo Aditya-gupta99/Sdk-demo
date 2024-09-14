@@ -16,51 +16,42 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param approvedByFirstname 
- * @param approvedByLastname 
- * @param approvedByUsername 
- * @param approvedOnDate 
- * @param submittedByFirstname 
- * @param submittedByLastname 
- * @param submittedByUsername 
- * @param submittedOnDate 
+ *
+ * @param approvedByFirstname
+ * @param approvedByLastname
+ * @param approvedByUsername
+ * @param approvedOnDate
+ * @param submittedByFirstname
+ * @param submittedByLastname
+ * @param submittedByUsername
+ * @param submittedOnDate
  */
 
+@Serializable
+data class RescheduleReasonsTimeline(
 
-data class RescheduleReasonsTimeline (
-
-    @Json(name = "approvedByFirstname")
     val approvedByFirstname: kotlin.String? = null,
 
-    @Json(name = "approvedByLastname")
     val approvedByLastname: kotlin.String? = null,
 
-    @Json(name = "approvedByUsername")
     val approvedByUsername: kotlin.String? = null,
 
-    @Json(name = "approvedOnDate")
+    @Contextual
     val approvedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "submittedByFirstname")
     val submittedByFirstname: kotlin.String? = null,
 
-    @Json(name = "submittedByLastname")
     val submittedByLastname: kotlin.String? = null,
 
-    @Json(name = "submittedByUsername")
     val submittedByUsername: kotlin.String? = null,
 
-    @Json(name = "submittedOnDate")
+    @Contextual
     val submittedOnDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

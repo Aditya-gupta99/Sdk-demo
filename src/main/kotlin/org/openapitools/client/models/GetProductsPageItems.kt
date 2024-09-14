@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param name 
- * @param shortName 
- * @param totalShares 
+ *
+ * @param id
+ * @param name
+ * @param shortName
+ * @param totalShares
  */
 
+@Serializable
+data class GetProductsPageItems(
 
-data class GetProductsPageItems (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "shortName")
     val shortName: kotlin.String? = null,
 
-    @Json(name = "totalShares")
     val totalShares: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

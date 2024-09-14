@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetRolesRoleIdPermissionsResponsePermissionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetRolesRoleIdPermissionsResponse
  *
- * @param description 
- * @param id 
- * @param name 
- * @param permissionUsageData 
+ * @param description
+ * @param id
+ * @param name
+ * @param permissionUsageData
  */
 
+@Serializable
+data class GetRolesRoleIdPermissionsResponse(
 
-data class GetRolesRoleIdPermissionsResponse (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "permissionUsageData")
     val permissionUsageData: kotlin.collections.List<GetRolesRoleIdPermissionsResponsePermissionData>? = null
 
-) {
-
-
-}
+)
 

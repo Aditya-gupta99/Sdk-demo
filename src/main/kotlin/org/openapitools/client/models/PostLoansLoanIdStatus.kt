@@ -16,63 +16,48 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostLoansLoanIdStatus
  *
- * @param active 
- * @param closed 
- * @param closedObligationsMet 
- * @param closedRescheduled 
- * @param closedWrittenOff 
- * @param code 
- * @param id 
- * @param overpaid 
- * @param pendingApproval 
- * @param `value` 
- * @param waitingForDisbursal 
+ * @param active
+ * @param closed
+ * @param closedObligationsMet
+ * @param closedRescheduled
+ * @param closedWrittenOff
+ * @param code
+ * @param id
+ * @param overpaid
+ * @param pendingApproval
+ * @param `value`
+ * @param waitingForDisbursal
  */
 
+@Serializable
+data class PostLoansLoanIdStatus(
 
-data class PostLoansLoanIdStatus (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "closed")
     val closed: kotlin.Boolean? = null,
 
-    @Json(name = "closedObligationsMet")
     val closedObligationsMet: kotlin.Boolean? = null,
 
-    @Json(name = "closedRescheduled")
     val closedRescheduled: kotlin.Boolean? = null,
 
-    @Json(name = "closedWrittenOff")
     val closedWrittenOff: kotlin.Boolean? = null,
 
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "overpaid")
     val overpaid: kotlin.Boolean? = null,
 
-    @Json(name = "pendingApproval")
     val pendingApproval: kotlin.Boolean? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null,
+    val value: kotlin.String? = null,
 
-    @Json(name = "waitingForDisbursal")
     val waitingForDisbursal: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

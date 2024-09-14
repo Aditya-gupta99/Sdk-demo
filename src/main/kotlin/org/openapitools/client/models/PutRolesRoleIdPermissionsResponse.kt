@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutRolesRoleIdPermissionsResponsePermissionsChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutRolesRoleIdPermissionsResponse
  *
- * @param changes 
- * @param resourceId 
+ * @param changes
+ * @param resourceId
  */
 
+@Serializable
+data class PutRolesRoleIdPermissionsResponse(
 
-data class PutRolesRoleIdPermissionsResponse (
-
-    @Json(name = "changes")
     val changes: PutRolesRoleIdPermissionsResponsePermissionsChanges? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

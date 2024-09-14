@@ -15,34 +15,26 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoansTotal
-import org.openapitools.client.models.GetLoansTransactionType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoansLoanIdTransactionsTemplateResponse
  *
- * @param date 
- * @param total 
- * @param transactionType 
+ * @param date
+ * @param total
+ * @param transactionType
  */
 
+@Serializable
+data class GetLoansLoanIdTransactionsTemplateResponse(
 
-data class GetLoansLoanIdTransactionsTemplateResponse (
-
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null,
 
-    @Json(name = "total")
     val total: GetLoansTotal? = null,
 
-    @Json(name = "transactionType")
     val transactionType: GetLoansTransactionType? = null
 
-) {
-
-
-}
+)
 

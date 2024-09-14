@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Entity
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param entities 
- * @param name 
+ *
+ * @param entities
+ * @param name
  */
 
+@Serializable
+data class Grouping(
 
-data class Grouping (
-
-    @Json(name = "entities")
     val entities: kotlin.collections.List<Entity>? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

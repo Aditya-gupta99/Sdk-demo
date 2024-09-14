@@ -16,7 +16,7 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -25,14 +25,12 @@ import com.squareup.moshi.Json
  * @param `value`
  */
 
-
+@Serializable
 data class CashierTxnType(
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.String? = null
+    val value: kotlin.String? = null
 
 )
 

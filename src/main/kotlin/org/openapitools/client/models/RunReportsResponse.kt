@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ResultsetColumnHeaderData
-import org.openapitools.client.models.ResultsetRowData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param columnHeaders 
- * @param `data` 
+ *
+ * @param columnHeaders
+ * @param `data`
  */
 
+@Serializable
+data class RunReportsResponse(
 
-data class RunReportsResponse (
-
-    @Json(name = "columnHeaders")
     val columnHeaders: kotlin.collections.List<ResultsetColumnHeaderData>? = null,
 
-    @Json(name = "data")
-    val `data`: kotlin.collections.List<ResultsetRowData>? = null
+    val data: kotlin.collections.List<ResultsetRowData>? = null
 
-) {
-
-
-}
+)
 

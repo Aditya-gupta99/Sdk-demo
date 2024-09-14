@@ -15,73 +15,58 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CashierTxnType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetTellersTellerIdCashiersCashiersIdTransactionsResponse
  *
- * @param cashierId 
- * @param cashierName 
- * @param createdDate 
- * @param entityId 
- * @param entityType 
- * @param id 
- * @param officeId 
- * @param officeName 
- * @param tellerId 
- * @param txnAmount 
- * @param txnDate 
- * @param txnNote 
- * @param txnType 
+ * @param cashierId
+ * @param cashierName
+ * @param createdDate
+ * @param entityId
+ * @param entityType
+ * @param id
+ * @param officeId
+ * @param officeName
+ * @param tellerId
+ * @param txnAmount
+ * @param txnDate
+ * @param txnNote
+ * @param txnType
  */
 
+@Serializable
+data class GetTellersTellerIdCashiersCashiersIdTransactionsResponse(
 
-data class GetTellersTellerIdCashiersCashiersIdTransactionsResponse (
-
-    @Json(name = "cashierId")
     val cashierId: kotlin.Long? = null,
 
-    @Json(name = "cashierName")
     val cashierName: kotlin.String? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.OffsetDateTime? = null,
 
-    @Json(name = "entityId")
     val entityId: kotlin.Long? = null,
 
-    @Json(name = "entityType")
     val entityType: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
 
-    @Json(name = "txnAmount")
+    @Contextual
     val txnAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "txnDate")
+    @Contextual
     val txnDate: java.time.LocalDate? = null,
 
-    @Json(name = "txnNote")
     val txnNote: kotlin.String? = null,
 
-    @Json(name = "txnType")
     val txnType: CashierTxnType? = null
 
-) {
-
-
-}
+)
 

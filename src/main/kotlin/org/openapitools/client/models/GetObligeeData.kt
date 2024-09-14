@@ -16,51 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNumber 
- * @param amountReleased 
- * @param amountTransferred 
- * @param displayName 
- * @param firstName 
- * @param guaranteeAmount 
- * @param lastName 
- * @param loanAmount 
+ *
+ * @param accountNumber
+ * @param amountReleased
+ * @param amountTransferred
+ * @param displayName
+ * @param firstName
+ * @param guaranteeAmount
+ * @param lastName
+ * @param loanAmount
  */
 
+@Serializable
+data class GetObligeeData(
 
-data class GetObligeeData (
-
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.String? = null,
 
-    @Json(name = "amountReleased")
     val amountReleased: kotlin.Double? = null,
 
-    @Json(name = "amountTransferred")
     val amountTransferred: kotlin.Double? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "firstName")
     val firstName: kotlin.String? = null,
 
-    @Json(name = "guaranteeAmount")
     val guaranteeAmount: kotlin.Double? = null,
 
-    @Json(name = "lastName")
     val lastName: kotlin.String? = null,
 
-    @Json(name = "loanAmount")
     val loanAmount: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

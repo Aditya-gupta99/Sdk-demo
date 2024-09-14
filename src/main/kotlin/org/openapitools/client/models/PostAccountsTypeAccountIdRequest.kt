@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostAccountsRequestedShares
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAccountsTypeAccountIdRequest
  *
- * @param requestedShares 
+ * @param requestedShares
  */
 
+@Serializable
+data class PostAccountsTypeAccountIdRequest(
 
-data class PostAccountsTypeAccountIdRequest (
-
-    @Json(name = "requestedShares")
     val requestedShares: kotlin.collections.Set<PostAccountsRequestedShares>? = null
 
-) {
-
-
-}
+)
 

@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetCurrencyData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetCollateralProductTemplate
  *
- * @param currency 
+ * @param currency
  */
 
+@Serializable
+data class GetCollateralProductTemplate(
 
-data class GetCollateralProductTemplate (
-
-    @Json(name = "currency")
     val currency: GetCurrencyData? = null
 
-) {
-
-
-}
+)
 

@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetInterestRateChartsTemplatePeriodTypes
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetInterestRateChartsTemplateResponse
  *
- * @param periodTypes 
+ * @param periodTypes
  */
 
+@Serializable
+data class GetInterestRateChartsTemplateResponse(
 
-data class GetInterestRateChartsTemplateResponse (
-
-    @Json(name = "periodTypes")
     val periodTypes: kotlin.collections.Set<GetInterestRateChartsTemplatePeriodTypes>? = null
 
-) {
-
-
-}
+)
 

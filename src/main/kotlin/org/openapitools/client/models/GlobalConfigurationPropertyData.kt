@@ -16,51 +16,41 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param dateValue 
- * @param description 
- * @param enabled 
- * @param id 
- * @param name 
- * @param stringValue 
- * @param trapDoor 
- * @param `value` 
+ *
+ * @param dateValue
+ * @param description
+ * @param enabled
+ * @param id
+ * @param name
+ * @param stringValue
+ * @param trapDoor
+ * @param `value`
  */
 
+@Serializable
+data class GlobalConfigurationPropertyData(
 
-data class GlobalConfigurationPropertyData (
-
-    @Json(name = "dateValue")
+    @Contextual
     val dateValue: java.time.LocalDate? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "stringValue")
     val stringValue: kotlin.String? = null,
 
-    @Json(name = "trapDoor")
     val trapDoor: kotlin.Boolean? = null,
 
-    @Json(name = "value")
-    val `value`: kotlin.Long? = null
+    val value: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

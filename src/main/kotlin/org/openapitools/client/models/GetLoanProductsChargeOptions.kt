@@ -15,65 +15,47 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetLoanChargeCalculationType
-import org.openapitools.client.models.GetLoanChargeTimeType
-import org.openapitools.client.models.GetLoanProductsChargeAppliesTo
-import org.openapitools.client.models.GetLoanProductsCurrencyOptions
-import org.openapitools.client.models.GetLoansChargePaymentMode
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param amount 
- * @param chargeAppliesTo 
- * @param chargeCalculationType 
- * @param chargePaymentMode 
- * @param chargeTimeType 
- * @param currency 
- * @param id 
- * @param name 
- * @param penalty 
+ *
+ * @param active
+ * @param amount
+ * @param chargeAppliesTo
+ * @param chargeCalculationType
+ * @param chargePaymentMode
+ * @param chargeTimeType
+ * @param currency
+ * @param id
+ * @param name
+ * @param penalty
  */
 
+@Serializable
+data class GetLoanProductsChargeOptions(
 
-data class GetLoanProductsChargeOptions (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "chargeAppliesTo")
     val chargeAppliesTo: GetLoanProductsChargeAppliesTo? = null,
 
-    @Json(name = "chargeCalculationType")
     val chargeCalculationType: GetLoanChargeCalculationType? = null,
 
-    @Json(name = "chargePaymentMode")
     val chargePaymentMode: GetLoansChargePaymentMode? = null,
 
-    @Json(name = "chargeTimeType")
     val chargeTimeType: GetLoanChargeTimeType? = null,
 
-    @Json(name = "currency")
     val currency: GetLoanProductsCurrencyOptions? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

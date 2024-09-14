@@ -15,77 +15,60 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CurrencyData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.math.BigDecimal
 
 /**
- * 
  *
- * @param accountNo 
- * @param amtForTransfer 
- * @param clientId 
- * @param clientName 
- * @param currency 
- * @param currencyCode 
- * @param externalId 
- * @param fieldOfficerId 
- * @param fieldOfficerName 
- * @param groupId 
- * @param groupName 
- * @param id 
- * @param productId 
- * @param productName 
+ *
+ * @param accountNo
+ * @param amtForTransfer
+ * @param clientId
+ * @param clientName
+ * @param currency
+ * @param currencyCode
+ * @param externalId
+ * @param fieldOfficerId
+ * @param fieldOfficerName
+ * @param groupId
+ * @param groupName
+ * @param id
+ * @param productId
+ * @param productName
  */
 
+@Serializable
+data class PortfolioAccountData(
 
-data class PortfolioAccountData (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.String? = null,
 
-    @Json(name = "amtForTransfer")
-    val amtForTransfer: java.math.BigDecimal? = null,
+    @Contextual
+    val amtForTransfer: BigDecimal? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "currency")
     val currency: CurrencyData? = null,
 
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "fieldOfficerId")
     val fieldOfficerId: kotlin.Long? = null,
 
-    @Json(name = "fieldOfficerName")
     val fieldOfficerName: kotlin.String? = null,
 
-    @Json(name = "groupId")
     val groupId: kotlin.Long? = null,
 
-    @Json(name = "groupName")
     val groupName: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

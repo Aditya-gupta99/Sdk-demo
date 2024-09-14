@@ -16,63 +16,48 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
- * @param contra 
- * @param description 
- * @param disbursement 
- * @param id 
- * @param recoveryRepayment 
- * @param repayment 
- * @param repaymentAtDisbursement 
- * @param waiveCharges 
- * @param waiveInterest 
- * @param writeOff 
+ *
+ * @param code
+ * @param contra
+ * @param description
+ * @param disbursement
+ * @param id
+ * @param recoveryRepayment
+ * @param repayment
+ * @param repaymentAtDisbursement
+ * @param waiveCharges
+ * @param waiveInterest
+ * @param writeOff
  */
 
+@Serializable
+data class GetSelfLoansLoanIdTransactionsType(
 
-data class GetSelfLoansLoanIdTransactionsType (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "contra")
     val contra: kotlin.Boolean? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "disbursement")
     val disbursement: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "recoveryRepayment")
     val recoveryRepayment: kotlin.Boolean? = null,
 
-    @Json(name = "repayment")
     val repayment: kotlin.Boolean? = null,
 
-    @Json(name = "repaymentAtDisbursement")
     val repaymentAtDisbursement: kotlin.Boolean? = null,
 
-    @Json(name = "waiveCharges")
     val waiveCharges: kotlin.Boolean? = null,
 
-    @Json(name = "waiveInterest")
     val waiveInterest: kotlin.Boolean? = null,
 
-    @Json(name = "writeOff")
     val writeOff: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

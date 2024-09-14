@@ -16,31 +16,26 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoansApprovalTemplateResponse
  *
- * @param approvalAmount 
- * @param approvalDate 
- * @param netDisbursalAmount 
+ * @param approvalAmount
+ * @param approvalDate
+ * @param netDisbursalAmount
  */
 
+@Serializable
+data class GetLoansApprovalTemplateResponse(
 
-data class GetLoansApprovalTemplateResponse (
-
-    @Json(name = "approvalAmount")
     val approvalAmount: kotlin.Double? = null,
 
-    @Json(name = "approvalDate")
+    @Contextual
     val approvalDate: java.time.LocalDate? = null,
 
-    @Json(name = "netDisbursalAmount")
     val netDisbursalAmount: kotlin.Double? = null
 
-) {
-
-
-}
+)
 

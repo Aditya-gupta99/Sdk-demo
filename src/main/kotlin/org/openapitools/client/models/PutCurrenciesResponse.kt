@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutCurrenciesResponse
  *
- * @param currencies 
+ * @param currencies
  */
 
+@Serializable
+data class PutCurrenciesResponse(
 
-data class PutCurrenciesResponse (
-
-    @Json(name = "currencies")
     val currencies: kotlin.collections.List<kotlin.String>? = null
 
-) {
-
-
-}
+)
 

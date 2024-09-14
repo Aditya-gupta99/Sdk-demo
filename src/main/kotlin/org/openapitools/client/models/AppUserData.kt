@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -25,16 +25,13 @@ import com.squareup.moshi.Json
  * @param selfServiceUser
  */
 
-
+@Serializable
 data class AppUserData(
 
-    @Json(name = "clients")
     val clients: kotlin.collections.Set<ClientData>? = null,
 
-    @Json(name = "rowIndex")
     val rowIndex: kotlin.Int? = null,
 
-    @Json(name = "selfServiceUser")
     val selfServiceUser: kotlin.Boolean? = null
 
 )

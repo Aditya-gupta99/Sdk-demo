@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetShareAccountsChargeOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param chargeOptions 
+ *
+ * @param chargeOptions
  */
 
+@Serializable
+data class GetClientIdProductIdChargeOptions(
 
-data class GetClientIdProductIdChargeOptions (
-
-    @Json(name = "chargeOptions")
     val chargeOptions: GetShareAccountsChargeOptions? = null
 
-) {
-
-
-}
+)
 

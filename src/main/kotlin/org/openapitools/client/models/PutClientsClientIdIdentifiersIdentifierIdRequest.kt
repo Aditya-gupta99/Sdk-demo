@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutClientsClientIdIdentifiersIdentifierIdRequest
  *
- * @param description 
- * @param documentKey 
- * @param documentTypeId 
+ * @param description
+ * @param documentKey
+ * @param documentTypeId
  */
 
+@Serializable
+data class PutClientsClientIdIdentifiersIdentifierIdRequest(
 
-data class PutClientsClientIdIdentifiersIdentifierIdRequest (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "documentKey")
     val documentKey: kotlin.String? = null,
 
-    @Json(name = "documentTypeId")
     val documentTypeId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param parameters 
- * @param subtype 
- * @param type 
- * @param wildcardSubtype 
- * @param wildcardType 
+ *
+ * @param parameters
+ * @param subtype
+ * @param type
+ * @param wildcardSubtype
+ * @param wildcardType
  */
 
+@Serializable
+data class MediaType(
 
-data class MediaType (
-
-    @Json(name = "parameters")
     val parameters: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
 
-    @Json(name = "subtype")
     val subtype: kotlin.String? = null,
 
-    @Json(name = "type")
     val type: kotlin.String? = null,
 
-    @Json(name = "wildcardSubtype")
     val wildcardSubtype: kotlin.Boolean? = null,
 
-    @Json(name = "wildcardType")
     val wildcardType: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

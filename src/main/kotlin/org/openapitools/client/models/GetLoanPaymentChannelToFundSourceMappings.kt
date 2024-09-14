@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param fundSourceAccountId 
- * @param paymentTypeId 
+ *
+ * @param fundSourceAccountId
+ * @param paymentTypeId
  */
 
+@Serializable
+data class GetLoanPaymentChannelToFundSourceMappings(
 
-data class GetLoanPaymentChannelToFundSourceMappings (
-
-    @Json(name = "fundSourceAccountId")
     val fundSourceAccountId: kotlin.Long? = null,
 
-    @Json(name = "paymentTypeId")
     val paymentTypeId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostMakerCheckersResponse
  *
- * @param auditId 
+ * @param auditId
  */
 
+@Serializable
+data class PostMakerCheckersResponse(
 
-data class PostMakerCheckersResponse (
-
-    @Json(name = "auditId")
     val auditId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Field
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param name 
- * @param schema 
+ *
+ * @param id
+ * @param name
+ * @param schema
  */
 
+@Serializable
+data class HookTemplateData(
 
-data class HookTemplateData (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "schema")
     val schema: kotlin.collections.List<Field>? = null
 
-) {
-
-
-}
+)
 

@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.DelinquencyRangeData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param name 
- * @param ranges 
+ *
+ * @param id
+ * @param name
+ * @param ranges
  */
 
+@Serializable
+data class DelinquencyBucketData(
 
-data class DelinquencyBucketData (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "ranges")
     val ranges: kotlin.collections.List<DelinquencyRangeData>? = null
 
-) {
-
-
-}
+)
 

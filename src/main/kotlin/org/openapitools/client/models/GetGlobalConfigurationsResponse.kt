@@ -15,25 +15,18 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GlobalConfigurationPropertyData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetGlobalConfigurationsResponse
  *
- * @param globalConfiguration 
+ * @param globalConfiguration
  */
 
+@Serializable
+data class GetGlobalConfigurationsResponse(
 
-data class GetGlobalConfigurationsResponse (
-
-    @Json(name = "globalConfiguration")
     val globalConfiguration: kotlin.collections.List<GlobalConfigurationPropertyData>? = null
 
-) {
-
-
-}
+)
 

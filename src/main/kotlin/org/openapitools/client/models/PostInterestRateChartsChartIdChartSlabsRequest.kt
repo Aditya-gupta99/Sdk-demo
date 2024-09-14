@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostInterestRateChartsChartIdChartSlabsIncentives
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostInterestRateChartsChartIdChartSlabsRequest
  *
- * @param annualInterestRate 
- * @param description 
- * @param fromPeriod 
- * @param incentives 
- * @param locale 
- * @param periodType 
- * @param toPeriod 
+ * @param annualInterestRate
+ * @param description
+ * @param fromPeriod
+ * @param incentives
+ * @param locale
+ * @param periodType
+ * @param toPeriod
  */
 
+@Serializable
+data class PostInterestRateChartsChartIdChartSlabsRequest(
 
-data class PostInterestRateChartsChartIdChartSlabsRequest (
-
-    @Json(name = "annualInterestRate")
     val annualInterestRate: kotlin.Double? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "fromPeriod")
     val fromPeriod: kotlin.Int? = null,
 
-    @Json(name = "incentives")
     val incentives: kotlin.collections.Set<PostInterestRateChartsChartIdChartSlabsIncentives>? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "periodType")
     val periodType: kotlin.Int? = null,
 
-    @Json(name = "toPeriod")
     val toPeriod: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

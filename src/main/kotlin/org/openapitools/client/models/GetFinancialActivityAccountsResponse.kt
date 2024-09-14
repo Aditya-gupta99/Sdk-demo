@@ -15,34 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.FinancialActivityData
-import org.openapitools.client.models.GLAccountData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetFinancialActivityAccountsResponse
  *
- * @param financialActivityData 
- * @param glAccountData 
- * @param id 
+ * @param financialActivityData
+ * @param glAccountData
+ * @param id
  */
 
+@Serializable
+data class GetFinancialActivityAccountsResponse(
 
-data class GetFinancialActivityAccountsResponse (
-
-    @Json(name = "financialActivityData")
     val financialActivityData: FinancialActivityData? = null,
 
-    @Json(name = "glAccountData")
     val glAccountData: GLAccountData? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

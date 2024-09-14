@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param glCode 
- * @param id 
- * @param name 
+ *
+ * @param glCode
+ * @param id
+ * @param name
  */
 
+@Serializable
+data class GetRecurringDepositProductsProductIdIncomeFromFeeAccount(
 
-data class GetRecurringDepositProductsProductIdIncomeFromFeeAccount (
-
-    @Json(name = "glCode")
     val glCode: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

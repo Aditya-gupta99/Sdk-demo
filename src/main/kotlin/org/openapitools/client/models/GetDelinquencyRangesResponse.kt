@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetDelinquencyRangesResponse
  *
- * @param classification 
- * @param id 
- * @param maximumAgeDays 
- * @param minimumAgeDays 
+ * @param classification
+ * @param id
+ * @param maximumAgeDays
+ * @param minimumAgeDays
  */
 
+@Serializable
+data class GetDelinquencyRangesResponse(
 
-data class GetDelinquencyRangesResponse (
-
-    @Json(name = "classification")
     val classification: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "maximumAgeDays")
     val maximumAgeDays: kotlin.Int? = null,
 
-    @Json(name = "minimumAgeDays")
     val minimumAgeDays: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

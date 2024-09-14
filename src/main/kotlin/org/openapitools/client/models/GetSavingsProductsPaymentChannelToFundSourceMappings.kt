@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSavingsProductsFundSourceAccount
-import org.openapitools.client.models.GetSavingsProductsPaymentType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param fundSourceAccount 
- * @param paymentType 
+ *
+ * @param fundSourceAccount
+ * @param paymentType
  */
 
+@Serializable
+data class GetSavingsProductsPaymentChannelToFundSourceMappings(
 
-data class GetSavingsProductsPaymentChannelToFundSourceMappings (
-
-    @Json(name = "fundSourceAccount")
     val fundSourceAccount: GetSavingsProductsFundSourceAccount? = null,
 
-    @Json(name = "paymentType")
     val paymentType: GetSavingsProductsPaymentType? = null
 
-) {
-
-
-}
+)
 

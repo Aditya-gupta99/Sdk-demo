@@ -16,47 +16,38 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostSavingsAccountTransactionsRequest
  *
- * @param dateFormat 
- * @param lienAllowed 
- * @param locale 
- * @param paymentTypeId 
- * @param reasonForBlock 
- * @param transactionAmount 
- * @param transactionDate 
+ * @param dateFormat
+ * @param lienAllowed
+ * @param locale
+ * @param paymentTypeId
+ * @param reasonForBlock
+ * @param transactionAmount
+ * @param transactionDate
  */
 
+@Serializable
+data class PostSavingsAccountTransactionsRequest(
 
-data class PostSavingsAccountTransactionsRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "lienAllowed")
     val lienAllowed: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "paymentTypeId")
     val paymentTypeId: kotlin.Int? = null,
 
-    @Json(name = "reasonForBlock")
     val reasonForBlock: kotlin.String? = null,
 
-    @Json(name = "transactionAmount")
+    @Contextual
     val transactionAmount: java.math.BigDecimal? = null,
 
-    @Json(name = "transactionDate")
     val transactionDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

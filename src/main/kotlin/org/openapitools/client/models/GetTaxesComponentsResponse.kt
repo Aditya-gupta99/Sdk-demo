@@ -15,50 +15,38 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetTaxesComponentsCreditAccount
-import org.openapitools.client.models.GetTaxesComponentsCreditAccountType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetTaxesComponentsResponse
  *
- * @param creditAccount 
- * @param creditAccountType 
- * @param id 
- * @param name 
- * @param percentage 
- * @param startDate 
- * @param taxComponentsHistories 
+ * @param creditAccount
+ * @param creditAccountType
+ * @param id
+ * @param name
+ * @param percentage
+ * @param startDate
+ * @param taxComponentsHistories
  */
 
+@Serializable
+data class GetTaxesComponentsResponse(
 
-data class GetTaxesComponentsResponse (
-
-    @Json(name = "creditAccount")
     val creditAccount: GetTaxesComponentsCreditAccount? = null,
 
-    @Json(name = "creditAccountType")
     val creditAccountType: GetTaxesComponentsCreditAccountType? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "percentage")
     val percentage: kotlin.Float? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: java.time.LocalDate? = null,
 
-    @Json(name = "taxComponentsHistories")
-    val taxComponentsHistories: kotlin.collections.Set<kotlin.Any>? = null
+    val taxComponentsHistories: kotlin.collections.Set<@Contextual kotlin.Any>? = null
 
-) {
-
-
-}
+)
 

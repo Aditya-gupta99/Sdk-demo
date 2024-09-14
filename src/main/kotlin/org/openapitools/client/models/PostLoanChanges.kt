@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param removedEntityIds 
+ *
+ * @param removedEntityIds
  */
 
+@Serializable
+data class PostLoanChanges(
 
-data class PostLoanChanges (
-
-    @Json(name = "removedEntityIds")
     val removedEntityIds: kotlin.collections.List<kotlin.Int>? = null
 
-) {
-
-
-}
+)
 

@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param id 
- * @param productId 
- * @param productName 
+ *
+ * @param accountNo
+ * @param id
+ * @param productId
+ * @param productName
  */
 
+@Serializable
+data class GetStandingInstructionHistoryToAccount(
 
-data class GetStandingInstructionHistoryToAccount (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

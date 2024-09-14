@@ -22,6 +22,8 @@ import org.openapitools.client.models.Staff
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * 
@@ -51,76 +53,55 @@ import com.squareup.moshi.JsonClass
  * @param transferOnHold 
  */
 
-
+@Serializable
 data class Group (
 
-    @Json(name = "accountNumberRequiresAutoGeneration")
     val accountNumberRequiresAutoGeneration: kotlin.Boolean? = null,
 
-    @Json(name = "activationDate")
+    @Contextual
     val activationDate: java.time.LocalDate? = null,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "activeClientMembers")
     val activeClientMembers: kotlin.collections.Set<Client>? = null,
 
-    @Json(name = "center")
     val center: kotlin.Boolean? = null,
 
-    @Json(name = "childGroup")
     val childGroup: kotlin.Boolean? = null,
 
-    @Json(name = "clientMembers")
     val clientMembers: kotlin.collections.Set<Client>? = null,
 
-    @Json(name = "closed")
     val closed: kotlin.Boolean? = null,
 
-    @Json(name = "group")
     val group: kotlin.Boolean? = null,
 
-    @Json(name = "groupLevel")
     val groupLevel: GroupLevel? = null,
 
-    @Json(name = "groupMembers")
     val groupMembers: kotlin.collections.List<Group>? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "notActive")
     val notActive: kotlin.Boolean? = null,
 
-    @Json(name = "notPending")
     val notPending: kotlin.Boolean? = null,
 
-    @Json(name = "office")
     val office: Office? = null,
 
-    @Json(name = "parent")
     val parent: Group? = null,
 
-    @Json(name = "pending")
     val pending: kotlin.Boolean? = null,
 
-    @Json(name = "staff")
     val staff: Staff? = null,
 
-    @Json(name = "submittedOnDate")
+    @Contextual
     val submittedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "transferInProgress")
     val transferInProgress: kotlin.Boolean? = null,
 
-    @Json(name = "transferInProgressOrOnHold")
     val transferInProgressOrOnHold: kotlin.Boolean? = null,
 
-    @Json(name = "transferOnHold")
     val transferOnHold: kotlin.Boolean? = null
 
 ) {

@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param authority 
+ *
+ * @param authority
  */
 
+@Serializable
+data class GrantedAuthority(
 
-data class GrantedAuthority (
-
-    @Json(name = "authority")
     val authority: kotlin.String? = null
 
-) {
-
-
-}
+)
 

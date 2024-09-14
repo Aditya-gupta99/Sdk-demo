@@ -15,41 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.SavingsAccountChargeData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.math.BigDecimal
 
 /**
- * 
  *
- * @param amount 
- * @param chargeId 
- * @param feeCharge 
- * @param penaltyCharge 
- * @param savingsAccountChargeData 
+ *
+ * @param amount
+ * @param chargeId
+ * @param feeCharge
+ * @param penaltyCharge
+ * @param savingsAccountChargeData
  */
 
+@Serializable
+data class SavingsAccountChargesPaidByData(
 
-data class SavingsAccountChargesPaidByData (
+    @Contextual
+    val amount: BigDecimal? = null,
 
-    @Json(name = "amount")
-    val amount: java.math.BigDecimal? = null,
-
-    @Json(name = "chargeId")
     val chargeId: kotlin.Long? = null,
 
-    @Json(name = "feeCharge")
     val feeCharge: kotlin.Boolean? = null,
 
-    @Json(name = "penaltyCharge")
     val penaltyCharge: kotlin.Boolean? = null,
 
-    @Json(name = "savingsAccountChargeData")
     val savingsAccountChargeData: SavingsAccountChargeData? = null
 
-) {
-
-
-}
+)
 

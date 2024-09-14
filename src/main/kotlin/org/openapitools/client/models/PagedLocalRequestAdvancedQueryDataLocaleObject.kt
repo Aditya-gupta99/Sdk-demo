@@ -16,75 +16,57 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param country 
- * @param displayCountry 
- * @param displayLanguage 
- * @param displayName 
- * @param displayScript 
- * @param displayVariant 
- * @param extensionKeys 
- * @param iso3Country 
- * @param iso3Language 
- * @param language 
- * @param script 
- * @param unicodeLocaleAttributes 
- * @param unicodeLocaleKeys 
- * @param variant 
+ *
+ * @param country
+ * @param displayCountry
+ * @param displayLanguage
+ * @param displayName
+ * @param displayScript
+ * @param displayVariant
+ * @param extensionKeys
+ * @param iso3Country
+ * @param iso3Language
+ * @param language
+ * @param script
+ * @param unicodeLocaleAttributes
+ * @param unicodeLocaleKeys
+ * @param variant
  */
 
+@Serializable
+data class PagedLocalRequestAdvancedQueryDataLocaleObject(
 
-data class PagedLocalRequestAdvancedQueryDataLocaleObject (
-
-    @Json(name = "country")
     val country: kotlin.String? = null,
 
-    @Json(name = "displayCountry")
     val displayCountry: kotlin.String? = null,
 
-    @Json(name = "displayLanguage")
     val displayLanguage: kotlin.String? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "displayScript")
     val displayScript: kotlin.String? = null,
 
-    @Json(name = "displayVariant")
     val displayVariant: kotlin.String? = null,
 
-    @Json(name = "extensionKeys")
     val extensionKeys: kotlin.collections.Set<kotlin.String>? = null,
 
-    @Json(name = "iso3Country")
     val iso3Country: kotlin.String? = null,
 
-    @Json(name = "iso3Language")
     val iso3Language: kotlin.String? = null,
 
-    @Json(name = "language")
     val language: kotlin.String? = null,
 
-    @Json(name = "script")
     val script: kotlin.String? = null,
 
-    @Json(name = "unicodeLocaleAttributes")
     val unicodeLocaleAttributes: kotlin.collections.Set<kotlin.String>? = null,
 
-    @Json(name = "unicodeLocaleKeys")
     val unicodeLocaleKeys: kotlin.collections.Set<kotlin.String>? = null,
 
-    @Json(name = "variant")
     val variant: kotlin.String? = null
 
-) {
-
-
-}
+)
 

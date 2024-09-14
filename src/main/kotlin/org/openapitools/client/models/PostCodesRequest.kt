@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostCodesRequest
  *
- * @param name 
+ * @param name
  */
 
+@Serializable
+data class PostCodesRequest(
 
-data class PostCodesRequest (
-
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

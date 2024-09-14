@@ -15,49 +15,40 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetHolidaysResponse
  *
- * @param fromDate 
- * @param id 
- * @param name 
- * @param officeId 
- * @param repaymentsRescheduledTo 
- * @param status 
- * @param toDate 
+ * @param fromDate
+ * @param id
+ * @param name
+ * @param officeId
+ * @param repaymentsRescheduledTo
+ * @param status
+ * @param toDate
  */
 
+@Serializable
+data class GetHolidaysResponse(
 
-data class GetHolidaysResponse (
-
-    @Json(name = "fromDate")
+    @Contextual
     val fromDate: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "repaymentsRescheduledTo")
+    @Contextual
     val repaymentsRescheduledTo: java.time.LocalDate? = null,
 
-    @Json(name = "status")
     val status: EnumOptionData? = null,
 
-    @Json(name = "toDate")
+    @Contextual
     val toDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

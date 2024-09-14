@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param id 
+ *
+ * @param accountNo
+ * @param id
  */
 
+@Serializable
+data class GetLoansLoanIdLinkedAccount(
 
-data class GetLoansLoanIdLinkedAccount (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

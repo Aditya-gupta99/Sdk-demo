@@ -16,71 +16,54 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAccountTransfersRequest
  *
- * @param dateFormat 
- * @param fromAccountId 
- * @param fromAccountType 
- * @param fromClientId 
- * @param fromOfficeId 
- * @param locale 
- * @param toAccountId 
- * @param toAccountType 
- * @param toClientId 
- * @param toOfficeId 
- * @param transferAmount 
- * @param transferDate 
- * @param transferDescription 
+ * @param dateFormat
+ * @param fromAccountId
+ * @param fromAccountType
+ * @param fromClientId
+ * @param fromOfficeId
+ * @param locale
+ * @param toAccountId
+ * @param toAccountType
+ * @param toClientId
+ * @param toOfficeId
+ * @param transferAmount
+ * @param transferDate
+ * @param transferDescription
  */
 
+@Serializable
+data class PostAccountTransfersRequest(
 
-data class PostAccountTransfersRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "fromAccountId")
     val fromAccountId: kotlin.Long? = null,
 
-    @Json(name = "fromAccountType")
     val fromAccountType: kotlin.Int? = null,
 
-    @Json(name = "fromClientId")
     val fromClientId: kotlin.Long? = null,
 
-    @Json(name = "fromOfficeId")
     val fromOfficeId: kotlin.Long? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "toAccountId")
     val toAccountId: kotlin.Long? = null,
 
-    @Json(name = "toAccountType")
     val toAccountType: kotlin.Int? = null,
 
-    @Json(name = "toClientId")
     val toClientId: kotlin.Long? = null,
 
-    @Json(name = "toOfficeId")
     val toOfficeId: kotlin.Long? = null,
 
-    @Json(name = "transferAmount")
     val transferAmount: kotlin.Float? = null,
 
-    @Json(name = "transferDate")
     val transferDate: kotlin.String? = null,
 
-    @Json(name = "transferDescription")
     val transferDescription: kotlin.String? = null
 
-) {
-
-
-}
+)
 

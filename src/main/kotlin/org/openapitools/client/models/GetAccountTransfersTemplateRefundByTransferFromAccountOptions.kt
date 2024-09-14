@@ -15,53 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferCurrency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param clientId 
- * @param clientName 
- * @param currency 
- * @param fieldOfficerId 
- * @param id 
- * @param productId 
- * @param productName 
+ *
+ * @param accountNo
+ * @param clientId
+ * @param clientName
+ * @param currency
+ * @param fieldOfficerId
+ * @param id
+ * @param productId
+ * @param productName
  */
 
+@Serializable
+data class GetAccountTransfersTemplateRefundByTransferFromAccountOptions(
 
-data class GetAccountTransfersTemplateRefundByTransferFromAccountOptions (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "currency")
     val currency: GetAccountTransfersTemplateRefundByTransferCurrency? = null,
 
-    @Json(name = "fieldOfficerId")
     val fieldOfficerId: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

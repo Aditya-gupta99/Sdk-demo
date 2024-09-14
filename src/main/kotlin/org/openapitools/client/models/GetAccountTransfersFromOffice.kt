@@ -16,43 +16,35 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param externalId 
- * @param hierarchy 
- * @param id 
- * @param name 
- * @param nameDecorated 
- * @param openingDate 
+ *
+ * @param externalId
+ * @param hierarchy
+ * @param id
+ * @param name
+ * @param nameDecorated
+ * @param openingDate
  */
 
+@Serializable
+data class GetAccountTransfersFromOffice(
 
-data class GetAccountTransfersFromOffice (
-
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameDecorated")
     val nameDecorated: kotlin.String? = null,
 
-    @Json(name = "openingDate")
+    @Contextual
     val openingDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

@@ -15,38 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ClientTextSearch
-import org.openapitools.client.models.SortOrder
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param page 
- * @param request 
- * @param propertySize 
- * @param sorts 
+ *
+ * @param page
+ * @param request
+ * @param propertySize
+ * @param sorts
  */
 
+@Serializable
+data class PagedRequestClientTextSearch(
 
-data class PagedRequestClientTextSearch (
-
-    @Json(name = "page")
     val page: kotlin.Int? = null,
 
-    @Json(name = "request")
     val request: ClientTextSearch? = null,
 
-    @Json(name = "size")
     val propertySize: kotlin.Int? = null,
 
-    @Json(name = "sorts")
     val sorts: kotlin.collections.List<SortOrder>? = null
 
-) {
-
-
-}
+)
 

@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSurveyResponseDatatableData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetSurveyResponse
  *
- * @param datatableData 
- * @param enabled 
+ * @param datatableData
+ * @param enabled
  */
 
+@Serializable
+data class GetSurveyResponse(
 
-data class GetSurveyResponse (
-
-    @Json(name = "datatableData")
     val datatableData: GetSurveyResponseDatatableData? = null,
 
-    @Json(name = "enabled")
     val enabled: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

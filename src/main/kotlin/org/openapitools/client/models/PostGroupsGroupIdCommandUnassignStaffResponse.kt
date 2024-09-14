@@ -16,35 +16,29 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostGroupsGroupIdCommandUnassignStaffResponse
  *
- * @param changes 
- * @param groupId 
- * @param officeId 
- * @param resourceId 
+ * @param changes
+ * @param groupId
+ * @param officeId
+ * @param resourceId
  */
 
+@Serializable
+data class PostGroupsGroupIdCommandUnassignStaffResponse(
 
-data class PostGroupsGroupIdCommandUnassignStaffResponse (
-
-    @Json(name = "changes")
+    @Contextual
     val changes: kotlin.Any? = null,
 
-    @Json(name = "groupId")
     val groupId: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

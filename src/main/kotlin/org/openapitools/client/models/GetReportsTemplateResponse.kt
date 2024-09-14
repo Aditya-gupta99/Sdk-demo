@@ -16,31 +16,25 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetReportsTemplateResponse
  *
- * @param allowedParameters 
- * @param allowedReportSubTypes 
- * @param allowedReportTypes 
+ * @param allowedParameters
+ * @param allowedReportSubTypes
+ * @param allowedReportTypes
  */
 
+@Serializable
+data class GetReportsTemplateResponse(
 
-data class GetReportsTemplateResponse (
+    val allowedParameters: kotlin.collections.List<@Contextual kotlin.Any>? = null,
 
-    @Json(name = "allowedParameters")
-    val allowedParameters: kotlin.collections.List<kotlin.Any>? = null,
-
-    @Json(name = "allowedReportSubTypes")
     val allowedReportSubTypes: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "allowedReportTypes")
     val allowedReportTypes: kotlin.collections.List<kotlin.String>? = null
 
-) {
-
-
-}
+)
 

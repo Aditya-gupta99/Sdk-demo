@@ -15,45 +15,33 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TemplateMapper
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetTemplatesResponse
  *
- * @param entity 
- * @param id 
- * @param mappers 
- * @param name 
- * @param text 
- * @param type 
+ * @param entity
+ * @param id
+ * @param mappers
+ * @param name
+ * @param text
+ * @param type
  */
 
+@Serializable
+data class GetTemplatesResponse(
 
-data class GetTemplatesResponse (
-
-    @Json(name = "entity")
     val entity: kotlin.Long? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "mappers")
     val mappers: kotlin.collections.List<TemplateMapper>? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "text")
     val text: kotlin.String? = null,
 
-    @Json(name = "type")
     val type: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

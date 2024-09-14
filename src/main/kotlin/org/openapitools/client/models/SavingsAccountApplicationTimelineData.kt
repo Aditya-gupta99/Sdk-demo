@@ -16,115 +16,95 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param activatedByFirstname 
- * @param activatedByLastname 
- * @param activatedByUsername 
- * @param activatedOnDate 
- * @param approvedByFirstname 
- * @param approvedByLastname 
- * @param approvedByUsername 
- * @param approvedOnDate 
- * @param closedByFirstname 
- * @param closedByLastname 
- * @param closedByUsername 
- * @param closedOnDate 
- * @param rejectedByFirstname 
- * @param rejectedByLastname 
- * @param rejectedByUsername 
- * @param rejectedOnDate 
- * @param submittedByFirstname 
- * @param submittedByLastname 
- * @param submittedByUsername 
- * @param submittedOnDate 
- * @param withdrawnByFirstname 
- * @param withdrawnByLastname 
- * @param withdrawnByUsername 
- * @param withdrawnOnDate 
+ *
+ * @param activatedByFirstname
+ * @param activatedByLastname
+ * @param activatedByUsername
+ * @param activatedOnDate
+ * @param approvedByFirstname
+ * @param approvedByLastname
+ * @param approvedByUsername
+ * @param approvedOnDate
+ * @param closedByFirstname
+ * @param closedByLastname
+ * @param closedByUsername
+ * @param closedOnDate
+ * @param rejectedByFirstname
+ * @param rejectedByLastname
+ * @param rejectedByUsername
+ * @param rejectedOnDate
+ * @param submittedByFirstname
+ * @param submittedByLastname
+ * @param submittedByUsername
+ * @param submittedOnDate
+ * @param withdrawnByFirstname
+ * @param withdrawnByLastname
+ * @param withdrawnByUsername
+ * @param withdrawnOnDate
  */
 
+@Serializable
+data class SavingsAccountApplicationTimelineData(
 
-data class SavingsAccountApplicationTimelineData (
-
-    @Json(name = "activatedByFirstname")
     val activatedByFirstname: kotlin.String? = null,
 
-    @Json(name = "activatedByLastname")
     val activatedByLastname: kotlin.String? = null,
 
-    @Json(name = "activatedByUsername")
     val activatedByUsername: kotlin.String? = null,
 
-    @Json(name = "activatedOnDate")
-    val activatedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val activatedOnDate: LocalDate? = null,
 
-    @Json(name = "approvedByFirstname")
     val approvedByFirstname: kotlin.String? = null,
 
-    @Json(name = "approvedByLastname")
     val approvedByLastname: kotlin.String? = null,
 
-    @Json(name = "approvedByUsername")
     val approvedByUsername: kotlin.String? = null,
 
-    @Json(name = "approvedOnDate")
-    val approvedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val approvedOnDate: LocalDate? = null,
 
-    @Json(name = "closedByFirstname")
     val closedByFirstname: kotlin.String? = null,
 
-    @Json(name = "closedByLastname")
     val closedByLastname: kotlin.String? = null,
 
-    @Json(name = "closedByUsername")
     val closedByUsername: kotlin.String? = null,
 
-    @Json(name = "closedOnDate")
-    val closedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val closedOnDate: LocalDate? = null,
 
-    @Json(name = "rejectedByFirstname")
     val rejectedByFirstname: kotlin.String? = null,
 
-    @Json(name = "rejectedByLastname")
     val rejectedByLastname: kotlin.String? = null,
 
-    @Json(name = "rejectedByUsername")
     val rejectedByUsername: kotlin.String? = null,
 
-    @Json(name = "rejectedOnDate")
-    val rejectedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val rejectedOnDate: LocalDate? = null,
 
-    @Json(name = "submittedByFirstname")
     val submittedByFirstname: kotlin.String? = null,
 
-    @Json(name = "submittedByLastname")
     val submittedByLastname: kotlin.String? = null,
 
-    @Json(name = "submittedByUsername")
     val submittedByUsername: kotlin.String? = null,
 
-    @Json(name = "submittedOnDate")
-    val submittedOnDate: java.time.LocalDate? = null,
+    @Contextual
+    val submittedOnDate: LocalDate? = null,
 
-    @Json(name = "withdrawnByFirstname")
     val withdrawnByFirstname: kotlin.String? = null,
 
-    @Json(name = "withdrawnByLastname")
     val withdrawnByLastname: kotlin.String? = null,
 
-    @Json(name = "withdrawnByUsername")
     val withdrawnByUsername: kotlin.String? = null,
 
-    @Json(name = "withdrawnOnDate")
-    val withdrawnOnDate: java.time.LocalDate? = null
+    @Contextual
+    val withdrawnOnDate: LocalDate? = null
 
-) {
-
-
-}
+)
 

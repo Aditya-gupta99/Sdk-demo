@@ -15,53 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetEntityDatatableChecksResponse
  *
- * @param datatableName 
- * @param entity 
- * @param id 
- * @param order 
- * @param productId 
- * @param productName 
- * @param status 
- * @param systemDefined 
+ * @param datatableName
+ * @param entity
+ * @param id
+ * @param order
+ * @param productId
+ * @param productName
+ * @param status
+ * @param systemDefined
  */
 
+@Serializable
+data class GetEntityDatatableChecksResponse(
 
-data class GetEntityDatatableChecksResponse (
-
-    @Json(name = "datatableName")
     val datatableName: kotlin.String? = null,
 
-    @Json(name = "entity")
     val entity: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "order")
     val order: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: EnumOptionData? = null,
 
-    @Json(name = "systemDefined")
     val systemDefined: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

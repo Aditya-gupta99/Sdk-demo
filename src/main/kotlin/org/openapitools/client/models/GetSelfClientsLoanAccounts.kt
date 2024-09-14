@@ -15,54 +15,39 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSelfClientsLoanAccountsStatus
-import org.openapitools.client.models.GetSelfClientsLoanAccountsType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param externalId 
- * @param id 
- * @param loanCycle 
- * @param loanType 
- * @param productId 
- * @param productName 
- * @param status 
+ *
+ * @param accountNo
+ * @param externalId
+ * @param id
+ * @param loanCycle
+ * @param loanType
+ * @param productId
+ * @param productName
+ * @param status
  */
 
+@Serializable
+data class GetSelfClientsLoanAccounts(
 
-data class GetSelfClientsLoanAccounts (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.Int? = null,
 
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "loanCycle")
     val loanCycle: kotlin.Int? = null,
 
-    @Json(name = "loanType")
     val loanType: GetSelfClientsLoanAccountsType? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Int? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetSelfClientsLoanAccountsStatus? = null
 
-) {
-
-
-}
+)
 

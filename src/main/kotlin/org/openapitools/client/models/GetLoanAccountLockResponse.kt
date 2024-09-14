@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LoanAccountLock
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetLoanAccountLockResponse
  *
- * @param content 
- * @param limit 
- * @param page 
+ * @param content
+ * @param limit
+ * @param page
  */
 
+@Serializable
+data class GetLoanAccountLockResponse(
 
-data class GetLoanAccountLockResponse (
-
-    @Json(name = "content")
     val content: kotlin.collections.List<LoanAccountLock>? = null,
 
-    @Json(name = "limit")
     val limit: kotlin.Int? = null,
 
-    @Json(name = "page")
     val page: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

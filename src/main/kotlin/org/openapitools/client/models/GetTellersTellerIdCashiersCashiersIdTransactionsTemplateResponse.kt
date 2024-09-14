@@ -15,58 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CashierData
-import org.openapitools.client.models.CurrencyData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse
  *
- * @param cashierData 
- * @param cashierId 
- * @param cashierName 
- * @param currencyOptions 
- * @param endDate 
- * @param officeName 
- * @param startDate 
- * @param tellerId 
- * @param tellerName 
+ * @param cashierData
+ * @param cashierId
+ * @param cashierName
+ * @param currencyOptions
+ * @param endDate
+ * @param officeName
+ * @param startDate
+ * @param tellerId
+ * @param tellerName
  */
 
+@Serializable
+data class GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse(
 
-data class GetTellersTellerIdCashiersCashiersIdTransactionsTemplateResponse (
-
-    @Json(name = "cashierData")
     val cashierData: CashierData? = null,
 
-    @Json(name = "cashierId")
     val cashierId: kotlin.Long? = null,
 
-    @Json(name = "cashierName")
     val cashierName: kotlin.String? = null,
 
-    @Json(name = "currencyOptions")
     val currencyOptions: kotlin.collections.List<CurrencyData>? = null,
 
-    @Json(name = "endDate")
+    @Contextual
     val endDate: java.time.LocalDate? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: java.time.LocalDate? = null,
 
-    @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
 
-    @Json(name = "tellerName")
     val tellerName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

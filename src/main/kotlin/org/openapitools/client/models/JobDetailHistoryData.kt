@@ -16,47 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param jobRunEndTime 
- * @param jobRunErrorLog 
- * @param jobRunErrorMessage 
- * @param jobRunStartTime 
- * @param status 
- * @param triggerType 
- * @param version 
+ *
+ * @param jobRunEndTime
+ * @param jobRunErrorLog
+ * @param jobRunErrorMessage
+ * @param jobRunStartTime
+ * @param status
+ * @param triggerType
+ * @param version
  */
 
+@Serializable
+data class JobDetailHistoryData(
 
-data class JobDetailHistoryData (
-
-    @Json(name = "jobRunEndTime")
+    @Contextual
     val jobRunEndTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "jobRunErrorLog")
     val jobRunErrorLog: kotlin.String? = null,
 
-    @Json(name = "jobRunErrorMessage")
     val jobRunErrorMessage: kotlin.String? = null,
 
-    @Json(name = "jobRunStartTime")
+    @Contextual
     val jobRunStartTime: java.time.OffsetDateTime? = null,
 
-    @Json(name = "status")
     val status: kotlin.String? = null,
 
-    @Json(name = "triggerType")
     val triggerType: kotlin.String? = null,
 
-    @Json(name = "version")
     val version: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

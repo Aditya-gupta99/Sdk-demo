@@ -16,67 +16,51 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param approved 
- * @param closed 
- * @param code 
- * @param description 
- * @param id 
- * @param prematureClosed 
- * @param rejected 
- * @param submittedAndPendingApproval 
- * @param transferInProgress 
- * @param transferOnHold 
- * @param withdrawnByApplicant 
+ *
+ * @param active
+ * @param approved
+ * @param closed
+ * @param code
+ * @param description
+ * @param id
+ * @param prematureClosed
+ * @param rejected
+ * @param submittedAndPendingApproval
+ * @param transferInProgress
+ * @param transferOnHold
+ * @param withdrawnByApplicant
  */
 
+@Serializable
+data class GetRecurringDepositAccountsStatus(
 
-data class GetRecurringDepositAccountsStatus (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "approved")
     val approved: kotlin.Boolean? = null,
 
-    @Json(name = "closed")
     val closed: kotlin.Boolean? = null,
 
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "prematureClosed")
     val prematureClosed: kotlin.Boolean? = null,
 
-    @Json(name = "rejected")
     val rejected: kotlin.Boolean? = null,
 
-    @Json(name = "submittedAndPendingApproval")
     val submittedAndPendingApproval: kotlin.Boolean? = null,
 
-    @Json(name = "transferInProgress")
     val transferInProgress: kotlin.Boolean? = null,
 
-    @Json(name = "transferOnHold")
     val transferOnHold: kotlin.Boolean? = null,
 
-    @Json(name = "withdrawnByApplicant")
     val withdrawnByApplicant: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

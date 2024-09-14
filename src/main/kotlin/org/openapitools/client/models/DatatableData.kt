@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param registeredTableName 
+ *
+ * @param registeredTableName
  */
 
+@Serializable
+data class DatatableData(
 
-data class DatatableData (
-
-    @Json(name = "registeredTableName")
     val registeredTableName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

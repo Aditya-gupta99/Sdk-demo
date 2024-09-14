@@ -15,76 +15,51 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetChargesAppliesToResponse
-import org.openapitools.client.models.GetChargesCalculationTypeResponse
-import org.openapitools.client.models.GetChargesCurrencyResponse
-import org.openapitools.client.models.GetChargesPaymentModeResponse
-import org.openapitools.client.models.GetChargesTemplateFeeFrequencyOptions
-import org.openapitools.client.models.GetChargesTemplateLoanChargeCalculationTypeOptions
-import org.openapitools.client.models.GetChargesTemplateLoanChargeTimeTypeOptions
-import org.openapitools.client.models.GetChargesTimeTypeResponse
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetChargesTemplateResponse
  *
- * @param active 
- * @param chargeAppliesToOptions 
- * @param chargeCalculationTypeOptions 
- * @param chargePaymentModeOptions 
- * @param chargeTimeTypeOptions 
- * @param currencyOptions 
- * @param feeFrequencyOptions 
- * @param loanChargeCalculationTypeOptions 
- * @param loanChargeTimeTypeOptions 
- * @param penalty 
- * @param savingsChargeCalculationTypeOptions 
- * @param savingsChargeTimeTypeOptions 
+ * @param active
+ * @param chargeAppliesToOptions
+ * @param chargeCalculationTypeOptions
+ * @param chargePaymentModeOptions
+ * @param chargeTimeTypeOptions
+ * @param currencyOptions
+ * @param feeFrequencyOptions
+ * @param loanChargeCalculationTypeOptions
+ * @param loanChargeTimeTypeOptions
+ * @param penalty
+ * @param savingsChargeCalculationTypeOptions
+ * @param savingsChargeTimeTypeOptions
  */
 
+@Serializable
+data class GetChargesTemplateResponse(
 
-data class GetChargesTemplateResponse (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "chargeAppliesToOptions")
     val chargeAppliesToOptions: kotlin.collections.Set<GetChargesAppliesToResponse>? = null,
 
-    @Json(name = "chargeCalculationTypeOptions")
     val chargeCalculationTypeOptions: kotlin.collections.Set<GetChargesCalculationTypeResponse>? = null,
 
-    @Json(name = "chargePaymentModeOptions")
     val chargePaymentModeOptions: kotlin.collections.Set<GetChargesPaymentModeResponse>? = null,
 
-    @Json(name = "chargeTimeTypeOptions")
     val chargeTimeTypeOptions: kotlin.collections.Set<GetChargesTimeTypeResponse>? = null,
 
-    @Json(name = "currencyOptions")
     val currencyOptions: kotlin.collections.Set<GetChargesCurrencyResponse>? = null,
 
-    @Json(name = "feeFrequencyOptions")
     val feeFrequencyOptions: kotlin.collections.Set<GetChargesTemplateFeeFrequencyOptions>? = null,
 
-    @Json(name = "loanChargeCalculationTypeOptions")
     val loanChargeCalculationTypeOptions: kotlin.collections.Set<GetChargesTemplateLoanChargeCalculationTypeOptions>? = null,
 
-    @Json(name = "loanChargeTimeTypeOptions")
     val loanChargeTimeTypeOptions: kotlin.collections.Set<GetChargesTemplateLoanChargeTimeTypeOptions>? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null,
 
-    @Json(name = "savingsChargeCalculationTypeOptions")
     val savingsChargeCalculationTypeOptions: kotlin.collections.Set<GetChargesTemplateLoanChargeCalculationTypeOptions>? = null,
 
-    @Json(name = "savingsChargeTimeTypeOptions")
     val savingsChargeTimeTypeOptions: kotlin.collections.Set<GetChargesTemplateLoanChargeTimeTypeOptions>? = null
 
-) {
-
-
-}
+)
 

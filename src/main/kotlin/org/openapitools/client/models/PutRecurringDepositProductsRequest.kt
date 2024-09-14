@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutRecurringDepositProductsRequest
  *
- * @param description 
- * @param locale 
- * @param minDepositTerm 
- * @param minDepositTermTypeId 
+ * @param description
+ * @param locale
+ * @param minDepositTerm
+ * @param minDepositTermTypeId
  */
 
+@Serializable
+data class PutRecurringDepositProductsRequest(
 
-data class PutRecurringDepositProductsRequest (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "minDepositTerm")
     val minDepositTerm: kotlin.Int? = null,
 
-    @Json(name = "minDepositTermTypeId")
     val minDepositTermTypeId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

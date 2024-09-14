@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientsLoanAccounts
-import org.openapitools.client.models.GetClientsSavingsAccounts
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientsClientIdAccountsResponse
  *
- * @param loanAccounts 
- * @param savingsAccounts 
+ * @param loanAccounts
+ * @param savingsAccounts
  */
 
+@Serializable
+data class GetClientsClientIdAccountsResponse(
 
-data class GetClientsClientIdAccountsResponse (
-
-    @Json(name = "loanAccounts")
     val loanAccounts: kotlin.collections.Set<GetClientsLoanAccounts>? = null,
 
-    @Json(name = "savingsAccounts")
     val savingsAccounts: kotlin.collections.Set<GetClientsSavingsAccounts>? = null
 
-) {
-
-
-}
+)
 

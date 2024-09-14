@@ -15,41 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostSelfLoansLoanIdChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostSelfLoansLoanIdResponse
  *
- * @param changes 
- * @param clientId 
- * @param loanId 
- * @param officeId 
- * @param resourceId 
+ * @param changes
+ * @param clientId
+ * @param loanId
+ * @param officeId
+ * @param resourceId
  */
 
+@Serializable
+data class PostSelfLoansLoanIdResponse(
 
-data class PostSelfLoansLoanIdResponse (
-
-    @Json(name = "changes")
     val changes: PostSelfLoansLoanIdChanges? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Int? = null,
 
-    @Json(name = "loanId")
     val loanId: kotlin.Int? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Int? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

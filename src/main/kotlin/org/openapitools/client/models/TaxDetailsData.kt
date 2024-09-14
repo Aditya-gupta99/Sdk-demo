@@ -15,29 +15,23 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TaxComponentData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param taxComponent 
+ *
+ * @param amount
+ * @param taxComponent
  */
 
+@Serializable
+data class TaxDetailsData(
 
-data class TaxDetailsData (
-
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "taxComponent")
     val taxComponent: TaxComponentData? = null
 
-) {
-
-
-}
+)
 

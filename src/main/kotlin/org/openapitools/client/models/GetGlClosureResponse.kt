@@ -16,67 +16,55 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetGLClosureResponse
  *
- * @param closingDate 
- * @param comments 
- * @param createdByUserId 
- * @param createdByUsername 
- * @param createdDate 
- * @param deleted 
- * @param id 
- * @param lastUpdatedByUserId 
- * @param lastUpdatedByUsername 
- * @param lastUpdatedDate 
- * @param officeId 
- * @param officeName 
+ * @param closingDate
+ * @param comments
+ * @param createdByUserId
+ * @param createdByUsername
+ * @param createdDate
+ * @param deleted
+ * @param id
+ * @param lastUpdatedByUserId
+ * @param lastUpdatedByUsername
+ * @param lastUpdatedDate
+ * @param officeId
+ * @param officeName
  */
 
+@Serializable
+data class GetGlClosureResponse(
 
-data class GetGlClosureResponse (
-
-    @Json(name = "closingDate")
+    @Contextual
     val closingDate: java.time.LocalDate? = null,
 
-    @Json(name = "comments")
     val comments: kotlin.String? = null,
 
-    @Json(name = "createdByUserId")
     val createdByUserId: kotlin.Long? = null,
 
-    @Json(name = "createdByUsername")
     val createdByUsername: kotlin.String? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.LocalDate? = null,
 
-    @Json(name = "deleted")
     val deleted: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastUpdatedByUserId")
     val lastUpdatedByUserId: kotlin.Long? = null,
 
-    @Json(name = "lastUpdatedByUsername")
     val lastUpdatedByUsername: kotlin.String? = null,
 
-    @Json(name = "lastUpdatedDate")
+    @Contextual
     val lastUpdatedDate: java.time.LocalDate? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

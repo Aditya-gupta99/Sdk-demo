@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostCollectionSheetChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostCollectionSheetResponse
  *
- * @param changes 
- * @param groupId 
- * @param resourceId 
+ * @param changes
+ * @param groupId
+ * @param resourceId
  */
 
+@Serializable
+data class PostCollectionSheetResponse(
 
-data class PostCollectionSheetResponse (
-
-    @Json(name = "changes")
     val changes: PostCollectionSheetChanges? = null,
 
-    @Json(name = "groupId")
     val groupId: kotlin.Long? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

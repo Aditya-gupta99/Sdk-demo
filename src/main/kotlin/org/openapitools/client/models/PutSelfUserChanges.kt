@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param passwordEncoded 
+ *
+ * @param passwordEncoded
  */
 
+@Serializable
+data class PutSelfUserChanges(
 
-data class PutSelfUserChanges (
-
-    @Json(name = "passwordEncoded")
     val passwordEncoded: kotlin.String? = null
 
-) {
-
-
-}
+)
 

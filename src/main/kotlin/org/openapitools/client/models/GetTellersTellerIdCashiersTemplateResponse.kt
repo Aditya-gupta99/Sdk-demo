@@ -15,41 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.StaffData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetTellersTellerIdCashiersTemplateResponse
  *
- * @param officeId 
- * @param officeName 
- * @param staffOptions 
- * @param tellerId 
- * @param tellerName 
+ * @param officeId
+ * @param officeName
+ * @param staffOptions
+ * @param tellerId
+ * @param tellerName
  */
 
+@Serializable
+data class GetTellersTellerIdCashiersTemplateResponse(
 
-data class GetTellersTellerIdCashiersTemplateResponse (
-
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "staffOptions")
     val staffOptions: kotlin.collections.List<StaffData>? = null,
 
-    @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
 
-    @Json(name = "tellerName")
     val tellerName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -18,34 +18,36 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param direction 
- * @param `property` 
+ *
+ * @param direction
+ * @param `property`
  */
 
+@Serializable
+data class SortOrder(
 
-data class SortOrder (
-
-    @Json(name = "direction")
     val direction: SortOrder.Direction? = null,
 
-    @Json(name = "property")
-    val `property`: kotlin.String? = null
+    val property: kotlin.String? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: ASC,DESC
      */
     @JsonClass(generateAdapter = false)
     enum class Direction(val value: kotlin.String) {
-        @Json(name = "ASC") ASC("ASC"),
-        @Json(name = "DESC") DESC("DESC");
+        @Json(name = "ASC")
+        ASC("ASC"),
+
+        @Json(name = "DESC")
+        DESC("DESC");
     }
 
 }

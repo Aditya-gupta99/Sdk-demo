@@ -15,41 +15,32 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param id 
- * @param name 
- * @param percentage 
- * @param productApply 
+ *
+ * @param active
+ * @param id
+ * @param name
+ * @param percentage
+ * @param productApply
  */
 
+@Serializable
+data class RateData(
 
-data class RateData (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "percentage")
+    @Contextual
     val percentage: java.math.BigDecimal? = null,
 
-    @Json(name = "productApply")
     val productApply: EnumOptionData? = null
 
-) {
-
-
-}
+)
 

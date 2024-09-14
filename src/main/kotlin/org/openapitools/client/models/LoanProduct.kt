@@ -17,6 +17,8 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
 /**
@@ -80,175 +82,126 @@ import java.time.LocalDate
  * @param upfrontAccrualAccountingEnabled
  */
 
-
+@Serializable
 data class LoanProduct(
 
-    @Json(name = "accountingDisabled")
     val accountingDisabled: kotlin.Boolean? = null,
 
-    @Json(name = "accountingType")
     val accountingType: kotlin.Int? = null,
 
-    @Json(name = "accrualBasedAccountingEnabled")
     val accrualBasedAccountingEnabled: kotlin.Boolean? = null,
 
-    @Json(name = "allowApprovedDisbursedAmountsOverApplied")
     val allowApprovedDisbursedAmountsOverApplied: kotlin.Boolean? = null,
 
-    @Json(name = "arrearsBasedOnOriginalSchedule")
     val arrearsBasedOnOriginalSchedule: kotlin.Boolean? = null,
 
-    @Json(name = "cashBasedAccountingEnabled")
     val cashBasedAccountingEnabled: kotlin.Boolean? = null,
 
-    @Json(name = "closeDate")
+    @Contextual
     val closeDate: LocalDate? = null,
 
-    @Json(name = "currency")
     val currency: MonetaryCurrency? = null,
 
-    @Json(name = "delinquencyBucket")
     val delinquencyBucket: DelinquencyBucket? = null,
 
-    @Json(name = "disallowExpectedDisbursements")
     val disallowExpectedDisbursements: kotlin.Boolean? = null,
 
-    @Json(name = "dueDaysForRepaymentEvent")
     val dueDaysForRepaymentEvent: kotlin.Int? = null,
 
-    @Json(name = "enableInstallmentLevelDelinquency")
     val enableInstallmentLevelDelinquency: kotlin.Boolean? = null,
 
-    @Json(name = "equalAmortization")
     val equalAmortization: kotlin.Boolean? = null,
 
-    @Json(name = "externalId")
     val externalId: ExternalId? = null,
 
-    @Json(name = "fixedPrincipalPercentagePerInstallment")
+    @Contextual
     val fixedPrincipalPercentagePerInstallment: java.math.BigDecimal? = null,
 
-    @Json(name = "floatingRates")
     val floatingRates: LoanProductFloatingRates? = null,
 
-    @Json(name = "holdGuaranteeFundsEnabled")
     val holdGuaranteeFundsEnabled: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "includeInBorrowerCycle")
     val includeInBorrowerCycle: kotlin.Boolean? = null,
 
-    @Json(name = "installmentAmountInMultiplesOf")
     val installmentAmountInMultiplesOf: kotlin.Int? = null,
 
-    @Json(name = "interestPeriodFrequencyType")
     val interestPeriodFrequencyType: LoanProduct.InterestPeriodFrequencyType? = null,
 
-    @Json(name = "interestRecalculationEnabled")
     val interestRecalculationEnabled: kotlin.Boolean? = null,
 
-    @Json(name = "linkedToFloatingInterestRate")
     val linkedToFloatingInterestRate: kotlin.Boolean? = null,
 
-    @Json(name = "loanProductCharges")
     val loanProductCharges: kotlin.collections.List<Charge>? = null,
 
-    @Json(name = "loanProductConfigurableAttributes")
     val loanProductConfigurableAttributes: LoanProductConfigurableAttributes? = null,
 
-    @Json(name = "loanProductGuaranteeDetails")
     val loanProductGuaranteeDetails: LoanProductGuaranteeDetails? = null,
 
-    @Json(name = "loanProductRelatedDetail")
     val loanProductRelatedDetail: LoanProductRelatedDetail? = null,
 
-    @Json(name = "loanProductTrancheDetails")
     val loanProductTrancheDetails: LoanProductTrancheDetails? = null,
 
-    @Json(name = "maxNominalInterestRatePerPeriod")
+    @Contextual
     val maxNominalInterestRatePerPeriod: java.math.BigDecimal? = null,
 
-    @Json(name = "maxNumberOfRepayments")
     val maxNumberOfRepayments: kotlin.Int? = null,
 
-    @Json(name = "maxPrincipalAmount")
     val maxPrincipalAmount: Money? = null,
 
-    @Json(name = "minNominalInterestRatePerPeriod")
+    @Contextual
     val minNominalInterestRatePerPeriod: java.math.BigDecimal? = null,
 
-    @Json(name = "minNumberOfRepayments")
     val minNumberOfRepayments: kotlin.Int? = null,
 
-    @Json(name = "minPrincipalAmount")
     val minPrincipalAmount: Money? = null,
 
-    @Json(name = "minimumDaysBetweenDisbursalAndFirstRepayment")
     val minimumDaysBetweenDisbursalAndFirstRepayment: kotlin.Int? = null,
 
-    @Json(name = "multiDisburseLoan")
     val multiDisburseLoan: kotlin.Boolean? = null,
 
-    @Json(name = "new")
     val new: kotlin.Boolean? = null,
 
-    @Json(name = "nominalInterestRatePerPeriod")
+    @Contextual
     val nominalInterestRatePerPeriod: java.math.BigDecimal? = null,
 
-    @Json(name = "numberOfRepayments")
     val numberOfRepayments: kotlin.Int? = null,
 
-    @Json(name = "overAppliedCalculationType")
     val overAppliedCalculationType: kotlin.String? = null,
 
-    @Json(name = "overAppliedNumber")
     val overAppliedNumber: kotlin.Int? = null,
 
-    @Json(name = "overDueDaysForRepaymentEvent")
     val overDueDaysForRepaymentEvent: kotlin.Int? = null,
 
-    @Json(name = "paymentAllocationRules")
     val paymentAllocationRules: kotlin.collections.List<LoanProductPaymentAllocationRule>? = null,
 
-    @Json(name = "periodicAccrualAccountingEnabled")
     val periodicAccrualAccountingEnabled: kotlin.Boolean? = null,
 
-    @Json(name = "principalAmount")
     val principalAmount: Money? = null,
 
-    @Json(name = "principalThresholdForLastInstallment")
+    @Contextual
     val principalThresholdForLastInstallment: java.math.BigDecimal? = null,
 
-    @Json(name = "productInterestRecalculationDetails")
     val productInterestRecalculationDetails: LoanProductInterestRecalculationDetails? = null,
 
-    @Json(name = "rates")
     val rates: kotlin.collections.List<Rate>? = null,
 
-    @Json(name = "repaymentStartDateType")
     val repaymentStartDateType: LoanProduct.RepaymentStartDateType? = null,
 
-    @Json(name = "repaymentStrategy")
     val repaymentStrategy: kotlin.String? = null,
 
-    @Json(name = "shortName")
     val shortName: kotlin.String? = null,
 
-    @Json(name = "startDate")
+    @Contextual
     val startDate: LocalDate? = null,
 
-    @Json(name = "syncExpectedWithDisbursementDate")
     val syncExpectedWithDisbursementDate: kotlin.Boolean? = null,
 
-    @Json(name = "transactionProcessingStrategyCode")
     val transactionProcessingStrategyCode: kotlin.String? = null,
 
-    @Json(name = "transactionProcessingStrategyName")
     val transactionProcessingStrategyName: kotlin.String? = null,
 
-    @Json(name = "upfrontAccrualAccountingEnabled")
     val upfrontAccrualAccountingEnabled: kotlin.Boolean? = null
 
 ) {

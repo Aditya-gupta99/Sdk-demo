@@ -15,57 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.MonetaryCurrency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amount 
- * @param amountDefaultedToNullIfZero 
- * @param currency 
- * @param currencyCode 
- * @param currencyDigitsAfterDecimal 
- * @param currencyInMultiplesOf 
- * @param greaterThanZero 
- * @param lessThanZero 
- * @param zero 
+ *
+ * @param amount
+ * @param amountDefaultedToNullIfZero
+ * @param currency
+ * @param currencyCode
+ * @param currencyDigitsAfterDecimal
+ * @param currencyInMultiplesOf
+ * @param greaterThanZero
+ * @param lessThanZero
+ * @param zero
  */
 
+@Serializable
+data class Money(
 
-data class Money (
-
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "amountDefaultedToNullIfZero")
+    @Contextual
     val amountDefaultedToNullIfZero: java.math.BigDecimal? = null,
 
-    @Json(name = "currency")
     val currency: MonetaryCurrency? = null,
 
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "currencyDigitsAfterDecimal")
     val currencyDigitsAfterDecimal: kotlin.Int? = null,
 
-    @Json(name = "currencyInMultiplesOf")
     val currencyInMultiplesOf: kotlin.Int? = null,
 
-    @Json(name = "greaterThanZero")
     val greaterThanZero: kotlin.Boolean? = null,
 
-    @Json(name = "lessThanZero")
     val lessThanZero: kotlin.Boolean? = null,
 
-    @Json(name = "zero")
     val zero: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

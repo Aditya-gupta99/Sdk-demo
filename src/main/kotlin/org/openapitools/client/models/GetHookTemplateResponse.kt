@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Grouping
-import org.openapitools.client.models.HookTemplateData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetHookTemplateResponse
  *
- * @param groupings 
- * @param templates 
+ * @param groupings
+ * @param templates
  */
 
+@Serializable
+data class GetHookTemplateResponse(
 
-data class GetHookTemplateResponse (
-
-    @Json(name = "groupings")
     val groupings: kotlin.collections.List<Grouping>? = null,
 
-    @Json(name = "templates")
     val templates: kotlin.collections.List<HookTemplateData>? = null
 
-) {
-
-
-}
+)
 

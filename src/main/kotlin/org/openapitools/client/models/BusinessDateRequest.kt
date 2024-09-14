@@ -16,7 +16,7 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  * BusinessDateRequest
@@ -27,19 +27,15 @@ import com.squareup.moshi.Json
  * @param type
  */
 
-
+@Serializable
 data class BusinessDateRequest(
 
-    @Json(name = "date")
     val date: kotlin.String? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "type")
     val type: kotlin.String? = null
 
 )

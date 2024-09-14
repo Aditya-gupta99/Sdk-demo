@@ -16,59 +16,45 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetEntityTypeEntityIdDocumentsResponse
  *
- * @param description 
- * @param fileName 
- * @param id 
- * @param location 
- * @param name 
- * @param parentEntityId 
- * @param parentEntityType 
- * @param propertySize 
- * @param storageType 
- * @param type 
+ * @param description
+ * @param fileName
+ * @param id
+ * @param location
+ * @param name
+ * @param parentEntityId
+ * @param parentEntityType
+ * @param propertySize
+ * @param storageType
+ * @param type
  */
 
+@Serializable
+data class GetEntityTypeEntityIdDocumentsResponse(
 
-data class GetEntityTypeEntityIdDocumentsResponse (
-
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "fileName")
     val fileName: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "location")
     val location: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "parentEntityId")
     val parentEntityId: kotlin.Long? = null,
 
-    @Json(name = "parentEntityType")
     val parentEntityType: kotlin.String? = null,
 
-    @Json(name = "size")
     val propertySize: kotlin.Long? = null,
 
-    @Json(name = "storageType")
     val storageType: kotlin.Int? = null,
 
-    @Json(name = "type")
     val type: kotlin.String? = null
 
-) {
-
-
-}
+)
 

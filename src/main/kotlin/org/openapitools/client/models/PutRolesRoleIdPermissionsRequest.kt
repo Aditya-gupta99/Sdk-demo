@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutRolesRoleIdPermissionsRequest
  *
- * @param permissions 
+ * @param permissions
  */
 
+@Serializable
+data class PutRolesRoleIdPermissionsRequest(
 
-data class PutRolesRoleIdPermissionsRequest (
-
-    @Json(name = "permissions")
     val permissions: kotlin.collections.Map<kotlin.String, kotlin.Boolean>? = null
 
-) {
-
-
-}
+)
 

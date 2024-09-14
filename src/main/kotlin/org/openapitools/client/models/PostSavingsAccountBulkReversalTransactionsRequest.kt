@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostSavingsAccountBulkReversalTransactionsRequest
  *
- * @param isBulk 
+ * @param isBulk
  */
 
+@Serializable
+data class PostSavingsAccountBulkReversalTransactionsRequest(
 
-data class PostSavingsAccountBulkReversalTransactionsRequest (
-
-    @Json(name = "isBulk")
     val isBulk: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param displayName 
- * @param id 
+ *
+ * @param displayName
+ * @param id
  */
 
+@Serializable
+data class GetGroupsTemplateStaffOptions(
 
-data class GetGroupsTemplateStaffOptions (
-
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

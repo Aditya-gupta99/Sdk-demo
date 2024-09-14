@@ -15,58 +15,46 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientTransactionsCurrency
-import org.openapitools.client.models.GetClientsClientIdTransactionsType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientsClientIdTransactionsTransactionIdResponse
  *
- * @param amount 
- * @param currency 
- * @param date 
- * @param id 
- * @param officeId 
- * @param officeName 
- * @param reversed 
- * @param submittedOnDate 
- * @param type 
+ * @param amount
+ * @param currency
+ * @param date
+ * @param id
+ * @param officeId
+ * @param officeName
+ * @param reversed
+ * @param submittedOnDate
+ * @param type
  */
 
+@Serializable
+data class GetClientsClientIdTransactionsTransactionIdResponse(
 
-data class GetClientsClientIdTransactionsTransactionIdResponse (
-
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "currency")
     val currency: GetClientTransactionsCurrency? = null,
 
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "reversed")
     val reversed: kotlin.Boolean? = null,
 
-    @Json(name = "submittedOnDate")
+    @Contextual
     val submittedOnDate: java.time.LocalDate? = null,
 
-    @Json(name = "type")
     val type: GetClientsClientIdTransactionsType? = null
 
-) {
-
-
-}
+)
 

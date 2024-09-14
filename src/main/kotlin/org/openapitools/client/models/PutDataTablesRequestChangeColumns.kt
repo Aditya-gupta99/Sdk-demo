@@ -16,48 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
+ *
+ * @param code
  * @param indexed Defaults to false
- * @param mandatory 
- * @param name 
- * @param newCode 
- * @param newName 
- * @param unique 
+ * @param mandatory
+ * @param name
+ * @param newCode
+ * @param newName
+ * @param unique
  */
 
+@Serializable
+data class PutDataTablesRequestChangeColumns(
 
-data class PutDataTablesRequestChangeColumns (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    /* Defaults to false */
-    @Json(name = "indexed")
     val indexed: kotlin.Boolean? = null,
 
-    @Json(name = "mandatory")
     val mandatory: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "newCode")
     val newCode: kotlin.String? = null,
 
-    @Json(name = "newName")
     val newName: kotlin.String? = null,
 
-    @Json(name = "unique")
     val unique: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

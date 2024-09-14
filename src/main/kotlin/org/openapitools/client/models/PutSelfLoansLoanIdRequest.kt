@@ -16,79 +16,60 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutSelfLoansLoanIdRequest
  *
- * @param amortizationType 
- * @param dateFormat 
- * @param expectedDisbursementDate 
- * @param interestCalculationPeriodType 
- * @param interestRatePerPeriod 
- * @param interestType 
- * @param loanTermFrequency 
- * @param loanTermFrequencyType 
- * @param locale 
- * @param numberOfRepayments 
- * @param principal 
- * @param productId 
- * @param repaymentEvery 
- * @param repaymentFrequencyType 
- * @param transactionProcessingStrategyCode 
+ * @param amortizationType
+ * @param dateFormat
+ * @param expectedDisbursementDate
+ * @param interestCalculationPeriodType
+ * @param interestRatePerPeriod
+ * @param interestType
+ * @param loanTermFrequency
+ * @param loanTermFrequencyType
+ * @param locale
+ * @param numberOfRepayments
+ * @param principal
+ * @param productId
+ * @param repaymentEvery
+ * @param repaymentFrequencyType
+ * @param transactionProcessingStrategyCode
  */
 
+@Serializable
+data class PutSelfLoansLoanIdRequest(
 
-data class PutSelfLoansLoanIdRequest (
-
-    @Json(name = "amortizationType")
     val amortizationType: kotlin.Int? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "expectedDisbursementDate")
     val expectedDisbursementDate: kotlin.String? = null,
 
-    @Json(name = "interestCalculationPeriodType")
     val interestCalculationPeriodType: kotlin.Int? = null,
 
-    @Json(name = "interestRatePerPeriod")
     val interestRatePerPeriod: kotlin.Int? = null,
 
-    @Json(name = "interestType")
     val interestType: kotlin.Int? = null,
 
-    @Json(name = "loanTermFrequency")
     val loanTermFrequency: kotlin.Int? = null,
 
-    @Json(name = "loanTermFrequencyType")
     val loanTermFrequencyType: kotlin.Int? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "numberOfRepayments")
     val numberOfRepayments: kotlin.Int? = null,
 
-    @Json(name = "principal")
     val principal: kotlin.Long? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Int? = null,
 
-    @Json(name = "repaymentEvery")
     val repaymentEvery: kotlin.Int? = null,
 
-    @Json(name = "repaymentFrequencyType")
     val repaymentFrequencyType: kotlin.Int? = null,
 
-    @Json(name = "transactionProcessingStrategyCode")
     val transactionProcessingStrategyCode: kotlin.String? = null
 
-) {
-
-
-}
+)
 

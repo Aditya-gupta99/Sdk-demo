@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetGroupsStatus
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param active 
- * @param hierarchy 
- * @param id 
- * @param name 
- * @param officeId 
- * @param officeName 
- * @param status 
+ *
+ * @param active
+ * @param hierarchy
+ * @param id
+ * @param name
+ * @param officeId
+ * @param officeName
+ * @param status
  */
 
+@Serializable
+data class GetGroupsPageItems(
 
-data class GetGroupsPageItems (
-
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "hierarchy")
     val hierarchy: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetGroupsStatus? = null
 
-) {
-
-
-}
+)
 

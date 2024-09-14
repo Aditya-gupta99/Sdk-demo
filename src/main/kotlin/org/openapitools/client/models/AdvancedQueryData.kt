@@ -16,6 +16,7 @@
 package org.openapitools.client.models
 
 import com.squareup.moshi.Json
+import kotlinx.serialization.Serializable
 
 /**
  *
@@ -26,19 +27,15 @@ import com.squareup.moshi.Json
  * @param resultColumns
  */
 
-
+@Serializable
 data class AdvancedQueryData(
 
-    @Json(name = "columnFilters")
     val columnFilters: kotlin.collections.List<ColumnFilterData>? = null,
 
-    @Json(name = "nonNullFilters")
     val nonNullFilters: kotlin.collections.List<ColumnFilterData>? = null,
 
-    @Json(name = "nonNullResultColumns")
     val nonNullResultColumns: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "resultColumns")
     val resultColumns: kotlin.collections.List<kotlin.String>? = null
 
 )

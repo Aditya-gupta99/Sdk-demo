@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param latitude 
- * @param longitude 
+ *
+ * @param latitude
+ * @param longitude
  */
 
+@Serializable
+data class GeoCodeData(
 
-data class GeoCodeData (
-
-    @Json(name = "latitude")
     val latitude: kotlin.String,
 
-    @Json(name = "longitude")
     val longitude: kotlin.String
 
-) {
-
-
-}
+)
 

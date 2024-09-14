@@ -18,41 +18,44 @@ package org.openapitools.client.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param mappedGLAccountType 
- * @param name 
+ *
+ * @param id
+ * @param mappedGLAccountType
+ * @param name
  */
 
+@Serializable
+data class FinancialActivityData(
 
-data class FinancialActivityData (
-
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "mappedGLAccountType")
     val mappedGLAccountType: FinancialActivityData.MappedGLAccountType? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: ASSET,LIABILITY,EQUITY,INCOME,EXPENSE
      */
     @JsonClass(generateAdapter = false)
     enum class MappedGLAccountType(val value: kotlin.String) {
-        @Json(name = "ASSET") ASSET("ASSET"),
-        @Json(name = "LIABILITY") LIABILITY("LIABILITY"),
-        @Json(name = "EQUITY") EQUITY("EQUITY"),
-        @Json(name = "INCOME") INCOME("INCOME"),
-        @Json(name = "EXPENSE") EXPENSE("EXPENSE");
+        @Json(name = "ASSET")
+        ASSET("ASSET"),
+        @Json(name = "LIABILITY")
+        LIABILITY("LIABILITY"),
+        @Json(name = "EQUITY")
+        EQUITY("EQUITY"),
+        @Json(name = "INCOME")
+        INCOME("INCOME"),
+        @Json(name = "EXPENSE")
+        EXPENSE("EXPENSE");
     }
 
 }

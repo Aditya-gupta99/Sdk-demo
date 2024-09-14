@@ -15,82 +15,66 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountTransfersStatus
-import org.openapitools.client.models.GetAccountTransfersTimeline
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param activationDate 
- * @param active 
- * @param clientClassification 
- * @param clientType 
- * @param displayName 
- * @param firstname 
- * @param gender 
- * @param groups 
- * @param id 
- * @param lastname 
- * @param officeId 
- * @param officeName 
- * @param status 
- * @param timeline 
+ *
+ * @param accountNo
+ * @param activationDate
+ * @param active
+ * @param clientClassification
+ * @param clientType
+ * @param displayName
+ * @param firstname
+ * @param gender
+ * @param groups
+ * @param id
+ * @param lastname
+ * @param officeId
+ * @param officeName
+ * @param status
+ * @param timeline
  */
 
+@Serializable
+data class GetAccountTransfersTemplateRefundByTransferFromClient(
 
-data class GetAccountTransfersTemplateRefundByTransferFromClient (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "activationDate")
+    @Contextual
     val activationDate: java.time.LocalDate? = null,
 
-    @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
-    @Json(name = "clientClassification")
+    @Contextual
     val clientClassification: kotlin.Any? = null,
 
-    @Json(name = "clientType")
+    @Contextual
     val clientType: kotlin.Any? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "firstname")
     val firstname: kotlin.String? = null,
 
-    @Json(name = "gender")
+    @Contextual
     val gender: kotlin.Any? = null,
 
-    @Json(name = "groups")
+    @Contextual
     val groups: kotlin.Any? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "lastname")
     val lastname: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "status")
     val status: GetAccountTransfersStatus? = null,
 
-    @Json(name = "timeline")
     val timeline: GetAccountTransfersTimeline? = null
 
-) {
-
-
-}
+)
 

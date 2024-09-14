@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param name 
- * @param nameDecorated 
+ *
+ * @param id
+ * @param name
+ * @param nameDecorated
  */
 
+@Serializable
+data class GetToOfficeOptionsResponseStandingInstructionSwagger(
 
-data class GetToOfficeOptionsResponseStandingInstructionSwagger (
-
-    @Json(name = "id")
     val id: kotlin.Int? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameDecorated")
     val nameDecorated: kotlin.String? = null
 
-) {
-
-
-}
+)
 

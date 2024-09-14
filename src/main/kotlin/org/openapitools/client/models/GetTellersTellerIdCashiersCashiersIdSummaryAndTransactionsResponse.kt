@@ -15,65 +15,54 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PageCashierTransactionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse
  *
- * @param cashierId 
- * @param cashierName 
- * @param cashierTransactions 
- * @param netCash 
- * @param officeName 
- * @param sumCashAllocation 
- * @param sumCashSettlement 
- * @param sumInwardCash 
- * @param sumOutwardCash 
- * @param tellerId 
- * @param tellerName 
+ * @param cashierId
+ * @param cashierName
+ * @param cashierTransactions
+ * @param netCash
+ * @param officeName
+ * @param sumCashAllocation
+ * @param sumCashSettlement
+ * @param sumInwardCash
+ * @param sumOutwardCash
+ * @param tellerId
+ * @param tellerName
  */
 
+@Serializable
+data class GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse(
 
-data class GetTellersTellerIdCashiersCashiersIdSummaryAndTransactionsResponse (
-
-    @Json(name = "cashierId")
     val cashierId: kotlin.Long? = null,
 
-    @Json(name = "cashierName")
     val cashierName: kotlin.String? = null,
 
-    @Json(name = "cashierTransactions")
     val cashierTransactions: PageCashierTransactionData? = null,
 
-    @Json(name = "netCash")
+    @Contextual
     val netCash: java.math.BigDecimal? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "sumCashAllocation")
+    @Contextual
     val sumCashAllocation: java.math.BigDecimal? = null,
 
-    @Json(name = "sumCashSettlement")
+    @Contextual
     val sumCashSettlement: java.math.BigDecimal? = null,
 
-    @Json(name = "sumInwardCash")
+    @Contextual
     val sumInwardCash: java.math.BigDecimal? = null,
 
-    @Json(name = "sumOutwardCash")
+    @Contextual
     val sumOutwardCash: java.math.BigDecimal? = null,
 
-    @Json(name = "tellerId")
     val tellerId: kotlin.Long? = null,
 
-    @Json(name = "tellerName")
     val tellerName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

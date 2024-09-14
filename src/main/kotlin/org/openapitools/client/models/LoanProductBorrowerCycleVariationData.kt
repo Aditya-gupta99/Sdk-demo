@@ -15,79 +15,86 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EnumOptionData
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param borrowerCycleNumber 
- * @param defaultValue 
- * @param id 
- * @param loanProductParamType 
- * @param loanProductValueConditionType 
- * @param maxValue 
- * @param minValue 
- * @param paramType 
- * @param valueConditionType 
+ *
+ * @param borrowerCycleNumber
+ * @param defaultValue
+ * @param id
+ * @param loanProductParamType
+ * @param loanProductValueConditionType
+ * @param maxValue
+ * @param minValue
+ * @param paramType
+ * @param valueConditionType
  */
 
+@Serializable
+data class LoanProductBorrowerCycleVariationData(
 
-data class LoanProductBorrowerCycleVariationData (
-
-    @Json(name = "borrowerCycleNumber")
     val borrowerCycleNumber: kotlin.Int? = null,
 
-    @Json(name = "defaultValue")
+    @Contextual
     val defaultValue: java.math.BigDecimal? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "loanProductParamType")
     val loanProductParamType: LoanProductBorrowerCycleVariationData.LoanProductParamType? = null,
 
-    @Json(name = "loanProductValueConditionType")
     val loanProductValueConditionType: LoanProductBorrowerCycleVariationData.LoanProductValueConditionType? = null,
 
-    @Json(name = "maxValue")
+    @Contextual
     val maxValue: java.math.BigDecimal? = null,
 
-    @Json(name = "minValue")
+    @Contextual
     val minValue: java.math.BigDecimal? = null,
 
-    @Json(name = "paramType")
     val paramType: EnumOptionData? = null,
 
-    @Json(name = "valueConditionType")
     val valueConditionType: EnumOptionData? = null
 
 ) {
 
     /**
-     * 
+     *
      *
      * Values: INVALID,PRINCIPAL,INTERESTRATE,REPAYMENT
      */
     @JsonClass(generateAdapter = false)
     enum class LoanProductParamType(val value: kotlin.String) {
-        @Json(name = "INVALID") INVALID("INVALID"),
-        @Json(name = "PRINCIPAL") PRINCIPAL("PRINCIPAL"),
-        @Json(name = "INTERESTRATE") INTERESTRATE("INTERESTRATE"),
-        @Json(name = "REPAYMENT") REPAYMENT("REPAYMENT");
+        @Json(name = "INVALID")
+        INVALID("INVALID"),
+
+        @Json(name = "PRINCIPAL")
+        PRINCIPAL("PRINCIPAL"),
+
+        @Json(name = "INTERESTRATE")
+        INTERESTRATE("INTERESTRATE"),
+
+        @Json(name = "REPAYMENT")
+        REPAYMENT("REPAYMENT");
     }
+
     /**
-     * 
+     *
      *
      * Values: INVALID,EQUAL,GREATERTHAN
      */
     @JsonClass(generateAdapter = false)
     enum class LoanProductValueConditionType(val value: kotlin.String) {
-        @Json(name = "INVALID") INVALID("INVALID"),
-        @Json(name = "EQUAL") EQUAL("EQUAL"),
-        @Json(name = "GREATERTHAN") GREATERTHAN("GREATERTHAN");
+        @Json(name = "INVALID")
+        INVALID("INVALID"),
+
+        @Json(name = "EQUAL")
+        EQUAL("EQUAL"),
+
+        @Json(name = "GREATERTHAN")
+        GREATERTHAN("GREATERTHAN");
     }
 
 }

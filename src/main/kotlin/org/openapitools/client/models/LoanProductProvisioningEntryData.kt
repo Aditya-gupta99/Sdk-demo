@@ -16,95 +16,76 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param amountreserved 
- * @param balance 
- * @param categoryId 
- * @param categoryName 
- * @param criteriaId 
- * @param currencyCode 
- * @param expenseAccount 
- * @param expenseAccountCode 
- * @param expenseAccountName 
- * @param historyId 
- * @param liabilityAccountCode 
- * @param liabilityAccountName 
- * @param liablityAccount 
- * @param officeId 
- * @param officeName 
- * @param overdueInDays 
- * @param percentage 
- * @param productId 
- * @param productName 
+ *
+ * @param amountreserved
+ * @param balance
+ * @param categoryId
+ * @param categoryName
+ * @param criteriaId
+ * @param currencyCode
+ * @param expenseAccount
+ * @param expenseAccountCode
+ * @param expenseAccountName
+ * @param historyId
+ * @param liabilityAccountCode
+ * @param liabilityAccountName
+ * @param liablityAccount
+ * @param officeId
+ * @param officeName
+ * @param overdueInDays
+ * @param percentage
+ * @param productId
+ * @param productName
  */
 
+@Serializable
+data class LoanProductProvisioningEntryData(
 
-data class LoanProductProvisioningEntryData (
-
-    @Json(name = "amountreserved")
+    @Contextual
     val amountreserved: java.math.BigDecimal? = null,
 
-    @Json(name = "balance")
+    @Contextual
     val balance: java.math.BigDecimal? = null,
 
-    @Json(name = "categoryId")
     val categoryId: kotlin.Long? = null,
 
-    @Json(name = "categoryName")
     val categoryName: kotlin.String? = null,
 
-    @Json(name = "criteriaId")
     val criteriaId: kotlin.Long? = null,
 
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "expenseAccount")
     val expenseAccount: kotlin.Long? = null,
 
-    @Json(name = "expenseAccountCode")
     val expenseAccountCode: kotlin.String? = null,
 
-    @Json(name = "expenseAccountName")
     val expenseAccountName: kotlin.String? = null,
 
-    @Json(name = "historyId")
     val historyId: kotlin.Long? = null,
 
-    @Json(name = "liabilityAccountCode")
     val liabilityAccountCode: kotlin.String? = null,
 
-    @Json(name = "liabilityAccountName")
     val liabilityAccountName: kotlin.String? = null,
 
-    @Json(name = "liablityAccount")
     val liablityAccount: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null,
 
-    @Json(name = "overdueInDays")
     val overdueInDays: kotlin.Long? = null,
 
-    @Json(name = "percentage")
+    @Contextual
     val percentage: java.math.BigDecimal? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "productName")
     val productName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

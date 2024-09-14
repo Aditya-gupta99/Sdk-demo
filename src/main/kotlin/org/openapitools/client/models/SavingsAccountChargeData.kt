@@ -15,148 +15,121 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ChargeData
-import org.openapitools.client.models.ChargeFeeOnMonthDay
-import org.openapitools.client.models.CurrencyData
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import java.math.BigDecimal
+import java.time.LocalDate
 
 /**
- * 
  *
- * @param accountId 
- * @param amount 
- * @param amountOrPercentage 
- * @param amountOutstanding 
- * @param amountPaid 
- * @param amountPercentageAppliedTo 
- * @param amountWaived 
- * @param amountWrittenOff 
- * @param annualFee 
- * @param chargeCalculationType 
- * @param chargeData 
- * @param chargeId 
- * @param chargeOptions 
- * @param chargeTimeType 
- * @param currency 
- * @param dueDate 
- * @param feeCharge 
- * @param feeInterval 
- * @param feeOnMonthDay 
- * @param freeWithdrawalChargeFrequency 
- * @param id 
- * @param inactivationDate 
- * @param isActive 
- * @param isFreeWithdrawal 
- * @param name 
- * @param penalty 
- * @param percentage 
- * @param restartFrequency 
- * @param restartFrequencyEnum 
- * @param savingsActivation 
- * @param withdrawalFee 
+ *
+ * @param accountId
+ * @param amount
+ * @param amountOrPercentage
+ * @param amountOutstanding
+ * @param amountPaid
+ * @param amountPercentageAppliedTo
+ * @param amountWaived
+ * @param amountWrittenOff
+ * @param annualFee
+ * @param chargeCalculationType
+ * @param chargeData
+ * @param chargeId
+ * @param chargeOptions
+ * @param chargeTimeType
+ * @param currency
+ * @param dueDate
+ * @param feeCharge
+ * @param feeInterval
+ * @param feeOnMonthDay
+ * @param freeWithdrawalChargeFrequency
+ * @param id
+ * @param inactivationDate
+ * @param isActive
+ * @param isFreeWithdrawal
+ * @param name
+ * @param penalty
+ * @param percentage
+ * @param restartFrequency
+ * @param restartFrequencyEnum
+ * @param savingsActivation
+ * @param withdrawalFee
  */
 
+@Serializable
+data class SavingsAccountChargeData(
 
-data class SavingsAccountChargeData (
-
-    @Json(name = "accountId")
     val accountId: kotlin.Long? = null,
 
-    @Json(name = "amount")
-    val amount: java.math.BigDecimal? = null,
+    @Contextual
+    val amount: BigDecimal? = null,
 
-    @Json(name = "amountOrPercentage")
-    val amountOrPercentage: java.math.BigDecimal? = null,
+    @Contextual
+    val amountOrPercentage: BigDecimal? = null,
 
-    @Json(name = "amountOutstanding")
-    val amountOutstanding: java.math.BigDecimal? = null,
+    @Contextual
+    val amountOutstanding: BigDecimal? = null,
 
-    @Json(name = "amountPaid")
-    val amountPaid: java.math.BigDecimal? = null,
+    @Contextual
+    val amountPaid: BigDecimal? = null,
 
-    @Json(name = "amountPercentageAppliedTo")
-    val amountPercentageAppliedTo: java.math.BigDecimal? = null,
+    @Contextual
+    val amountPercentageAppliedTo: BigDecimal? = null,
 
-    @Json(name = "amountWaived")
-    val amountWaived: java.math.BigDecimal? = null,
+    @Contextual
+    val amountWaived: BigDecimal? = null,
 
-    @Json(name = "amountWrittenOff")
-    val amountWrittenOff: java.math.BigDecimal? = null,
+    @Contextual
+    val amountWrittenOff: BigDecimal? = null,
 
-    @Json(name = "annualFee")
     val annualFee: kotlin.Boolean? = null,
 
-    @Json(name = "chargeCalculationType")
     val chargeCalculationType: EnumOptionData? = null,
 
-    @Json(name = "chargeData")
     val chargeData: ChargeData? = null,
 
-    @Json(name = "chargeId")
     val chargeId: kotlin.Long? = null,
 
-    @Json(name = "chargeOptions")
     val chargeOptions: kotlin.collections.List<ChargeData>? = null,
 
-    @Json(name = "chargeTimeType")
     val chargeTimeType: EnumOptionData? = null,
 
-    @Json(name = "currency")
     val currency: CurrencyData? = null,
 
-    @Json(name = "dueDate")
-    val dueDate: java.time.LocalDate? = null,
+    @Contextual
+    val dueDate: LocalDate? = null,
 
-    @Json(name = "feeCharge")
     val feeCharge: kotlin.Boolean? = null,
 
-    @Json(name = "feeInterval")
     val feeInterval: kotlin.Int? = null,
 
-    @Json(name = "feeOnMonthDay")
     val feeOnMonthDay: ChargeFeeOnMonthDay? = null,
 
-    @Json(name = "freeWithdrawalChargeFrequency")
     val freeWithdrawalChargeFrequency: kotlin.Int? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "inactivationDate")
-    val inactivationDate: java.time.LocalDate? = null,
+    @Contextual
+    val inactivationDate: LocalDate? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "isFreeWithdrawal")
     val isFreeWithdrawal: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "penalty")
     val penalty: kotlin.Boolean? = null,
 
-    @Json(name = "percentage")
-    val percentage: java.math.BigDecimal? = null,
+    @Contextual
+    val percentage: BigDecimal? = null,
 
-    @Json(name = "restartFrequency")
     val restartFrequency: kotlin.Int? = null,
 
-    @Json(name = "restartFrequencyEnum")
     val restartFrequencyEnum: kotlin.Int? = null,
 
-    @Json(name = "savingsActivation")
     val savingsActivation: kotlin.Boolean? = null,
 
-    @Json(name = "withdrawalFee")
     val withdrawalFee: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

@@ -15,30 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ExternalTransferOwnerData
-import org.openapitools.client.models.PageJournalEntryData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param journalEntryData 
- * @param ownerData 
+ *
+ * @param journalEntryData
+ * @param ownerData
  */
 
+@Serializable
+data class ExternalOwnerJournalEntryData(
 
-data class ExternalOwnerJournalEntryData (
-
-    @Json(name = "journalEntryData")
     val journalEntryData: PageJournalEntryData? = null,
 
-    @Json(name = "ownerData")
     val ownerData: ExternalTransferOwnerData? = null
 
-) {
-
-
-}
+)
 

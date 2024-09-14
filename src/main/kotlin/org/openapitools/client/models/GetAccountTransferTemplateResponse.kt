@@ -15,34 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountOptions
-import org.openapitools.client.models.GetFromAccountOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountTransferTemplateResponse
  *
- * @param accountTypeOptions 
- * @param fromAccountTypeOptions 
- * @param toAccountTypeOptions 
+ * @param accountTypeOptions
+ * @param fromAccountTypeOptions
+ * @param toAccountTypeOptions
  */
 
+@Serializable
+data class GetAccountTransferTemplateResponse(
 
-data class GetAccountTransferTemplateResponse (
-
-    @Json(name = "accountTypeOptions")
     val accountTypeOptions: kotlin.collections.Set<GetAccountOptions>? = null,
 
-    @Json(name = "fromAccountTypeOptions")
     val fromAccountTypeOptions: kotlin.collections.Set<GetFromAccountOptions>? = null,
 
-    @Json(name = "toAccountTypeOptions")
     val toAccountTypeOptions: kotlin.collections.Set<GetFromAccountOptions>? = null
 
-) {
-
-
-}
+)
 

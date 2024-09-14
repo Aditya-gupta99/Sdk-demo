@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutFinancialActivityAccountscommentsSwagger
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutFinancialActivityAccountsResponse
  *
- * @param comments 
- * @param resourceId 
+ * @param comments
+ * @param resourceId
  */
 
+@Serializable
+data class PutFinancialActivityAccountsResponse(
 
-data class PutFinancialActivityAccountsResponse (
-
-    @Json(name = "comments")
     val comments: PutFinancialActivityAccountscommentsSwagger? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

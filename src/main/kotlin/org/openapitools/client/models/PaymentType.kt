@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param id 
- * @param isSystemDefined 
- * @param name 
+ *
+ * @param id
+ * @param isSystemDefined
+ * @param name
  */
 
+@Serializable
+data class PaymentType(
 
-data class PaymentType (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isSystemDefined")
     val isSystemDefined: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null
 
-) {
-
-
-}
+)
 

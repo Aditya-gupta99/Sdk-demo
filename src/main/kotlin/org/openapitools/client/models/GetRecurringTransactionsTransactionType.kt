@@ -16,47 +16,36 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
- * @param deposit 
- * @param description 
- * @param feeDeduction 
- * @param id 
- * @param interestPosting 
- * @param withdrawal 
+ *
+ * @param code
+ * @param deposit
+ * @param description
+ * @param feeDeduction
+ * @param id
+ * @param interestPosting
+ * @param withdrawal
  */
 
+@Serializable
+data class GetRecurringTransactionsTransactionType(
 
-data class GetRecurringTransactionsTransactionType (
-
-    @Json(name = "code")
     val code: kotlin.String? = null,
 
-    @Json(name = "deposit")
     val deposit: kotlin.Boolean? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "feeDeduction")
     val feeDeduction: kotlin.Boolean? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "interestPosting")
     val interestPosting: kotlin.Boolean? = null,
 
-    @Json(name = "withdrawal")
     val withdrawal: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

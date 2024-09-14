@@ -15,37 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PutGroupsGroupIdChanges
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutGroupsGroupIdResponse
  *
- * @param changes 
- * @param groupId 
- * @param officeId 
- * @param resourceId 
+ * @param changes
+ * @param groupId
+ * @param officeId
+ * @param resourceId
  */
 
+@Serializable
+data class PutGroupsGroupIdResponse(
 
-data class PutGroupsGroupIdResponse (
-
-    @Json(name = "changes")
     val changes: PutGroupsGroupIdChanges? = null,
 
-    @Json(name = "groupId")
     val groupId: kotlin.Long? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

@@ -15,61 +15,48 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetNotesNoteType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetResourceTypeResourceIdNotesResponse
  *
- * @param clientId 
- * @param createdById 
- * @param createdByUsername 
- * @param createdOn 
- * @param id 
- * @param note 
- * @param noteType 
- * @param updatedById 
- * @param updatedByUsername 
- * @param updatedOn 
+ * @param clientId
+ * @param createdById
+ * @param createdByUsername
+ * @param createdOn
+ * @param id
+ * @param note
+ * @param noteType
+ * @param updatedById
+ * @param updatedByUsername
+ * @param updatedOn
  */
 
+@Serializable
+data class GetResourceTypeResourceIdNotesResponse(
 
-data class GetResourceTypeResourceIdNotesResponse (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "createdById")
     val createdById: kotlin.Long? = null,
 
-    @Json(name = "createdByUsername")
     val createdByUsername: kotlin.String? = null,
 
-    @Json(name = "createdOn")
+    @Contextual
     val createdOn: java.time.OffsetDateTime? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "note")
     val note: kotlin.String? = null,
 
-    @Json(name = "noteType")
     val noteType: GetNotesNoteType? = null,
 
-    @Json(name = "updatedById")
     val updatedById: kotlin.Long? = null,
 
-    @Json(name = "updatedByUsername")
     val updatedByUsername: kotlin.String? = null,
 
-    @Json(name = "updatedOn")
+    @Contextual
     val updatedOn: java.time.OffsetDateTime? = null
 
-) {
-
-
-}
+)
 

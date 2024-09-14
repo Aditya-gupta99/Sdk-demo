@@ -15,57 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.LoanProductProvisioningEntryData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param createdById 
- * @param createdDate 
- * @param createdUser 
- * @param id 
- * @param journalEntry 
- * @param modifiedById 
- * @param modifiedUser 
- * @param provisioningEntries 
- * @param reservedAmount 
+ *
+ * @param createdById
+ * @param createdDate
+ * @param createdUser
+ * @param id
+ * @param journalEntry
+ * @param modifiedById
+ * @param modifiedUser
+ * @param provisioningEntries
+ * @param reservedAmount
  */
 
+@Serializable
+data class ProvisioningEntryData(
 
-data class ProvisioningEntryData (
-
-    @Json(name = "createdById")
     val createdById: kotlin.Long? = null,
 
-    @Json(name = "createdDate")
+    @Contextual
     val createdDate: java.time.LocalDate? = null,
 
-    @Json(name = "createdUser")
     val createdUser: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "journalEntry")
     val journalEntry: kotlin.Boolean? = null,
 
-    @Json(name = "modifiedById")
     val modifiedById: kotlin.Long? = null,
 
-    @Json(name = "modifiedUser")
     val modifiedUser: kotlin.String? = null,
 
-    @Json(name = "provisioningEntries")
     val provisioningEntries: kotlin.collections.List<LoanProductProvisioningEntryData>? = null,
 
-    @Json(name = "reservedAmount")
+    @Contextual
     val reservedAmount: java.math.BigDecimal? = null
 
-) {
-
-
-}
+)
 

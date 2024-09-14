@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostAccountingRulesRequest
  *
- * @param accountToCredit 
- * @param accountToDebit 
- * @param description 
- * @param name 
- * @param officeId 
+ * @param accountToCredit
+ * @param accountToDebit
+ * @param description
+ * @param name
+ * @param officeId
  */
 
+@Serializable
+data class PostAccountingRulesRequest(
 
-data class PostAccountingRulesRequest (
-
-    @Json(name = "accountToCredit")
     val accountToCredit: kotlin.Long? = null,
 
-    @Json(name = "accountToDebit")
     val accountToDebit: kotlin.Long? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

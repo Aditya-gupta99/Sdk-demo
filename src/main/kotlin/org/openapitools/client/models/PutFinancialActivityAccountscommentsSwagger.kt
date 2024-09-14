@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param glAccountId 
+ *
+ * @param glAccountId
  */
 
+@Serializable
+data class PutFinancialActivityAccountscommentsSwagger(
 
-data class PutFinancialActivityAccountscommentsSwagger (
-
-    @Json(name = "glAccountId")
     val glAccountId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

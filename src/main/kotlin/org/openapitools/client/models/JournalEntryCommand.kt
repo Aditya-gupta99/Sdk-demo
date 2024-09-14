@@ -15,81 +15,63 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.SingleDebitOrCreditEntryCommand
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNumber 
- * @param accountingRuleId 
- * @param amount 
- * @param bankNumber 
- * @param checkNumber 
- * @param comments 
- * @param credits 
- * @param currencyCode 
- * @param debits 
- * @param officeId 
- * @param paymentTypeId 
- * @param receiptNumber 
- * @param referenceNumber 
- * @param routingCode 
- * @param transactionDate 
+ *
+ * @param accountNumber
+ * @param accountingRuleId
+ * @param amount
+ * @param bankNumber
+ * @param checkNumber
+ * @param comments
+ * @param credits
+ * @param currencyCode
+ * @param debits
+ * @param officeId
+ * @param paymentTypeId
+ * @param receiptNumber
+ * @param referenceNumber
+ * @param routingCode
+ * @param transactionDate
  */
 
+@Serializable
+data class JournalEntryCommand(
 
-data class JournalEntryCommand (
-
-    @Json(name = "accountNumber")
     val accountNumber: kotlin.String? = null,
 
-    @Json(name = "accountingRuleId")
     val accountingRuleId: kotlin.Long? = null,
 
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "bankNumber")
     val bankNumber: kotlin.String? = null,
 
-    @Json(name = "checkNumber")
     val checkNumber: kotlin.String? = null,
 
-    @Json(name = "comments")
     val comments: kotlin.String? = null,
 
-    @Json(name = "credits")
     val credits: kotlin.collections.List<SingleDebitOrCreditEntryCommand>? = null,
 
-    @Json(name = "currencyCode")
     val currencyCode: kotlin.String? = null,
 
-    @Json(name = "debits")
     val debits: kotlin.collections.List<SingleDebitOrCreditEntryCommand>? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "paymentTypeId")
     val paymentTypeId: kotlin.Long? = null,
 
-    @Json(name = "receiptNumber")
     val receiptNumber: kotlin.String? = null,
 
-    @Json(name = "referenceNumber")
     val referenceNumber: kotlin.String? = null,
 
-    @Json(name = "routingCode")
     val routingCode: kotlin.String? = null,
 
-    @Json(name = "transactionDate")
+    @Contextual
     val transactionDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

@@ -16,27 +16,23 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param clientCollateralId 
- * @param quantity 
+ *
+ * @param clientCollateralId
+ * @param quantity
  */
 
+@Serializable
+data class PutLoansLoanIdCollateral(
 
-data class PutLoansLoanIdCollateral (
-
-    @Json(name = "clientCollateralId")
     val clientCollateralId: kotlin.Long? = null,
 
-    @Json(name = "quantity")
+    @Contextual
     val quantity: java.math.BigDecimal? = null
 
-) {
-
-
-}
+)
 

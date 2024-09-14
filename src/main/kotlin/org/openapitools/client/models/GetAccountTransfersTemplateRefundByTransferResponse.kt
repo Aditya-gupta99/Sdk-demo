@@ -15,107 +15,74 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountTransfersFromAccountType
-import org.openapitools.client.models.GetAccountTransfersPageItemsToAccountType
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferCurrency
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferFromAccount
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferFromAccountOptions
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferFromClient
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferFromClientOptions
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferFromOffice
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferFromOfficeOptions
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferToAccount
-import org.openapitools.client.models.GetAccountTransfersTemplateRefundByTransferToClient
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetAccountTransfersTemplateRefundByTransferResponse
  *
- * @param currency 
- * @param fromAccount 
- * @param fromAccountOptions 
- * @param fromAccountType 
- * @param fromAccountTypeOptions 
- * @param fromClient 
- * @param fromClientOptions 
- * @param fromOffice 
- * @param fromOfficeOptions 
- * @param toAccount 
- * @param toAccountOptions 
- * @param toAccountType 
- * @param toAccountTypeOptions 
- * @param toClient 
- * @param toClientOptions 
- * @param toOffice 
- * @param toOfficeOptions 
- * @param transferAmount 
- * @param transferDate 
+ * @param currency
+ * @param fromAccount
+ * @param fromAccountOptions
+ * @param fromAccountType
+ * @param fromAccountTypeOptions
+ * @param fromClient
+ * @param fromClientOptions
+ * @param fromOffice
+ * @param fromOfficeOptions
+ * @param toAccount
+ * @param toAccountOptions
+ * @param toAccountType
+ * @param toAccountTypeOptions
+ * @param toClient
+ * @param toClientOptions
+ * @param toOffice
+ * @param toOfficeOptions
+ * @param transferAmount
+ * @param transferDate
  */
 
+@Serializable
+data class GetAccountTransfersTemplateRefundByTransferResponse(
 
-data class GetAccountTransfersTemplateRefundByTransferResponse (
-
-    @Json(name = "currency")
     val currency: GetAccountTransfersTemplateRefundByTransferCurrency? = null,
 
-    @Json(name = "fromAccount")
     val fromAccount: GetAccountTransfersTemplateRefundByTransferFromAccount? = null,
 
-    @Json(name = "fromAccountOptions")
     val fromAccountOptions: kotlin.collections.Set<GetAccountTransfersTemplateRefundByTransferFromAccountOptions>? = null,
 
-    @Json(name = "fromAccountType")
     val fromAccountType: GetAccountTransfersPageItemsToAccountType? = null,
 
-    @Json(name = "fromAccountTypeOptions")
     val fromAccountTypeOptions: kotlin.collections.Set<GetAccountTransfersFromAccountType>? = null,
 
-    @Json(name = "fromClient")
     val fromClient: GetAccountTransfersTemplateRefundByTransferFromClient? = null,
 
-    @Json(name = "fromClientOptions")
     val fromClientOptions: kotlin.collections.Set<GetAccountTransfersTemplateRefundByTransferFromClientOptions>? = null,
 
-    @Json(name = "fromOffice")
     val fromOffice: GetAccountTransfersTemplateRefundByTransferFromOffice? = null,
 
-    @Json(name = "fromOfficeOptions")
     val fromOfficeOptions: kotlin.collections.Set<GetAccountTransfersTemplateRefundByTransferFromOfficeOptions>? = null,
 
-    @Json(name = "toAccount")
     val toAccount: GetAccountTransfersTemplateRefundByTransferToAccount? = null,
 
-    @Json(name = "toAccountOptions")
     val toAccountOptions: kotlin.collections.Set<GetAccountTransfersTemplateRefundByTransferToAccount>? = null,
 
-    @Json(name = "toAccountType")
     val toAccountType: GetAccountTransfersFromAccountType? = null,
 
-    @Json(name = "toAccountTypeOptions")
     val toAccountTypeOptions: kotlin.collections.Set<GetAccountTransfersFromAccountType>? = null,
 
-    @Json(name = "toClient")
     val toClient: GetAccountTransfersTemplateRefundByTransferToClient? = null,
 
-    @Json(name = "toClientOptions")
     val toClientOptions: kotlin.collections.Set<GetAccountTransfersTemplateRefundByTransferFromClientOptions>? = null,
 
-    @Json(name = "toOffice")
     val toOffice: GetAccountTransfersTemplateRefundByTransferFromOffice? = null,
 
-    @Json(name = "toOfficeOptions")
     val toOfficeOptions: kotlin.collections.Set<GetAccountTransfersTemplateRefundByTransferFromOfficeOptions>? = null,
 
-    @Json(name = "transferAmount")
     val transferAmount: kotlin.Float? = null,
 
-    @Json(name = "transferDate")
+    @Contextual
     val transferDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

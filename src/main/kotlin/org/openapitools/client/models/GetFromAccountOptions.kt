@@ -15,49 +15,36 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetAccountOptions
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountId 
- * @param accountNo 
- * @param accountType 
- * @param clientId 
- * @param clientName 
- * @param officeId 
- * @param officeName 
+ *
+ * @param accountId
+ * @param accountNo
+ * @param accountType
+ * @param clientId
+ * @param clientName
+ * @param officeId
+ * @param officeName
  */
 
+@Serializable
+data class GetFromAccountOptions(
 
-data class GetFromAccountOptions (
-
-    @Json(name = "accountId")
     val accountId: kotlin.Long? = null,
 
-    @Json(name = "accountNo")
     val accountNo: kotlin.Int? = null,
 
-    @Json(name = "accountType")
     val accountType: GetAccountOptions? = null,
 
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "clientName")
     val clientName: kotlin.String? = null,
 
-    @Json(name = "officeId")
     val officeId: kotlin.Long? = null,
 
-    @Json(name = "officeName")
     val officeName: kotlin.String? = null
 
-) {
-
-
-}
+)
 

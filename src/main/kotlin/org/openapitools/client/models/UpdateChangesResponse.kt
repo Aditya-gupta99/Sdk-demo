@@ -16,35 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountNo 
- * @param amount 
- * @param bankName 
- * @param date 
+ *
+ * @param accountNo
+ * @param amount
+ * @param bankName
+ * @param date
  */
 
+@Serializable
+data class UpdateChangesResponse(
 
-data class UpdateChangesResponse (
-
-    @Json(name = "accountNo")
     val accountNo: kotlin.Long? = null,
 
-    @Json(name = "amount")
+    @Contextual
     val amount: java.math.BigDecimal? = null,
 
-    @Json(name = "bankName")
     val bankName: kotlin.String? = null,
 
-    @Json(name = "date")
+    @Contextual
     val date: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

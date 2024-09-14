@@ -15,122 +15,90 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.CodeValueData
-import org.openapitools.client.models.EnumOptionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountTypeOptions 
- * @param allowedAssetsTagOptions 
- * @param allowedEquityTagOptions 
- * @param allowedExpensesTagOptions 
- * @param allowedIncomeTagOptions 
- * @param allowedLiabilitiesTagOptions 
- * @param assetHeaderAccountOptions 
- * @param description 
- * @param disabled 
- * @param equityHeaderAccountOptions 
- * @param expenseHeaderAccountOptions 
- * @param glCode 
- * @param id 
- * @param incomeHeaderAccountOptions 
- * @param liabilityHeaderAccountOptions 
- * @param manualEntriesAllowed 
- * @param name 
- * @param nameDecorated 
- * @param organizationRunningBalance 
- * @param parentId 
- * @param rowIndex 
- * @param tagId 
- * @param type 
- * @param usage 
- * @param usageOptions 
+ *
+ * @param accountTypeOptions
+ * @param allowedAssetsTagOptions
+ * @param allowedEquityTagOptions
+ * @param allowedExpensesTagOptions
+ * @param allowedIncomeTagOptions
+ * @param allowedLiabilitiesTagOptions
+ * @param assetHeaderAccountOptions
+ * @param description
+ * @param disabled
+ * @param equityHeaderAccountOptions
+ * @param expenseHeaderAccountOptions
+ * @param glCode
+ * @param id
+ * @param incomeHeaderAccountOptions
+ * @param liabilityHeaderAccountOptions
+ * @param manualEntriesAllowed
+ * @param name
+ * @param nameDecorated
+ * @param organizationRunningBalance
+ * @param parentId
+ * @param rowIndex
+ * @param tagId
+ * @param type
+ * @param usage
+ * @param usageOptions
  */
 
+@Serializable
+data class GLAccountData(
 
-data class GLAccountData (
-
-    @Json(name = "accountTypeOptions")
     val accountTypeOptions: kotlin.collections.List<EnumOptionData>? = null,
 
-    @Json(name = "allowedAssetsTagOptions")
     val allowedAssetsTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedEquityTagOptions")
     val allowedEquityTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedExpensesTagOptions")
     val allowedExpensesTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedIncomeTagOptions")
     val allowedIncomeTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "allowedLiabilitiesTagOptions")
     val allowedLiabilitiesTagOptions: kotlin.collections.List<CodeValueData>? = null,
 
-    @Json(name = "assetHeaderAccountOptions")
     val assetHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "disabled")
     val disabled: kotlin.Boolean? = null,
 
-    @Json(name = "equityHeaderAccountOptions")
     val equityHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "expenseHeaderAccountOptions")
     val expenseHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "glCode")
     val glCode: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "incomeHeaderAccountOptions")
     val incomeHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "liabilityHeaderAccountOptions")
     val liabilityHeaderAccountOptions: kotlin.collections.List<GLAccountData>? = null,
 
-    @Json(name = "manualEntriesAllowed")
     val manualEntriesAllowed: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "nameDecorated")
     val nameDecorated: kotlin.String? = null,
 
-    @Json(name = "organizationRunningBalance")
     val organizationRunningBalance: kotlin.Long? = null,
 
-    @Json(name = "parentId")
     val parentId: kotlin.Long? = null,
 
-    @Json(name = "rowIndex")
     val rowIndex: kotlin.Int? = null,
 
-    @Json(name = "tagId")
     val tagId: CodeValueData? = null,
 
-    @Json(name = "type")
     val type: EnumOptionData? = null,
 
-    @Json(name = "usage")
     val usage: EnumOptionData? = null,
 
-    @Json(name = "usageOptions")
     val usageOptions: kotlin.collections.List<EnumOptionData>? = null
 
-) {
-
-
-}
+)
 

@@ -15,33 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSavingsCurrency
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param accountBalance 
- * @param availableBalance 
- * @param currency 
+ *
+ * @param accountBalance
+ * @param availableBalance
+ * @param currency
  */
 
+@Serializable
+data class GetSavingsAccountsSummary(
 
-data class GetSavingsAccountsSummary (
-
-    @Json(name = "accountBalance")
+    @Contextual
     val accountBalance: java.math.BigDecimal? = null,
 
-    @Json(name = "availableBalance")
+    @Contextual
     val availableBalance: java.math.BigDecimal? = null,
 
-    @Json(name = "currency")
     val currency: GetSavingsCurrency? = null
 
-) {
-
-
-}
+)
 

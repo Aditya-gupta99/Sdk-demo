@@ -16,35 +16,27 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostDelinquencyRangeRequest
  *
- * @param classification 
- * @param locale 
- * @param maximumAgeDays 
- * @param minimumAgeDays 
+ * @param classification
+ * @param locale
+ * @param maximumAgeDays
+ * @param minimumAgeDays
  */
 
+@Serializable
+data class PostDelinquencyRangeRequest(
 
-data class PostDelinquencyRangeRequest (
-
-    @Json(name = "classification")
     val classification: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "maximumAgeDays")
     val maximumAgeDays: kotlin.Int? = null,
 
-    @Json(name = "minimumAgeDays")
     val minimumAgeDays: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

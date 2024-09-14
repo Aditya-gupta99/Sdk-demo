@@ -16,31 +16,24 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param empty 
- * @param sorted 
- * @param unsorted 
+ *
+ * @param empty
+ * @param sorted
+ * @param unsorted
  */
 
+@Serializable
+data class Sort(
 
-data class Sort (
-
-    @Json(name = "empty")
     val empty: kotlin.Boolean? = null,
 
-    @Json(name = "sorted")
     val sorted: kotlin.Boolean? = null,
 
-    @Json(name = "unsorted")
     val unsorted: kotlin.Boolean? = null
 
-) {
-
-
-}
+)
 

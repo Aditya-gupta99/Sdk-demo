@@ -15,33 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetTaxesGroupTaxAssociations
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetTaxesGroupResponse
  *
- * @param id 
- * @param name 
- * @param taxAssociations 
+ * @param id
+ * @param name
+ * @param taxAssociations
  */
 
+@Serializable
+data class GetTaxesGroupResponse(
 
-data class GetTaxesGroupResponse (
-
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "taxAssociations")
     val taxAssociations: kotlin.collections.Set<GetTaxesGroupTaxAssociations>? = null
 
-) {
-
-
-}
+)
 

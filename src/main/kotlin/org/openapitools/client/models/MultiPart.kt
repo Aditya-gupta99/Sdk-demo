@@ -15,61 +15,46 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.BodyPart
-import org.openapitools.client.models.BodyPartHeaders
-import org.openapitools.client.models.BodyPartParameterizedHeaders
-import org.openapitools.client.models.ContentDisposition
-import org.openapitools.client.models.MediaType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param bodyParts 
- * @param contentDisposition 
- * @param entity 
- * @param headers 
- * @param mediaType 
- * @param messageBodyWorkers 
- * @param parameterizedHeaders 
- * @param parent 
- * @param providers 
+ *
+ * @param bodyParts
+ * @param contentDisposition
+ * @param entity
+ * @param headers
+ * @param mediaType
+ * @param messageBodyWorkers
+ * @param parameterizedHeaders
+ * @param parent
+ * @param providers
  */
 
+@Serializable
+data class MultiPart(
 
-data class MultiPart (
-
-    @Json(name = "bodyParts")
     val bodyParts: kotlin.collections.List<BodyPart>? = null,
 
-    @Json(name = "contentDisposition")
     val contentDisposition: ContentDisposition? = null,
 
-    @Json(name = "entity")
+    @Contextual
     val entity: kotlin.Any? = null,
 
-    @Json(name = "headers")
     val headers: BodyPartHeaders? = null,
 
-    @Json(name = "mediaType")
     val mediaType: MediaType? = null,
 
-    @Json(name = "messageBodyWorkers")
+    @Contextual
     val messageBodyWorkers: kotlin.Any? = null,
 
-    @Json(name = "parameterizedHeaders")
     val parameterizedHeaders: BodyPartParameterizedHeaders? = null,
 
-    @Json(name = "parent")
     val parent: MultiPart? = null,
 
-    @Json(name = "providers")
+    @Contextual
     val providers: kotlin.Any? = null
 
-) {
-
-
-}
+)
 

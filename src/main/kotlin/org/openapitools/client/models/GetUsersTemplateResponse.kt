@@ -15,34 +15,24 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.OfficeData
-import org.openapitools.client.models.RoleData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetUsersTemplateResponse
  *
- * @param allowedOffices 
- * @param availableRoles 
- * @param selfServiceRoles 
+ * @param allowedOffices
+ * @param availableRoles
+ * @param selfServiceRoles
  */
 
+@Serializable
+data class GetUsersTemplateResponse(
 
-data class GetUsersTemplateResponse (
-
-    @Json(name = "allowedOffices")
     val allowedOffices: kotlin.collections.List<OfficeData>? = null,
 
-    @Json(name = "availableRoles")
     val availableRoles: kotlin.collections.List<RoleData>? = null,
 
-    @Json(name = "selfServiceRoles")
     val selfServiceRoles: kotlin.collections.List<RoleData>? = null
 
-) {
-
-
-}
+)
 

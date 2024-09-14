@@ -16,51 +16,39 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostFixedDepositAccountsRequest
  *
- * @param clientId 
- * @param dateFormat 
- * @param depositAmount 
- * @param depositPeriod 
- * @param depositPeriodFrequencyId 
- * @param locale 
- * @param productId 
- * @param submittedOnDate 
+ * @param clientId
+ * @param dateFormat
+ * @param depositAmount
+ * @param depositPeriod
+ * @param depositPeriodFrequencyId
+ * @param locale
+ * @param productId
+ * @param submittedOnDate
  */
 
+@Serializable
+data class PostFixedDepositAccountsRequest(
 
-data class PostFixedDepositAccountsRequest (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "depositAmount")
     val depositAmount: kotlin.Float? = null,
 
-    @Json(name = "depositPeriod")
     val depositPeriod: kotlin.Int? = null,
 
-    @Json(name = "depositPeriodFrequencyId")
     val depositPeriodFrequencyId: kotlin.Long? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "productId")
     val productId: kotlin.Long? = null,
 
-    @Json(name = "submittedOnDate")
     val submittedOnDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

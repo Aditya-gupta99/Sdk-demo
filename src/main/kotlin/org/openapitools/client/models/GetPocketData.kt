@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param row 
+ *
+ * @param row
  */
 
+@Serializable
+data class GetPocketData(
 
-data class GetPocketData (
-
-    @Json(name = "row")
     val row: kotlin.String? = null
 
-) {
-
-
-}
+)
 

@@ -16,39 +16,30 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PutOfficesOfficeIdRequest
  *
- * @param dateFormat 
- * @param externalId 
- * @param locale 
- * @param name 
- * @param openingDate 
+ * @param dateFormat
+ * @param externalId
+ * @param locale
+ * @param name
+ * @param openingDate
  */
 
+@Serializable
+data class PutOfficesOfficeIdRequest(
 
-data class PutOfficesOfficeIdRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "externalId")
     val externalId: kotlin.String? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "openingDate")
     val openingDate: kotlin.String? = null
 
-) {
-
-
-}
+)
 

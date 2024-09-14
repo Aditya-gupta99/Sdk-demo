@@ -16,27 +16,21 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * PostTellersTellerIdCashiersCashierIdAllocateResponse
  *
- * @param resourceId 
- * @param subResourceId 
+ * @param resourceId
+ * @param subResourceId
  */
 
+@Serializable
+data class PostTellersTellerIdCashiersCashierIdAllocateResponse(
 
-data class PostTellersTellerIdCashiersCashierIdAllocateResponse (
-
-    @Json(name = "resourceId")
     val resourceId: kotlin.Long? = null,
 
-    @Json(name = "subResourceId")
     val subResourceId: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

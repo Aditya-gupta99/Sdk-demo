@@ -15,53 +15,43 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.PostHolidaysRequestOffices
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * PostHolidaysRequest
  *
- * @param dateFormat 
- * @param description 
- * @param fromDate 
- * @param locale 
- * @param name 
- * @param offices 
- * @param repaymentsRescheduledTo 
- * @param toDate 
+ * @param dateFormat
+ * @param description
+ * @param fromDate
+ * @param locale
+ * @param name
+ * @param offices
+ * @param repaymentsRescheduledTo
+ * @param toDate
  */
 
+@Serializable
+data class PostHolidaysRequest(
 
-data class PostHolidaysRequest (
-
-    @Json(name = "dateFormat")
     val dateFormat: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "fromDate")
+    @Contextual
     val fromDate: java.time.LocalDate? = null,
 
-    @Json(name = "locale")
     val locale: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "offices")
     val offices: kotlin.collections.List<PostHolidaysRequestOffices>? = null,
 
-    @Json(name = "repaymentsRescheduledTo")
+    @Contextual
     val repaymentsRescheduledTo: java.time.LocalDate? = null,
 
-    @Json(name = "toDate")
+    @Contextual
     val toDate: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

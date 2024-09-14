@@ -15,62 +15,48 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.Event
-import org.openapitools.client.models.Field
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
  * GetHookResponse
  *
- * @param config 
- * @param createdAt 
- * @param displayName 
- * @param events 
- * @param id 
- * @param isActive 
- * @param name 
- * @param templateId 
- * @param templateName 
- * @param updatedAt 
+ * @param config
+ * @param createdAt
+ * @param displayName
+ * @param events
+ * @param id
+ * @param isActive
+ * @param name
+ * @param templateId
+ * @param templateName
+ * @param updatedAt
  */
 
+@Serializable
+data class GetHookResponse(
 
-data class GetHookResponse (
-
-    @Json(name = "config")
     val config: kotlin.collections.List<Field>? = null,
 
-    @Json(name = "createdAt")
+    @Contextual
     val createdAt: java.time.LocalDate? = null,
 
-    @Json(name = "displayName")
     val displayName: kotlin.String? = null,
 
-    @Json(name = "events")
     val events: kotlin.collections.List<Event>? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "isActive")
     val isActive: kotlin.Boolean? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "templateId")
     val templateId: kotlin.Long? = null,
 
-    @Json(name = "templateName")
     val templateName: kotlin.String? = null,
 
-    @Json(name = "updatedAt")
+    @Contextual
     val updatedAt: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

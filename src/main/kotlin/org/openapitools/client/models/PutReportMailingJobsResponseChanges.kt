@@ -16,23 +16,20 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param startDateTime 
+ *
+ * @param startDateTime
  */
 
+@Serializable
+data class PutReportMailingJobsResponseChanges(
 
-data class PutReportMailingJobsResponseChanges (
-
-    @Json(name = "startDateTime")
+    @Contextual
     val startDateTime: java.time.OffsetDateTime? = null
 
-) {
-
-
-}
+)
 

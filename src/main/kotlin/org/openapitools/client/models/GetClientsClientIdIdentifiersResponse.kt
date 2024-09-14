@@ -15,41 +15,30 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetClientsDocumentType
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetClientsClientIdIdentifiersResponse
  *
- * @param clientId 
- * @param description 
- * @param documentKey 
- * @param documentType 
- * @param id 
+ * @param clientId
+ * @param description
+ * @param documentKey
+ * @param documentType
+ * @param id
  */
 
+@Serializable
+data class GetClientsClientIdIdentifiersResponse(
 
-data class GetClientsClientIdIdentifiersResponse (
-
-    @Json(name = "clientId")
     val clientId: kotlin.Long? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "documentKey")
     val documentKey: kotlin.String? = null,
 
-    @Json(name = "documentType")
     val documentType: GetClientsDocumentType? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null
 
-) {
-
-
-}
+)
 

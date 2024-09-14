@@ -15,58 +15,45 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.ComponentData
-import org.openapitools.client.models.QuestionData
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param componentDatas 
- * @param countryCode 
- * @param description 
- * @param id 
- * @param key 
- * @param name 
- * @param questionDatas 
- * @param validFrom 
- * @param validTo 
+ *
+ * @param componentDatas
+ * @param countryCode
+ * @param description
+ * @param id
+ * @param key
+ * @param name
+ * @param questionDatas
+ * @param validFrom
+ * @param validTo
  */
 
+@Serializable
+data class SurveyData(
 
-data class SurveyData (
-
-    @Json(name = "componentDatas")
     val componentDatas: kotlin.collections.List<ComponentData>? = null,
 
-    @Json(name = "countryCode")
     val countryCode: kotlin.String? = null,
 
-    @Json(name = "description")
     val description: kotlin.String? = null,
 
-    @Json(name = "id")
     val id: kotlin.Long? = null,
 
-    @Json(name = "key")
     val key: kotlin.String? = null,
 
-    @Json(name = "name")
     val name: kotlin.String? = null,
 
-    @Json(name = "questionDatas")
     val questionDatas: kotlin.collections.List<QuestionData>? = null,
 
-    @Json(name = "validFrom")
+    @Contextual
     val validFrom: java.time.LocalDate? = null,
 
-    @Json(name = "validTo")
+    @Contextual
     val validTo: java.time.LocalDate? = null
 
-) {
-
-
-}
+)
 

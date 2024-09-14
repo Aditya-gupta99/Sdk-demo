@@ -15,29 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.GetSelfClientsClientIdTransactionsPageItems
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetSelfClientsClientIdTransactionsResponse
  *
- * @param pageItems 
- * @param totalFilteredRecords 
+ * @param pageItems
+ * @param totalFilteredRecords
  */
 
+@Serializable
+data class GetSelfClientsClientIdTransactionsResponse(
 
-data class GetSelfClientsClientIdTransactionsResponse (
-
-    @Json(name = "pageItems")
     val pageItems: kotlin.collections.Set<GetSelfClientsClientIdTransactionsPageItems>? = null,
 
-    @Json(name = "totalFilteredRecords")
     val totalFilteredRecords: kotlin.Int? = null
 
-) {
-
-
-}
+)
 

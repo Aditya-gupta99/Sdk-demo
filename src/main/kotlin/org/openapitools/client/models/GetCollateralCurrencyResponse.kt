@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
- * 
  *
- * @param code 
+ *
+ * @param code
  */
 
+@Serializable
+data class GetCollateralCurrencyResponse(
 
-data class GetCollateralCurrencyResponse (
-
-    @Json(name = "code")
     val code: kotlin.String? = null
 
-) {
-
-
-}
+)
 

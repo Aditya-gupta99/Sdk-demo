@@ -15,38 +15,27 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.AppUserData
-import org.openapitools.client.models.ProcessingResultLookup
-
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * GetMakerCheckersSearchTemplateResponse
  *
- * @param actionNames 
- * @param appUsers 
- * @param entityNames 
- * @param processingResults 
+ * @param actionNames
+ * @param appUsers
+ * @param entityNames
+ * @param processingResults
  */
 
+@Serializable
+data class GetMakerCheckersSearchTemplateResponse(
 
-data class GetMakerCheckersSearchTemplateResponse (
-
-    @Json(name = "actionNames")
     val actionNames: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "appUsers")
     val appUsers: kotlin.collections.List<AppUserData>? = null,
 
-    @Json(name = "entityNames")
     val entityNames: kotlin.collections.List<kotlin.String>? = null,
 
-    @Json(name = "processingResults")
     val processingResults: kotlin.collections.List<ProcessingResultLookup>? = null
 
-) {
-
-
-}
+)
 

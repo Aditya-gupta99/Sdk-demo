@@ -16,23 +16,18 @@
 package org.openapitools.client.models
 
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * DeleteSelfBeneficiariesTPTBeneficiaryIdResponse
  *
- * @param resourceId 
+ * @param resourceId
  */
 
+@Serializable
+data class DeleteSelfBeneficiariesTPTBeneficiaryIdResponse(
 
-data class DeleteSelfBeneficiariesTPTBeneficiaryIdResponse (
-
-    @Json(name = "resourceId")
     val resourceId: kotlin.Int? = null
 
-) {
-
-
-}
+)
 
