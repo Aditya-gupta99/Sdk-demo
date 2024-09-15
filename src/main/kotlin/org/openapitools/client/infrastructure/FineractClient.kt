@@ -1,9 +1,6 @@
-@file:OptIn(InternalKtorfitApi::class)
-
 package org.openapitools.client.infrastructure
 
 import de.jensklingenberg.ktorfit.Ktorfit
-import de.jensklingenberg.ktorfit.internal.InternalKtorfitApi
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.auth.Auth
@@ -344,22 +341,14 @@ class FineractClient private constructor(
      * can be a handy back door for non-trivial advanced customizations of the API client if you have extended Fineract
      * with your own REST APIs.
      */
-//    fun <S> createService(serviceClass: Class<S>?): S {
-//        return ktorfit.create(serviceClass)
-//    }
 
     class Builder internal constructor() {
-//        private val json: JSON = JSON()
-
         /**
          * Obtain the internal OkHttp Builder. This method is typically not required to be invoked for simple API
          * usages, but can be a handy back door for non-trivial advanced customizations of the API client.
          *
          * @return the [ApiClient] which [.build] will use.
          */
-//        private val json = Json
-
-//        val okBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
 
         /**
          * Obtain the internal Retrofit Builder. This method is typically not required to be invoked for simple API
@@ -367,9 +356,6 @@ class FineractClient private constructor(
          *
          * @return the [ApiClient] which [.build] will use.
          */
-//        val retrofitBuilder: Retrofit.Builder =
-//            Retrofit.Builder().addConverterFactory(ScalarsConverterFactory.create())
-//                .addConverterFactory(JSON.GsonCustomConverterFactory.create(json.gson))
 
         private lateinit var baseURL: String
         private var tenant: String? = null
@@ -397,68 +383,6 @@ class FineractClient private constructor(
             this.insecure = insecure
             return this
         }
-
-//        fun logging(level: Level?): Builder {
-//            val logging = HttpLoggingInterceptor()
-//            level?.let { logging.setLevel(it) }
-//            okBuilder.addInterceptor(logging)
-//            return this
-//        }
-
-        /**
-         * Skip Fineract API host SSL certificate verification. DO NOT USE THIS when invoking a production server's API!
-         * This is intended for https://localhost:8443/ testing of development servers with self-signed certificates,
-         * only. If you do not understand what this is, do not use it. You WILL cause a security issue in your
-         * application due to the possibility of a "man in the middle" attack when this is enabled.
-         */
-//        @Suppress("unused")
-//        fun insecure(insecure: Boolean): Builder {
-//            // Nota bene: Similar code to this is also in Fineract Provider's
-//            // org.apache.fineract.infrastructure.hooks.processor.ProcessorHelper
-//            if (insecure) {
-//                val insecureHostnameVerifier =
-//                    HostnameVerifier { hostname: String?, session: SSLSession? -> true }
-//                okBuilder.hostnameVerifier(insecureHostnameVerifier)
-//
-//                try {
-//                    val insecureX509TrustManager: X509TrustManager = object : X509TrustManager {
-//                        @Throws(CertificateException::class)
-//                        override fun checkClientTrusted(
-//                            chain: Array<X509Certificate>,
-//                            authType: String
-//                        ) {
-//                        }
-//
-//                        @Throws(CertificateException::class)
-//                        override fun checkServerTrusted(
-//                            chain: Array<X509Certificate>,
-//                            authType: String
-//                        ) {
-//                        }
-//
-//                        override fun getAcceptedIssuers(): Array<X509Certificate> {
-//                            return arrayOf()
-//                        }
-//                    }
-//
-//                    // TODO "SSL" or "TLS" as in hooks.processor.ProcessorHelper?
-//                    val sslContext = SSLContext.getInstance("SSL")
-//                    sslContext.init(
-//                        null,
-//                        arrayOf<TrustManager>(insecureX509TrustManager),
-//                        SecureRandom()
-//                    )
-//                    val insecureSslSocketFactory = sslContext.socketFactory
-//
-//                    okBuilder.sslSocketFactory(insecureSslSocketFactory, insecureX509TrustManager)
-//                } catch (e: NoSuchAlgorithmException) {
-//                    throw IllegalStateException("insecure() SSL configuration failed", e)
-//                } catch (e: KeyManagementException) {
-//                    throw IllegalStateException("insecure() SSL configuration failed", e)
-//                }
-//            }
-//            return this
-//        }
 
         fun build(): FineractClient {
 
@@ -538,30 +462,7 @@ class FineractClient private constructor(
                 .baseUrl(baseURL)
                 .build()
 
-
-//            // URL
-//            has<String?>("baseURL", baseURL)?.let { retrofitBuilder.baseUrl(it) }
-//
-//            // Tenant
-//            val tenantAuth: ApiKeyAuth =
-//                ApiKeyAuth("header", "fineract-platform-tenantid", tenant.toString())
-//            okBuilder.addInterceptor(tenantAuth)
-//
-//            // BASIC Auth
-//            val basicAuth: HttpBasicAuth = HttpBasicAuth()
-//            basicAuth.setCredentials(has("username", username), has("password", password))
-//            okBuilder.addInterceptor(basicAuth)
-//
-//            val okHttpClient: OkHttpClient = okBuilder.build()
-//            retrofitBuilder.client(okHttpClient)
-
             return FineractClient(ktorClient, ktorfitBuilder)
-        }
-
-        @Throws(IllegalStateException::class)
-        private fun <T> has(propertyName: String, value: T?): T {
-            checkNotNull(value) { "Must call $propertyName(...) to create valid Builder" }
-            return value
         }
     }
 
