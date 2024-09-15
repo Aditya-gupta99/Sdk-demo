@@ -44,7 +44,7 @@ data class GetClientsClientIdResponse(
 
     val accountNo: kotlin.String? = null,
 
-    val activationDate: kotlinx.datetime.LocalDate? = null,
+    val activationDate: List<Int>? = null,
 
     val active: kotlin.Boolean? = null,
 
