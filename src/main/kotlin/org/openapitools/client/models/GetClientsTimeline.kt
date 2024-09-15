@@ -16,7 +16,6 @@
 package org.openapitools.client.models
 
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 /**
@@ -41,8 +40,7 @@ data class GetClientsTimeline(
 
     val activatedByUsername: kotlin.String? = null,
 
-    @Contextual
-    val activatedOnDate: java.time.LocalDate? = null,
+    val activatedOnDate: List<Int>? = null,
 
     val submittedByFirstname: kotlin.String? = null,
 
@@ -50,8 +48,7 @@ data class GetClientsTimeline(
 
     val submittedByUsername: kotlin.String? = null,
 
-    @Contextual
-    val submittedOnDate: java.time.LocalDate? = null
+    val submittedOnDate: List<Int>? = null
 
 )
 
